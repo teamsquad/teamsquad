@@ -1,0 +1,38 @@
+<h1>Homepage</h1>
+
+<div id="primary">
+	<div class="standout">
+	<p><%= truncate @organisation.summary, 200 %> <a href="/information">More information...</a></p>
+	</div>
+	
+	<div class="posts">
+	<% if @new_notices.size+@old_notices.size > 0 %>
+	<%= render :partial => "partials/notice", :collection => @new_notices %>
+	<% if @old_notices.size > 0 %><ul><% for notice in @old_notices %>
+		<li><%= link_to notice.heading, :action => 'notice', :page_slug => notice %></li><% end %>
+	</ul><% end %>
+	<% else %><div class="post">
+	<h2>No notices</h2>
+	<p>If this organisation had some notices then they would be displayed here.</p>
+	<p>Notices are used to keep everyone up-to-date with the latest news. If you
+	are the organiser for this organisation then why not add a few and make this
+	page look nicer and serve a purpose?</p>
+	</div><% end %>
+	<p class="admin">
+		<%= link_to "New notice...", :action => 'new_notice' %>
+	</p>
+	</div>
+</div>
+
+<div id="secondary">
+	<h2>Competitions</h2>
+	<ul><% for competition in @competitions %>
+		<li><%= link_to competition.title, :action => 'competition', :competition_slug => competition %></li><% end %>
+		<li><%= link_to 'Add new competition...', {:action => 'new_competition'}, {:class=>'admin'} %></li>
+	</ul>
+	
+	<h2>Other stuff</h2>
+	<ul>
+		<li><%= link_to 'Teams', :action => 'teams' %></li>
+	</ul>
+</div>

@@ -1,0 +1,89 @@
+#container {
+	width: 745px;
+	margin: 0 auto;
+	text-align: left;
+	overflow: visible;
+	position: relative;
+}
+
+#content {
+	padding: 0;
+}
+
+#org {
+	margin: 0;
+}
+
+div#primary {
+	clear: both;
+	float: left;
+	width: 500px;
+	position: relative;
+	margin-left: 5px;
+}
+
+div#primary.full {
+	float: none;
+	width: 100%;
+}
+
+div#secondary {
+	float: right;
+	width: 200px;
+	padding-top: 13px;
+}
+
+div#secondary h2,
+div#secondary h3,
+div#secondary ul,
+div#secondary p {
+	margin-left: 5px !important;
+	margin-right: 5px;
+}
+
+
+#search {
+	position: absolute;
+	top: 0px;
+	left: 545px;
+	width: 200px
+}
+
+#search form {
+	padding: 5px;
+	margin: 0;
+	background: #EEE;
+	border: 2px solid #DDD;
+}
+
+#search label {
+	display: block;
+	padding: 0 0 4px 0;
+	margin: 0;
+	font-size: x-small;
+	color: #666;
+}
+
+#search #in_term {
+	width: 120px;
+}
+
+#admin {
+	position: absolute;
+	width: 200px;
+	right: 0px;
+	top: -35px;
+	text-align: right;
+}
+
+#admin a {
+	color: #999;
+}
+
+#foot {
+	clear: both;
+	font-size: x-small;
+	color: #999;
+	text-align: center;
+	padding-top: 40px;
+}

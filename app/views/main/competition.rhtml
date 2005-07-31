@@ -1,0 +1,14 @@
+<h1><%= @competition.title %></h1>
+
+<div id="primary">
+	<div class="standout">
+	<p><%= h @competition.summary %> 
+	<%= link_to 'Edit this competition...', 
+		{:action => 'edit_competition'}, 
+		{:class => 'admin', :title => "Edit #{@competition.title}'s details"} %></p>
+	</div>
+</div>
+
+<div id="secondary">
+	<%= render :partial => 'menus/competition' %>
+</div>

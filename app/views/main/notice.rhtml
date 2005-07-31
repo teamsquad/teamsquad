@@ -1,0 +1,29 @@
+<h1><%= @notice.heading %></h1>
+
+<div id="primary">
+	<div class="post">
+		<p class="credit">By <%= @notice.author.name %> <%= time_ago_in_words @notice.created_on %> ago.</p>
+		<% if @notice.picture %><div class="image"><img src="/uploads/<%= @notice.picture %>"></div><% end %>
+		<%= safely_display @notice.content %>
+		<div class="clear"></div>
+	</div>
+	
+	<h2>Comments</h2>
+	<div class="comments" id="comments"><% for comment in @comments %>
+	<div class="post">
+	<h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
+	<%= safely_display comment.content %>
+	</div><% end %>
+	</div>
+
+	<div class="comment" id="comment">
+		<%= render_partial 'forms/comment', @comment %>
+	</div>
+</div>
+
+<div id="secondary">
+	<ul><% for notice in @notices %>
+		<li><%= link_to_unless_current notice.heading, :action => 'notice', :page_slug => notice %></li><% end %>
+		<li><%= link_to 'All notices...', :action => 'notice', :page_slug => nil %></li>
+	</ul>
+</div>

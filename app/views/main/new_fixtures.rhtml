@@ -1,0 +1,59 @@
+<h1><%= @competition.title %> <strong>New Fixtures</strong></h1>
+
+<div id="primary">
+	
+	<p>Add some fixtures to the group
+	<em><%= @group.title %></em> for the stage
+	<em><%= @stage.title %></em>.</p>
+	
+	<form action="" method="post" class="fixtures">
+		<fieldset>
+			<legend>When...</legend>
+			<p>
+				Fixtures for
+				<%= select_month(Date.today, :prefix => 'when' ) %>
+				<%= select_day(Date.today, :prefix => 'when' ) %>
+				<%= select_year(Date.today, :prefix => 'when' ) %>
+			</p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Matches...</legend>
+	
+			<table cellpadding="0" cellspacing="0">
+				<thead>
+				<tr>
+					<th class="when">Time</th>
+					<th class="home team">Home team</th>
+					<th>&nbsp;</th>
+					<th class="away team">Away team</th>
+					<th colspan="2">&nbsp;</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr id="_1">
+					<td class="time"><select name="game[1][hour]" id="hour_1">
+							<option selected="selected">00</option><% 1.upto(23) do |hour| %><option><%= leading_zero_on_single_digits hour %></option><% end %>
+						</select>:<select name="game[1][minute]" id="minute_1">
+							<option selected="selected">00</option><% 1.upto(59) do |minute| %><option><%= leading_zero_on_single_digits minute %></option><% end %>
+					</select></td>
+					<td class="home team"><select name="game[1][hometeam]" id="hometeam_1"><option></option><%= options_from_collection_for_select(@teams_in_group, "id", "title") %></select></td>
+					<td class="versus">v</td>
+					<td class="away team"><select name="game[1][awayteam]" id="awayteam_1"><option></option><%= options_from_collection_for_select(@teams_in_group, "id", "title") %></select></td>
+					<td><input type="button" value="-" onclick="delRow(this)" id="del_1" disabled="true" title="Remove this row"></td>
+					<td><input type="button" value="+" onclick="addRow(this)" id="add_1" title="Add another row"></td>
+				</tr><tr><td colspan="6"><p class="reminder">Changes are not saved until you click the 'Create fixtures' button.</p></td></tr>
+				</tbody>
+			</table>
+		</fieldset>
+		
+		<fieldset class="finish">
+			<legend>Finish up</legend>
+			<input type="submit" value="Create fixtures">
+		</fieldset>
+	</form>
+</div>
+
+<div id="secondary">
+	
+</div>

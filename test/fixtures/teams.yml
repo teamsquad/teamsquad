@@ -1,0 +1,9 @@
+team1:
+  id: 1
+  organisation_id: 1
+  title: Team One
+
+team2:
+  id: 2
+  organisation_id: 1
+  title: Team Two

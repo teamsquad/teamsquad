@@ -1,0 +1,14 @@
+<h1><%= @competition.title %> <strong>Results</strong></h1>
+
+<div id="primary">
+	<% for stage in @stages %><% if @competition.stages_count > 1 %>
+	<h2><%= stage.title %></h2><% end %><% for group in stage.groups %>
+	<div class="group"><% if stage.groups.size > 1 %>
+	<h3><%= group.title %></h3><% end %>
+	<%= render :partial => 'partials/results', :locals => {:group => group} %>
+	</div><% end %><% end %>
+</div>
+
+<div id="secondary">
+	<%= render :partial => 'menus/competition' %>
+</div>

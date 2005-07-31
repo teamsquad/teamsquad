@@ -1,0 +1,33 @@
+<% unless notice.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end %>
+<form action="#comment" method="post" class="standard" enctype="multipart/form-data">
+	<fieldset>
+		<legend>Notice details...</legend>
+		<label for="in-title">Heading</label>
+		<p class="hint">This is the heading or title of the notice and should sum up
+		what the notice is all about in a few words. Short and sweet.</p>
+		<%= error_message_on "notice", "heading" %>
+		<%= text_field "notice", "heading", :class => 'textfield', :id => 'in-heading' %>
+		
+		<label for="in-content">Content</label>
+		<p class="hint">This is the full text content for the notice. Don't use HTML tags,
+		web addresses will automatically be linked and linebreaks will be respected.</p>
+		<%= error_message_on "notice", "content" %>
+		<%= text_area "notice", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%>
+		
+		<label for="in-picture">Picture</label>
+		<p class="hint">If you want to add a picture to display with this post use the 
+		file field to locate a picture on your local system for uploading. Make sure the
+		image is a sensible size (around 100-200 pixels square would be good) and in a
+		suitable format for displaying on the web (i.e. GIF, JPEG, or PNG).</p>
+		<%= error_message_on "notice", "picture" %>
+		<%= file_field "notice", "picture", :class => 'fileupload', :id => 'in-picture'%>
+			
+	</fieldset>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save notice">
+	</fieldset>
+</form>

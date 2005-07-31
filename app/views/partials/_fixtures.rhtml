@@ -1,0 +1,22 @@
+<table class="games" cellpadding="0" cellspacing="0" summary="List of fixtures for <%= h group.title %>">
+	<thead>
+		<th class="date">Date</th>
+		<th class="home team">Home Team</th>
+		<th class="versus">v</th>
+		<th class="away team">Away Team</th>
+		<th class="time">Time</th>
+	</thead>
+	<tbody><% j=1; for game in group.fixtures %>
+	<tr class="<%= (j&1==1) ? 'odd' : 'even' %>">
+		<td class="when"><%= game.pretty_date %></td>
+		<td class="home team"><%= link_to game.hometeam.title,
+			{:action => 'team', :team_slug => game.hometeam},
+			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="versus">v</td>
+		<td class="away team"><%= link_to game.awayteam.title,
+			{:action =>'team', :team_slug => game.awayteam},
+			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="when"><%= game.pretty_time %></td>
+	</tr><% end %>
+	</tbody>
+</table>

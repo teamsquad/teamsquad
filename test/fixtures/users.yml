@@ -1,0 +1,6 @@
+user1:
+  id: 1
+  organisation_id: 1
+  email: dummy@example.com
+  password: goobledegook
+  name: Arthur Average

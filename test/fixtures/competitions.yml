@@ -1,0 +1,7 @@
+competition1:
+  id: 1
+  season_id: 1
+  title: Competition One
+  summary: This is competition one
+  rank: 1
+  stages_count: 1

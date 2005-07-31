@@ -1,0 +1,26 @@
+<% unless comment.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end %>
+<form action="" method="post" class="standard">
+	<fieldset>
+		<legend>Post your comments</legend>
+		
+		<label for="in-name">Your name</label>
+		<p class="hint">Just your name, nothing else. Will be shown along with your
+		comment.</p>
+		<%= error_message_on "comment", "name" %>
+		<%= text_field "comment", "name", :class => 'textfield', :id => 'in-name' %>
+		
+		<label for="in-content">Your comment</label>
+		<p class="hint">Be nice, stay on topic, and don't ramble. HTML tags are
+		not allowed. Linebreaks will be kept - use two to add a paragraph.</p>
+		<%= error_message_on "comment", "content" %>
+		<%= text_area "comment", "content", :rows => 8, :class => 'textarea', :id => 'in-content'%>
+		
+	</fieldset>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Post your comment">
+	</fieldset>
+</form>

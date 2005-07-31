@@ -1,0 +1,180 @@
+body {
+	background-color: #FFF;
+	color: #333;
+	padding: 40px 0 20px 0;
+	margin: 0;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: small;
+	background: url(/images/body.gif) repeat-x center top;
+	border-top: 3px solid #900;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+	color: #900;
+	background: #FFF;
+}
+
+h1 {
+	padding: 0;
+	margin: 0 220px 10px 0;
+	font-size: x-large;
+}
+
+h2 {
+	color: #666;
+	margin: 0 0 0.5em 0;
+	clear: both;
+}
+
+h3 {
+	margin: 0 0 0.3em 0;
+}
+
+a {
+	color: #090;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #900;
+}
+
+hr {
+	height: 1px;
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+#primary p {
+	line-height: 1.4em;
+}
+
+blockquote {
+	clear: both;
+	font-size: 1.2em;
+	font-style: italic;
+	padding: 1em;
+	margin: 0 3em;
+	color: #900;
+	text-align: center;
+}
+
+div#secondary {
+	font-size: 0.9em;
+}
+
+div#secondary h2 {
+	margin: 0 0 0.2em 0;
+	font-size: 1.2em;
+}
+
+div#secondary ul {
+	display: block;
+	margin: 0 0 2em 0;
+	padding: 0 0 0 0;
+}
+
+div#secondary li {
+	display: block;
+	margin: 0.6em 0;
+	padding: 0 0 0 15px;
+	background: url(/images/bullet.gif) no-repeat left top;
+	color: #900;
+	font-weight: bold;
+}
+
+div#secondary li a {
+	font-weight: normal;
+}
+
+#secondary p {
+	margin: 0 0 2em 0;
+	color: #999;
+}
+
+p.notify {
+	padding: 3em;
+	border: 2px solid #EEC;
+	background: #FFE;
+	font-weight: bold;
+	font-size: medium;
+	text-align: center;
+}
+
+div.group {
+	margin-bottom: 2em;
+}
+
+.admin a, a.admin {
+	background: #FFD;
+}
+
+div.standout {
+	padding: 10px;
+	background: #FFE;
+	border: 2px solid #EED;
+	margin-bottom: 2em;
+	font-weight: bold;
+}
+
+div.standout p {
+	margin: 0;
+	padding: 0;
+}
+
+div.posts {
+	padding-top: 1em;
+	border-top: 2px solid #EEE;
+}
+
+div.post {
+	clear: both;
+	border-bottom: 2px solid #EEE;
+	margin-bottom: 1em;
+}
+
+div.post h2 {
+	padding-left: 20px;
+	background: url(/images/post.gif) no-repeat left center;
+}
+
+div.post div.image {
+	float: right;
+	margin: 0 0 1em 1em;
+	border: 1px solid #CCC;
+	padding: 3px;
+	text-align: center;
+	font-size: smaller;
+}
+
+div.post div.image img {
+	display: block;
+}
+
+div.posts p {
+	margin-left: 20px;
+	text-align: justify;
+}
+
+p.credit {
+	margin: -0.5em 0 -0.5em 0;
+	color: #999;
+	text-align: left;
+}
+
+.clickable {
+	cursor: pointer;
+	cursor: hand;
+}
+
+div.clear {
+	clear: both;
+}

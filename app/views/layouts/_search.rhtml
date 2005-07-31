@@ -1,0 +1,7 @@
+<div id="search">
+	<%= start_form_tag({:action => 'search'}, {:method => 'GET'}) %>
+		<label for="in_term">Search this organisation</label>
+		<input type="text" name="term" id="in_term" value="Enter search term">
+		<input type="submit" value="Search" class="clickable" title="Click this button and we'll go look for your stuff">
+	<%= end_form_tag %>
+</div>

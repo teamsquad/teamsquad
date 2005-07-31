@@ -1,0 +1,19 @@
+season1:
+  id: 1
+  organisation_id: 1
+  title: Season1
+
+season2:
+  id: 2
+  organisation_id: 2
+  title: Season2
+
+season3:
+  id: 3
+  organisation_id: 1
+  title: RepeatedTitle
+
+season4:
+  id: 4
+  organisation_id: 2
+  title: RepeatedTitle
