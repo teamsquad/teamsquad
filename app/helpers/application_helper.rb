@@ -3,10 +3,7 @@ module ApplicationHelper
 	
 	def safely_display(source)
 		result = source
-		result.gsub!(/&/, '&amp;')
-		result.gsub!(/>/, '&gt;')
-		result.gsub!(/</, '&lt;')
-		simple_format(auto_link(result)) 
+		simple_format(auto_link(CGI.escapeHTML(result))) 
 	end
 	
 end
