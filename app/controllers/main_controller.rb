@@ -141,6 +141,13 @@ class MainController < ApplicationController
 		end
 	end
 	
+	def enter_results
+	  if get_group
+	    @games = @group.outstanding_results
+	    @stages = @competition.stages
+    end
+	end
+	
 	# STAGE RELATED
 	
 	def stage

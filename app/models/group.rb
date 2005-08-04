@@ -21,6 +21,19 @@ class Group < ActiveRecord::Base
 		self.games.find(:all, :conditions => "played='false'", :order => 'kickoff desc')
 	end
 	
+	def outstanding_results(limit=1000)
+	  self.games.find(
+	    :all,
+	    :conditions => "played='false' AND kickoff < CURRENT_DATE",
+	    :order => 'kickoff asc',
+	    :limit => limit
+	  )
+	end
+	
+	def has_outstanding_results?
+	  self.outstanding_results(1).size == 1
+	end
+	
 	def results
 		self.games.find(:all, :conditions => "played='true'", :order => 'kickoff desc')
 	end

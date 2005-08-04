@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 	def get_organisation
 		@organisation = Organisation.find_by_url_slug(request.subdomains.first)
 		did_we_find? @organisation
+		if @organisation then @sport = @organisation.sport end
 	end
 	
 	def get_team

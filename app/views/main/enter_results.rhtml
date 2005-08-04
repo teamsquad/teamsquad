@@ -1,0 +1,49 @@
+<h1><%= @competition.title %> <strong>Enter results</strong></h1>
+
+<h2><%= @stage.title %> - <%= @group.title %></h2>
+
+<div id="primary">
+<form action="" method="post">
+<table cellpadding="0" cellspacing="0" class="games">
+	<thead>
+		<tr>
+			<th class="team">Team</th>
+			<th>Result</th>
+			<th>Notes</th>
+			<th>Pts</th>
+			<th>Summary</th>
+		</tr>
+	</thead>
+	<tbody><% j = 1; previous_date = ''; for game in @games %>
+		<% if game.pretty_date != previous_date %><tr class="heading<%= j %>">
+		<th colspan="5"><h2><%= game.pretty_date %></h2></th>
+	</tr><% end; previous_date = game.pretty_date %>
+		<tr class="<%= (j&1==1) ? 'odd' : 'even' %>">
+			<td class="team"><%= game.hometeam.title %></td><% if @sport.uses_scores %>
+			<td><%= text_field "game", "home_score", "index" => game.id, "class" => 'score' %></td><% else %>
+			<td rowspan="2">
+				<select name="game[<%= game.id %>][result]">
+					<option value="0">Home</option>
+					<option value="1">Away</option>
+					<option value="2">Draw</option>
+				</select>
+			</td><% end %>
+			<td><%= text_field "game", "home_notes", "index" => game.id, "class" => 'notes' %></td>
+			<td><%= text_field "game", "home_points", "index" => game.id, "class" => 'points' %></td>
+			<td rowspan="2"><%= text_area "game", "summary", :rows => 4, "index" => game.id, "class" => 'summary' %></td>
+		</tr>
+		<tr class="<%= (j&1==1) ? 'odd' : 'even' %> noedge">
+			<td class="team"><%= game.awayteam.title %></td><% if @sport.uses_scores %>
+			<td><%= text_field "game", "away_score", "index" => game.id, "class" => 'score' %></td><% end %>
+			<td><%= text_field "game", "away_notes", "index" => game.id, "class" => 'notes' %></td>
+			<td><%= text_field "game", "away_points", "index" => game.id, "class" => 'points' %></td>
+		</tr><% j+=1; end %>
+	</tbody>
+</table>
+<input type="submit" value="save results">
+</form>	
+</div>
+
+<div id="secondary">
+	<%= render :partial => 'menus/competition' %>
+</div>

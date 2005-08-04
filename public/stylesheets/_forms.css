@@ -122,3 +122,28 @@ form th {
 	white-space: nowrap;
 }
 
+
+
+
+
+
+input.score {
+	width: 25px;
+}
+
+input.notes {
+	width: 75px;
+}
+
+input.points {
+	width: 25px;
+}
+
+textarea.summary {
+	width: 180px;
+}
+
+table.games select {
+	font-size: xx-small;
+}
+
