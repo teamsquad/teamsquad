@@ -18,7 +18,7 @@ class Group < ActiveRecord::Base
 	# as otherwise we are in very horrible n+1 territory
 	
 	def fixtures
-		self.games.find(:all, :conditions => "played='false'", :order => 'kickoff desc')
+		self.games.find(:all, :conditions => "played='false'", :order => 'kickoff asc')
 	end
 	
 	def outstanding_results(limit=1000)

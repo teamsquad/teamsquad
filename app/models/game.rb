@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
 	end
 	
 	def state
-		if self.played
+		if self.played && self.home_points && self.away_points
 			if self.home_points > self.away_points
 				'homewin'
 			elsif self.home_points < self.away_points
@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
 	end
 	
 	def pretty_date
-		self.kickoff.strftime("%B %e %Y")
+		self.kickoff.strftime("%B %e")
 	end
 	
 	def pretty_time

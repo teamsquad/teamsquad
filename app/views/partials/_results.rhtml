@@ -25,7 +25,7 @@
 		<td>&nbsp;</td>
 		<td class="away" colspan="3"><%= game.away_notes %></td>
 	</tr><% end %><% if game.has_summary? %>
-	<tr class="summary <%= (j&1==1) ? 'odd' : 'even' %>">
+	<tr class="<%= game.summary.length < 64 ? 'short ' : '' %>summary <%= (j&1==1) ? 'odd' : 'even' %>">
 		<td colspan="7"><%= game.summary %></td>
 	</tr><% end %><% j+=1; end %>
 	</tbody>

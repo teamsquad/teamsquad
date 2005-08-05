@@ -17,6 +17,6 @@
 			{:action =>'team', :team_slug => game.awayteam},
 			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
 		<td class="when"><%= game.pretty_time %></td>
-	</tr><% end %>
+	</tr><% j+=1; end %>
 	</tbody>
 </table>

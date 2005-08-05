@@ -80,6 +80,11 @@ table tr.summary td {
 	padding: 2px 90px 8px 90px;
 }
 
+table tr.short td {
+  text-align: center;
+}
+
+
 table tr.notes td {
 	border-top: none;
 	text-align: center;
@@ -106,6 +111,7 @@ table tr.auto-relegate td {
 	font-size: smaller;	
 	color: #999;
 	width: 2%;
+	padding: 3px 2px 0px 2px;
 }
 
 td.when {
@@ -113,6 +119,7 @@ td.when {
 	color: #999;
 	width: 9%;
 	white-space: nowrap;
+	font-size: smaller;
 }
 
 .home {
@@ -132,12 +139,9 @@ td.when {
 	font-size: larger;
 }
 
-form .team {
-	font-size: smaller;
-}
-
 .score {
 	width: 5%;
+	font-size: large;
 }
 
 th.score {

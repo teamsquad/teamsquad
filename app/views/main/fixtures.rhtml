@@ -6,10 +6,11 @@
 	<div class="group"><% if stage.groups.size > 1 %>
 	<h3><%= group.title %></h3><% end %>
 	<% if group.has_outstanding_results? %>
-	<p><%= link_to "Enter outstanding results", 
+	<p class="admin"><%= link_to "Enter outstanding results", 
 	  :action => 'enter_results',
 	  :stage_slug => stage,
-	  :group_slug => group %></p>
+	  :group_slug => group
+	%></p>
 	<% end %>
 	<%= render :partial => 'partials/fixtures', :locals => {:group => group} %>
 	</div><% end %><% end %>

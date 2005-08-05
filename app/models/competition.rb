@@ -27,16 +27,34 @@ class Competition < ActiveRecord::Base
 		self.title.gsub(/\s/, '_').downcase
 	end
 	
-	def self.formats
-		[
-			["Empty - will need to be manually set up after creation", "0"],
-			["League - no stages, one group", "1"],
-			["League - one play-off stage", "2"],
-			["Cup - 8 teams, 4 stages", "3"],
-			["Cup - 16 teams, 5 stages", "4"],
-			["Cup - 32 teams, 6 stages", '5'],
-			["Tournament - 32 teams, 1 group stage, 5 knockout stages", "6"],
-		]
+  # Attempts to save result data for this competitions fixtures
+  # params argument is a set of well formed request parameters
+  def process_results(params)
+	  self.transaction do
+  		params['game'].each do |key, value|
+  			if value['home_points']!="" and value['away_points']!=""
+  				game = Game.find(key)
+  				if !game.nil? && value['result'] != '-1'
+  					if value['result'] == '0'
+  						value['home_score'] = 1
+  						value['away_score'] = 0
+  					elsif value['result'] == '1'
+  						value['home_score'] = 0
+  						value['away_score'] = 1
+  					elsif value['result'] == '2'
+  						value['home_score'] = 0
+  						value['away_score'] = 0
+  					end
+  					if value['home_score'] && value['away_score'] && value['home_score'] !='' && value['away_score'] != ''
+  					  value.delete 'result'
+  					  game.attributes = value
+  					  game.played = true
+  					  game.save
+  					end
+  				end
+  			end
+  		end
+  	end
 	end
 	
 	# Saves the competition and creates appropriate
@@ -105,4 +123,17 @@ class Competition < ActiveRecord::Base
 		self.title.strip!
 	end
 
+  private
+  
+  def self.formats
+		[
+			["Empty - will need to be manually set up after creation", "0"],
+			["League - no stages, one group", "1"],
+			["League - one play-off stage", "2"],
+			["Cup - 8 teams, 4 stages", "3"],
+			["Cup - 16 teams, 5 stages", "4"],
+			["Cup - 32 teams, 6 stages", '5'],
+			["Tournament - 32 teams, 1 group stage, 5 knockout stages", "6"],
+		]
+	end
 end

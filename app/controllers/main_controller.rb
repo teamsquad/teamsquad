@@ -145,6 +145,9 @@ class MainController < ApplicationController
 	  if get_group
 	    @games = @group.outstanding_results
 	    @stages = @competition.stages
+	    if request.post? and @competition.process_results(@params)
+  			redirect_to :action => 'results'
+  		end
     end
 	end
 	

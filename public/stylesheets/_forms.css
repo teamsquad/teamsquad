@@ -123,27 +123,25 @@ form th {
 }
 
 
-
-
-
+table.results .team {
+  font-size: medium;
+}
 
 input.score {
-	width: 25px;
+	width: 40px;
+	font-size: large;
 }
 
 input.notes {
-	width: 75px;
+	width: 120px;
 }
 
 input.points {
-	width: 25px;
+	width: 40px;
 }
 
 textarea.summary {
-	width: 180px;
-}
-
-table.games select {
-	font-size: xx-small;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
