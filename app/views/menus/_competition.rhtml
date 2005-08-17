@@ -1,5 +1,14 @@
-<h2>Stages</h2>
-<ul><% for stage in @stages %>
+<h2>This competition</h2>
+<ul>
+  <li><%= link_to_unless_current 'Overview',
+		{:action => 'competition'},
+		{:title => "View the overview page for #{@competition.title}"} %></li>
+  <li><%= link_to_unless_current 'Results',
+		{:action => 'results'},
+		{:title => "View results for #{@competition.title}"} %></li>
+	<li><%= link_to_unless_current 'Fixtures', 
+		{:action => 'fixtures'},
+		{:title => "View fixtures for #{@competition.title}"} %></li><% for stage in @stages %>
 	<li><%= link_to_unless_current stage.title,
 		{:action => 'stage', :competition_slug => @competition,	:stage_slug => stage },
 		{:title => "View #{@competition.title}'s #{stage.title}" } %></li><% end %>
@@ -8,15 +17,6 @@
 		{:class => 'admin', :title => "Add another stage to #{@competition.title}"}) %></li>
 </ul>
 
-<h2>Matches</h2>
-<ul>
-	<li><%= link_to_unless_current 'Results',
-		{:action => 'results'},
-		{:title => "View results for #{@competition.title}"} %></li>
-	<li><%= link_to_unless_current 'Fixtures', 
-		{:action => 'fixtures'},
-		{:title => "View fixtures for #{@competition.title}"} %></li>
-</ul>
 <% if @other_competitions.size > 0 %>
 <h2>Other Competitions</h2>
 <ul><% for competition in @other_competitions %>
