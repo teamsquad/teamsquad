@@ -18,7 +18,7 @@
 </ul>
 
 <% if @other_competitions.size > 0 %>
-<h2>Other Competitions</h2>
+<h2>Other competitions</h2>
 <ul><% for competition in @other_competitions %>
 	<li><%= link_to competition.title,
 		{:action => 'competition', :competition_slug => competition},
