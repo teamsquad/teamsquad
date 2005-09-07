@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
 	
 	belongs_to :stage, :counter_cache => 'groups_count'
 	has_and_belongs_to_many :teams, :order => 'title asc'
-	has_many   :games
+	has_many   :games, :dependent => true
 	
 	has_many   :standings, :order => 'totalpoints desc'
 	

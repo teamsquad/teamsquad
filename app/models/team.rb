@@ -8,8 +8,8 @@ class Team < ActiveRecord::Base
 	
 	belongs_to :organisation
 	has_and_belongs_to_many :groups
-	has_many :homegames, :class_name => "Game", :foreign_key => "hometeam_id"
-	has_many :awaygames, :class_name => "Game", :foreign_key => "awayteam_id"
+	has_many :homegames, :class_name => "Game", :foreign_key => "hometeam_id", :dependent => true
+	has_many :awaygames, :class_name => "Game", :foreign_key => "awayteam_id", :dependent => true
 	
 	def to_param
 		self.title.gsub(/\s/, '_').downcase
