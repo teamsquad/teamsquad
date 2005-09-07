@@ -227,7 +227,7 @@ class MainController < ApplicationController
 				if @params[:teams]
 					for id in @params[:teams]
 						team = @group.teams.find id
-						@group.teams.delete team unless team.nil?
+						@group.remove_team! team unless team.nil?
 					end
 				end
 				redirect_to :action => 'stage'

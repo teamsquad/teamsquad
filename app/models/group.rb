@@ -13,6 +13,19 @@ class Group < ActiveRecord::Base
 	
 	has_many   :standings, :order => 'totalpoints desc'
 	
+	def remove_team!(team)
+	  redundant_games = self.games.find(
+	    :all,
+	    :conditions => ["(hometeam_id = ? OR awayteam_id = ?)" , team.id, team.id]
+	  )
+	  self.transaction do
+	    for game in redundant_games
+	      game.destroy
+	    end
+	    team.destroy
+	  end
+	end
+	
 	# add :include => [:hometeam, :awayteam] to following 2 methods
 	# when rails support same table, many times eager loading
 	# as otherwise we are in very horrible n+1 territory
