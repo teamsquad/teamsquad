@@ -1,0 +1,40 @@
+<h1><%= @competition.title %> <strong>Edit Fixture</strong></h1>
+
+<div id="primary">
+	
+	<form action="" method="post" class="fixtures">
+		<fieldset>
+			<legend>When...</legend>
+			<p><%= datetime_select("game", "kickoff") %></p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Match...</legend>
+	
+			<table cellpadding="0" cellspacing="0">
+				<thead>
+				<tr>
+					<th class="home team">Home team</th>
+					<th>&nbsp;</th>
+					<th class="away team">Away team</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="home team"><%= select("game", "hometeam_id", @team_options) %></td>
+					<td class="versus">v</td>
+					<td class="away team"><%= select("game", "awayteam_id", @team_options) %></td>
+				</tbody>
+			</table>
+		</fieldset>
+		
+		<fieldset class="finish">
+			<legend>Finish up</legend>
+			<input type="submit" value="Save changes">
+		</fieldset>
+	</form>
+</div>
+
+<div id="secondary">
+	
+</div>

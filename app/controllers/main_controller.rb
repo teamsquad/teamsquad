@@ -247,4 +247,17 @@ class MainController < ApplicationController
 		end
 	end
 	
+	def edit_fixture
+	  if get_group
+	    @game = Game.find @params[:id]
+	    @teams_in_group = @group.teams
+	    @team_options = @teams_in_group.collect { |team| [team.title, team.id] } 
+	    if @params[:kickoff]
+	      @params[:game][:kickoff] = "{@params[:kickoff][:year]}-{@params[:kickoff][:month]}-{@params[:kickoff][:day]} {@params[:kickoff][:hour]}:{@params[:kickoff][:minutes]}:00"
+	    end
+	    if @request.post? and @game.update_attributes @params[:game]
+	      redirect_to :action => 'fixtures'
+	    end
+    end
+	end
 end

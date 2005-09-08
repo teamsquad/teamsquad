@@ -5,6 +5,7 @@
 		<th class="versus">v</th>
 		<th class="away team">Away Team</th>
 		<th class="time">Time</th>
+		<th class="admin">Action</th>
 	</thead>
 	<tbody><% j=1; for game in group.fixtures %>
 	<tr class="<%= (j&1==1) ? 'odd' : 'even' %>">
@@ -17,6 +18,12 @@
 			{:action =>'team', :team_slug => game.awayteam},
 			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
 		<td class="when"><%= game.pretty_time %></td>
+		<td class="admin"><%= link_to 'edit',
+		  { :action => 'edit_fixture',
+		    :stage_slug => group.stage,
+		    :group_slug => group,
+		    :id => game
+		  } %></td>
 	</tr><% j+=1; end %>
 	</tbody>
 </table>

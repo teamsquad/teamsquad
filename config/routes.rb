@@ -50,5 +50,9 @@ ActionController::Routing::Routes.draw do |map|
 		:action => /edit_group|add_teams|remove_teams|new_fixtures|enter_results/,
 		:team_slug => nil
 
+  map.connect ':competition_slug/:stage_slug/:group_slug/:action/:id',
+		:controller => 'main',
+		:action => /edit_fixture/,
+		:id => nil
 	
 end
