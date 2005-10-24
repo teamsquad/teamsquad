@@ -21,6 +21,10 @@ class Season < ActiveRecord::Base
 		self.competitions.find_first ["lower(title) = ?", slug.gsub(/_/, ' ').downcase]
 	end
 	
+	def competitions_other_than(competition)
+	  self.competitions.find :all, :conditions => ["id != ?" ,competition.id]
+	end
+	
 	# Converts the season's title into a format suitable for
 	# using in an URL. Currently this simply involves swapping
 	# spaces for underscores and removing everything else.

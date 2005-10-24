@@ -10,49 +10,38 @@ class ApplicationController < ActionController::Base
 		@title   = "TeamSquad"
 		@scripts = Array.new
 	end
-	
+
 	def get_organisation
 		@organisation = Organisation.find_by_url_slug(request.subdomains.first)	
-		if @organisation then @sport = @organisation.sport end
-		did_we_find? @organisation
 	end
-	
+
 	def get_team
-		@team = @organisation.find_team_by_url_slug @params["team_slug"]
-		did_we_find? @team			
+	  return false unless get_organisation
+		@team = @organisation.find_team_by_url_slug(@params["team_slug"])
 	end
 	
-	def get_current_season
-		get_organisation
+	def get_season
+	  return false unless get_organisation
 		@season = @organisation.current_season
-		did_we_find? @season
 	end
 	
 	def get_competition
-		@competition = @season.find_competition_by_url_slug @params["competition_slug"]
-		@other_competitions = @season.competitions.find :all, :conditions => ["id!=?" ,@competition.id]
-	  did_we_find? @competition
+	  return false unless get_season
+		@competition = @season.find_competition_by_url_slug(@params["competition_slug"])
 	end
 	
 	def get_stage
-		if get_competition
-		 @stage = @competition.find_stage_by_url_slug @params["stage_slug"]
-		end
-		did_we_find? @stage
+		return false unless get_competition
+		@stage = @competition.find_stage_by_url_slug(@params["stage_slug"])
 	end
 	
 	def get_group
-		if get_stage
-		  @group = @stage.find_group_by_url_slug @params["group_slug"]
-		end
-		did_we_find? @group
+		return false unless get_stage
+		@group = @stage.find_group_by_url_slug(@params["group_slug"])
 	end
 	
-	private
-	
-	def did_we_find?(thing)
-	  if thing.respond_to? :title then @title += " - #{thing.title}" end 
-		!(thing.nil? && redirect_to("/404.html"))
+	def throw404
+	  redirect_to('/404.html')
 	end
-	
+
 end

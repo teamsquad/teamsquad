@@ -195,6 +195,11 @@ p.credit {
 	text-align: left;
 }
 
+p.more {
+  margin-top: 0;
+  text-align: right;
+}
+
 .clickable {
 	cursor: pointer;
 	cursor: hand;

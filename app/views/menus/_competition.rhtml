@@ -16,10 +16,12 @@
 		{:action => 'new_stage'}, 
 		{:class => 'admin', :title => "Add another stage to #{@competition.title}"}) %></li>
 </ul>
-
-<% if @other_competitions.size > 0 %>
+<%
+  other_competitions = @season.competitions_other_than(@competition)
+  if other_competitions.size > 0
+%>
 <h2>Other competitions</h2>
-<ul><% for competition in @other_competitions %>
+<ul><% for competition in other_competitions %>
 	<li><%= link_to competition.title,
 		{:action => 'competition', :competition_slug => competition},
 		{:title => "View #{competition.title}"} %></li><% end %>

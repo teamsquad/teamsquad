@@ -7,6 +7,22 @@
 		{:action => 'edit_competition'}, 
 		{:class => 'admin', :title => "Edit #{@competition.title}'s details"} %></p>
 	</div>
+	
+	<% for stage in @stages %><% if @competition.stages_count > 1 %>
+	<h2>Latest <%= stage.title %> results</h2><% else %><h2>Latest results</h2><% end %><% for group in stage.groups %>
+	<div class="group"><% if stage.groups.size > 1 %>
+	<h3><%= group.title %></h3><% end %>
+	<%= render :partial => 'partials/results', :locals => {:group => group} %>
+	</div><% end %><% end %>
+	<p class="more"><%= link_to 'More results', :action => 'results' %>.</p>
+	
+	<% for stage in @stages %><% if @competition.stages_count > 1 %>
+	<h2>Upcoming <%= stage.title %> fixtures</h2><% else %><h2>Upcoming fixtures</h2><% end %><% for group in stage.groups %>
+	<div class="group"><% if stage.groups.size > 1 %>
+	<h3><%= group.title %></h3><% end %>
+	<%= render :partial => 'partials/fixtures', :locals => {:group => group} %>
+	</div><% end %><% end %>
+	<p class="more"><%= link_to 'More fixtures', :action => 'fixtures' %>.</p>
 </div>
 
 <div id="secondary">
