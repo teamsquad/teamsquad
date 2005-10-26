@@ -26,11 +26,14 @@ class MainController < ApplicationController
 	def notices
 	  throw404 and return unless get_season
 		@notices = @organisation.notices
+		@title = "#{@title} - Notices"
 	end
 	
 	def notice
 	  throw404 and return unless get_season
 		@notice  = @organisation.find_notice_by_url_slug @params["page_slug"]
+		throw404 and return unless @notice
+		@title = "#{@title} - #{@notice.heading}"
 		@comments = @notice.comments
 		@comment = Comment.new @params["comment"]
 		@comment.notice_id = @notice.id
@@ -45,10 +48,13 @@ class MainController < ApplicationController
 	def commented
 	  throw404 and return unless get_season
 		@notice  = @organisation.find_notice_by_url_slug @params["page_slug"]
+		throw404 and return unless @notice
+		@title = "#{@title} - Thanks for the commment"
 	end
 	
 	def new_notice
 	  throw404 and return unless get_season
+	  @title = "#{@title} - Add notice"
 		@notice = Notice.new()
 		@notice.user_id = 1 # TODO: should be current logged in user
 		if @request.post?
@@ -66,6 +72,8 @@ class MainController < ApplicationController
 	def edit_notice
 	  throw404 and return unless get_season
 		@notice = @organisation.find_notice_by_url_slug @params["page_slug"]
+		throw404 and return unless @notice
+		@title = "#{@title} - #{notice.heading}"
 		if @request.post?
 			@notice.heading = @params["notice"]["heading"]
 			@notice.content = @params["notice"]["content"]
@@ -81,6 +89,7 @@ class MainController < ApplicationController
 	def teams
 	  throw404 and return unless get_organisation
 		@teams = @organisation.teams
+		@title = "#{@title} - Teams"
 	end
 	
 	def team
@@ -89,6 +98,7 @@ class MainController < ApplicationController
 	
 	def new_team
 	  throw404 and return unless get_organisation
+	  @title = "#{@title} - Add team"
 		@team = Team.new(@params["team"])
 		@team.organisation_id = @organisation.id
 		if @request.post? and @team.save
@@ -112,6 +122,7 @@ class MainController < ApplicationController
 	
 	def new_competition
 	  throw404 and return unless get_season
+	  @title = "#{@title} - Add competition"
 		@competition = Competition.new(@params["competition"])
 		@competition.season_id = @season.id
 		if @request.post? and @competition.save_with_format
@@ -129,15 +140,18 @@ class MainController < ApplicationController
 	def fixtures
 		throw404 and return unless get_competition
 		@stages = @competition.stages
+		@title = "#{@title} - Fixtures"
 	end
 	
 	def results
 		throw404 and return unless get_competition
+		@title = "#{@title} - Results"
 		@stages = @competition.stages
 	end
 	
 	def enter_results
 	  throw404 and return unless get_group
+	  @title = "#{@title} - Enter results"
     @games = @group.outstanding_results
     @stages = @competition.stages
     if request.post? and @competition.process_results(@params)
@@ -155,6 +169,7 @@ class MainController < ApplicationController
 	
 	def new_stage
 		throw404 and return unless get_competition
+		@title = "#{@title} - Add stage"
 		@stage = Stage.new(params["stage"])
 		@stage.competition_id = @competition.id
 		if @request.post? and @stage.save
@@ -168,6 +183,7 @@ class MainController < ApplicationController
 	
 	def edit_stage
 		throw404 and return unless get_stage
+		@title = "#{@title} - Edit stage"
 		if @request.post? && @stage.update_attributes(@params["stage"])
 			redirect_to(
 			  :action => 'stage',
@@ -181,6 +197,7 @@ class MainController < ApplicationController
 	
 	def new_group
 		throw404 and return unless get_stage
+		@title = "#{@title} - Add group"
 		@group = Group.new(params["group"])
 		@group.stage_id = @stage.id
 		if @request.post? and @group.save
@@ -190,6 +207,7 @@ class MainController < ApplicationController
 	
 	def edit_group
 		throw404 and return unless get_group
+		@title = "#{@title} - Edit group"
 		if @request.post? && @group.update_attributes(@params["group"])
 		  redirect_to :action => 'stage' and return
 		end		
@@ -199,6 +217,7 @@ class MainController < ApplicationController
 		throw404 and return unless get_group
 		@teams = @organisation.teams
 		@teams = @teams - @group.teams
+		@title = "#{@title} - Add teams"
 		if @request.post? && @params[:teams]
   		for id in @params[:teams]
   			team = @organisation.teams.find(id)
@@ -211,6 +230,7 @@ class MainController < ApplicationController
 	def remove_teams
 		throw404 and return unless get_group
 		@teams = @group.teams
+		@title = "#{@title} - Remove teams"
 		if @request.post? && @params[:teams]
 		  for id in @params[:teams]
 				team = @group.teams.find(id)
@@ -222,6 +242,7 @@ class MainController < ApplicationController
 	
 	def new_fixtures
 		throw404 and return unless get_group
+		@title = "#{@title} - Add fixtures"
 		if @request.post? and @group.process_fixtures(@params)
 			redirect_to :action => 'stage' and return
 		else
@@ -232,7 +253,9 @@ class MainController < ApplicationController
 	
 	def edit_fixture
 	  throw404 and return unless get_group
+	  @title = "#{@title} - Edit fixture"
 	  @game = Game.find @params[:id]
+	  throw404 and return unless @game
 	  @teams_in_group = @group.teams
 	  @team_options = @teams_in_group.collect { |team| [team.title, team.id] } 
 	  if @params[:kickoff]
