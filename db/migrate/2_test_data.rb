@@ -11,6 +11,18 @@ class TestData < ActiveRecord::Migration
 			:title => '2005',
 			:organisation_id => 1
 		)
+		
+		Organisation.create(
+			:title => "Guernsey Cricket Association",
+			:sport_id => 2,
+			:nickname => "gca",
+			:summary => "Plain old summary here."
+		)
+		
+		Season.create(
+			:title => '2005',
+			:organisation_id => 2
+		)
   end
 
   def self.down
