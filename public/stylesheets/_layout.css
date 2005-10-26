@@ -1,5 +1,4 @@
 #container {
-	width: 745px;
 	margin: 0 auto;
 	text-align: left;
 	overflow: visible;
@@ -11,15 +10,18 @@
 }
 
 #org {
-	margin: 0;
+  position: absolute;
+  top: 0.2em;
+  left: 50px;
+  margin: 0;
 }
 
 div#primary {
 	clear: both;
-	float: left;
-	width: 500px;
 	position: relative;
-	margin-left: 5px;
+	margin-bottom: 8em;
+	margin-left: 50px;
+	margin-right: 35%;
 }
 
 div#primary.full {
@@ -28,8 +30,10 @@ div#primary.full {
 }
 
 div#secondary {
-	float: right;
-	width: 200px;
+  position: absolute;
+  left: 70%;
+  top: 5em;
+	width: 28%;
 	padding-top: 13px;
 }
 
@@ -41,18 +45,17 @@ div#secondary p {
 	margin-right: 5px;
 }
 
-
 #search {
 	position: absolute;
 	top: 0px;
-	left: 545px;
-	width: 200px
+	left: 70%;
+	width: 28%
 }
 
 #search form {
 	padding: 5px;
 	margin: 0;
-	background: #EEE;
+	background: url(/images/dither2.gif);
 	border: 2px solid #DDD;
 }
 
@@ -68,10 +71,14 @@ div#secondary p {
 	width: 120px;
 }
 
+#search input {
+  font-size: x-small;
+}
+
 #admin {
 	position: absolute;
-	width: 200px;
-	right: 0px;
+	width: 30%;
+	left: 68%;
 	top: -35px;
 	text-align: right;
 }
@@ -81,9 +88,8 @@ div#secondary p {
 }
 
 #foot {
-	clear: both;
-	font-size: x-small;
+  clear: both;
+  font-size: x-small;
+  background: url(/images/dither.gif);
 	color: #999;
-	text-align: center;
-	padding-top: 40px;
 }

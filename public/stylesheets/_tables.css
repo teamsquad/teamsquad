@@ -15,6 +15,7 @@ table thead th {
 	font-size: smaller !important;
 	background: #999;
 	color: #FFF;
+	background: url(/images/header.gif) center;
 }
 
 table.games tbody th {

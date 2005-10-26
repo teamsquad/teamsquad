@@ -1,7 +1,7 @@
 body {
 	background-color: #FFF;
 	color: #333;
-	padding: 40px 0 20px 0;
+	padding: 40px 30px 20px 30px;
 	margin: 0;
 	text-align: center;
 	font-family: Helvetica, Arial, sans-serif;
@@ -13,13 +13,13 @@ body {
 h1, h2, h3, h4, h5 {
 	font-weight: normal;
 	color: #900;
-	background: #FFF;
 }
 
 h1 {
-	padding: 0;
+	padding: 0.8em 0 0.2em 50px;
 	margin: 0 220px 10px 0;
-	font-size: x-large;
+	font-size: 1.8em;
+	background: url(/images/logo.gif) no-repeat left;
 }
 
 h2 {
@@ -74,6 +74,7 @@ div#secondary {
 div#secondary h2 {
 	margin: 0 0 0.2em 0;
 	font-size: 1.2em;
+	color: #900;
 }
 
 div#secondary ul {
@@ -86,9 +87,10 @@ div#secondary li {
 	display: block;
 	margin: 0.6em 0;
 	padding: 0 0 0 15px;
-	background: url(/images/bullet.gif) no-repeat left top;
+	background: url(/images/bullet.gif) no-repeat left;
 	color: #900;
 	font-weight: bold;
+	line-height: 14px;
 }
 
 div#secondary li a {
@@ -203,6 +205,39 @@ p.more {
 .clickable {
 	cursor: pointer;
 	cursor: hand;
+}
+
+#foot h2 {
+  border-top: 4px solid #EEE;
+  padding: 1em 10px 0 10px;
+  font-size: small;
+  background: none;
+  color: #999;
+  margin-bottom: 0;
+}
+
+#foot ul {
+  display: block;
+  float: left;
+  width: 25%;
+  margin: 0;
+  padding: 1em 0;
+  list-style: none;
+  line-height: 2em;
+}
+
+div#foot li {
+  display: block;
+  margin: 0;
+  padding: 0 10px;
+}
+
+div#foot p {
+  margin: 0;
+  padding: 1em 0;
+  width: 22%;
+  float: left;
+  line-height: 1.5em;
 }
 
 div.clear {
