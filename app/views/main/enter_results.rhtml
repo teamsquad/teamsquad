@@ -11,7 +11,7 @@
   <fieldset>
 		<legend><%= game.pretty_date %></legend>
 		
-		<table cellpadding="0" cellspacing="0" class="results"><% if @sport.uses_scores %>
+		<table cellpadding="0" cellspacing="0" class="results"><% if @organisation.sport.uses_scores %>
 		  <tr>
 		    <td class="home team"><%= game.hometeam.title %></td>
 		    <td class="home"><%= text_field "game", "home_score", "index" => game.id, "class" => 'score'	%></td>
@@ -33,7 +33,7 @@
 		    <td class="home" colspan="2"><%= text_field "game", "home_notes", "index" => game.id, "class" => 'notes'	%> </td>
 		    <td class="versus">notes</td>
 		    <td class="away" colspan="2"><%= text_field "game", "away_notes", "index" => game.id, "class" => 'notes' %></td>
-		  </tr><% if @sport.uses_manual_points %>
+		  </tr><% if @organisation.sport.uses_manual_points %>
 		  <tr>
 		    <td class="home" colspan="2"><%= text_field "game", "home_points", "index" => game.id, "class" => 'points' %></td>
 		    <td class="versus">points</td>
