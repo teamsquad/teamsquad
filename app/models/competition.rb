@@ -79,7 +79,7 @@ class Competition < ActiveRecord::Base
 	
 	# Create an empty league with no stages or groups
 	def create_empty_league
-		self.save	or raise "Can't save competition"
+		self.save
 	end
 	
 	# Create a league with just one stage containing one group
@@ -94,7 +94,7 @@ class Competition < ActiveRecord::Base
 		)
 		stage.groups << group or raise "Can't add group"
 		self.stages << stage or raise "Can't add stage"
-		self.save or raise "Can't save competition"
+		self.save
 	end
 	
 	def create_playoff_league
