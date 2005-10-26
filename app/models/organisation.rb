@@ -19,11 +19,11 @@ class Organisation < ActiveRecord::Base
 	
 	# Return relevant organisation for a given url slug
 	def self.find_by_url_slug(slug)
-		Organisation.find :first, :conditions => ["nickname = ?", slug.gsub(/_/, ' ').downcase]
+		Organisation.find :first, :conditions => ["lower(nickname) = ?", slug.gsub(/_/, ' ').downcase]
 	end
 	
 	def find_team_by_url_slug(slug)
-		self.teams.find :first, :conditions => ["title = ?", slug.gsub(/_/, ' ').downcase]
+		self.teams.find :first, :conditions => ["lower(title) = ?", slug.gsub(/_/, ' ').downcase]
 	end
 	
 	def find_notice_by_url_slug(slug)
