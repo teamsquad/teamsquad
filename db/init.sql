@@ -1,3 +1,19 @@
+drop view standings;
+drop table games cascade;
+drop table modifications cascade;
+drop table groups_teams cascade;
+drop table groups cascade;
+drop table stages cascade;
+drop table competitions cascade;
+drop table seasons cascade;
+drop table teams cascade;
+drop table pages cascade;
+drop table comments cascade;
+drop table notices cascade;
+drop table users cascade;
+drop table organisations cascade;
+drop table sports cascade;
+
 START TRANSACTION;
 
 create table sports (

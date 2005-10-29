@@ -28,6 +28,21 @@ class Notice < ActiveRecord::Base
 			self.picture = @filename
 	  end
 	end
+	
+	def moderate_comments(params)
+		self.transaction do
+		  comments = self.comments
+			params['comment'].each do |key, attrs|
+				comment = comments.find(key) #TODO: check if many queries or gets from above
+				if attrs['remove'] == "1"	
+					comment.destroy
+				else
+					attrs.delete 'remove'
+					comment.update_attributes(attrs)
+				end
+			end
+		end
+	end
 
 	private
 

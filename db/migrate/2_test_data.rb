@@ -12,21 +12,17 @@ class TestData < ActiveRecord::Migration
 			:organisation_id => 1
 		)
 		
-		Organisation.create(
-			:title => "Guernsey Cricket Association",
-			:sport_id => 2,
-			:nickname => "gca",
-			:summary => "Plain old summary here."
-		)
-		
-		Season.create(
-			:title => '2005',
-			:organisation_id => 2
+		User.create (
+		  :organisation_id => 1,
+		  :email => 'dummy@example.com',
+		  :password => 'this is insecure for now',
+		  :name => 'Dummy Admin'
 		)
   end
 
   def self.down
+    User.delete_all
+    Season.delete_all
 		Organisation.delete_all
-		Season.delete_all
   end
 end

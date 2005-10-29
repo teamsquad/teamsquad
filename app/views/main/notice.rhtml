@@ -6,7 +6,13 @@
 		<% if @notice.picture %><div class="image"><img src="/uploads/<%= @notice.picture %>"></div><% end %>
 		<%= safely_display @notice.content %>
 		<div class="clear"></div>
-		<p class="admin"><%= link_to "Edit this notice...", :action => 'edit_notice', :page_slug => @notice %></p>
+		<p class="admin">
+		  <%= link_to "Edit this notice...", :action => 'edit_notice', :page_slug => @notice %>
+		  <% if @comments.size > 0 %>
+		  or
+		  <%= link_to "Edit its comments...", :action => 'edit_comments', :page_slug => @notice %>
+		  <% end %>
+		</p>
 	</div>
 	
 	<h2>Comments</h2>

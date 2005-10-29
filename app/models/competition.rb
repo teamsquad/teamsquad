@@ -31,23 +31,23 @@ class Competition < ActiveRecord::Base
   # params argument is a set of well formed request parameters
   def process_results(params)
 	  self.transaction do
-  		params['game'].each do |key, value|
-  			if value['home_points']!="" and value['away_points']!=""
+  		params['game'].each do |key, attrs|
+  			if attrs['home_points']!="" and attrs['away_points']!=""
   				game = Game.find(key)
-  				if !game.nil? && value['result'] != '-1'
-  					if value['result'] == '0'
-  						value['home_score'] = 1
-  						value['away_score'] = 0
-  					elsif value['result'] == '1'
-  						value['home_score'] = 0
-  						value['away_score'] = 1
-  					elsif value['result'] == '2'
-  						value['home_score'] = 0
-  						value['away_score'] = 0
+  				if !game.nil? && attrs['result'] != '-1'
+  					if attrs['result'] == '0'
+  						attrs['home_score'] = 1
+  						attrs['away_score'] = 0
+  					elsif attrs['result'] == '1'
+  						attrs['home_score'] = 0
+  						attrs['away_score'] = 1
+  					elsif attrs['result'] == '2'
+  						attrs['home_score'] = 0
+  						attrs['away_score'] = 0
   					end
-  					if value['home_score'] && value['away_score'] && value['home_score'] !='' && value['away_score'] != ''
-  					  value.delete 'result'
-  					  game.attributes = value
+  					if attrs['home_score'] && attrs['away_score'] && attrs['home_score'] !='' && attrs['away_score'] != ''
+  					  attrs.delete 'result'
+  					  game.attributes = attrs
   					  game.played = true
   					  game.save
   					end

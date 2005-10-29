@@ -74,13 +74,13 @@ class MainController < ApplicationController
 	end
 	
 	def notices
-	  throw404 and return unless get_season
+	  throw404 and return unless get_organisation
 		@notices = @organisation.notices
 		@title = "#{@title} - Notices"
 	end
 	
 	def notice
-	  throw404 and return unless get_season
+	  throw404 and return unless get_organisation
 		@notice  = @organisation.find_notice_by_url_slug @params["page_slug"]
 		throw404 and return unless @notice
 		@title = "#{@title} - #{@notice.heading}"
@@ -96,14 +96,14 @@ class MainController < ApplicationController
 	end
 	
 	def commented
-	  throw404 and return unless get_season
+	  throw404 and return unless get_organisation
 		@notice  = @organisation.find_notice_by_url_slug @params["page_slug"]
 		throw404 and return unless @notice
 		@title = "#{@title} - Thanks for the commment"
 	end
 	
 	def new_notice
-	  throw404 and return unless get_season
+	  throw404 and return unless get_organisation
 	  @title = "#{@title} - Add notice"
 		@notice = Notice.new()
 		@notice.user_id = 1 # TODO: should be current logged in user
@@ -120,7 +120,7 @@ class MainController < ApplicationController
 	end
 	
 	def edit_notice
-	  throw404 and return unless get_season
+	  throw404 and return unless get_organisation
 		@notice = @organisation.find_notice_by_url_slug @params["page_slug"]
 		throw404 and return unless @notice
 		@title = "#{@title} - #{@notice.heading}"
@@ -131,6 +131,17 @@ class MainController < ApplicationController
 			if @notice.save
 				redirect_to :action => 'notice', :page_slug => @notice and return
 			end
+		end
+	end
+	
+	def edit_comments
+	  throw404 and return unless get_organisation
+		@notice = @organisation.find_notice_by_url_slug @params["page_slug"]
+		throw404 and return unless @notice
+		@title = "#{@title} - #{@notice.heading}"
+		@comments = @notice.comments
+		if @request.post? and @notice.moderate_comments(params)
+			redirect_to :action => 'notices' and return
 		end
 	end
 	

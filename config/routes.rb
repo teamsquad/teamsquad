@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 		
   map.connect ':action/:page_slug',
 		:controller => 'main',
-		:action => /information|edit_page|edit_notice/,
+		:action => /information|edit_page|edit_notice|edit_comments/,
 		:page_slug => nil
 
 	map.connect ':action',

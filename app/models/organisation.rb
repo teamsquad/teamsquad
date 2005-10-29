@@ -18,6 +18,8 @@ class Organisation < ActiveRecord::Base
 	validates_exclusion_of  :nickname, :in => %w(www admin register join blog support), :message => "That's a reserved word, please try again."
 	validates_length_of     :summary, :maximum => 512
 	
+	validates_presence_of   :sport_id
+	
 	# Return relevant organisation for a given url slug
 	def self.find_by_url_slug(slug)
 		Organisation.find :first, :conditions => ["lower(nickname) = ?", slug.gsub(/_/, ' ').downcase]
