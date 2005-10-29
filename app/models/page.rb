@@ -1,17 +1,19 @@
-class Notice < ActiveRecord::Base
-	
-	belongs_to :organisation
-	has_many   :comments, :dependent => true, :order => 'created_on ASC'
-	belongs_to :author, :class_name => "User", :foreign_key => "user_id"
+class Page < ActiveRecord::Base
+  
+  belongs_to :organisation
+	acts_as_list :scope => :organisation, :column => 'rank'
 
-	validates_format_of     :heading, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
-	validates_presence_of   :heading, :content, :message => "You must enter something."
-	validates_uniqueness_of :heading, :scope => "organisation_id"
-		
+  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+	validates_presence_of   :title, :content, :message => "You must enter something."
+	validates_uniqueness_of :title, :scope => "organisation_id"
+
+  # Converts the page's title into a format suitable for
+	# using in an URL. Currently this simply involves swapping
+	# spaces for underscores and removing everything else.
 	def to_param
-		self.heading.gsub(/\s/, '_').downcase
+		self.title.gsub(/\s/, '_').downcase
 	end
-
+	
 	def upload=(incoming_file)
 		if incoming_file.respond_to? "original_filename" and incoming_file.original_filename != ''
    		@filename = sanitize_filename incoming_file.original_filename
@@ -37,5 +39,5 @@ class Notice < ActiveRecord::Base
 		# replace all non-alphanumeric, underscore or periods with underscores
 		just_filename.sub(/[^\w\.\-]/,'_') 
 	end
-	
+
 end

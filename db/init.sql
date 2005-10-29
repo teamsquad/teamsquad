@@ -54,6 +54,20 @@ create table comments (
 
 create index comments_notice_id on comments (notice_id);
 
+create table pages (
+	id serial primary key,
+	organisation_id int references organisations(id) on delete cascade,
+	title varchar(128) not null,
+	content text not null,
+	picture varchar(256),
+	rank int not null,
+	created_on timestamp default now(),
+	updated_on timestamp default now(),
+	UNIQUE (organisation_id, title)
+);
+
+create index pages_organisation_id on pages (organisation_id);
+
 create table teams (
 	id serial primary key,
 	organisation_id int references organisations(id) on delete cascade,

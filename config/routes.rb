@@ -6,16 +6,19 @@ ActionController::Routing::Routes.draw do |map|
 		:controller => 'main',
 		:action => 'home'
 		
-	map.connect 'spark/:action/:id',
-		:controller => 'spark'
+  map.connect ':action/:page_slug',
+		:controller => 'main',
+		:action => /information|edit_page|edit_notice/,
+		:page_slug => nil
 
 	map.connect ':action',
 		:controller => 'main',
-		:action => /login|admin|search|teams|notices|new_team|new_competition|new_notice/
+		:action => /login|admin|search|teams|notices|new_team|new_competition|new_page|new_notice/
 		
 	map.connect 'notices/:page_slug',
 		:controller => 'main',
-		:action => 'notice'
+		:action => 'notice',
+		:page_slug => nil
 		
 	map.connect 'notices/:page_slug/commented',
 		:controller => 'main',

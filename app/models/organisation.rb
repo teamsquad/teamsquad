@@ -7,6 +7,7 @@ class Organisation < ActiveRecord::Base
 	has_one    :current_season, :class_name => "Season", :order => "id asc"
 	has_many   :teams, :dependent => true, :order => "title ASC"
 	has_many   :notices, :dependent => true, :order => 'created_on DESC'
+	has_many   :pages, :dependent => true, :order => 'rank asc'
 	
 	before_validation :tidy_user_supplied_data!
 	
@@ -28,6 +29,14 @@ class Organisation < ActiveRecord::Base
 	
 	def find_notice_by_url_slug(slug)
 		self.notices.find_first ["lower(heading) = ?", slug.gsub(/_/, ' ').downcase]
+	end
+	
+	def find_page_by_url_slug(slug)
+		self.pages.find_first ["lower(title) = ?", slug.gsub(/_/, ' ').downcase]
+	end
+	
+	def recent_notices
+	  self.notices.find(:all, :limit => 5)
 	end
 	
 	# Converts the organisation's nickname into a format suitable

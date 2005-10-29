@@ -3,8 +3,10 @@
 <div id="primary">
 	<% for stage in @stages %><% if @competition.stages_count > 1 %>
 	<h2><%= stage.title %></h2><% end %><% for group in stage.groups %>
-	<div class="group"><% if stage.groups.size > 1 %>
-	<h3><%= group.title %></h3><% end %>
+	<div class="group"><% if stage.groups.size > 1 %><% if @competition.stages_count == 1 %>
+	<h2><%= group.title %></h2><% else %>
+	<h3><%= group.title %></h3><% end; end %>
+	<%= render :partial => 'partials/fixtures', :locals => {:group => group} %>
 	<% if group.has_outstanding_results? %>
 	<p class="admin"><%= link_to "Enter outstanding results", 
 	  :action => 'enter_results',
@@ -12,7 +14,6 @@
 	  :group_slug => group
 	%></p>
 	<% end %>
-	<%= render :partial => 'partials/fixtures', :locals => {:group => group} %>
 	</div><% end %><% end %>
 </div>
 

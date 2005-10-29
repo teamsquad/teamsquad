@@ -1,9 +1,9 @@
 table.standings,
 table.games {
-	margin: 0 0 1em 0;
+	margin: 0;
 	width: 100%;
 	border-bottom: 1px solid #999;
-	background: #FFF;
+	clear: both;
 }
 
 table.nohead thead {
@@ -62,7 +62,7 @@ table.games tr.awaywin td.away {
 
 table tr.even td {
 	border-top: 1px solid #EEE;
-	background-color: #F8F8F8;
+	background: url(/images/dither.gif);
 }
 
 table tr.odd td {

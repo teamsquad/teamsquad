@@ -1,13 +1,16 @@
+html {
+  border-top: 3px solid #900;
+}
+
 body {
-	background-color: #FFF;
 	color: #333;
 	padding: 40px 30px 20px 30px;
 	margin: 0;
 	text-align: center;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: small;
-	background: url(/images/body.gif) repeat-x center top;
-	border-top: 3px solid #900;
+	background: #FFF url(/images/body.gif) no-repeat fixed bottom right;
+	border-top: 3px solid #FCC;
 }
 
 h1, h2, h3, h4, h5 {
@@ -17,28 +20,33 @@ h1, h2, h3, h4, h5 {
 
 h1 {
 	padding: 0.8em 0 0.2em 50px;
-	margin: 0 220px 10px 0;
+	margin: 0 35% 10px 0;
 	font-size: 1.8em;
 	background: url(/images/logo.gif) no-repeat left;
 }
 
 h2 {
 	color: #666;
-	margin: 0 0 0.5em 0;
+	margin: 0 0 0.2em 0;
 	clear: both;
 }
 
 h3 {
-	margin: 0 0 0.3em 0;
+  clear: both;
+	margin: 0 0 0.2em 0;
 }
 
 a {
 	color: #090;
 }
 
+a:visited {
+  text-decoration: none;
+}
+
 a:hover {
+	color: #900 !important;
 	text-decoration: underline;
-	color: #900;
 }
 
 hr {
@@ -74,27 +82,37 @@ div#secondary {
 div#secondary h2 {
 	margin: 0 0 0.2em 0;
 	font-size: 1.2em;
-	color: #900;
+	color: #999;
 }
 
 div#secondary ul {
-	display: block;
 	margin: 0 0 2em 0;
-	padding: 0 0 0 0;
+	padding: 0;
 }
 
 div#secondary li {
 	display: block;
-	margin: 0.6em 0;
+	margin: 0.3em 0;
 	padding: 0 0 0 15px;
-	background: url(/images/bullet.gif) no-repeat left;
+	background: url(/images/bullet_light.gif) no-repeat left;
 	color: #900;
 	font-weight: bold;
 	line-height: 14px;
 }
 
+div#secondary ul.current li {
+  margin: 0.6em 0;
+  font-size: 1.1em;
+  background: url(/images/bullet.gif) no-repeat left;
+}
+
+div#secondary ul.current li a {
+  color: #090;
+}
+
 div#secondary li a {
 	font-weight: normal;
+	color: #696;
 }
 
 #secondary p {
@@ -115,6 +133,11 @@ div.group {
 	margin-bottom: 2em;
 }
 
+p.admin {
+  margin-top: 0.5em;
+  text-align: right;
+}
+
 .admin a, a.admin {
 	background: #FFD;
 }
@@ -133,13 +156,15 @@ div.standout p {
 }
 
 div.posts {
-	padding-top: 1em;
-	border-top: 2px solid #EEE;
+  border-top: 2px solid #EEE;
+  padding-top: 1em;
 }
 
 div.post {
 	clear: both;
 	border-bottom: 2px solid #EEE;
+	background: #FFF;
+	padding: 0 1em 0 5px;
 	margin-bottom: 1em;
 }
 
@@ -148,7 +173,7 @@ div.post h2 {
 	background: url(/images/post.gif) no-repeat left center;
 }
 
-div.post div.image {
+div.image {
 	float: right;
 	margin: 0 0 1em 1em;
 	border: 1px solid #CCC;
@@ -208,12 +233,13 @@ p.more {
 }
 
 #foot h2 {
-  border-top: 4px solid #EEE;
+  border-top: 3px solid #CCC;
   padding: 1em 10px 0 10px;
   font-size: small;
   background: none;
   color: #999;
   margin-bottom: 0;
+  float: none;
 }
 
 #foot ul {

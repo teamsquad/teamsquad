@@ -138,6 +138,22 @@ CREATE TABLE organisations (
 
 
 --
+-- Name: pages; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
+--
+
+CREATE TABLE pages (
+    id serial NOT NULL,
+    organisation_id integer,
+    title character varying(128) NOT NULL,
+    content text NOT NULL,
+    picture character varying(256),
+    rank integer NOT NULL,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
+);
+
+
+--
 -- Name: schema_info; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
 --
 
@@ -339,6 +355,22 @@ ALTER TABLE ONLY organisations
 
 
 --
+-- Name: pages_organisation_id_key; Type: CONSTRAINT; Schema: public; Owner: sid; Tablespace: 
+--
+
+ALTER TABLE ONLY pages
+    ADD CONSTRAINT pages_organisation_id_key UNIQUE (organisation_id, title);
+
+
+--
+-- Name: pages_pkey; Type: CONSTRAINT; Schema: public; Owner: sid; Tablespace: 
+--
+
+ALTER TABLE ONLY pages
+    ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: seasons_organisation_id_key; Type: CONSTRAINT; Schema: public; Owner: sid; Tablespace: 
 --
 
@@ -490,6 +522,13 @@ CREATE INDEX organisations_sport_id ON organisations USING btree (sport_id);
 
 
 --
+-- Name: pages_organisation_id; Type: INDEX; Schema: public; Owner: sid; Tablespace: 
+--
+
+CREATE INDEX pages_organisation_id ON pages USING btree (organisation_id);
+
+
+--
 -- Name: seasons_organisation_id; Type: INDEX; Schema: public; Owner: sid; Tablespace: 
 --
 
@@ -622,6 +661,14 @@ ALTER TABLE ONLY organisations
 
 
 --
+-- Name: pages_organisation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sid
+--
+
+ALTER TABLE ONLY pages
+    ADD CONSTRAINT pages_organisation_id_fkey FOREIGN KEY (organisation_id) REFERENCES organisations(id) ON DELETE CASCADE;
+
+
+--
 -- Name: seasons_organisation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sid
 --
 
@@ -653,3 +700,4 @@ ALTER TABLE ONLY users
     ADD CONSTRAINT users_organisation_id_fkey FOREIGN KEY (organisation_id) REFERENCES organisations(id) ON DELETE CASCADE;
 
 
+INSERT INTO schema_info (version) VALUES (2);

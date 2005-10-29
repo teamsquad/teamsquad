@@ -23,6 +23,56 @@ class MainController < ApplicationController
 		
 	end
 	
+	def information
+	  throw404 and return unless get_organisation
+		@pages = @organisation.pages
+		if @params["page_slug"]
+			@page  = @pages.collect.find { |page| page.to_param == @params["page_slug"].downcase }
+			throw404 and return unless @page
+			@title += " - #{@page.title}"
+			@heading = @page.title
+			@content = @page.content
+			@picture = @page.picture
+			@main    = false
+		else
+			@title   += ' - Information'
+			@heading = 'Information'
+			@content = @organisation.summary
+			@picture = false
+			@main    = true
+		end
+	end
+	
+	def new_page
+	  throw404 and return unless get_organisation
+	  @title = "#{@title} - Add page"
+		@page = Page.new()
+		if @request.post?
+			@page.title   = @params["page"]["title"]
+			@page.content = @params["page"]["content"]
+			@page.upload  = @params["page"]["picture"]
+			@page.organisation_id = @organisation.id
+			if @page.save
+				redirect_to :action => 'information', :page_slug => @page and return
+			end
+		end
+	end
+	
+	def edit_page
+	  throw404 and return unless get_organisation
+		@page = @organisation.find_page_by_url_slug @params["page_slug"]
+		throw404 and return unless @page
+		@title = "#{@title} - #{@page.title}"
+		if @request.post?
+			@page.title = @params["page"]["title"]
+			@page.content = @params["page"]["content"]
+			@page.upload  = @params["page"]["picture"]
+			if @page.save
+				redirect_to :action => 'information', :page_slug => @page and return
+			end
+		end
+	end
+	
 	def notices
 	  throw404 and return unless get_season
 		@notices = @organisation.notices
@@ -40,7 +90,7 @@ class MainController < ApplicationController
 		if @request.post? && @comment.save
 			redirect_to :action => 'commented' and return
 		else
-			@notices = @organisation.notices(:all, :limit => 5)
+			@notices = @organisation.recent_notices
 			render 'main/notice' and return
 		end
 	end
@@ -58,7 +108,7 @@ class MainController < ApplicationController
 		@notice = Notice.new()
 		@notice.user_id = 1 # TODO: should be current logged in user
 		if @request.post?
-			@notice.root_path = RAILS_ROOT
+			# @notice.root_path = RAILS_ROOT
 			@notice.heading = @params["notice"]["heading"]
 			@notice.content = @params["notice"]["content"]
 			@notice.upload  = @params["notice"]["picture"]
@@ -73,13 +123,13 @@ class MainController < ApplicationController
 	  throw404 and return unless get_season
 		@notice = @organisation.find_notice_by_url_slug @params["page_slug"]
 		throw404 and return unless @notice
-		@title = "#{@title} - #{notice.heading}"
+		@title = "#{@title} - #{@notice.heading}"
 		if @request.post?
 			@notice.heading = @params["notice"]["heading"]
 			@notice.content = @params["notice"]["content"]
 			@notice.upload  = @params["notice"]["picture"]
 			if @notice.save
-				redirect_to :action => 'notices' and return
+				redirect_to :action => 'notice', :page_slug => @notice and return
 			end
 		end
 	end

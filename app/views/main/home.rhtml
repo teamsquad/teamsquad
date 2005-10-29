@@ -8,9 +8,12 @@
 	<div class="posts">
 	<% if @new_notices.size+@old_notices.size > 0 %>
 	<%= render :partial => "partials/notice", :collection => @new_notices %>
-	<% if @old_notices.size > 0 %><ul><% for notice in @old_notices %>
+	<% if @old_notices.size > 0 %><h2>Older notices</h2>
+	<ul><% for notice in @old_notices %>
 		<li><%= link_to notice.heading, :action => 'notice', :page_slug => notice %></li><% end %>
-	</ul><% end %>
+	</ul>
+	<p><%= link_to 'All notices...', :action => 'notices' %></p>
+	<% end %>
 	<% else %><div class="post">
 	<h2>No notices</h2>
 	<p>If this organisation had some notices then they would be displayed here.</p>
@@ -26,7 +29,7 @@
 
 <div id="secondary">
 	<h2>Competitions</h2>
-	<ul><% for competition in @competitions %>
+	<ul class="current"><% for competition in @competitions %>
 		<li><%= link_to competition.title, :action => 'competition', :competition_slug => competition %></li><% end %>
 		<li><%= link_to 'Add new competition...', {:action => 'new_competition'}, {:class=>'admin'} %></li>
 	</ul>

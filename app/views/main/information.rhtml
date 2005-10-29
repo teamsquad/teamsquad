@@ -1,0 +1,19 @@
+<h1><%= @heading %></h1>
+
+<div id="primary">
+  <% if @picture %><div class="image"><img src="/uploads/<%= @picture %>"></div><% end %>
+	<%= safely_display @content %>
+	<div class="clear"></div>
+	<p class="admin"><%= link_to "Edit this page..", :action => 'edit_page', :page_slug => @page %></p>
+</div>
+
+<div id="secondary">
+	<h2>More</h2>
+	<ul class="current">
+		<li><%= link_to_unless_current "Information", :action => 'information' %></li><% for page in @pages %>
+		<li><%= link_to_unless_current page.title, :action => 'information', :page_slug => page %></li><% end %>
+	  <li><%= link_to('New page...',
+		          {:action => 'new_page'}, 
+		          {:class => 'admin', :title => "Add another page"}) %></li>
+	</ul>
+</div>
