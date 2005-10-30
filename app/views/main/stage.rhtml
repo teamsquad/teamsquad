@@ -1,6 +1,12 @@
 <h1><%= @competition.title %> <strong><%= @stage.title %></strong></h1>
 
-<div id="primary"><% for group in @stage.groups %>
+<div id="primary">
+  <div class="standout"><p>
+  <% if @stage.is_knockout %>This is a knockout stage.
+	<% else %><%= @stage.points_for_win %> points for a win, <%= @stage.points_for_draw %> for a draw, and	<%= @stage.points_for_loss %> for a loss.<% end %>
+	<%= link_to('Edit this stage...', {:action => 'edit_stage'}, {:class => 'admin'}) %>
+	</p></div>
+  <% for group in @stage.groups %>
 	<div class="group"><% if @stage.groups.size > 1 %>
 	<h2><%= group.title %></h2><% end %>
 	<%= render :partial => @stage_partial, :locals => {:group => group} %>
@@ -15,10 +21,6 @@
 	</div><% end %>
 	
 	<p><%= link_to 'New group...', {:action => 'new_group'}, {:class => 'admin'} %></p>
-	
-	<p><%= @stage.points_for_win %> points for a win, <%= @stage.points_for_draw %>
-	for a draw, and	<%= @stage.points_for_loss %> for a loss.
-	<%= link_to('Edit this stage...', {:action => 'edit_stage'}, {:class => 'admin'}) %></p>
 </div>
 
 <div id="secondary">
