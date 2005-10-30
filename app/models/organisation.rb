@@ -38,7 +38,11 @@ class Organisation < ActiveRecord::Base
 	end
 	
 	def recent_notices
-	  self.notices.find(:all, :limit => 5)
+	  self.notices.find(:all, :limit => 5, :include => :author)
+	end
+	
+	def older_notices
+	  self.notices.find(:all, :offset => 5, :limit => 5, :include => :author)
 	end
 	
 	# Converts the organisation's nickname into a format suitable

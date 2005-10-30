@@ -6,7 +6,6 @@ class Group < ActiveRecord::Base
 	validates_uniqueness_of :title, :scope => "stage_id"
 	validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
 
-	
 	belongs_to :stage, :counter_cache => 'groups_count'
 	has_and_belongs_to_many :teams, :order => 'title asc'
 	has_many   :games, :dependent => true

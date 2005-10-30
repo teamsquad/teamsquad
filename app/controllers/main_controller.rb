@@ -7,8 +7,8 @@ class MainController < ApplicationController
 	def home
 	  throw404 and return unless get_season
 		@competitions = @season.competitions
-		@new_notices = @organisation.notices.find(:all, :limit => 2, :include => :author)
-		@old_notices = @organisation.notices.find(:all, :offset => 2, :limit => 5, :include => :author)
+		@new_notices = @organisation.recent_notices
+		@old_notices = @organisation.older_notices
 	end
 		
 	def login
@@ -47,14 +47,9 @@ class MainController < ApplicationController
 	  throw404 and return unless get_organisation
 	  @title = "#{@title} - Add page"
 		@page = Page.new()
-		if @request.post?
-			@page.title   = @params["page"]["title"]
-			@page.content = @params["page"]["content"]
-			@page.upload  = @params["page"]["picture"]
-			@page.organisation_id = @organisation.id
-			if @page.save
-				redirect_to :action => 'information', :page_slug => @page and return
-			end
+		@page.organisation_id = @organisation_id
+		if @request.post? and @page.save_from_params(@params[:page])
+		  redirect_to :action => 'information', :page_slug => @page and return
 		end
 	end
 	
@@ -63,13 +58,8 @@ class MainController < ApplicationController
 		@page = @organisation.find_page_by_url_slug @params["page_slug"]
 		throw404 and return unless @page
 		@title = "#{@title} - #{@page.title}"
-		if @request.post?
-			@page.title = @params["page"]["title"]
-			@page.content = @params["page"]["content"]
-			@page.upload  = @params["page"]["picture"]
-			if @page.save
-				redirect_to :action => 'information', :page_slug => @page and return
-			end
+		if @request.post? and @page.save_from_params(@params[:page])
+			redirect_to :action => 'information', :page_slug => @page and return
 		end
 	end
 	
@@ -89,10 +79,8 @@ class MainController < ApplicationController
 		@comment.notice_id = @notice.id
 		if @request.post? && @comment.save
 			redirect_to :action => 'commented' and return
-		else
-			@notices = @organisation.recent_notices
-			render 'main/notice' and return
 		end
+		@notices = @organisation.recent_notices
 	end
 	
 	def commented
@@ -107,15 +95,9 @@ class MainController < ApplicationController
 	  @title = "#{@title} - Add notice"
 		@notice = Notice.new()
 		@notice.user_id = 1 # TODO: should be current logged in user
-		if @request.post?
-			# @notice.root_path = RAILS_ROOT
-			@notice.heading = @params["notice"]["heading"]
-			@notice.content = @params["notice"]["content"]
-			@notice.upload  = @params["notice"]["picture"]
-			@notice.organisation_id = @organisation.id
-			if @notice.save
-				redirect_to :action => 'home' and return
-			end
+		@notice.organisation_id = @organisation.id
+		if @request.post? and @notice.save_from_params(@params[:notice])
+		  redirect_to :action => 'home' and return
 		end
 	end
 	
@@ -124,13 +106,8 @@ class MainController < ApplicationController
 		@notice = @organisation.find_notice_by_url_slug @params["page_slug"]
 		throw404 and return unless @notice
 		@title = "#{@title} - #{@notice.heading}"
-		if @request.post?
-			@notice.heading = @params["notice"]["heading"]
-			@notice.content = @params["notice"]["content"]
-			@notice.upload  = @params["notice"]["picture"]
-			if @notice.save
-				redirect_to :action => 'notice', :page_slug => @notice and return
-			end
+		if @request.post? and @notice.save_from_params(@params[:notice])
+		  redirect_to :action => 'notice', :page_slug => @notice and return
 		end
 	end
 	
@@ -274,6 +251,7 @@ class MainController < ApplicationController
 		end		
 	end
 	
+	# TODO: remove update froms action, place in mode, and do in transaction (as below)
 	def add_teams
 		throw404 and return unless get_group
 		@teams = @organisation.teams
@@ -288,6 +266,7 @@ class MainController < ApplicationController
 		end
 	end
 	
+	# TODO: remove update froms action, place in mode, and do in transaction (as above)
 	def remove_teams
 		throw404 and return unless get_group
 		@teams = @group.teams
@@ -306,10 +285,9 @@ class MainController < ApplicationController
 		@title = "#{@title} - Add fixtures"
 		if @request.post? and @group.process_fixtures(@params)
 			redirect_to :action => 'stage' and return
-		else
-		  @scripts << 'fixtures'
-			@teams_in_group = @group.teams
 		end
+		@scripts << 'fixtures'
+		@teams_in_group = @group.teams
 	end
 	
 	def edit_fixture

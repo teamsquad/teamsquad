@@ -11,6 +11,13 @@ class Notice < ActiveRecord::Base
 	def to_param
 		self.heading.gsub(/\s/, '_').downcase
 	end
+	
+	def save_from_params(params)
+	  self.heading = params["heading"]
+		self.content = params["content"]
+		self.upload  = params["picture"]
+		self.save
+	end
 
 	def upload=(incoming_file)
 		if incoming_file.respond_to? "original_filename" and incoming_file.original_filename != ''
