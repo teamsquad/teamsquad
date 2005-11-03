@@ -7,10 +7,12 @@ class Group < ActiveRecord::Base
 	validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
 
 	belongs_to :stage, :counter_cache => 'groups_count'
-	has_and_belongs_to_many :teams, :order => 'title asc'
 	has_many   :games, :dependent => true
-	
 	has_many   :standings, :order => 'totalpoints desc'
+	has_and_belongs_to_many :teams, :order => 'title asc'
+	
+	has_many   :fixtures
+	has_many   :results
 	
 	def remove_team!(team)
 	  redundant_games = self.games.find(
@@ -25,19 +27,10 @@ class Group < ActiveRecord::Base
 	  end
 	end
 	
-	# add :include => [:hometeam, :awayteam] to following 2 methods
-	# when rails support same table, many times eager loading
-	# as otherwise we are in very horrible n+1 territory
-	
-	def fixtures
-		self.games.find(:all, :conditions => "played='false'", :order => 'kickoff asc')
-	end
-	
 	def outstanding_results(limit=1000)
-	  self.games.find(
+	  self.results.find(
 	    :all,
-	    :conditions => "played='false' AND kickoff < CURRENT_DATE",
-	    :order => 'kickoff asc',
+	    :conditions => "kickoff < CURRENT_DATE",
 	    :limit => limit
 	  )
 	end
@@ -45,11 +38,7 @@ class Group < ActiveRecord::Base
 	def has_outstanding_results?
 	  self.outstanding_results(1).size == 1
 	end
-	
-	def results
-		self.games.find(:all, :conditions => "played='true'", :order => 'kickoff desc')
-	end
-	
+
 	# Converts the group's title into a format suitable for
 	# using in an URL. Currently this simply involves swapping
 	# spaces for underscores and removing everything else.

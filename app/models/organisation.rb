@@ -6,7 +6,7 @@ class Organisation < ActiveRecord::Base
 	has_many   :seasons, :dependent => true, :order => "id ASC"
 	has_one    :current_season, :class_name => "Season", :order => "id asc"
 	has_many   :teams, :dependent => true, :order => "title ASC"
-	has_many   :notices, :dependent => true, :order => 'created_on DESC'
+	has_many   :notices, :dependent => true, :order => 'notices.created_on DESC'
 	has_many   :pages, :dependent => true, :order => 'rank asc'
 	
 	before_validation :tidy_user_supplied_data!

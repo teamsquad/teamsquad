@@ -1,3 +1,5 @@
+drop view home_teams;
+drop view away_teams;
 drop view standings;
 drop table games cascade;
 drop table modifications cascade;
@@ -30,7 +32,8 @@ create table organisations (
 	nickname varchar(32) unique not null,
 	summary varchar(512) not null,
 	seasons_count int default 0,
-	created_on timestamp default now()
+	created_on timestamp default now(),
+	updated_on timestamp default now()
 );
 
 create index organisations_sport_id on organisations (sport_id);
@@ -40,7 +43,9 @@ create table users (
 	organisation_id int references organisations(id) on delete cascade,
 	email varchar(256) unique not null,
 	password varchar(256) not null,
-	name varchar(128) not null
+	name varchar(128) not null,
+	created_on timestamp default now(),
+	updated_on timestamp default now()
 );
 
 create index users_organisation_id on users (organisation_id);
@@ -54,6 +59,7 @@ create table notices (
 	picture varchar(256),
 	comments_count int default 0,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (organisation_id, heading)
 );
 
@@ -65,7 +71,8 @@ create table comments (
 	name varchar(128),
 	content text not null,
 	ip_address varchar(16),
-	created_on timestamp default now()
+	created_on timestamp default now(),
+	updated_on timestamp default now()
 );
 
 create index comments_notice_id on comments (notice_id);
@@ -89,6 +96,7 @@ create table teams (
 	organisation_id int references organisations(id) on delete cascade,
 	title varchar(64) not null,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (organisation_id, title)
 );
 
@@ -99,7 +107,9 @@ create table seasons (
 	organisation_id int references organisations(id) on delete cascade,
 	title varchar(64) not null,
 	competitions_count int default 0,
+	is_complete boolean default false,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (organisation_id, title)
 );
 
@@ -113,6 +123,7 @@ create table competitions (
 	rank int not null,
 	stages_count int default 0,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (season_id, title),
 	UNIQUE (season_id, rank)
 );
@@ -129,11 +140,13 @@ create table stages (
 	conditional_promotion_places int,
 	automatic_relegation_places int,
 	conditional_relegation_places int,
-	is_knockout boolean not null,
+	is_knockout boolean default false,
+	is_complete boolean default false,
 	points_for_win int default 3,
 	points_for_draw int default 1,
 	points_for_loss int default 0,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (competition_id, title),
 	UNIQUE (competition_id, rank)
 );
@@ -144,7 +157,9 @@ create table groups (
 	id serial primary key,
 	stage_id int  references stages(id) on delete cascade,
 	title varchar(64) not null,
+	games_count int default 0,
 	created_on timestamp default now(),
+	updated_on timestamp default now(),
 	UNIQUE (stage_id, title)
 );
 
@@ -161,7 +176,9 @@ create table modifications (
 	group_id int references groups(id) on delete cascade,
 	team_id int references teams(id) on delete cascade,
 	value int not null,
-	notes varchar(512) not null
+	notes varchar(512) not null,
+	created_on timestamp default now(),
+	updated_on timestamp default now()
 );
 
 create index modifications_group_id on modifications (group_id);
@@ -182,11 +199,43 @@ create table games (
 	summary text,
 	played boolean default false not null,
 	created_on timestamp default now(),
-	updated_on timestamp
+	updated_on timestamp default now()
 );
 
 create index games_hometeam_id on games (hometeam_id);
 create index games_awayteam_id on games (awayteam_id);
+
+create view fixtures as
+SELECT
+  f.*,
+  ht.title as hometeam_title,
+	at.title as awayteam_title
+FROM
+  games f
+LEFT JOIN
+	teams ht ON f.hometeam_id = ht.id
+LEFT JOIN
+	teams at ON f.awayteam_id = at.id
+WHERE
+  f.played='false'
+ORDER BY
+  f.kickoff asc;
+
+create view results as
+SELECT
+  f.*,
+  ht.title as hometeam_title,
+	at.title as awayteam_title
+FROM
+  games f
+LEFT JOIN
+	teams ht ON f.hometeam_id = ht.id
+LEFT JOIN
+	teams at ON f.awayteam_id = at.id
+WHERE
+  f.played='true'
+ORDER BY
+  f.kickoff desc;
 
 create view standings as
 SELECT

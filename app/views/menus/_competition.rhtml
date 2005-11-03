@@ -1,28 +1,20 @@
 <h2>This competition</h2>
 <ul class="current">
-  <li><%= link_to_unless_current 'Overview',
-		{:action => 'competition'},
-		{:title => "View the overview page for #{@competition.title}"} %></li>
-  <li><%= link_to_unless_current 'Results',
-		{:action => 'results'},
-		{:title => "View results for #{@competition.title}"} %></li>
-	<li><%= link_to_unless_current 'Fixtures', 
-		{:action => 'fixtures'},
-		{:title => "View fixtures for #{@competition.title}"} %></li><% for stage in @stages %>
+  <li><%= link_to_unless_current 'Overview',{:action => 'competition'} %></li>
+  <li><%= link_to_unless_current 'All results',	{:action => 'results'} %></li>
+	<li><%= link_to_unless_current 'All fixtures', {:action => 'fixtures'} %></li>
+	<% if @competition.stages_count > 0 %><% for stage in @competition.stages %>
 	<li><%= link_to_unless_current stage.title,
-		{:action => 'stage', :competition_slug => @competition,	:stage_slug => stage },
-		{:title => "View #{@competition.title}'s #{stage.title}" } %></li><% end %>
-	<li><%= link_to('New stage...',
-		{:action => 'new_stage'}, 
-		{:class => 'admin', :title => "Add another stage to #{@competition.title}"}) %></li>
+		{:action => 'stage', :competition_slug => @competition,	:stage_slug => stage } %></li><% end %>
+	<% end %>
+	<li><%= link_to('New stage...',	{:action => 'new_stage'}, {:class => 'admin'}) %></li>
 </ul>
 <%
   other_competitions = @season.competitions_other_than(@competition)
-  if other_competitions.size > 0
 %>
 <h2>Other competitions</h2>
 <ul><% for competition in other_competitions %>
 	<li><%= link_to competition.title,
-		{:action => 'competition', :competition_slug => competition},
-		{:title => "View #{competition.title}"} %></li><% end %>
-</ul><% end %>
+		{:action => 'competition', :competition_slug => competition} %></li><% end %>
+	<li><%= link_to 'Add new competition...', {:action => 'new_competition'}, {:class=>'admin'} %></li>
+</ul>

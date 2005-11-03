@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
 
 	map.connect ':action',
 		:controller => 'main',
-		:action => /login|admin|search|teams|notices|new_team|new_competition|new_page|new_notice/
+		:action => /login|admin|search|live_search|teams|notices|new_team|new_competition|new_page|new_notice/
 		
 	map.connect 'notices/:page_slug',
 		:controller => 'main',

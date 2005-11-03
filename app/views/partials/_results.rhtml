@@ -1,5 +1,4 @@
-<% if group.results.size != 0 %>
-<table class="games" cellpadding="0" cellspacing="0" summary="List of results for <%= h group.title %>">
+<table class="games" cellpadding="0" cellspacing="0" summary="List of results.">
 	<thead>
 		<th class="date">Date</th>
 		<th class="home team">Home Team</th>
@@ -7,18 +6,14 @@
 		<th class="away team">Away Team</th>
 		<th class="time">Time</th>
 	</thead>
-	<tbody><% j=1; for game in group.results %>
+	<tbody><% j=1; for game in results %>
 	<tr class="<%= (j&1==1) ? 'odd' : 'even' %> <%= game.state %>">
 		<td class="when"><%= game.pretty_date %></td>
-		<td class="home team"><%= link_to game.hometeam.title,
-			{:action => 'team', :team_slug => game.hometeam},
-			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="home team"><%= link_to game.hometeam_title,	{:action => 'team', :team_slug => game.hometeam_title} %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
-		<td class="away team"><%= link_to game.awayteam.title,
-			{:action =>'team', :team_slug => game.awayteam},
-			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="away team"><%= link_to game.awayteam_title,	{:action =>'team', :team_slug => game.awayteam_title} %></td>
 		<td class="when"><%= game.pretty_time %></td>
 	</tr><% if game.has_notes? %>
 	<tr class="notes <%= (j&1==1) ? 'odd' : 'even' %>">
@@ -31,4 +26,3 @@
 	</tr><% end %><% j+=1; end %>
 	</tbody>
 </table>
-<% end %>

@@ -1,6 +1,6 @@
 class MainController < ApplicationController
 	
-	layout "layouts/main"
+	layout "layouts/main", :except => :live_search
 
 	# ORGANISATION RELATED
 
@@ -12,15 +12,21 @@ class MainController < ApplicationController
 	end
 		
 	def login
-		
+		render_text 'Not implemented' and return
 	end
 	
 	def admin
-		
+		render_text 'Not implemented' and return
 	end
 	
 	def search
-		
+		throw404 and return unless get_season
+		perform_search
+	end
+	
+	def live_search
+	  throw404 and return unless get_season
+	  perform_search
 	end
 	
 	def information
@@ -47,7 +53,7 @@ class MainController < ApplicationController
 	  throw404 and return unless get_organisation
 	  @title = "#{@title} - Add page"
 		@page = Page.new()
-		@page.organisation_id = @organisation_id
+		@page.organisation_id = @organisation.id
 		if @request.post? and @page.save_from_params(@params[:page])
 		  redirect_to :action => 'information', :page_slug => @page and return
 		end
@@ -155,7 +161,9 @@ class MainController < ApplicationController
 	
 	def competition
 		throw404 and return unless get_competition
-		@stages = @competition.stages
+		@stage = @competition.current_stage
+		@groups_with_results  = @stage.groups_with_results unless @stage.nil?
+		@groups_with_fixtures = @stage.groups_with_fixtures unless @stage.nil?
 	end
 	
 	def new_competition
@@ -183,8 +191,8 @@ class MainController < ApplicationController
 	
 	def results
 		throw404 and return unless get_competition
-		@title = "#{@title} - Results"
 		@stages = @competition.stages
+		@title = "#{@title} - Results"
 	end
 	
 	def enter_results
@@ -304,4 +312,15 @@ class MainController < ApplicationController
 	    redirect_to :action => 'fixtures' and return
 	  end
 	end
+	
+	# PRIVATE STUFF
+	
+	private
+	
+	  def perform_search
+  	  @teams = @organisation.teams.find(:all, :conditions => ["title ilike ?", "#{@params[:term]}%"])
+      @competitions = @season.competitions.find(:all, :conditions => ["title ilike ?", "#{@params[:term]}%"])
+      @pages = @organisation.pages.find(:all, :conditions => ["title ilike ?", "#{@params[:term]}%"])
+      @notices = @organisation.notices.find(:all, :conditions => ["heading ilike ?", "#{@params[:term]}%"])
+	  end
 end

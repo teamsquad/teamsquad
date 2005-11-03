@@ -8,21 +8,33 @@
 		{:class => 'admin', :title => "Edit #{@competition.title}'s details"} %></p>
 	</div>
 	
-	<% for stage in @stages %><% if @competition.stages_count > 1 %>
-	<h2>Latest <%= stage.title %> results</h2><% else %><h2>Latest results</h2><% end %><% for group in stage.groups %>
-	<div class="group"><% if stage.groups.size > 1 %>
-	<h3><%= group.title %></h3><% end %>
-	<%= render :partial => 'partials/results', :locals => {:group => group} %>
-	</div><% end %><% end %>
-	<p class="more"><%= link_to 'More results...', :action => 'results' %></p>
+	<% if @stage.nil? %>
+	<h2>This competition is not set up yet!</h2>
+	<p>A competition must have at least one stage in it.
+	<%= link_to('Create a stage...', {:action => 'new_stage'}, {:class => 'admin'}) %></p>
+	<% else %>
+	<% if @groups_with_results.size != 0 %>
+	<h2>Latest results</h2><% for group in @groups_with_results %>
+	<div class="group">
+	  <%= "<h3>#{group.title}</h3>" unless @stage.groups_count == 1 %>
+	  <%= render :partial => 'partials/results', :object => group.results %>
+	</div><% end %>
+	<% end %>
 	
-	<% for stage in @stages %><% if @competition.stages_count > 1 %>
-	<h2>Upcoming <%= stage.title %> fixtures</h2><% else %><h2>Upcoming fixtures</h2><% end %><% for group in stage.groups %>
-	<div class="group"><% if stage.groups.size > 1 %>
-	<h3><%= group.title %></h3><% end %>
-	<%= render :partial => 'partials/fixtures', :locals => {:group => group} %>
-	</div><% end %><% end %>
-	<p class="more"><%= link_to 'More fixtures...', :action => 'fixtures' %></p>
+	<% if @groups_with_fixtures.size != 0 %>
+	<h2>Upcoming fixtures</h2><% for group in @groups_with_fixtures %>
+	<div class="group">
+	  <%= "<h3>#{group.title}</h3>" unless @stage.groups_count == 1 %>
+	  <%= render :partial => 'partials/fixtures', :object => group.fixtures %>
+	</div><% end %>
+	<% else %>
+	<h2>This competition is not fully set up yet!</h2>
+	<p>This competition stage doesn't have any groups in it.
+	<%= link_to 'Create a group...', {:action => 'new_group', :stage_slug => @stage}, {:class => 'admin'} %></p>
+	<% end %>
+	<% end %>
+	
+	
 </div>
 
 <div id="secondary">

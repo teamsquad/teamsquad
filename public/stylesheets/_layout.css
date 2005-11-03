@@ -51,10 +51,48 @@ div#secondary p {
 	position: absolute;
 	top: 0px;
 	left: 70%;
-	width: 30%
+	width: 30%;
+	overflow: visible;
+}
+
+#search div {
+  background: #FFE;
+  z-index: 10;
+  border: 1px solid #EEE;
+  border-top: none;
+  margin-left: -3px;
+}
+
+#search div ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px dotted #EEE;
+}
+
+#search div li {
+  display: block;
+  margin: 0;
+  padding: 4px;
+  border-bottom: 1px dotted #EEE;
+}
+
+#search div li.selected {
+  background: #FF0;
+}
+
+#search div li.selected a {
+  color: #900;
+}
+
+#search div li a {
+  text-decoration: none;
+  margin-left: 1em;
 }
 
 #search form {
+  position: relative;
 	padding: 5px;
 	margin: 0;
 	background: #EEE;

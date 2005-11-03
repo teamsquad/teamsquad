@@ -14,10 +14,36 @@ class Competition < ActiveRecord::Base
 	
 	belongs_to :season, :counter_cache => 'competitions_count'
 	has_many   :stages, :dependent => true, :order => "rank ASC"
+	
+	has_many   :fixtures, :finder_sql =>
+      'SELECT DISTINCT f.* ' +
+      'FROM stages s ' +
+      'JOIN groups g ON g.stage_id = s.id ' +
+      'JOIN fixtures f ON f.group_id = g.id ' +
+      'WHERE s.competition_id = #{id}'
+      
+  has_many   :results, :finder_sql =>
+      'SELECT DISTINCT r.* ' +
+      'FROM stages s ' +
+      'JOIN groups g ON g.stage_id = s.id ' +
+      'JOIN results r ON r.group_id = g.id ' +
+      'WHERE s.competition_id = #{id}'
 		
+	def current_stage
+	  self.stages.find(
+	    :first,
+	    :include => :groups,
+	    :conditions => "is_complete = 'false'"
+	  ) 
+	end	
+	
 	# Return relevant stage for a given url slug
 	def find_stage_by_url_slug(slug)
-		self.stages.find :first, :conditions => ["lower(title) = ?", slug.gsub(/_/, ' ').downcase]
+		self.stages.find(
+		  :first,
+		  :include => :groups,
+		  :conditions => ["lower(stages.title) = ?", slug.gsub(/_/, ' ').downcase]
+		)
 	end
 	
 	# Converts the competition's title into a format suitable for
