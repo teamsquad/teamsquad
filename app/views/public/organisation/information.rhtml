@@ -1,0 +1,17 @@
+<h1><%= @heading %></h1>
+
+<div id="primary">
+  <% if @picture %><div class="image"><img src="/uploads/<%= @picture %>"></div><% end %>
+	<%= safely_display @content %>
+	<div class="clear"></div><% unless @page.nil? %>
+	<p class="admin"><%= link_to "Edit this page..", organisation_admin_url(:action => 'edit_page', :slug => @page) %></p><% end %>
+</div>
+
+<div id="secondary">
+	<h2>More</h2>
+	<ul class="current">
+		<li><%= link_to_unless_current "Information", organisation_url(:action => 'information', :slug => nil) %></li><% for page in @pages %>
+		<li><%= link_to_unless_current page.title, organisation_url(:action => 'information', :slug => page) %></li><% end %>
+	  <li><%= link_to('New page...', organisation_admin_url(:action => 'new_page'), {:class => 'admin'}) %></li>
+	</ul>
+</div>

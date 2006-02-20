@@ -1,0 +1,36 @@
+<h1><%= @competition.title %> <strong><%= @stage.title %></strong></h1>
+
+<div id="primary">
+  <div class="standout">
+     <p><% if @stage.is_knockout %>
+         This is a knockout stage.
+	    <% else %>
+	    <%= @stage.points_for_win %> points for a win,
+	    <%= @stage.points_for_draw %> for a draw, and
+	    <%= @stage.points_for_loss %> for a loss.
+	    <% end %>
+	    <%= link_to('Edit this stage...',
+	            stage_admin_url(:action => 'edit'), {:class => 'admin'}) %>
+	  </p>
+    </div><% if @stage.groups_count > 0 %>
+    <% for group in @stage.groups %><div class="group"><% if @stage.groups.size > 1 %>
+  	<h2><%= group.title %></h2><% end %>
+  	<%= render :partial => @stage_partial, :locals => {:group => group} %>
+  	<p class="admin">
+    	<%= link_to 'Edit group...', group_admin_url(:action => 'edit', :group_slug => group) %>
+    	<%= link_to 'Add teams...', group_admin_url(:action => 'add_teams', :group_slug => group) %>	<% if group.standings.size > 0 %>
+    	<%= link_to 'Remove teams...', group_admin_url(:action => 'remove_teams', :group_slug => group) %>
+    	<%= link_to 'New fixtures...', group_admin_url(:action => 'new_fixtures', :group_slug => group) %><% end %>
+  	</p>
+	</div><% end %><% else %>
+	<h2>Stage not set up!</h2>
+	<p>This competition stage has no groups in it. Each stage of
+	a competition must have at least one group in to be usable.</p>
+	<% end %>
+	
+	<p><%= link_to 'New group...', stage_admin_url(:action => 'new_group'), {:class => 'admin'} %></p>
+</div>
+
+<div id="secondary">
+	<%= render :partial => 'menus/competition' %>
+</div>

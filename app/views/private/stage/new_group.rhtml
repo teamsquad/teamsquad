@@ -1,0 +1,20 @@
+<h1>New Group</h1>
+
+<div id="primary">
+	<%= render_partial 'forms/group', @group %>
+</div>
+
+<div id="secondary">
+	<h2>Tips</h2>
+	<p>If your <strong>competition</strong> is simple and only requires one
+	<strong>group</strong> then the name you give it will not actually be shown.</p>
+	
+	<p>However, if you are using more than one <strong>group</strong> you will
+	want to give each one a sensible name - something like "Group One"
+	or "Group A".</p>
+	
+	<h2>Cancel?</h2>
+	<ul>
+		<li><%= link_to 'Return to stage', stage_url(:action => 'overview') %></li>
+	</ul>
+</div>

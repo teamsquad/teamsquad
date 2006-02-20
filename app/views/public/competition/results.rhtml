@@ -1,0 +1,22 @@
+<h1><%= @competition.title %> <strong>Results</strong></h1>
+
+<div id="primary">
+  <% if @competition.results.count > 0 %>
+	<% for stage in @stages %><% if stage.results.count > 0 %><% if @competition.stages_count > 1 %>
+	<h2><%= stage.title %></h2><% end %><% for group in stage.groups_with_results %>
+	<div class="group"><% if stage.groups.size > 1 %><% if @competition.stages_count == 1 %>
+	<h2><%= group.title %></h2><% else %>
+	<h3><%= group.title %></h3><% end; end %>
+	<%= render :partial => 'partials/results', :object => group.results %>
+	</div><% end %><% end %><% end %>
+	<% else %>
+	<h2>Nothing to display!</h2>
+	<p>There are no results available for this competition. Either this
+	competition is yet to start or the lazy person organising it needs to
+	get their	finger out and enter some results in.</p>
+	<% end %>
+</div>
+
+<div id="secondary">
+	<%= render :partial => 'menus/competition' %>
+</div>

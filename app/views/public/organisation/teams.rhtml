@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+
+<div id="primary">
+	<ul id="team_list"><% for team in @teams %>
+		<li><%= team.title %> (x)</li><% end %>
+	</ul>
+</div>
+
+<div id="secondary">
+	<h2>More</h2>
+	<ul>
+		<li><%= link_to 'New team...', organisation_admin_url(:action => 'new_team') %></li>
+	</ul>	
+	
+	<h2>All done?</h2>
+	<ul>
+		<li><%= link_to 'Return to home', home_url %></li>
+	</ul>
+</div>
