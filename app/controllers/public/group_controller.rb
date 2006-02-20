@@ -1,2 +1,2 @@
-class Public::GroupController < PublicController
+class Public::GroupController < Public::AbstractController
 end

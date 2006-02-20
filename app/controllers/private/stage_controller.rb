@@ -1,4 +1,4 @@
-class Private::StageController < PrivateController
+class Private::StageController < Private::AbstractController
   
   before_filter :get_stage
   

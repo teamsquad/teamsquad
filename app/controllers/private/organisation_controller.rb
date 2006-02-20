@@ -1,4 +1,4 @@
-class Private::OrganisationController < PrivateController
+class Private::OrganisationController < Private::AbstractController
   
   before_filter :get_organisation
   

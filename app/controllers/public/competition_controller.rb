@@ -1,4 +1,4 @@
-class Public::CompetitionController < PublicController
+class Public::CompetitionController < Public::AbstractController
   
   before_filter :get_competition
   

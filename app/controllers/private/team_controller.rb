@@ -1,4 +1,4 @@
-class Private::TeamController < PrivateController
+class Private::TeamController < Private::AbstractController
   
   before_filter :get_team
   

@@ -1,4 +1,4 @@
-class Public::SeasonController < PublicController
+class Public::SeasonController < Public::AbstractController
   
   before_filter :get_season
   

@@ -1,4 +1,4 @@
-class Private::GroupController < PrivateController
+class Private::GroupController < Private::AbstractController
   
   before_filter :get_group
   
