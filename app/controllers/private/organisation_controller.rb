@@ -35,7 +35,7 @@ class Private::OrganisationController < Private::AbstractController
 		@notice.user_id = 1 # TODO: should be current logged in user
 		@notice.organisation_id = @organisation.id
 		if @request.post? and @notice.save_from_params(@params[:notice])
-		  redirect_to :controller => '/public/organisation', :action => 'home' and return
+		  redirect_to :controller => '/public/season', :action => 'home' and return
 		end
 	end
   
