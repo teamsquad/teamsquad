@@ -14,7 +14,7 @@ class Stage < ActiveRecord::Base
 	has_many   :fixtures, :finder_sql =>
       'SELECT DISTINCT f.* ' +
       'FROM groups g ' +
-      'JOIN fixtures f ON f.group_id = g.id ' +
+      'JOIN matches f ON f.group_id = g.id ' +
       'WHERE g.stage_id = #{id}'
       
   has_many   :results, :finder_sql =>

@@ -1,61 +1,81 @@
 ActionController::Routing::Routes.draw do |map|
-  # Add your own custom routes here.
-  # The priority is based upon order of creation: first created -> highest priority.
+  # First created -> highest priority.
   
-	map.home  '',
-		:controller => 'main',
-		:action => 'home'
+  map.home  '',
+		:controller => 'public/season',
+		:action => 'home',
+		:defaults => {
+		  :competition_slug => nil,
+		  :stage_slug => nil,
+		}
+
+  #
+  # ORGANISATION
+  #
+  
+  
+  map.organisation ':action/:slug',
+    :controller => 'public/organisation',
+    :action => /^(login|search|live_search|teams|notices|notice|commented|information)$/,
+    :slug => nil
+    
+  map.organisation_admin ':action/:slug',
+    :controller => 'private/organisation',
+    :action => /^(new_team|new_competition|new_page|new_notice|edit_page|edit_notice|edit_comments)$/,
+		:slug => nil
 		
-  map.connect ':action/:page_slug',
-		:controller => 'main',
-		:action => /information|edit_page|edit_notice|edit_comments/,
-		:page_slug => nil
-
-	map.connect ':action',
-		:controller => 'main',
-		:action => /login|admin|search|live_search|teams|notices|new_team|new_competition|new_page|new_notice/
 		
-	map.connect 'notices/:page_slug',
-		:controller => 'main',
-		:action => 'notice',
-		:page_slug => nil
-		
-	map.connect 'notices/:page_slug/commented',
-		:controller => 'main',
-		:action => 'commented'
+  #
+  # TEAM
+  #
 
-	map.connect	'teams/:team_slug',
-			:controller => 'main',
-			:action => 'team'
+	map.team	'teams/:id/:action',
+  	:controller => 'public/team',
+  	:action => /^(overview|fixtures|results)$/,
+  	:defaults => {
+  	  :action => 'overview'
+  	}
 
-	map.connect	'teams/:team_slug/:action',
-		:controller => 'main',
-		:action => /edit_team/
+	map.team_admin	'teams/:id/:action',
+		:controller => 'private/team',
+		:action => /^(edit)$/
 
-	map.connect	':competition_slug',
-		:controller => 'main',
-		:action => 'competition'
+	#
+  # COMPETITION
+  #
+  
+  map.competition	':competition_slug/:action',
+		:controller => 'public/competition',
+		:action => /^(overview|results|fixtures)$/,
+		:defaults => {:action => 'overview'}
 	
-	map.connect	':competition_slug/:action',
-		:controller => 'main',
-		:action => /edit_competition|results|fixtures|new_stage/
-		
-	map.connect ':competition_slug/:stage_slug',
-		:controller => 'main',
-		:action => 'stage'	
-		
-	map.connect ':competition_slug/:stage_slug/:action',
-		:controller => 'main',
-		:action => /edit_stage|new_group/
-		
-	map.connect ':competition_slug/:stage_slug/:group_slug/:action/:team_slug',
-		:controller => 'main',
-		:action => /edit_group|add_teams|remove_teams|new_fixtures|enter_results/,
-		:team_slug => nil
+	map.competition_admin	':competition_slug/:action',
+		:controller => 'private/competition',
+		:action => /^(edit|new_stage)$/
 
-  map.connect ':competition_slug/:stage_slug/:group_slug/:action/:id',
-		:controller => 'main',
-		:action => /edit_fixture/,
+  #
+  # STAGE
+  #
+  
+  map.stage ':competition_slug/:stage_slug',
+		:controller => 'public/stage',
+		:action => 'overview'	
+		
+	map.stage_admin ':competition_slug/:stage_slug/:action',
+		:controller => 'private/stage',
+		:action => /^(edit|new_group)$/
+		
+  #
+  # GROUP
+  #
+  
+  map.group ':competition_slug/:stage_slug/:group_slug/:action',
+		:controller => 'public/group',
+		:action => /^(nothing|yet|public)$/
+
+  map.group_admin ':competition_slug/:stage_slug/:group_slug/:action/:id',
+		:controller => 'private/group',
+		:action => /^(edit|edit_fixture|add_teams|remove_teams|new_fixtures|enter_results)$/,
 		:id => nil
-	
+
 end

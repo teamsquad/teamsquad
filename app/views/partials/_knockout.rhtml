@@ -9,15 +9,11 @@
 	<tbody><% j=1; for game in group.games %>
 	<tr class="<%= (j&1==1) ? 'odd' : 'even' %> <%= game.state %>">
 		<td class="when"><%= game.pretty_date %></td>
-		<td class="home team"><%= link_to game.hometeam.title,
-			{:action => 'team', :team_slug => game.hometeam},
-			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="home team"><%= link_to game.hometeam.title, team_url(:id => game.hometeam_id) %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
-		<td class="away team"><%= link_to game.awayteam.title,
-			{:action =>'team', :team_slug => game.awayteam},
-			{:title => "View more information on the team #{game.hometeam.title}"} %></td>
+		<td class="away team"><%= link_to game.awayteam.title, team_url(:id => game.awayteam_id) %></td>
 		<td class="when"><%= game.pretty_time %></td>
 	</tr><% if game.has_notes? %>
 	<tr class="notes <%= (j&1==1) ? 'odd' : 'even' %>">

@@ -1,7 +1,3 @@
 <div id="admin">
-<% if @session['user'] %>
-	<p><%= link_to_unless_current 'Admin', {:action => 'admin'}, {:title => "Go to the admin system and configure stuff"} %></p>
-<% else %>
-	<p><%= link_to_unless_current 'Login', {:action => 'login'}, {:title => "Login and start editing stuff"} %></p>
-<% end %>
+    <p><%= link_to_unless_current 'Login', organisation_url(:action => 'login') %></p>
 </div>

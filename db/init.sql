@@ -205,7 +205,7 @@ create table games (
 create index games_hometeam_id on games (hometeam_id);
 create index games_awayteam_id on games (awayteam_id);
 
-create view fixtures as
+create view matches as
 SELECT
   f.*,
   ht.title as hometeam_title,

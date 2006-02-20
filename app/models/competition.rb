@@ -19,7 +19,7 @@ class Competition < ActiveRecord::Base
       'SELECT DISTINCT f.* ' +
       'FROM stages s ' +
       'JOIN groups g ON g.stage_id = s.id ' +
-      'JOIN fixtures f ON f.group_id = g.id ' +
+      'JOIN matches f ON f.group_id = g.id ' +
       'WHERE s.competition_id = #{id}'
       
   has_many   :results, :finder_sql =>

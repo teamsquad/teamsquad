@@ -11,7 +11,7 @@ class Group < ActiveRecord::Base
 	has_many   :standings, :order => 'totalpoints desc'
 	has_and_belongs_to_many :teams, :order => 'title asc'
 	
-	has_many   :fixtures
+	has_many   :fixtures, :class_name => 'Match'
 	has_many   :results
 	
 	def remove_team!(team)

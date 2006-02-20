@@ -12,9 +12,7 @@
 	<tbody><% j=0; for team in group.standings %>
 	<tr class="<%= ((j+=1)&1==1) ? 'odd' : 'even' %>">
 		<td class="pos"><%= j %></td>
-		<td class="team"><%= link_to team.title.slice(0,32),
-			{:action => 'team', :team_slug => team.title.gsub(/\s/, '_').downcase},
-			{:title => "View more information on the team #{team.title}"} %></td>
+		<td class="team"><%= link_to team.title.slice(0,32), team_url(:id => team) %></td>
 		<td class="stat"><%= team.totalplayed %></td>
 		<td class="stat"><%= team.totalwon %></td>
 		<td class="stat"><%= team.totaldrawn %></td>

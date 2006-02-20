@@ -29,7 +29,8 @@ CREATE TABLE comments (
     name character varying(128),
     content text NOT NULL,
     ip_address character varying(16),
-    created_on timestamp without time zone DEFAULT now()
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -44,7 +45,8 @@ CREATE TABLE competitions (
     summary text,
     rank integer NOT NULL,
     stages_count integer DEFAULT 0,
-    created_on timestamp without time zone DEFAULT now()
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -67,7 +69,7 @@ CREATE TABLE games (
     summary text,
     played boolean DEFAULT false NOT NULL,
     created_on timestamp without time zone DEFAULT now(),
-    updated_on timestamp without time zone
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -79,7 +81,9 @@ CREATE TABLE groups (
     id serial NOT NULL,
     stage_id integer,
     title character varying(64) NOT NULL,
-    created_on timestamp without time zone DEFAULT now()
+    games_count integer DEFAULT 0,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -94,6 +98,27 @@ CREATE TABLE groups_teams (
 
 
 --
+-- Name: teams; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
+--
+
+CREATE TABLE teams (
+    id serial NOT NULL,
+    organisation_id integer,
+    title character varying(64) NOT NULL,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
+);
+
+
+--
+-- Name: matches; Type: VIEW; Schema: public; Owner: sid
+--
+
+CREATE VIEW matches AS
+    SELECT f.id, f.group_id, f.kickoff, f.hometeam_id, f.home_score, f.home_notes, f.home_points, f.awayteam_id, f.away_score, f.away_notes, f.away_points, f.summary, f.played, f.created_on, f.updated_on, ht.title AS hometeam_title, "at".title AS awayteam_title FROM ((games f LEFT JOIN teams ht ON ((f.hometeam_id = ht.id))) LEFT JOIN teams "at" ON ((f.awayteam_id = "at".id))) WHERE (f.played = false) ORDER BY f.kickoff;
+
+
+--
 -- Name: modifications; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
 --
 
@@ -102,7 +127,9 @@ CREATE TABLE modifications (
     group_id integer,
     team_id integer,
     value integer NOT NULL,
-    notes character varying(512) NOT NULL
+    notes character varying(512) NOT NULL,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -118,7 +145,8 @@ CREATE TABLE notices (
     content text NOT NULL,
     picture character varying(256),
     comments_count integer DEFAULT 0,
-    created_on timestamp without time zone DEFAULT now()
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -133,7 +161,8 @@ CREATE TABLE organisations (
     nickname character varying(32) NOT NULL,
     summary character varying(512) NOT NULL,
     seasons_count integer DEFAULT 0,
-    created_on timestamp without time zone DEFAULT now()
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -154,6 +183,14 @@ CREATE TABLE pages (
 
 
 --
+-- Name: results; Type: VIEW; Schema: public; Owner: sid
+--
+
+CREATE VIEW results AS
+    SELECT f.id, f.group_id, f.kickoff, f.hometeam_id, f.home_score, f.home_notes, f.home_points, f.awayteam_id, f.away_score, f.away_notes, f.away_points, f.summary, f.played, f.created_on, f.updated_on, ht.title AS hometeam_title, "at".title AS awayteam_title FROM ((games f LEFT JOIN teams ht ON ((f.hometeam_id = ht.id))) LEFT JOIN teams "at" ON ((f.awayteam_id = "at".id))) WHERE (f.played = true) ORDER BY f.kickoff DESC;
+
+
+--
 -- Name: schema_info; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
 --
 
@@ -171,7 +208,9 @@ CREATE TABLE seasons (
     organisation_id integer,
     title character varying(64) NOT NULL,
     competitions_count integer DEFAULT 0,
-    created_on timestamp without time zone DEFAULT now()
+    is_complete boolean DEFAULT false,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -201,23 +240,13 @@ CREATE TABLE stages (
     conditional_promotion_places integer,
     automatic_relegation_places integer,
     conditional_relegation_places integer,
-    is_knockout boolean NOT NULL,
+    is_knockout boolean DEFAULT false,
+    is_complete boolean DEFAULT false,
     points_for_win integer DEFAULT 3,
     points_for_draw integer DEFAULT 1,
     points_for_loss integer DEFAULT 0,
-    created_on timestamp without time zone DEFAULT now()
-);
-
-
---
--- Name: teams; Type: TABLE; Schema: public; Owner: sid; Tablespace: 
---
-
-CREATE TABLE teams (
-    id serial NOT NULL,
-    organisation_id integer,
-    title character varying(64) NOT NULL,
-    created_on timestamp without time zone DEFAULT now()
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -238,7 +267,9 @@ CREATE TABLE users (
     organisation_id integer,
     email character varying(256) NOT NULL,
     "password" character varying(256) NOT NULL,
-    name character varying(128) NOT NULL
+    name character varying(128) NOT NULL,
+    created_on timestamp without time zone DEFAULT now(),
+    updated_on timestamp without time zone DEFAULT now()
 );
 
 
@@ -700,4 +731,4 @@ ALTER TABLE ONLY users
     ADD CONSTRAINT users_organisation_id_fkey FOREIGN KEY (organisation_id) REFERENCES organisations(id) ON DELETE CASCADE;
 
 
-INSERT INTO schema_info (version) VALUES (2);
+INSERT INTO schema_info (version) VALUES (2)

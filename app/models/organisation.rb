@@ -25,8 +25,8 @@ class Organisation < ActiveRecord::Base
 		Organisation.find :first, :conditions => ["lower(nickname) = ?", slug.gsub(/_/, ' ').downcase]
 	end
 	
-	def find_team_by_url_slug(slug)
-		self.teams.find :first, :conditions => ["lower(title) = ?", slug.gsub(/_/, ' ').downcase]
+	def find_team_by_id(id)
+		self.teams.find(id)
 	end
 	
 	def find_notice_by_url_slug(slug)

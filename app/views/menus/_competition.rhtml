@@ -1,20 +1,17 @@
 <h2>This competition</h2>
 <ul class="current">
-  <li><%= link_to_unless_current 'Overview',{:action => 'competition'} %></li>
-  <li><%= link_to_unless_current 'All results',	{:action => 'results'} %></li>
-	<li><%= link_to_unless_current 'All fixtures', {:action => 'fixtures'} %></li>
-	<% if @competition.stages_count > 0 %><% for stage in @competition.stages %>
-	<li><%= link_to_unless_current stage.title,
-		{:action => 'stage', :competition_slug => @competition,	:stage_slug => stage } %></li><% end %>
-	<% end %>
-	<li><%= link_to('New stage...',	{:action => 'new_stage'}, {:class => 'admin'}) %></li>
+  <li><%= link_to_unless_current 'Overview', competition_link(@competition, 'overview') %></li>
+  <li><%= link_to_unless_current 'All results',	competition_link(@competition, 'results') %></li>
+	<li><%= link_to_unless_current 'All fixtures', competition_link(@competition, 'fixtures') %></li>
+	<% for stage in @competition.stages %>
+	<li><%= link_to_unless_current stage.title, stage_link(stage, 'overview') %></li><% end %>
+	<li><%= link_to('New stage...',
+	            competition_admin_url(:action => 'new_stage', :competition_slug => @competition, :stage_slug => nil), {:class => 'admin'}) %></li>
 </ul>
-<%
-  other_competitions = @season.competitions_other_than(@competition)
-%>
 <h2>Other competitions</h2>
-<ul><% for competition in other_competitions %>
+<ul><% for competition in @season.competitions_other_than(@competition) %>
 	<li><%= link_to competition.title,
-		{:action => 'competition', :competition_slug => competition} %></li><% end %>
-	<li><%= link_to 'Add new competition...', {:action => 'new_competition'}, {:class=>'admin'} %></li>
+		        competition_link(competition, 'overview') %></li><% end %>
+	<li><%= link_to 'Add new competition...',
+	            organisation_admin_url(:action => 'new_competition', :competition_slug => nil, :stage_slug => nil), {:class=>'admin'} %></li>
 </ul>

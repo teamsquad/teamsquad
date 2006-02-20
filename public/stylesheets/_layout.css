@@ -78,6 +78,11 @@ div#secondary p {
   border-bottom: 1px dotted #EEE;
 }
 
+#term_auto_complete {
+	height: 15em;
+	overflow: auto;
+}
+
 #search div li.selected {
   background: #FF0;
 }
@@ -108,11 +113,11 @@ div#secondary p {
 }
 
 #search #in_term {
-	width: 65%;
+	width: 60%;
 }
 
 #search input {
-  width: 33%;
+  width: 30%;
   font-size: x-small;
 }
 

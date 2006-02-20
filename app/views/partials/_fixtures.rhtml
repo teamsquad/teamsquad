@@ -9,9 +9,9 @@
 	<tbody><% j=1; for game in fixtures %>
 	<tr class="<%= (j&1==1) ? 'odd' : 'even' %>">
 		<td class="when"><%= game.pretty_date %></td>
-		<td class="home team"><%= link_to game.hometeam_title,	{:action => 'team', :team_slug => game.hometeam_title} %></td>
+		<td class="home team"><%= link_to game.hometeam_title,	team_url(:id => game.hometeam_id) %></td>
 		<td class="versus">v</td>
-		<td class="away team"><%= link_to game.awayteam_title,	{:action =>'team', :team_slug => game.awayteam_title} %></td>
+		<td class="away team"><%= link_to game.awayteam_title,	team_url(:id => game.awayteam_id) %></td>
 		<td class="when"><%= game.pretty_time %></td>
 	</tr><% j+=1; end %>
 	</tbody>
