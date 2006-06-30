@@ -1,0 +1,10 @@
+<div id="primary">
+  <div class="day">
+    <%= render :partial => 'partials/fixtures',
+          :object => @competition.matches_for_day(@date) %>
+  </div>
+</div>
+
+<div id="secondary">
+  <%= render :partial => 'partials/competition_menu' %>
+</div>

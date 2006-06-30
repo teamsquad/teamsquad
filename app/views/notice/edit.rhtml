@@ -1,0 +1,14 @@
+<div id="primary">
+	<%= render_partial 'forms/notice' %>
+</div>
+
+<div id="secondary">
+	<h2>Tips</h2>
+	<p><strong>Notices</strong> are used to keep people up-to-date
+	with what's going on.</p>
+	
+	<h2>Cancel?</h2>
+	<ul>
+		<li><%= link_to 'Return to notice', notice_url(:notice => @form) %></li>
+	</ul>
+</div>

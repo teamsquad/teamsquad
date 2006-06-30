@@ -1,0 +1,5 @@
+<h2>This competition is not fully set up yet!</h2>
+<p>This competition stage doesn't have any groups in it.
+	<%= link_to 'Create a group...',
+	    new_group_url(:competition => @competition, :stage => @stage),
+			{:class => 'admin'} if authorised? %></p>

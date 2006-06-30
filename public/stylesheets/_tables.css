@@ -1,0 +1,176 @@
+table.standings,
+table.games {
+	margin: 0 0 1.5em 0;
+	width: 100%;
+	border-bottom: 1px solid #999;
+	clear: both;
+}
+
+table.nohead thead {
+	display: none;
+}
+
+table thead th {
+	text-align: left;
+	font-size: smaller !important;
+	background: #999;
+	color: #FFF;
+	background: url(/images/header.gif) center;
+}
+
+table.standings tfoot td {
+	text-align: right;
+	border-top: 1px solid #999;
+}
+
+table.standings th,
+table.games th {
+	line-height: 1.4em;
+}
+
+table.standings td.stat,
+table.standings th.stat {
+	width: 6%;
+	text-align: right;
+	padding: 3px 5px 3px 1px;
+}
+
+table.standings th.stat,
+table.standings th.team {
+	padding: 0;
+}
+
+table.games tr.homewin td.home,
+table.games tr.awaywin td.away {
+	font-weight: bold;
+}
+
+table tr.even td {
+	border-top: 1px solid #EEE;
+	background: url(/images/dither.gif);
+}
+
+table tr.odd td {
+	border-top: 1px solid #EEE;
+}
+
+table tr.noedge td {
+	border-top: none;
+}
+
+table tr.summary td {
+	border-top: none;
+	text-align: left;
+	color: #666;
+	font-size: smaller;
+	padding: 2px 90px 8px 90px;
+}
+
+table tr.short td {
+  text-align: center;
+}
+
+table tr.notes td {
+	border-top: none;
+	text-align: center;
+	color: #666;
+	font-size: smaller;
+	padding: 0 0 3px 0;
+}
+
+table tr.auto-promote td {
+	background-image: url(/images/autopromote_bg.png);
+}
+
+table tr.auto-relegate td {
+	background-image: url(/images/autorelegate_bg.png);
+}
+
+.pos {
+	width: 2%;
+	text-align: right;
+	padding-right: 2px;
+}
+
+.versus {
+	text-align: center;
+	font-size: smaller;	
+	width: 4%;
+}
+
+.results th.versus {
+	width: 12%;
+}
+
+td.versus {
+	color: #999;
+}
+
+.hierarchy {
+	text-align: left;
+	font-size: smaller;
+	white-space: nowrap;
+	width: 12%;
+	padding-right: 2px;
+}
+
+td.hierarchy {
+	color: #999;
+}
+
+.hierarchy a {
+	color: #696;
+}
+
+.when {
+	width: 12%;
+	padding-left: 2px;
+}
+
+td.when {
+	text-align: left;
+	color: #999;
+	font-size: smaller;
+	white-space: nowrap;
+}
+
+.home {
+	text-align: right !important;
+}
+
+.away {
+	text-align: left !important;
+}
+
+tr.notes .home,
+tr.notes .away{
+	width: 41%;
+}
+
+.team {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 36%;
+}
+
+td.team {
+	line-height: 1.5em;
+}
+
+td.team a {
+	font-size: small;
+}
+
+.results .team {
+	width: 31%:
+}
+
+.score {
+	width: 5%;
+	font-size: large;
+}
+
+th.score {
+	text-align: center;
+	color: #999;
+}

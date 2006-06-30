@@ -1,0 +1,11 @@
+testgroup1:
+ id: 1
+ stage_id: 1
+ title: Test Group One
+ slug: test-group-one
+
+testgroup2:
+ id: 2
+ stage_id: 1
+ title: Test Group Two
+ slug: test-group-two

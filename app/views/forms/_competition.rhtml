@@ -1,0 +1,33 @@
+<% unless @form.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end -%>
+
+<form action="" method="post" class="standard">
+	<fieldset>
+		<legend>Details</legend>
+		
+		<label for="in-title">Competition title</label>
+		<p class="hint">Only use	alphanumerics, spaces, and hyphens in the title.</p>
+		<%= error_message_on "form", "title" %>
+		<p><%= text_field "form", "title", :class => 'important textfield', :id => 'in-title' %></p>
+
+		<label for="in-summary">Summary</label>
+		<p class="hint">Perhaps a bit about the rules and format of the competition.</p>
+		<%= error_message_on "form", "summary" %>
+		<p><%= text_area "form", "summary", :rows => 10, :class => 'textarea', :id => 'in-summary' %></p>
+	
+	</fieldset>
+	
+	<% if @form.new_record? %><fieldset>
+		<legend>Format</legend>
+		
+		<label for="in-format">Format</label>
+		<p class="hint">Select a preset format or elect to make your own. You can tweak the format later if needed.</p>
+		<p><%= select "form", "format", Competition.formats, :id => 'in-format' %></p>
+	</fieldset><% end %>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save competition">
+	</fieldset>
+</form>

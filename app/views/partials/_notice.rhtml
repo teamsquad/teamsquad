@@ -1,0 +1,15 @@
+<div class="post"><% if controller.action_name != 'view' %>
+	<h2><%= link_to notice.heading, notice_url(:notice => notice)	%></h2><% end %>
+	<p class="credit">By <%= notice.author.name %> <%= time_ago_in_words notice.created_on %> ago. 
+	<%= link_to pluralize(notice.comments_count, 'comment'), notice_url(:notice => notice, :anchor => 'comments') unless notice.comments_count == 0 %></p>
+	<% if notice.has_picture? %><div class="image"><img src="/uploads/<%= notice.picture %>"></div><% end %>
+	<%= safely_display(notice.content) %>
+	<div class="clear"></div><% if authorised? %>
+  <p class="admin">
+    <%= link_to "Edit this notice...", edit_notice_url(:notice => notice) %>
+    <% if notice.has_comments? %>
+    or
+    <%= link_to "Edit its comments...", edit_comments_url(:notice => notice) %>
+    <% end %>
+  </p><% end %>
+</div>

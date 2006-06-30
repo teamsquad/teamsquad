@@ -1,0 +1,11 @@
+teststage1:
+ id: 1
+ competition_id: 1
+ title: Test Stage One
+ slug: test-stage-one
+ position: 1
+ groups_count: 2
+ conditional_promotion_places: 0
+ automatic_relegation_places: 1
+ conditional_relegation_places: 0
+ is_knockout: 'f'

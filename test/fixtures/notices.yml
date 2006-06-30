@@ -1,0 +1,7 @@
+notice1:
+ id: 1
+ organisation_id: 1
+ user_id: 1
+ heading: Notice One
+ slug: notice-one
+ content: This is some content.

@@ -1,0 +1,18 @@
+<% unless @form.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end -%>
+<form action="" method="post" class="standard">
+	<fieldset>
+		<legend>Details...</legend>
+		<label for="in-title">Team name</label>
+		<p class="hint">This is simply the name of the team. Only use
+		alphanumerics and spaces.</p>
+		<%= error_message_on "form", "title" %>
+		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
+	</fieldset>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save team">
+	</fieldset>
+</form>

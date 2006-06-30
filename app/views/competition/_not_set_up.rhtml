@@ -1,0 +1,5 @@
+<h2>This competition is not set up yet!</h2>
+<p>A competition must have at least one stage in it.
+	<%= link_to 'Create a stage...', 
+    new_stage_url(:competition => @competition),
+		{:class => 'admin'} if authorised? %></p>

@@ -1,0 +1,28 @@
+<table class="games" cellpadding="0" cellspacing="0" summary="List of games for <%= h group.title %>">
+	<thead>
+		<th class="date">Date</th>
+		<th class="home team">Home Team</th>
+		<th class="versus" colspan="3">v</th>
+		<th class="away team">Away Team</th>
+		<th class="time">Time</th>
+	</thead>
+	<tbody><% for game in group.games %>
+	<tr class="<%= odd_or_even = cycle("odd", "even") %> <%= game.state %>">
+		<td class="when"><%= game.pretty_date %></td>
+		<td class="home team"><%= link_to game.home_team.title, team_url(:team => game.home_team) %></td>
+		<td class="home score"><%= game.home_score %></td>
+		<td class="versus">v</td>
+		<td class="away score"><%= game.away_score %></td>
+		<td class="away team"><%= link_to game.away_team.title, team_url(:team => game.away_team) %></td>
+		<td class="when"><%= game.pretty_time %></td>
+	</tr><% if game.has_notes? %>
+	<tr class="notes <%= odd_or_even %>">
+		<td class="home" colspan="3 %>"><%= game.home_notes %></td>
+		<td>&nbsp;</td>
+		<td class="away" colspan="3"><%= game.away_notes %></td>
+	</tr><% end %><% if game.has_summary? %>
+	<tr class="summary <%= odd_or_even %>">
+		<td colspan="7"><%= game.summary %></td>
+	</tr><% end %><% end %>
+	</tbody>
+</table>

@@ -1,0 +1,67 @@
+<% if @competition.stages_count != 1 || @stage.groups_count != 1 %><h2>
+  <%= @stage.title unless @competition.stages_count = 1 %>
+  <%= '-' unless  @competition.stages_count == 1 || @stage.groups_count = 0 %>
+  <%= @group.title unless @stage.groups_count = 1 %>
+</h2><% end %>
+
+<div id="primary">
+<form action="" method="post"><% for game in @games %>
+  <fieldset>
+		<legend><%= game.pretty_date %></legend>
+		
+		<table cellpadding="0" cellspacing="0" class="results"><% if @organisation.sport.uses_scores %>
+		  <tr>
+		    <td class="home team"><%= game.home_team.title %></td>
+		    <td class="home"><%= text_field "game", "home_score", "index" => game.id, "class" => 'score'	%></td>
+		    <td class="versus">vs</td>
+		    <td class="away"><%= text_field "game", "away_score", "index" => game.id, "class" => 'score' %></td>
+		    <td class="away team"><%= game.away_team.title %></td>
+		  </tr><% else %>
+		  <tr>
+		    <td class="home team"><%= game.home_team.title %></td>
+		    <td colspan="3"><select name="game[<%= game.id %>][result]">
+		      <option value="-1"></option>
+					<option value="0">beat</option>
+					<option value="1">lost to</option>
+					<option value="2">drew with</option>
+				</select></td>
+		    <td class="away team"><%= game.away_team.title %></td>
+		  </tr><% end %>
+		  <tr>
+		    <td class="home" colspan="2"><%= text_field "game", "home_notes", "index" => game.id, "class" => 'notes'	%> </td>
+		    <td class="versus">notes</td>
+		    <td class="away" colspan="2"><%= text_field "game", "away_notes", "index" => game.id, "class" => 'notes' %></td>
+		  </tr><% if @organisation.sport.uses_manual_points %>
+		  <tr>
+		    <td class="home" colspan="2"><%= text_field "game", "home_points", "index" => game.id, "class" => 'points' %></td>
+		    <td class="versus">points</td>
+		    <td class="away" colspan="2"><%= text_field "game", "away_points", "index" => game.id, "class" => 'points' %></td>
+		  </tr><% end %>
+		  <tr>
+		    <td class="versus" colspan="5">match summary</td>
+		  </tr>
+		  <tr>
+		    <td colspan="5"><%= text_area "game", "summary", :rows => 5, "index" => game.id, "class" => 'summary' %></td>
+		  </tr>
+		</table>
+  </fieldset><% end %>
+  
+  <fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save results">
+	</fieldset>
+</form>	
+</div>
+
+<div id="secondary">
+	<h2>Tips</h2>
+	<p>If you don't know the results for any given game then simply leave its
+	data fields blank and move on to the next one. When you save the results
+	empty ones will be ignored and you can come back another time to finish them
+	off.</p>
+
+	<h2>Cancel?</h2>
+	<ul>
+		<li><%# link_to 'Return to fixtures', competition_url(:action => 'fixtures') %></li>
+	</ul>
+</div>

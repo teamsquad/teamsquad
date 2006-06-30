@@ -1,0 +1,11 @@
+<div id="search">
+	<%= start_form_tag( search_url, {:method => 'GET'} ) %>
+		<label for="in_term">Search this organisation</label>
+		<input type="text" name="term" id="in_term" value="Enter search term" onfocus="if (this.value == 'Enter search term') {this.value = ''}">
+		<input type="submit" value="Search" class="clickable" title="Click this button and we'll go look for your stuff">
+	  <div id="term_auto_complete"></div>
+    <script type="text/javascript">
+      new Ajax.Autocompleter('in_term', 'term_auto_complete', '/live_search', {});
+    </script>
+	<%= end_form_tag %>
+</div>

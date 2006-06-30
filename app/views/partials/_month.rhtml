@@ -1,0 +1,34 @@
+<table class="calendar" cellpadding="0" cellspacing="1" summary="Match calendar for <%= month.strftime("%B %Y") %>">
+	<caption><%= link_to month.strftime("%B %Y"), calendar_month_url(:competition => @competition, :year => month.year, :month => month.month) %></caption>
+	<thead>
+		<tr>
+			<th>Mo</th>
+			<th>Tu</th>
+			<th>We</th>
+			<th>Th</th>
+			<th>Fr</th>
+			<th>Sa</th>
+			<th>Su</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr><%
+			cells = 0;
+   		date = Date.new(month.year, month.month)
+   		date = date - date.cwday + 1 # start of week
+   		until (cells == 42)
+			%><td class="<% if date.month != month.month %>outmonth<% else %>inmonth<% end %>"><%=
+			if dates.include? date and (date.month == month.month)
+				link_to sprintf("%02d",date.mday), calendar_day_url(:competition => @competition, :year => date.year, :month => date.month, :day => date.day )
+			else
+				sprintf("%02d",date.mday)
+			end
+			%><%= "<!-- #{date.to_s} -->" %></td><% if date.cwday == 7 %>
+		</tr>
+		<tr><% end %>
+		<% date = date.succ; cells = cells.succ %>
+		<% end %></tr>
+	</tbody>
+</table>
+
+<%= "<!-- #{dates.inspect} -->"%>

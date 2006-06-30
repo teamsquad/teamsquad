@@ -1,0 +1,32 @@
+<div id="primary">
+  <%= render :partial => "partials/notice", :object => @notice %>
+
+  <h2>Comments</h2><% if @notice.has_comments? %>
+  <div class="comments" id="comments"><% for comment in @notice.comments %>
+  <div class="comment">
+  <h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
+  <%= safely_display comment.content if comment.content %>
+  </div><% end %>
+  </div><% end %>
+
+  <div class="comment" id="comment">
+    <%= render_partial 'forms/comment', @comment %>
+  </div>
+</div>
+
+<div id="secondary">
+  <h2>Recent notices</h2>
+  <ul class="current"><% for notice in @organisation.recent_notices %>
+    <li><%= link_to_unless_current notice.heading, notice_url(:notice => notice) %></li><% end %>   
+  </ul>
+  
+  <h2>More</h2>
+  <ul>
+    <li><%= link_to 'All notices...', notices_url %></li>
+  </ul>
+  
+  <h2>All done?</h2>
+  <ul>
+    <li><%= link_to "Back home", home_url %></li>
+  </ul>
+</div>

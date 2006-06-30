@@ -1,0 +1,26 @@
+<% unless @form.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end -%>
+<form action="" method="post" class="standard">
+	<fieldset>
+		<legend>Details...</legend>
+		<label for="in-title">Group name</label>
+		<p class="hint">This is simply the name of the group. Only use
+		alphanumerics and spaces.</p>
+		<%= error_message_on "form", "title" %>
+		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
+	</fieldset>
+	
+	<fieldset class="checkboxes">
+		<legend>Teams...</legend>
+		<p class="hint">Select which teams are in this group.</p>
+		<%= error_message_on "form", "team_ids" %><% for team in @teams %>		
+		<p><%= check_box_tag 'form[team_ids][]', team.id,	@form.teams.include?(team), :id => "in-group_team_#{team.id}" %></p>
+		<label for="in-group_team_<%= team.id %>"><%= team.title %></label><% end %>
+	</fieldset>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save group">
+	</fieldset>
+</form>

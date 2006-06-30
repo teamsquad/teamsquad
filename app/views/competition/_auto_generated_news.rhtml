@@ -1,0 +1,5 @@
+<h2>News</h2><% for game in @competition.news_worthy_matches %>
+<div class="article">
+	<h3><%= game.headline %></h3>
+	<%= safely_display game.summary if game.summary %>
+</div><% end %>

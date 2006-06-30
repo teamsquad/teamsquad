@@ -1,0 +1,7 @@
+page1:
+ id: 1
+ organisation_id: 1
+ title: This is page one
+ slug: this-is-page-one
+ content: This is some content
+ position: 1

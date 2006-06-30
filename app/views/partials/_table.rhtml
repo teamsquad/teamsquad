@@ -1,0 +1,32 @@
+<table class="standings" cellpadding="0" cellspacing="0" summary="Standings table">
+	<thead>
+		<th class="pos">#</th>
+		<th class="team">Team</th>
+		<th class="stat">Pld</th>
+		<th class="stat">Won</th><% if @stage.groups_count == 1 %>
+		<th class="stat">Drn</th><% end %>
+		<th class="stat">Lst</th><% if @stage.groups_count == 1 %>
+		<th class="stat">+/-</th><% end %>
+		<th class="stat">Pts</th>
+	</thead>
+	<tbody><% group.standings.each_with_index do |standing, index| %>
+	<tr class="<%= cycle("odd", "even") %>">
+		<td class="pos"><%= index + 1 %></td>
+		<td class="team"><%= link_to standing.team.title.slice(0,32), team_url(:team => standing.team) %></td>
+		<td class="stat"><%= standing.totalplayed %></td>
+		<td class="stat"><%= standing.totalwon %></td><% if @stage.groups_count == 1 %>
+		<td class="stat"><%= standing.totaldrawn %></td><% end %>
+		<td class="stat"><%= standing.totallost %></td><% if @stage.groups_count == 1 %>
+		<td class="stat"><%= standing.totaldifference %></td><% end %>
+		<td class="stat"><%= standing.totalpoints %></td>
+	</tr><% end %>
+	</tbody><% if authorised? and (group.has_teams? or group.has_overdue_fixtures?) %>
+	<tfoot>
+		<tr>
+			<td colspan="8">
+      <%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin')  if group.has_teams? %>
+			<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if group.has_overdue_fixtures? %>
+			</td>
+		</tr>
+	</tfoot><% end %>
+</table>

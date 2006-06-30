@@ -1,0 +1,8 @@
+single_stage_competition:
+ id: 1
+ season_id: 1
+ title: Single Stage Competition
+ slug: single-stage-competition
+ summary: This is a single stage competition.
+ position: 1
+ stages_count: 1

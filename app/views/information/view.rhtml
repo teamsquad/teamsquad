@@ -1,0 +1,15 @@
+<div id="primary">
+  <% unless @page.picture.size.zero? %><div class="image"><img src="/uploads/<%= @page.picture %>"></div><% end %>
+	<%= safely_display @page.content %>
+	<div class="clear"></div><% unless @page.nil? %>
+	<p class="admin"><%= link_to "Edit this page..", edit_information_page_url(:page => @page) %></p><% end %>
+</div>
+
+<div id="secondary">
+	<h2>More</h2>
+	<ul class="current">
+		<li><%= link_to_unless_current "Information", information_url %></li><% for page in @pages %>
+		<li><%= link_to_unless_current page.title, information_page_url(:page => page) %></li><% end %>
+	  <li><%= link_to('New page...', new_information_page_url, {:class => 'admin'}) %></li>
+	</ul>
+</div>

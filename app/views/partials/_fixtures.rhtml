@@ -1,0 +1,18 @@
+<table class="games fixtures" cellpadding="0" cellspacing="0" summary="List of fixtures.">
+	<thead>
+		<th class="when">Time</th>
+		<th class="home team">Home Team</th>
+		<th class="versus">v</th>
+		<th class="away team">Away Team</th>
+		<th class="hierachy">Type</th>
+	</thead>
+	<tbody><% reset_cycle; for game in fixtures %>
+	<tr class="<%= cycle("odd", "even") %>">
+		<td class="when"><%= game.pretty_time %></td>
+		<td class="home team"><%= link_to game.home_team.title,	team_url(:team => game.home_team) %></td>
+		<td class="versus">v</td>
+		<td class="away team"><%= link_to game.away_team.title,	team_url(:team => game.away_team) %></td>
+		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => @competition, :stage => game.stage, :anchor => game.group.slug) %></td>
+	</tr><% end %>
+	</tbody>
+</table>

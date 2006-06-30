@@ -1,0 +1,19 @@
+<div id="primary">
+  <% if @competition.has_fixtures? -%>
+  <% for day in @competition.fixture_days %>
+  <div class="day">
+    <h2><%= day.pretty_date %></h2>
+    <%= render :partial => 'partials/fixtures',
+          :object => @competition.fixtures.select {|game| game.kickoff.day == day.date.day && game.kickoff.month == day.date.month && game.kickoff.year == day.date.year } %>
+  </div><% end %>
+  <% else -%>
+  <h2>Nothing to display!</h2>
+  <p>There are no fixtures available for this competition. Either this
+  competition is yet to start or the lazy person organising it needs to
+  get their finger out and enter some fixtures in.</p>
+  <% end -%>
+</div>
+
+<div id="secondary">
+  <%= render :partial => 'partials/competition_menu' %>
+</div>
