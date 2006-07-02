@@ -1,4 +1,4 @@
-class CompetitionController < ApplicationController
+class CompetitionController < AbstractAccountController
 
   def index
   end

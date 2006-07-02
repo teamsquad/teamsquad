@@ -16,6 +16,23 @@ class Match < ActiveRecord::Base
   def has_summary?
     !self.summary.nil? && self.summary!=''
   end
+  
+  def summary_for_news
+    if has_summary?
+      summary
+    else
+      case state
+        when 'homewin'
+          "#{pretty_time} #{pretty_date_with_year} - #{home_team.title} win this #{group.title} clash."
+        when 'awaywin'
+          "#{pretty_time} #{pretty_date_with_year} - #{home_team.title} lose out to #{away_team.title} in this #{group.title} clash."
+        when 'draw'
+          "#{pretty_time} #{pretty_date_with_year} - This #{group.title} clash ended in a draw."
+        else
+          "The match is set for #{pretty_date_with_year}."
+      end
+    end
+  end
 
   def state
     if self.played?

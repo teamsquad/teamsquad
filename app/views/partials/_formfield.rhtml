@@ -1,0 +1,5 @@
+<label for="in-<%= name %>"><%= label %></label>
+<%= form_input fieldtype, formfield.class.name.downcase, name %>
+<% if formfield.errors[name]; for error in formfield.errors[name]; -%>
+<p class="warning"><%= error %></p><% end; end; -%>
+<p class="hint"><%= formfield.hint(name) %></p>

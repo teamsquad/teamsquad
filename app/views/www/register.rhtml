@@ -1,0 +1,40 @@
+<div id="blurb">
+<h1>Register</h1>
+<% unless @user.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
+<p>So you've decided to join our little party then. Great - fill out the form and
+you're in. We recommend you read our <a href="/privacy">privacy policy</a>
+and <a href="/disclaimer">disclaimer</a> before signing up.</p>
+</div>
+
+<div id="focus">
+<form action="register" method="post" class="standard">
+	<fieldset>
+		<legend>Organisation details...</legend>
+		<%= form_field @organisation, "text", "title", "The full name of your organisation" %>
+
+		<%= form_field @organisation, "text", "nickname", "Short name" %>
+
+
+		<label for="in-organisation_sport_id">Sport</label>
+		<%= collection_select('organisation', 'sport_id', @sports, 'id', 'title') %>
+		<% if @organisation.errors['sport_id']; for error in @organisation.errors['sport_id']; -%>
+		<p class="warning"><%= error %></p>
+		<% end; end; -%>
+		<p class="hint"><%= @organisation.hint('sport_id') %></p>
+		
+		<%= form_field @organisation, "textarea", "summary", "Summary" %>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Enter your details...</legend>
+		<%= form_field @user, "text", "name", "Your name" %>
+		<%= form_field @user, "text", "email", "Your email address" %>
+		<%= form_field @user, "password", "password", "Password" %>
+		<%= form_field @user, "password", "password_confirmation", "Confirm Password" %>
+	</fieldset>
+	<fieldset class="finish">
+		<legend>Submit your registration</legend>
+		<input type="submit" value="Register">
+	</fieldset>
+</form>
+</div>

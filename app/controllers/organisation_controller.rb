@@ -1,4 +1,4 @@
-class OrganisationController < ApplicationController
+class OrganisationController < AbstractAccountController
 
   def home
     @new_notices  = @organisation.recent_notices

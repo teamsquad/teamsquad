@@ -143,12 +143,16 @@ div.group {
     width: 48%;
   }
   
+	div.stage_with_groups div.odd {
+    clear: both;
+  }
+
   div.stage_with_groups div.even {
     float: right;
   }
 
 div.article {
-	padding-bottom: 0.5em;
+	padding-bottom: 0em;
 }
 
 	div.article h3 {

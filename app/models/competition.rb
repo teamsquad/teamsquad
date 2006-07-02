@@ -79,7 +79,7 @@ class Competition < ActiveRecord::Base
     
   has_many :news_worthy_matches,
     :class_name => 'Match',
-    :conditions => "(kickoff BETWEEN (CURRENT_DATE - 14) and (CURRENT_DATE + 14))",
+    :conditions => "(kickoff BETWEEN (CURRENT_DATE - 28) and (CURRENT_DATE + 4))",
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc"
 

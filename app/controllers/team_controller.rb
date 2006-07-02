@@ -1,4 +1,4 @@
-class TeamController < ApplicationController
+class TeamController < AbstractAccountController
   
   def index
     @titles << 'Teams'

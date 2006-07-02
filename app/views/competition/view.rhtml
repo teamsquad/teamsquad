@@ -5,7 +5,7 @@
 	    	edit_competition_url(:competition => @competition),
 				{:class => 'admin'} if authorised? %></p>
 	</div>
-	
+	<% cache do %>
 	<% if @stage.nil? -%>
 	<%= render :partial => 'not_set_up' %>
 	<% elsif @stage.has_no_groups? -%>
@@ -14,6 +14,7 @@
 	<%= render :partial => 'auto_generated_news' %>
 	<% else %>
 	<%= render :partial => 'nothing_doing' %>
+	<% end %>
 	<% end %>
 </div>
 

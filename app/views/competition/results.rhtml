@@ -1,4 +1,4 @@
-<div id="primary">
+<% cache do %><div id="primary">
   <% if @competition.has_results? -%>
 	 <% for day in @competition.result_days %>
   <div class="day">
@@ -12,7 +12,7 @@
 	competition is yet to start or the lazy person organising it needs to
 	get their	finger out and enter some results in.</p>
 	<% end -%>
-</div>
+</div><% end %>
 
 <div id="secondary">
 	<%= render :partial => 'partials/competition_menu' %>

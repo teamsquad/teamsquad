@@ -1,4 +1,4 @@
-class InformationController < ApplicationController
+class InformationController < AbstractAccountController
   
   def index
 		@pages   = @organisation.pages

@@ -1,4 +1,4 @@
-class GroupController < ApplicationController
+class GroupController < AbstractAccountController
   
   before_filter :get_stage
   
@@ -24,6 +24,7 @@ class GroupController < ApplicationController
     # will remove all teams (just like it should!).
     @params[:form] && @params[:form][:team_ids] ||= []
     if @request.post? && @form.update_attributes(@params["form"])
+      clear_caches
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end
   end
@@ -32,6 +33,7 @@ class GroupController < ApplicationController
     get_group
     @titles << "New fixtures"
     if @request.post? and @group.process_fixtures(@params)
+      clear_caches
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end
     @scripts << 'fixtures'
@@ -44,8 +46,21 @@ class GroupController < ApplicationController
     @games = @group.overdue_fixtures
     @stages = @competition.stages
     if request.post? and @competition.process_results(@params)
+      clear_caches
       redirect_to competition_url(:competition => @competition) and return
     end
+  end
+  
+private
+
+  def clear_caches
+    expire_fragment(:controller => 'competition', :action => "fixtures")
+    expire_fragment(:controller => 'competition', :action => "results")
+    expire_fragment(:controller => 'competition', :action => "view")
+    expire_fragment(:controller => 'calendar', :action => "index")
+    expire_fragment(:controller => 'calendar', :action => "year")
+    expire_fragment(:controller => 'calendar', :action => "month")
+    expire_fragment(:controller => 'calendar', :action => "day")
   end
 
 end

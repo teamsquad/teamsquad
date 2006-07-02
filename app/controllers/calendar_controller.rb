@@ -1,4 +1,4 @@
-class CalendarController < ApplicationController
+class CalendarController < AbstractAccountController
   
   before_filter :get_competition
   

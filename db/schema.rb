@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 2) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "comments", :force => true do |t|
     t.column "notice_id", :integer
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 2) do
   end
 
   add_index "competitions", ["season_id"], :name => "competitions_season_id"
-  add_index "competitions", ["season_id", "title"], :name => "competitions_season_id_key", :unique => true
-  add_index "competitions", ["slug", "season_id"], :name => "competitions_season_id_key1", :unique => true
+  add_index "competitions", ["title", "season_id"], :name => "competitions_season_id_key", :unique => true
+  add_index "competitions", ["season_id", "slug"], :name => "competitions_season_id_key1", :unique => true
   add_index "competitions", ["position", "season_id"], :name => "competitions_season_id_key2", :unique => true
 
   create_table "games", :force => true do |t|
@@ -141,6 +141,14 @@ ActiveRecord::Schema.define(:version => 2) do
   add_index "seasons", ["organisation_id", "title"], :name => "seasons_organisation_id_key", :unique => true
   add_index "seasons", ["organisation_id", "slug"], :name => "seasons_organisation_id_key1", :unique => true
 
+  create_table "sessions", :force => true do |t|
+    t.column "session_id", :string
+    t.column "data", :text
+    t.column "updated_at", :datetime
+  end
+
+  add_index "sessions", ["session_id"], :name => "sessions_session_id_index"
+
   create_table "sports", :force => true do |t|
     t.column "title", :string, :limit => 64, :null => false
     t.column "uses_scores", :boolean, :default => true
@@ -169,8 +177,8 @@ ActiveRecord::Schema.define(:version => 2) do
   end
 
   add_index "stages", ["competition_id"], :name => "stages_competition_id"
-  add_index "stages", ["competition_id", "title"], :name => "stages_competition_id_key", :unique => true
-  add_index "stages", ["slug", "competition_id"], :name => "stages_competition_id_key1", :unique => true
+  add_index "stages", ["title", "competition_id"], :name => "stages_competition_id_key", :unique => true
+  add_index "stages", ["competition_id", "slug"], :name => "stages_competition_id_key1", :unique => true
   add_index "stages", ["position", "competition_id"], :name => "stages_competition_id_key2", :unique => true
 
   create_table "teams", :force => true do |t|

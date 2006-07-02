@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     user or false
   end
   
+  def hint(name)
+    @@hints[name]
+  end
+  
 protected
 
   # Apply SHA1 encryption to the supplied password. 
@@ -53,5 +57,12 @@ protected
   def cleanse_email
     self.email.downcase!
   end
+  
+  @@hints = {
+    'name' => "Enter in your name as you wish to be known (e.g. Joe Bloggs).",
+    'email' => "Enter in your email address. This must be a valid address.",
+    'password' => "Enter a password you can remember so that you login with it.",
+    'password_confirmation' => "Enter in your password again to confirm it is correct."
+	}
   
 end

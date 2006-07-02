@@ -1,4 +1,4 @@
-class StageController < ApplicationController
+class StageController < AbstractAccountController
   
   def new
     get_competition

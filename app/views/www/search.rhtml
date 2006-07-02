@@ -1,0 +1,12 @@
+<div id="blurb">
+	<h1>Search</h1>
+	<p>blah</p>
+</div>
+
+<div id="focus">
+	<h2>Organisations</h2>
+	<dl><% for organisation in @organisations %>
+		<dt><%= "<a href=\"http://#{organisation.nickname}.teamsquad.com\">#{organisation.title}</a>" %></dt>
+		<dd><%= safely_display(organisation.summary) %></dd><% end %>
+	</dl>
+</div>

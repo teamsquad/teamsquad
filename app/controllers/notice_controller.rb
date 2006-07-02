@@ -1,4 +1,4 @@
-class NoticeController < ApplicationController
+class NoticeController < AbstractAccountController
 
   def index
     @titles << 'Notices'

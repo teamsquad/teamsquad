@@ -62,6 +62,6 @@
 
 	<h2>Cancel?</h2>
 	<ul>
-		<li><%# link_to 'Return to fixtures', competition_url(:action => 'fixtures') %></li>
+		<li><%= link_to "Return to #{@group.stage.title}", stage_url(:competition => @competition, :stage => @stage) %></li>
 	</ul>
 </div>
