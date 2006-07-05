@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 3) do
+ActiveRecord::Schema.define(:version => 4) do
 
   create_table "comments", :force => true do |t|
     t.column "notice_id", :integer
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "competitions", ["title", "season_id"], :name => "competitions_season_id_key", :unique => true
   add_index "competitions", ["season_id", "slug"], :name => "competitions_season_id_key1", :unique => true
   add_index "competitions", ["position", "season_id"], :name => "competitions_season_id_key2", :unique => true
+
+  create_table "contact_responses", :force => true do |t|
+    t.column "name", :string
+    t.column "email", :string
+    t.column "message", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "resolved", :boolean, :default => false
+  end
 
   create_table "games", :force => true do |t|
     t.column "group_id", :integer

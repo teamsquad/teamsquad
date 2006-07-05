@@ -1,7 +1,7 @@
 class WwwController < ApplicationController
   
   def index
-    @organisations = Organisation.find(:all, :limit => 10, :order => 'created_on desc')
+
   end
   
   def about
@@ -16,6 +16,26 @@ class WwwController < ApplicationController
     
   end
   
+  def alpha
+  
+  end
+  
+  def screenshots
+    
+  end
+  
+  def contact
+    @page_title = "Contact"
+    @contact = ContactResponse.new(params["contact"])
+    if @request.post? && @contact.save
+      redirect_to :action => "contacted"
+    end
+  end
+  
+  def contacted
+  
+  end
+   
   def search
     @organisations = Organisation.find(:all)
   end

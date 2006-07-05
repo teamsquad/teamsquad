@@ -1,5 +1,5 @@
 <div id="primary">
-  <% unless @page.picture.size.zero? %><div class="image"><img src="/uploads/<%= @page.picture %>"></div><% end %>
+  <% if @page.picture && !@page.picture.size.zero? %><div class="image"><img src="/uploads/<%= @page.picture %>"></div><% end %>
 	<%= safely_display @page.content %>
 	<div class="clear"></div><% unless @page.nil? %>
 	<p class="admin"><%= link_to "Edit this page..", edit_information_page_url(:page => @page) %></p><% end %>
