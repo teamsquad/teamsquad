@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 4) do
   end
 
   add_index "competitions", ["season_id"], :name => "competitions_season_id"
-  add_index "competitions", ["title", "season_id"], :name => "competitions_season_id_key", :unique => true
-  add_index "competitions", ["season_id", "slug"], :name => "competitions_season_id_key1", :unique => true
+  add_index "competitions", ["season_id", "title"], :name => "competitions_season_id_key", :unique => true
+  add_index "competitions", ["slug", "season_id"], :name => "competitions_season_id_key1", :unique => true
   add_index "competitions", ["position", "season_id"], :name => "competitions_season_id_key2", :unique => true
 
   create_table "contact_responses", :force => true do |t|
@@ -186,8 +186,8 @@ ActiveRecord::Schema.define(:version => 4) do
   end
 
   add_index "stages", ["competition_id"], :name => "stages_competition_id"
-  add_index "stages", ["title", "competition_id"], :name => "stages_competition_id_key", :unique => true
-  add_index "stages", ["competition_id", "slug"], :name => "stages_competition_id_key1", :unique => true
+  add_index "stages", ["competition_id", "title"], :name => "stages_competition_id_key", :unique => true
+  add_index "stages", ["slug", "competition_id"], :name => "stages_competition_id_key1", :unique => true
   add_index "stages", ["position", "competition_id"], :name => "stages_competition_id_key2", :unique => true
 
   create_table "teams", :force => true do |t|
