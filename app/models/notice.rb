@@ -16,7 +16,7 @@ class Notice < ActiveRecord::Base
   def upload=(incoming_file)
     if incoming_file.respond_to? "original_filename" and incoming_file.original_filename != ''
       original_filename = sanitize_filename(incoming_file.original_filename)
-      filename = "notice-#{Time.now}-#{original_filename}"
+      filename = "org#{self.organisation_id}-notice-#{incoming_file.original_filename}"
       store_upload(incoming_file, filename)
     end
   end

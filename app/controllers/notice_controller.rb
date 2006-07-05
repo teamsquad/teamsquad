@@ -8,16 +8,18 @@ class NoticeController < AbstractAccountController
     get_notice or return
     @comment = Comment.new @params["comment"]
     @comment.notice = @notice
-    if @request.post? && @comment.save
+    if request.post? && @comment.save
       redirect_to commented_url(:notice => @notice) and return
     end
   end
   
   def new
     @titles << 'New notice'
-    @form = @organisation.notices.build(@params[:form])
-    @form.author = current_user
-    if @request.post? and @form.save
+    params = params[:form]
+    notice_params << { :organisation_id => @organisation.id }
+    notice_params << { :author => current_user.id }
+    @form = @organisation.new(notice_params)
+    if request.post? and @form.save
       redirect_to notice_url(:notice => @form) and return
     end
   end
@@ -26,7 +28,7 @@ class NoticeController < AbstractAccountController
     get_notice or return
     @form = @notice
     @titles << 'Edit'
-    if @request.post? and @form.update_attributes(@params[:form])
+    if request.post? and @form.update_attributes(params[:form])
       redirect_to notice_url(:notice => @form) and return
     end
   end
