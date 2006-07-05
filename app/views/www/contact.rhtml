@@ -1,24 +1,24 @@
 <div id="blurb">
 <h1>Contact</h1>
-<% unless @contact.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
+<% unless @contactresponse.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
 <p>Want to get in touch? use this form then!</p>
 </div>
 
 <div id="focus">
-<form action="register" method="post" class="standard">
+<form action="/contact" method="post" class="standard">
 	
 	<fieldset>
 		<legend>Get in touch...</legend>
-		<%= form_field @contact, "text", "name", "Your name" %>
+		<%= form_field @contactresponse, "text", "name", "Your name" %>
 
-		<%= form_field @contact, "text", "email", "Your email address (optional)" %>
+		<%= form_field @contactresponse, "text", "email", "Your email address (optional)" %>
 
-		<%= form_field @contact, "textarea", "message", "Your message" %>
+		<%= form_field @contactresponse, "textarea", "message", "Your message" %>
 	</fieldset>
 
 	<fieldset class="finish">
 		<legend>Submit your registration</legend>
-		<input type="submit" value="Register">
+		<input type="submit" value="Send">
 	</fieldset>
 </form>
 </div>

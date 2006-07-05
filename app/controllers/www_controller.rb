@@ -26,8 +26,8 @@ class WwwController < ApplicationController
   
   def contact
     @page_title = "Contact"
-    @contact = ContactResponse.new(params["contact"])
-    if @request.post? && @contact.save
+    @contactresponse = ContactResponse.new(params["contactresponse"])
+    if @request.post? && @contactresponse.save
       redirect_to :action => "contacted"
     end
   end
