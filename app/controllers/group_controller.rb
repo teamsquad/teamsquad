@@ -33,7 +33,7 @@ class GroupController < AbstractAccountController
     get_group
     @titles << "New fixtures"
     if @request.post? and @group.process_fixtures(@params)
-      clear_caches
+      clear_caches(params[:when])
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end
     @scripts << 'fixtures'
@@ -53,14 +53,14 @@ class GroupController < AbstractAccountController
   
 private
 
-  def clear_caches
+  def clear_caches(date)
     expire_fragment(:controller => 'competition', :action => "fixtures")
     expire_fragment(:controller => 'competition', :action => "results")
     expire_fragment(:controller => 'competition', :action => "view")
     expire_fragment(:controller => 'calendar', :action => "index")
-    expire_fragment(:controller => 'calendar', :action => "year")
-    expire_fragment(:controller => 'calendar', :action => "month")
-    expire_fragment(:controller => 'calendar', :action => "day")
+    expire_fragment(:controller => 'calendar', :action => "year", :year => date[:year])
+    expire_fragment(:controller => 'calendar', :action => "month", :year => date[:year], :month => date[:month])
+    expire_fragment(:controller => 'calendar', :action => "day", :year => date[:year], :month => date[:month], :day => date[:day])
   end
 
 end
