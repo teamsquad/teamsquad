@@ -1,5 +1,8 @@
 <div id="primary">
 	<%= safely_display @organisation.summary %>
+	
+	<% if authorised? %>
+	<p class="admin"><%= link_to "Edit organisation details...", edit_organisation_url() %></p><% end %>
 </div>
 
 <div id="secondary">

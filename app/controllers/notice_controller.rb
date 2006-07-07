@@ -15,11 +15,9 @@ class NoticeController < AbstractAccountController
   
   def new
     @titles << 'New notice'
-    params = params[:form]
-    notice_params << { :organisation_id => @organisation.id }
-    notice_params << { :author => current_user.id }
-    @form = @organisation.new(notice_params)
-    if request.post? and @form.save
+    @form = @organisation.notices.build(params[:form])
+    @form.author          = current_user
+    if request.post? && @form.save
       redirect_to notice_url(:notice => @form) and return
     end
   end

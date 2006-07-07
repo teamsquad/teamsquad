@@ -1,0 +1,10 @@
+<ul>
+  <% if @teams.size > 0 %><% for team in @teams %>
+  <li><%= link_to team.title, team_url(:team => team) %></li><% end; end %>
+  <% if @competitions.size > 0 %><% for competition in @competitions %>
+  <li><%= link_to competition.title, competition_url(:competition => competition) %></li><% end; end %>
+  <% if @pages.size > 0 %><% for page in @pages %>
+  <li><%= link_to page.title, information_page_url(:page => page) %></li><% end; end %>
+  <% if @notices.size > 0 %><% for notice in @notices %>
+  <li><%= link_to notice.heading, notice_url(:notice => notice) %></li><% end; end %>
+</ul>

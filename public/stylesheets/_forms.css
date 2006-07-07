@@ -30,6 +30,11 @@ form label {
 	font-size: medium;
 }
 
+form label.inline {
+	display: inline;
+	font-size: small;
+}
+
 form fieldset.checkboxes p {
 	float: left;
 	clear: both;
@@ -46,7 +51,7 @@ form p {
 
 form p.hint {
 	color: #666;
-	line-height: 1.2em !important;
+	line-height: 1.3em !important;
 	text-align: left !important;
 	font-size: 0.85em;
 	float: none;

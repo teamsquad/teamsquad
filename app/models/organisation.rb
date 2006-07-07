@@ -1,5 +1,11 @@
 class Organisation < ActiveRecord::Base
 
+  attr_accessor :remove_logo
+
+  file_column :logo,
+    :root_path => File.join(RAILS_ROOT, "public", "uploads"),
+    :magick => { :geometry => "48x48>" }
+
   belongs_to :sport
   has_many   :seasons, :dependent => true, :order => "id ASC"
   has_one    :current_season, :class_name => "Season", :order => "id asc"
@@ -9,6 +15,7 @@ class Organisation < ActiveRecord::Base
   has_many   :pages, :dependent => true, :order => 'position asc'
   
   before_validation :tidy_user_supplied_data!
+  after_validation :remove_logo_if_required
 
   validates_presence_of   :summary, :message => 'You must enter something.'
   validates_uniqueness_of :title, :nickname, :message => 'Sorry, already taken. Enter something else.'
@@ -58,6 +65,10 @@ class Organisation < ActiveRecord::Base
   def hint(name)
 		@@hints[name]
 	end
+	
+	def has_logo?
+    (self.logo && self.logo.size > 0) || false
+  end
 
 private
 
@@ -66,6 +77,12 @@ private
   def tidy_user_supplied_data!
     self.title.strip! unless self.title.nil?
     self.nickname.strip! unless self.nickname.nil?
+  end
+  
+  def remove_logo_if_required
+    if self.errors.empty? && !logo_just_uploaded? && remove_logo == 'true'
+      self.logo = nil
+    end
   end
   
   @@hints = {

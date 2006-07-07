@@ -15,6 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.home  '',
     :controller => 'organisation',
     :action => 'home'
+    
+  map.edit_organisation 'edit',
+    :controller => 'organisation',
+    :action => 'edit'
 
   map.login 'login',
     :controller => 'organisation',

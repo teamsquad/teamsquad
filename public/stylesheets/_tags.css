@@ -99,7 +99,7 @@ div#secondary li {
   display: block;
   margin: 0.3em 0;
   padding: 0 0 0 15px;
-  background: url(/images/bullet_light.gif) no-repeat left;
+  background: url(/images/bullet_light.gif) no-repeat top left;
   color: #900;
   font-weight: bold;
   line-height: 14px;
@@ -108,7 +108,7 @@ div#secondary li {
 div#secondary ul.current li {
   margin: 0.6em 0;
   font-size: 1.1em;
-  background: url(/images/bullet.gif) no-repeat left;
+  background: url(/images/bullet.gif) no-repeat top left;
 }
 
 div#secondary ul.current li a {
@@ -203,12 +203,14 @@ div.post {
 div.post h2 {
 	margin-left: -24px;
   padding-left: 24px;
-  background: url(/images/post.gif) no-repeat left center;
+  background: url(/images/post.gif) no-repeat 0.2em left;
+	line-height: 1.2em;
+	margin-bottom: 0.4em;
 }
 
 div.image {
   float: right;
-  margin: 0 0 1em 1em;
+  margin: 1em 0 0.5em 0.5em;
   border: 1px solid #CCC;
   padding: 3px;
   text-align: center;

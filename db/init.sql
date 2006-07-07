@@ -31,6 +31,7 @@ create table organisations (
 	title varchar(128) unique not null,
 	nickname varchar(32) unique not null,
 	summary varchar(512) not null,
+	logo varchar(256),
 	seasons_count int default 0,
 	created_on timestamp default now(),
 	updated_on timestamp default now()

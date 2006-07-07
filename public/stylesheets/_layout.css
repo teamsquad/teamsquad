@@ -84,7 +84,7 @@ div#secondary p {
 }
 
 #search div li.selected {
-  background: #FF0;
+  background: #FFC;
 }
 
 #search div li.selected a {
@@ -93,7 +93,6 @@ div#secondary p {
 
 #search div li a {
   text-decoration: none;
-  margin-left: 1em;
 }
 
 #search form {
@@ -113,11 +112,11 @@ div#secondary p {
 }
 
 #search #in_term {
-	width: 60%;
+	width: 80%;
 }
 
 #search input {
-  width: 30%;
+  width: 10%;
   font-size: x-small;
 }
 

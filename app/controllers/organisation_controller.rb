@@ -16,5 +16,21 @@ class OrganisationController < AbstractAccountController
     reset_session
     redirect_to login_url and return
   end
+  
+  def edit
+    @form = @organisation.dup
+    if request.post? && @form.update_attributes(params[:form])
+      redirect_to information_url 
+    end
+  end
+  
+  def live_search
+    get_season
+    @teams = @organisation.teams.find(:all, :conditions => ["title ilike ?", "%#{@params[:term]}%"])
+    @competitions = @season.competitions.find(:all, :conditions => ["title ilike ?", "%#{@params[:term]}%"])
+    @pages = @organisation.pages.find(:all, :conditions => ["title ilike ?", "%#{@params[:term]}%"])
+    @notices = @organisation.notices.find(:all, :conditions => ["heading ilike ?", "%#{@params[:term]}%"])
+    render :action => 'live_search', :layout => false 
+  end
 
 end

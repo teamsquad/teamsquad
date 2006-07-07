@@ -1,7 +1,7 @@
 <div id="primary">
-  <% if @page.picture && !@page.picture.size.zero? %><div class="image"><img src="/uploads/<%= @page.picture %>"></div><% end %>
+	<% if @page.has_picture? %><div class="image"><img src="/uploads/<%= "page/picture/#{@page.id}/#{@page[:picture]}" %>"></div><% end %>
 	<%= safely_display @page.content %>
-	<div class="clear"></div><% unless @page.nil? %>
+	<div class="clear"></div><% if !@page.nil? && authorised? %>
 	<p class="admin"><%= link_to "Edit this page..", edit_information_page_url(:page => @page) %></p><% end %>
 </div>
 

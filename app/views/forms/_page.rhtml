@@ -17,12 +17,22 @@
 		<%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%>
 		
 		<label for="in-picture">Picture</label>
-		<p class="hint">If you want to add a picture to display with this post use the 
-		file field to locate a picture on your local system for uploading. Make sure the
-		image is a sensible size (around 100-200 pixels square would be good) and in a
-		suitable format for displaying on the web (i.e. GIF, JPEG, or PNG).</p>
-		<%= error_message_on "form", "upload" %>
-		<%= file_field "form", "upload", :class => 'fileupload', :id => 'in-upload'%>
+		<p class="hint">If you want to add a picture to display with this page use the 
+		file field to locate a picture on your local system for uploading. The image
+		you upload will be automatically scaled to reasonable size. Make sure the
+		image you upload is in a suitable format for displaying on the web
+		(i.e. GIF, JPEG, or PNG).</p>
+		<%= error_message_on "form", "picture" %>
+		<%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%>
+		
+		<% if @form.has_picture? %>
+		
+		<p class="hint">If you don't want to upload a new image to replace the
+			existing one and just want to remove what's already there then tick the
+			box below.</p>
+		<p><%= check_box "form", "remove_picture", {:id => 'in-remove-picture'}, 'true', 'false' %>
+		<label for="in-remove-picture" class="inline">Remove existing picture</label></p>
+		<% end %>
 			
 	</fieldset>
 

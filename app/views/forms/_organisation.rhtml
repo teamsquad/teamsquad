@@ -1,0 +1,38 @@
+<% unless @form.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end %>
+<form action="" method="post" class="standard" enctype="multipart/form-data">
+	<fieldset>
+		<legend>Details...</legend>
+	
+		<label for="in-content">Summary</label>
+		<p class="hint">Describe your organisaiton briefly. Don't use HTML tags,
+		web addresses will automatically be linked and linebreaks will be respected.</p>
+		<%= error_message_on "form", "summary" %>
+		<%= text_area "form", "summary", :rows => 12, :class => 'textarea', :id => 'in-summary'%>
+		
+		<label for="in-picture">Logo</label>
+		<p class="hint">If you want to add a logo to display on the site use the 
+		file field to locate a picture on your local system for uploading. The image
+		you upload will be automatically scaled to reasonable size. Make sure the
+		image you upload is in a suitable format for displaying on the web
+		(i.e. GIF, JPEG, or PNG).</p>
+		<%= error_message_on "form", "logo" %>
+		<%= file_field "form", "logo", :class => 'fileupload', :id => 'in-logo'%>
+		
+		<% if @form.has_logo? %>
+		
+		<p class="hint">If you don't want to upload a new logo to replace the
+			existing one and just want to remove what's already there then tick the
+			box below.</p>
+		<p><%= check_box "form", "remove_logo", {:id => 'in-remove-logo'}, 'true', 'false' %>
+		<label for="in-remove-logo" class="inline">Remove existing logo</label></p>
+		<% end %>
+			
+	</fieldset>
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save changes">
+	</fieldset>
+</form>
