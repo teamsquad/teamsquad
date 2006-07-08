@@ -3,7 +3,11 @@
 	<p class="credit">By <%= notice.author.name %> <%= time_ago_in_words notice.created_on %> ago. 
 	<%= link_to pluralize(notice.comments_count, 'comment'), notice_url(:notice => notice, :anchor => 'comments') unless notice.comments_count == 0 %></p>
 	<% if notice.has_picture? %><div class="image"><img src="/uploads/<%= "notice/picture/#{notice.id}/#{notice[:picture]}" %>"></div><% end %>
+	<% if controller.action_name == 'view' %>
 	<%= safely_display(notice.content) %>
+	<% else %>
+	<%= safely_display( truncate(notice.content, 512)) %><%= link_to "Read on...", notice_url(:notice => notice)	%>
+	<% end %>
 	<div class="clear"></div><% if authorised? %>
   <p class="admin">
     <%= link_to "Edit this notice...", edit_notice_url(:notice => notice) %>

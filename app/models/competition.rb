@@ -9,6 +9,8 @@ class Competition < ActiveRecord::Base
   
   validates_format_of    :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_presence_of  :title, :summary, :message => 'You must enter something'
+  validates_length_of    :title, :within => 4..64
+  validates_length_of    :label, :maximum => 32
 
   acts_as_list :scope => :season
 
@@ -85,6 +87,10 @@ class Competition < ActiveRecord::Base
 
   def to_param
     self.slug
+  end
+  
+  def label_or_title
+    (self.label && !self.label.empty?) ? self.label : self.title
   end
 
   def current_stage

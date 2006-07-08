@@ -9,7 +9,14 @@
 		what the page is all about in a few words. Short and sweet.</p>
 		<%= error_message_on "form", "title" %>
 		<%= text_field "form", "title", :class => 'textfield', :id => 'in-title' %>
-		
+
+		<label for="in-label">Short label</label>
+		<p class="hint">If this page has a vary long title then you can also
+			provide an optional shorter name for it that will be used in menus and
+			where space it tight. Maximum of 32 characters.</p>
+		<%= error_message_on "form", "label" %>
+		<p><%= text_field "form", "label", :class => 'textfield', :id => 'in-label' %></p>
+
 		<label for="in-content">Content</label>
 		<p class="hint">This is the full text content for the notice. Don't use HTML tags,
 		web addresses will automatically be linked and linebreaks will be respected.</p>

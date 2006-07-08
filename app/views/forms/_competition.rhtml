@@ -7,9 +7,17 @@
 		<legend>Details</legend>
 		
 		<label for="in-title">Competition title</label>
-		<p class="hint">Only use	alphanumerics, spaces, and hyphens in the title.</p>
+		<p class="hint">Only use	alphanumerics, spaces, and hyphens in the title.
+			Maximum of 64 characters.</p>
 		<%= error_message_on "form", "title" %>
 		<p><%= text_field "form", "title", :class => 'important textfield', :id => 'in-title' %></p>
+
+		<label for="in-label">Short label</label>
+		<p class="hint">If this competition has a vary long title then you can also
+			provide an optional shorter name for it that will be used in menus and
+			where space it tight. Maximum of 32 characters.</p>
+		<%= error_message_on "form", "label" %>
+		<p><%= text_field "form", "label", :class => 'textfield', :id => 'in-label' %></p>
 
 		<label for="in-summary">Summary</label>
 		<p class="hint">Perhaps a bit about the rules and format of the competition.</p>

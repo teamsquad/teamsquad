@@ -27,7 +27,7 @@
 <div id="secondary">
 	<h2><%= @organisation.current_season.title %> season</h2>
 	<ul class="current"><% for competition in @organisation.current_season.competitions %>
-		<li><%= link_to competition.title, competition_url(:competition => competition) %></li><% end unless @organisation.current_season.nil? %>
+		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end unless @organisation.current_season.nil? %>
 		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} if authorised? %></li>
 	</ul>
 	

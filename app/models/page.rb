@@ -18,9 +18,15 @@ class Page < ActiveRecord::Base
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_presence_of   :title, :content, :message => "You must enter something."
   validates_uniqueness_of :title, :scope => "organisation_id", :message => "You've already used that title, try something else."
-
+  validates_length_of    :title, :within => 4..128
+  validates_length_of    :label, :maximum => 32
+  
   def to_param
     self.slug
+  end
+  
+  def label_or_title
+    (self.label && !self.label.empty?) ? self.label : self.title
   end
 
   def has_picture?

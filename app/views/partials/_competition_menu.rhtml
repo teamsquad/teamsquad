@@ -9,6 +9,6 @@
 	</ul>
 	<h2>Other competitions</h2>
 	<ul><% for competition in @season.competitions_other_than(@competition) %>
-		<li><%= link_to competition.title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
+		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
 		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li><% end %>
 	</ul>

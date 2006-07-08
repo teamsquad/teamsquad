@@ -9,7 +9,7 @@
 	<h2>More</h2>
 	<ul class="current">
 		<li><%= link_to_unless_current "Information", information_url %></li><% for page in @pages %>
-		<li><%= link_to_unless_current page.title, information_page_url(:page => page) %></li><% end %>
+		<li><%= link_to_unless_current page.label_or_title, information_page_url(:page => page) %></li><% end %>
 	  <li><%= link_to('New page...', new_information_page_url, {:class => 'admin'}) %></li>
 	</ul>
 </div>
