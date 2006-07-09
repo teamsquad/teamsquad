@@ -228,6 +228,7 @@ div.comments h3 {
   width: 24%;
   float: left;
   text-align: right;
+	margin: 0;
 }
 
 div.comments h3 span {
@@ -240,7 +241,7 @@ div.comments h3 span {
 div.comments p {
   float: right;
   width: 74%;
-  margin: 1px 0 1em 0;
+  margin: 0 0 1em 0;
 }
 
 div.comment {

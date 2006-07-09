@@ -1,34 +1,9 @@
 <div id="primary">
-	<%= render_partial 'forms/page' %>
+	<%= render :partial => 'forms/page' %>
 </div>
 
 <div id="secondary">
-	<h2>Text formatting tips</h2>
-	<p><strong>Quick block modifiers</strong>:<br>
-		Header: h<em>n</em>.<br>
-		Blockquote: bq.<br>
-		Footnote: fn<em>n</em>.<br>
-		Numeric list: #<br>
-		Bulleted list: *<br>
-	</p>
-	
-	<p><strong>Quick phrase modifiers</strong>:<br>
-		_emphasis_<br>
-		*strong*<br>
-		??citation??<br>
-		-deleted text-<br>
-		+inserted text+<br>
-		^superscript^<br>
-		~subscript~<br>
-	</p>
-
-	<p><strong>To align blocks</strong>:<br>
-		&lt; right<br>
-		&gt; left<br>
-		= center<br>
-		&lt;&gt; justify<br>
-	</p>
-	<p><a href="/help/formatting_text">What's all this about?</a></p>
+	<%= render :partial => 'partials/textile_tips'%>
 	
 	<h2>Cancel?</h2>
 	<ul>

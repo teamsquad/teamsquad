@@ -1,11 +1,9 @@
 <div id="primary">
-	<%= render_partial 'forms/notice' %>
+	<%= render :partial => 'forms/notice' %>
 </div>
 
 <div id="secondary">
-	<h2>Tips</h2>
-	<p><strong>Notices</strong> are used to keep people up-to-date
-	with what's going on.</p>
+	<%= render :partial => 'partials/textile_tips'%>
 	
 	<h2>Cancel?</h2>
 	<ul>

@@ -3,6 +3,10 @@ form {
 	padding: 0;
 }
 
+textarea {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
 p.warning {
 	color: #333;
 	font-size: medium;

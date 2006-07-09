@@ -180,6 +180,7 @@ th.score {
 table.textile-tips {
 	width: 100%;
 	border-bottom: 2px solid #EEE;
+	margin-bottom: 1em;
 }
 
 	table.textile-tips td,
