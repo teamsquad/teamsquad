@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   # Keeps code in views short and avoids routing clashes on complex URLs.
   # Sure is a long routes file though ;)
   
+  # WWW SITE
+  
   map.www_home '',
     :controller => 'www',
     :conditions => { :subdomain => 'www' }
@@ -11,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.www_generic ':action/:id',
     :controller => 'www',
     :conditions => { :subdomain => 'www' }
+  
+  # ORGANISATION
   
   map.home  '',
     :controller => 'organisation',
@@ -39,6 +43,11 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_organisation 'edit',
     :controller => 'organisation',
     :action => 'edit'
+  
+  # HELP
+  
+  map.help 'help/:action',
+    :controller => 'help'
   
   # NOTICES
     

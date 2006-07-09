@@ -18,8 +18,10 @@
 		<p><%= text_field "form", "label", :class => 'textfield', :id => 'in-label' %></p>
 
 		<label for="in-content">Content</label>
-		<p class="hint">This is the full text content for the notice. Don't use HTML tags,
-		web addresses will automatically be linked and linebreaks will be respected.</p>
+		<p class="hint">This is the full text content for the page. Want to
+			add subheadings and lists and stuff to your text? Then use the quick
+			guide over on the right or for a full explanation read the
+			<a href="/help/formatting_text">formatting text</a> help page.</p>
 		<%= error_message_on "form", "content" %>
 		<%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%>
 		

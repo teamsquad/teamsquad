@@ -45,12 +45,14 @@ table.games tr.awaywin td.away {
 	font-weight: bold;
 }
 
-table tr.even td {
+table tr.even td,
+table tr.even th {
 	border-top: 1px solid #EEE;
 	background: url(/images/dither.gif);
 }
 
-table tr.odd td {
+table tr.odd td
+table tr.odd th {
 	border-top: 1px solid #EEE;
 }
 
@@ -174,3 +176,24 @@ th.score {
 	text-align: center;
 	color: #999;
 }
+
+table.textile-tips {
+	width: 100%;
+	border-bottom: 2px solid #EEE;
+}
+
+	table.textile-tips td,
+	table.textile-tips th {
+		padding: 4px;
+	}
+	
+	table.textile-tips tbody td,
+	table.textile-tips tbody th {
+		vertical-align: top;
+	}
+	
+	table.textile-tips tbody th {
+		font-family: Courier;
+		text-align: left;
+		font-weight: normal;
+	}

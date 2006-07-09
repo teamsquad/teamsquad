@@ -1,0 +1,65 @@
+<div id="primary">
+	<h2>Am I restricted to boring plain text?</h2>
+	<p>Short answer: no.</p>
+	<p>Long answer: We support a formatting language called <strong>textile</strong>
+		which allows you to embed extra commands in your text to enable various
+		formatting options. This lets you add headings, lists, and all that jazz.
+		This might sound complicated but don't worry, it's pretty straight forward.</p>
+		
+		<p>We did think about using one of those fancy WYSIWYG editor things but
+			to tell you the truth we don't trust them. Whilst some of them are quite
+			good they can be a pain to use and result in some pretty mucked up pages.</p>
+		
+	<h2>So how does textile work then?</h2>
+	<p>It's easy. Here's a quick guide to the most useful stuff.</p>
+	
+	<table cellpadding="0" cellspacing="0" class="textile-tips">
+		<thead>
+			<tr>
+				<th>You type...</th>
+				<th>You get...</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="odd">
+				<th>h2. Level two heading<br><br>Some text.</th>
+				<td><h2>Level two heading</h2><p>Some text.</p></td>
+			</tr>
+			<tr class="even">
+				<th>h3. Level three heading<br><br>Some text.</th>
+				<td><h3>Level three heading</h3><p>Some text.</p></td>
+			</tr>
+			<tr class="odd">
+				<th>h4. Level four heading<br><br>Some text.</th>
+				<td><h4>Level four heading</h4><p>Some text.</p></td>
+			</tr>
+			<tr class="even">
+				<th>* Some text<br>* Some more text<br><br>And then something else</th>
+				<td><ul><li>Some text</li><li>Some more text</li></ul><p>And then something else</p></td>
+			</tr>
+			<tr class="odd">
+				<th># Some text<br># Some more text<br><br>And then something else</th>
+				<td><ol><li>Some text</li><li>Some more text</li></ol><p>And then something else</p></td>
+			</tr>
+			<tr class="even">
+				<th>some *strong* and _emphasised_ text</th>
+				<td>some <strong>strong</strong> and <em>emphasised</em> text</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>For a far more comprehensive list of commands read
+		<a href="http://hobix.com/textile/">A Textile Reference</a>.</p>
+</div>
+
+<div id="secondary">
+	<h2>Related help</h2>
+	<ul class="current">
+		<li><%= link_to "Importing content", help_url(:action => 'importing-content') %></li>
+		<li><%= link_to "Exporting content", help_url(:action => 'exporting-content') %></li>
+	</ul>
+	
+	<h2>All done?</h2>
+	<ul>
+		<li><%= link_to "Help index", help_url %></li>
+	</ul>
+</div>

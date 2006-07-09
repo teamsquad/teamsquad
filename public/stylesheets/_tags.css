@@ -28,7 +28,6 @@ h1 {
 
 h2 {
   margin: 0;
-  clear: both;
   line-height: 1.5em;
 }
 
@@ -39,6 +38,10 @@ h2 a.admin {
 h3 {
   clear: both;
   margin: 0 0 0.2em 0;
+}
+
+p {
+	margin: 0.5em 0 1em 0;
 }
 
 a {
@@ -200,7 +203,7 @@ div.post {
   margin-bottom: 1em;
 }
 
-div.post h2 {
+h2.post {
 	margin-left: -24px;
   padding-left: 24px;
   background: url(/images/post.gif) no-repeat 0.2em left;
