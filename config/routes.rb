@@ -43,7 +43,12 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_organisation 'edit',
     :controller => 'organisation',
     :action => 'edit'
+
+  # AJAX
   
+  map.help 'ajax/:action',
+    :controller => 'ajax'
+
   # HELP
   
   map.help 'help/:action',

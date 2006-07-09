@@ -3,7 +3,31 @@ form {
 	padding: 0;
 }
 
+form p.tabs {
+	margin: 0.25em 0 0 0;
+	position: relative;
+	z-index: 5;
+	top: 1px;
+}
+
+	form p.tabs a {
+		display: block;
+		float: left;
+		line-height: 1.8em;
+		padding: 0 1em;
+		margin-right: 0.1em;
+		border: 1px solid #999;
+		background: #EEE;
+		text-decoration: none;
+	}
+	
+	form p.tabs a.active {
+		background: #FFF;
+		border-bottom: 1px dotted #EEE;
+	}
+
 textarea {
+	clear: both;
 	font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -49,9 +73,6 @@ form fieldset.checkboxes p {
 		float: none;
 	}
 
-form p {
-	margin: 0;
-}
 
 form p.hint {
 	color: #666;
@@ -86,6 +107,28 @@ form .textarea {
 	color: #333;
 	margin-bottom: 1em;
 	font-size: small;
+}
+
+form textarea.summary {
+	height: 100px;
+}
+
+#in-content {
+	margin-top: 0px;
+}
+
+form textarea.content,
+div.textarea {
+	height: 360px;
+}
+
+div.textarea {
+	width: 95%;
+	background: #FFF;
+	padding: 8px;
+	overflow: auto;
+	clear: both;
+	border: 1px solid #999;
 }
 
 form fieldset select {

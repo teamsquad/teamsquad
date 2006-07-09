@@ -1,7 +1,7 @@
 <% unless @form.errors.empty? -%>
 <p class="warning">Sorry, but that's just not good enough.</p>
 <% end %>
-<form action="#comment" method="post" class="standard" enctype="multipart/form-data">
+<form action="#comment" method="post" id="edit-form" class="standard" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Details...</legend>
 		<label for="in-title">Heading</label>
@@ -16,6 +16,7 @@
 			guide over on the right or for a full explanation read the
 			<a href="/help/formatting_text">formatting text</a> help page.</p>
 		<%= error_message_on "form", "content" %>
+		<%= render :partial => 'partials/content_tabs' %>
 		<%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%>
 		
 		<label for="in-picture">Picture</label>

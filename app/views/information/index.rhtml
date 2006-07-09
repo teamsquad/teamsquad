@@ -1,11 +1,13 @@
 <div id="primary">
 	<%= safely_display @organisation.summary %>
-	
-	<% if authorised? %>
-	<p class="admin"><%= link_to "Edit organisation details...", edit_organisation_url() %></p><% end %>
 </div>
 
 <div id="secondary">
+	<% if authorised? %><h2>Edit organisation</h2>
+	<ul class="current">
+		<li class="admin"><%= link_to "Edit organisation details...", edit_organisation_url() %></li>
+	</ul><% end %>
+	
 	<h2>More</h2>
 	<ul class="current">
 		<li><%= link_to_unless_current "Information", information_url %></li><% for page in @pages %>
