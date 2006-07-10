@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "stages_count", :integer, :default => 0
     t.column "created_on", :datetime
     t.column "updated_on", :datetime
+    t.column "label", :string, :limit => 32
   end
 
   add_index "competitions", ["season_id"], :name => "competitions_season_id"
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "seasons_count", :integer, :default => 0
     t.column "created_on", :datetime
     t.column "updated_on", :datetime
+    t.column "logo", :string, :limit => 200
   end
 
   add_index "organisations", ["nickname"], :name => "organisations_nickname_key", :unique => true
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "position", :integer, :null => false
     t.column "created_on", :datetime
     t.column "updated_on", :datetime
+    t.column "label", :string, :limit => 32
   end
 
   add_index "pages", ["organisation_id"], :name => "pages_organisation_id"
@@ -162,6 +165,8 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "title", :string, :limit => 64, :null => false
     t.column "uses_scores", :boolean, :default => true
     t.column "uses_manual_points", :boolean, :default => false
+    t.column "uses_teams", :boolean, :default => true
+    t.column "uses_kits", :boolean, :default => true
   end
 
   add_index "sports", ["title"], :name => "sports_title_key", :unique => true
