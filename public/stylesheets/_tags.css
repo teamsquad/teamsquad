@@ -141,16 +141,16 @@ div.group {
 
 }
 
-  div.stage_with_groups div.group {
+  div.league_stage_with_groups div.group {
     float: left;
     width: 48%;
   }
   
-	div.stage_with_groups div.odd {
+	div.league_stage_with_groups div.odd {
     clear: both;
   }
 
-  div.stage_with_groups div.even {
+  div.league_stage_with_groups div.even {
     float: right;
   }
 
@@ -175,10 +175,10 @@ p.admin {
 }
 
 .admin a, a.admin {
-  background: #6C6;
-	color: #FFF !important;
+  background: #FFC;
 	text-decoration: none;
-	outline: 2px solid #6C6;
+	outline: 2px solid #FFC;
+	font-weight: normal;
 }
 
 div.standout {

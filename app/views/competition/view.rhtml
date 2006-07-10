@@ -10,7 +10,7 @@
 	<%= render :partial => 'not_set_up' %>
 	<% elsif @stage.has_no_groups? -%>
 	<%= render :partial => 'partially_set_up' %>
-	<% elsif @stage.has_games? %>
+	<% elsif @competition.has_news_worthy_matches? %>
 	<%= render :partial => 'auto_generated_news' %>
 	<% else %>
 	<%= render :partial => 'nothing_doing' %>

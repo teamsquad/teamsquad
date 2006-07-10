@@ -6,14 +6,14 @@
 		<th class="away team">Away Team</th>
 		<th class="time">Time</th>
 	</thead>
-	<tbody><% for game in group.games %>
+	<tbody><% for game in group.matches %>
 	<tr class="<%= odd_or_even = cycle("odd", "even") %> <%= game.state %>">
 		<td class="when"><%= game.pretty_date %></td>
-		<td class="home team"><%= link_to game.home_team.title, team_url(:team => game.home_team) %></td>
+		<td class="home team"><%= if game.home_team then link_to(game.home_team.title, team_url(:team => game.home_team)) else '-to be arranged-' end %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
-		<td class="away team"><%= link_to game.away_team.title, team_url(:team => game.away_team) %></td>
+		<td class="away team"><%= if game.away_team then link_to(game.away_team.title, team_url(:team => game.away_team)) else '-to be arranged-' end %></td>
 		<td class="when"><%= game.pretty_time %></td>
 	</tr><% if game.has_notes? %>
 	<tr class="notes <%= odd_or_even %>">
@@ -24,5 +24,13 @@
 	<tr class="summary <%= odd_or_even %>">
 		<td colspan="7"><%= game.summary %></td>
 	</tr><% end %><% end %>
-	</tbody>
+	</tbody><% if authorised? %>
+	<tfoot>
+	<tr>
+		<td colspan="7">
+			<%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin')  %>
+			<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if group.has_overdue_fixtures? %>
+		</td>
+	</tr>
+	</tfoot><% end %>
 </table>

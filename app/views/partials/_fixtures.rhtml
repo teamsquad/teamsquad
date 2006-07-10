@@ -9,9 +9,9 @@
 	<tbody><% reset_cycle; for game in fixtures %>
 	<tr class="<%= cycle("odd", "even") %>">
 		<td class="when"><%= game.pretty_time %></td>
-		<td class="home team"><%= link_to game.home_team.title,	team_url(:team => game.home_team) %></td>
+		<td class="home team"><%= if game.home_team then link_to(game.home_team.title, team_url(:team => game.home_team)) else '-to be arranged-' end %></td>
 		<td class="versus">v</td>
-		<td class="away team"><%= link_to game.away_team.title,	team_url(:team => game.away_team) %></td>
+		<td class="away team"><%= if game.home_team then link_to(game.away_team.title,	team_url(:team => game.away_team)) else '-to be arranged-' end  %></td>
 		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></td>
 	</tr><% end %>
 	</tbody>

@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :stage, :counter_cache => 'groups_count'
   has_many   :games, :dependent => true, :include => [:home_team, :away_team]
+  has_many   :matches, :include => [:home_team, :away_team]
   has_many   :standings, :include => :team, :order => 'totalpoints desc'
   has_and_belongs_to_many :teams, :order => 'title asc'
   
@@ -19,7 +20,7 @@ class Group < ActiveRecord::Base
 
   has_many :overdue_fixtures,
     :class_name => 'Match',
-    :conditions => ["kickoff < CURRENT_DATE and played = ?", false],
+    :conditions => ["kickoff < CURRENT_DATE AND hometeam_id != 0 AND awayteam_id != 0 AND played = ?", false],
     :order => "kickoff asc"
   
   has_many :recent_results,

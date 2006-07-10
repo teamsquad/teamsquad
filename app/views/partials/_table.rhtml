@@ -20,12 +20,13 @@
 		<td class="stat"><%= standing.totaldifference %></td><% end %>
 		<td class="stat"><%= standing.totalpoints %></td>
 	</tr><% end %>
-	</tbody><% if authorised? and (group.has_teams? or group.has_overdue_fixtures?) %>
+	</tbody><% if authorised? %>
 	<tfoot>
 		<tr>
 			<td colspan="8">
-      <%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin')  if group.has_teams? %>
-			<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if group.has_overdue_fixtures? %>
+				<%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') %>
+      	<%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin')  if group.has_teams? %>
+				<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if group.has_overdue_fixtures? %>
 			</td>
 		</tr>
 	</tfoot><% end %>

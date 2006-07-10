@@ -1,6 +1,6 @@
 <div id="primary">
   <div class="standout">
-     <p><% if @stage.is_knockout %>This is a knockout stage.<% else %>
+     <p><% if @stage.is_knockout? %>This is a knockout stage.<% else %>
       <%= @stage.points_for_win %> points for a win,
       <%= @stage.points_for_draw %> for a draw, and
       <%= @stage.points_for_loss %> for a loss.<% end %>
@@ -8,25 +8,29 @@
             edit_stage_url(:competition => @competition, :stage => @stage),
             {:class => 'admin'}) if authorised? %></p>
   </div><% if @stage.groups_count > 0 %>
-  <div class="stage_with_group<%= 's' unless @stage.groups_count == 1 %>">
+  <div class="<%= @stage.is_knockout? ? 'knockout' : 'league' %>_stage_with_group<%= 's' unless @stage.groups_count == 1 %>">
   <% for group in @stage.groups %>
   <div class="group <%= cycle("odd", "even") %>"><% if @stage.groups_count > 1 %>
-    <h2 id="<%= group.slug %>"><%= group.title %> <%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if authorised? %></h2><% end %>
+    <h2 id="<%= group.slug %>"><%= group.title %></h2><% end %>
     <%= render :partial => @stage_partial, :locals => {:group => group} %>
   </div><% end %>
-	<%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if authorised? && @stage.groups_count == 1 %>
   </div>
   <% else -%>
   <h2>Stage not set up!</h2>
   <p>This competition stage has no groups in it. Each stage of
-  a competition must have at least one group in to be usable.</p>
-  <% end %>
+  a competition must have at least one group in to be usable.<% if authorised? %>
+  <%= link_to 'Create a group...', new_group_url(:competition => @competition, :stage => @stage), {:class => 'admin'} %><% end %>
+	</p>
+	<% end %>
 
-	<hr>
-  <% if authorised? %>
-  <p><%= link_to 'New group...', new_group_url(:competition => @competition, :stage => @stage), {:class => 'admin'} %></p><% end %>
+	<div class="clear"></div>
 </div>
 
 <div id="secondary">
+	<% if authorised? %><h2>This stage</h2>
+  <ul class="current">
+		<li><%= link_to 'New group...', new_group_url(:competition => @competition, :stage => @stage), {:class => 'admin'} %></li>
+	</ul><% end %>
+
   <%= render :partial => 'partials/competition_menu' %>
 </div>

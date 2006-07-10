@@ -18,14 +18,19 @@ table thead th {
 	background: url(/images/header.gif) center;
 }
 
+table.games tfoot td,
 table.standings tfoot td {
 	text-align: right;
-	border-top: 1px solid #999;
+	border-top: 1px solid #EEE;
+	line-height: 1.5em;
+	padding-right: 2px;
 }
 
 table.standings th,
 table.games th {
 	line-height: 1.4em;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 table.standings td.stat,

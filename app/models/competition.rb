@@ -81,7 +81,7 @@ class Competition < ActiveRecord::Base
     
   has_many :news_worthy_matches,
     :class_name => 'Match',
-    :conditions => "(kickoff BETWEEN (CURRENT_DATE - 28) and (CURRENT_DATE + 4))",
+    :conditions => "(kickoff BETWEEN (CURRENT_DATE - 28) and (CURRENT_DATE + 4) AND hometeam_id != 0 AND awayteam_id != 0)",
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc"
 
@@ -118,6 +118,10 @@ class Competition < ActiveRecord::Base
   
   def matches_for_day(date)
     self.matches.find :all, :conditions => ["yyyymmdd = ?", date.strftime("%Y%m%d")]
+  end
+  
+  def has_news_worthy_matches?
+    self.news_worthy_matches.count > 0
   end
   
   # Attempts to save result data for this competitions fixtures
