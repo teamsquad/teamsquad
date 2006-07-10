@@ -1,0 +1,17 @@
+<% if authorised? %><h2>Edit team</h2>
+<ul class="current">
+	<li class="admin"><%= link_to "Edit this team...", edit_team_url(:team => @team) %></li>
+</ul><% end %>
+
+<h2>This team</h2>
+<ul class="current">
+  <li><%= link_to_unless_current 'Overview', team_url(:team => @team) %></li>
+	<li><%= link_to_unless_current 'Fixtures', team_fixtures_url(:team => @team) %></li>
+	<li><%= link_to_unless_current 'Results', team_results_url(:team => @team) %></li>
+</ul>	
+
+<h2>All done?</h2>
+<ul>
+	<li><%= link_to 'Full team list', teams_url %></li>
+	<li><%= link_to 'Return to home', home_url %></li>
+</ul>

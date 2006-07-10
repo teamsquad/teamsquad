@@ -22,7 +22,9 @@ create table sports (
 	id serial primary key,
 	title varchar(64) unique not null,
 	uses_scores boolean default true,
-	uses_manual_points boolean default false
+	uses_manual_points boolean default false,
+	uses_teams boolean default true,
+	uses_kits boolean default true
 );
 
 create table organisations (
@@ -302,6 +304,31 @@ GROUP BY
 	to_char(f.kickoff, 'Day FMDDth Month YYYY'),
 	to_char(f.kickoff, 'YYYYMMDD'),
 	to_char(f.kickoff, 'YYYYMM');
+	
+create view team_game_days as
+SELECT
+	t.id as team_id,
+	s.competition_id,
+	f.played,
+	min(kickoff) as date,
+	to_char(f.kickoff, 'Day FMDDth Month YYYY') as pretty_date,
+	to_char(f.kickoff, 'YYYYMMDD') as yyyymmdd,
+	to_char(f.kickoff, 'YYYYMM') as yyyymm
+FROM
+	teams t
+JOIN
+	games f ON (f.hometeam_id = t.id OR f.awayteam_id = t.id)
+JOIN
+	groups g ON f.group_id = g.id
+JOIN
+	stages s ON g.stage_id = s.id
+GROUP BY
+	t.id,
+	s.competition_id,
+	f.played,
+	to_char(f.kickoff, 'Day FMDDth Month YYYY'),
+	to_char(f.kickoff, 'YYYYMMDD'),
+	to_char(f.kickoff, 'YYYYMM');
 
 create view matches as
 SELECT
@@ -321,6 +348,29 @@ LEFT JOIN
 LEFT JOIN
 	stages s ON g.stage_id = s.id
 LEFT JOIN
+	competitions c ON s.competition_id = c.id;
+	
+create view team_matches as
+SELECT
+	t.id as team_id,
+	g.stage_id,
+	s.competition_id,
+	c.season_id,
+	to_char(f.kickoff, 'FMDDth Mon') as pretty_date,
+	to_char(f.kickoff, 'FMDDth Mon YYYY') as pretty_date_with_year,
+	to_char(f.kickoff, 'Dy FMHH:MIam') as pretty_time,
+	to_char(f.kickoff, 'YYYYMMDD') as yyyymmdd,
+	to_char(f.kickoff, 'YYYYMM')as yyyymm,
+	f.*
+FROM
+	teams t
+JOIN
+	games f ON (f.hometeam_id = t.id OR f.awayteam_id = t.id)
+JOIN
+	groups g ON f.group_id = g.id
+JOIN
+	stages s ON g.stage_id = s.id
+JOIN
 	competitions c ON s.competition_id = c.id;
 
 END;

@@ -12,7 +12,7 @@
 		<td class="home team"><%= link_to game.home_team.title,	team_url(:team => game.home_team) %></td>
 		<td class="versus">v</td>
 		<td class="away team"><%= link_to game.away_team.title,	team_url(:team => game.away_team) %></td>
-		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => @competition, :stage => game.stage, :anchor => game.group.slug) %></td>
+		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></td>
 	</tr><% end %>
 	</tbody>
 </table>

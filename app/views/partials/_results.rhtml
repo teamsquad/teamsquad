@@ -14,7 +14,7 @@
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
 		<td class="away team"><%= link_to game.away_team.title, team_url(:team => game.away_team)%></td>
-		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => @competition, :stage => game.stage, :anchor => game.group.slug) %></td>
+		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></td>
 	</tr><% if game.has_notes? %>
 	<tr class="notes <%= odd_or_even %>">
 		<td class="home" colspan="2"><%= game.home_notes %></td>

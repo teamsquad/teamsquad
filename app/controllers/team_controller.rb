@@ -23,8 +23,18 @@ class TeamController < AbstractAccountController
     @titles << 'Edit Team'
     @form = @team
     if @request.post? && @form.update_attributes(@params["form"])
-      redirect_to team_url(:competition => @form) and return
+      redirect_to team_url(:team => @team) and return
     end
+  end
+  
+  def fixtures
+    get_team
+    @titles << "Fixtures"
+  end
+  
+  def results
+    get_team
+    @titles << "Results"
   end
 
 end

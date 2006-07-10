@@ -3,16 +3,5 @@
 </div>
 
 <div id="secondary">
-	<h2>This team</h2>
-	<ul class="current">
-	  <li>Overview</li>
-		<li>Fixtures</li>
-		<li>Results</li>
-	</ul>	
-	
-	<h2>All done?</h2>
-	<ul>
-		<li><%= link_to 'Full team list', teams_url %></li>
-		<li><%= link_to 'Return to home', home_url %></li>
-	</ul>
+	<%= render :partial => 'partials/team_menu' %>
 </div>

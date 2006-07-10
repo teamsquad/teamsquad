@@ -1,8 +1,8 @@
 <div id="primary">
-	<ul id="team_list"><% for team in @teams %>
+	<p>The following teams are associated with this organisation.</p>
+	<ul class="teams"><% for team in @teams %>
 		<li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
 	</ul>
-	<p>Psst - show team kits here as bullets/icons for eash entry in list</p>
 </div>
 
 <div id="secondary"><% if authorised? %>

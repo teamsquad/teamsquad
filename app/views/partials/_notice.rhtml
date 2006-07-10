@@ -6,14 +6,8 @@
 	<% if controller.action_name == 'view' %>
 	<%= textilize(notice.content) %>
 	<% else %>
-	<%= textilize( truncate(notice.content, 512)) %><%= link_to "Read on...", notice_url(:notice => notice)	%>
+	<%= textilize( truncate(notice.content, 512)) %>
+	<p><%= link_to "Read on...", notice_url(:notice => notice)	%></p>
 	<% end %>
-	<div class="clear"></div><% if authorised? %>
-  <p class="admin">
-    <%= link_to "Edit this notice...", edit_notice_url(:notice => notice) %>
-    <% if notice.has_comments? %>
-    or
-    <%= link_to "Edit its comments...", edit_comments_url(:notice => notice) %>
-    <% end %>
-  </p><% end %>
+	<div class="clear"></div>
 </div>

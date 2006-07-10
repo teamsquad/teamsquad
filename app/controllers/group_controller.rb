@@ -53,14 +53,18 @@ class GroupController < AbstractAccountController
   
 private
 
-  def clear_caches(date)
+  def clear_caches(date = nil)
     expire_fragment(:controller => 'competition', :action => "fixtures")
     expire_fragment(:controller => 'competition', :action => "results")
+    expire_fragment(:controller => 'team', :action => "fixtures")
+    expire_fragment(:controller => 'team', :action => "results")
     expire_fragment(:controller => 'competition', :action => "view")
     expire_fragment(:controller => 'calendar', :action => "index")
-    expire_fragment(:controller => 'calendar', :action => "year", :year => date[:year])
-    expire_fragment(:controller => 'calendar', :action => "month", :year => date[:year], :month => date[:month])
-    expire_fragment(:controller => 'calendar', :action => "day", :year => date[:year], :month => date[:month], :day => date[:day])
+    if date
+      expire_fragment(:controller => 'calendar', :action => "year", :year => date[:year])
+      expire_fragment(:controller => 'calendar', :action => "month", :year => date[:year], :month => date[:month])
+      expire_fragment(:controller => 'calendar', :action => "day", :year => date[:year], :month => date[:month], :day => date[:day])
+    end
   end
 
 end

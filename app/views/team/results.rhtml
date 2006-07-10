@@ -1,0 +1,17 @@
+<% cache do %><div id="primary">
+  <% if @team.has_results? -%>
+	 <% for day in @team.result_days %>
+  <div class="day">
+    <h2><%= day.pretty_date %></h2>
+    <%= render :partial => 'partials/results',
+          :object => @team.results.select {|game| game.kickoff.day == day.date.day && game.kickoff.month == day.date.month && game.kickoff.year == day.date.year } %>
+  </div><% end %>
+	<% else -%>
+	<h2>Nothing to display!</h2>
+	<p>There are no results available for this team.</p>
+	<% end -%>
+</div><% end %>
+
+<div id="secondary">
+	<%= render :partial => 'partials/team_menu' %>
+</div>

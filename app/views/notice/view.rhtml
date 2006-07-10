@@ -15,6 +15,12 @@
 </div>
 
 <div id="secondary">
+	<% if authorised? %><h2>Edit Notice</h2>
+	<ul class="current">
+		<li class="admin"><%= link_to "Edit this notice...", edit_notice_url(:notice => @notice) %></li><% if @notice.has_comments? %>
+		<li class="admin"><%= link_to "Edit its comments...", edit_comments_url(:notice => @notice) %></li><% end %>
+	</ul><% end %>
+	
   <h2>Recent notices</h2>
   <ul class="current"><% for notice in @organisation.recent_notices %>
     <li><%= link_to_unless_current notice.heading, notice_url(:notice => notice) %></li><% end %>   

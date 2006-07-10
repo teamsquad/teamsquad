@@ -175,10 +175,10 @@ p.admin {
 }
 
 .admin a, a.admin {
-  background: #090;
+  background: #6C6;
 	color: #FFF !important;
 	text-decoration: none;
-	outline: 2px solid #090;
+	outline: 2px solid #6C6;
 }
 
 div.standout {
@@ -221,6 +221,7 @@ div.image {
   padding: 3px;
   text-align: center;
   font-size: smaller;
+	background: #FFF;
 }
 
 div.post div.image img {
@@ -281,3 +282,19 @@ div#foot p {
 div.clear {
   clear: both;
 }
+
+ul.teams {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+	line-height: 2em;
+}
+
+	ul.teams li {
+		margin: 0;
+		padding: 0;
+		background: url(/images/mini_shirt.gif) no-repeat left;
+		float: left;
+		width: 49%;
+		text-indent: 26px;
+	}

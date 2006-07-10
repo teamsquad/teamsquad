@@ -11,12 +11,16 @@
 		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
 	</fieldset>
 	
-	<fieldset class="checkboxes">
+	<fieldset>
 		<legend>Teams...</legend>
 		<p class="hint">Select which teams are in this group.</p>
 		<%= error_message_on "form", "team_ids" %><% for team in @teams %>		
-		<p><%= check_box_tag 'form[team_ids][]', team.id,	@form.teams.include?(team), :id => "in-group_team_#{team.id}" %></p>
-		<label for="in-group_team_<%= team.id %>"><%= team.title %></label><% end %>
+		<p class="checkbox">
+			<%= check_box_tag 'form[team_ids][]', team.id,	@form.teams.include?(team), :id => "in-group_team_#{team.id}" %>
+			<label for="in-group_team_<%= team.id %>" class="inline"><%= team.title %></label>
+		</p>
+		<% end %>
+		<div class="clear"></div>
 	</fieldset>
 
 	<fieldset class="finish">

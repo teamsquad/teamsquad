@@ -19,12 +19,15 @@
 				are the organiser for this organisation then why not add a few and make this
 				page look nicer and serve a purpose?</p>
 		</div><% end %>
-		<% if authorised? %>
-		<p class="admin"><%= link_to "New notice...", new_notice_url %></p><% end %>
 	</div>
 </div>
 
 <div id="secondary">
+	<% if authorised? %><h2>Notices</h2>
+	<ul class="current">
+		<li class="admin"><%= link_to "New notice...", new_notice_url %></li>
+	</ul><% end %>
+	
 	<h2><%= @organisation.current_season.title %> season</h2>
 	<ul class="current"><% for competition in @organisation.current_season.competitions %>
 		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end unless @organisation.current_season.nil? %>

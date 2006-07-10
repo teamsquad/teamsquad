@@ -14,6 +14,7 @@
     <h2 id="<%= group.slug %>"><%= group.title %> <%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if authorised? %></h2><% end %>
     <%= render :partial => @stage_partial, :locals => {:group => group} %>
   </div><% end %>
+	<%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if authorised? && @stage.groups_count == 1 %>
   </div>
   <% else -%>
   <h2>Stage not set up!</h2>

@@ -192,8 +192,19 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'team',
     :action => 'new'
     
+  map.edit_team 'teams/:team/edit',
+    :controller => 'team',
+    :action => 'edit'
+    
   map.team 'teams/:team',
     :controller => 'team',
     :action => 'view'
-    
+
+  map.team_fixtures 'teams/:team/fixtures',
+    :controller => 'team',
+    :action => 'fixtures'
+  
+  map.team_results 'teams/:team/results',
+    :controller => 'team',
+    :action => 'results' 
 end
