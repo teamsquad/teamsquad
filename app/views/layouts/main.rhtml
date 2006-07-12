@@ -5,7 +5,10 @@
 </head>
 <body><div id="container">
 <%= render_partial "layouts/org_title" %>
-<h1><%= h @titles[-2] unless (@titles.size < 3) %> <strong><%= h @titles[-1] %></strong></h1>
+<h1>
+	<%= h @titles[-2] unless (@titles.size < 3) %>
+	<%= "<strong>#{h @titles[-1]}</strong>" unless @titles[-1].nil? %>
+</h1>
 <%= @content_for_layout %>
 <%= render_partial "layouts/admin" %>
 <%= render_partial "layouts/search" %>

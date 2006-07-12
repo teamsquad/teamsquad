@@ -1,11 +1,11 @@
 <% cache do %><div id="primary">
-	<% if @competition.has_matches? %><% for month in @months	%>
+	<% unless @months.empty? %><% for month in @months	%>
 	<%= render_partial 'partials/month', month.date, 'dates' => @dates.select { |d| d.month == month.date.month } %><% end %>
 	<% else -%>
 	<h2>Nothing to display!</h2>
-	<p>There are no results available for this competition. Either this
+	<p>There are no matches scheduled for this competition. Either this
 	competition is yet to start or the lazy person organising it needs to
-	get their	finger out and enter some results in.</p>
+	get their	finger out and enter some fixtures in.</p>
 	<% end -%>
 </div><% end %>
 

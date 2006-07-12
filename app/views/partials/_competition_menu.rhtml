@@ -7,8 +7,9 @@
 		<li><%= link_to_unless_current stage.title, stage_url(:competition => @competition, :stage => stage) %></li><% end %><% if authorised? %>
 		<li><%= link_to('New stage...', new_stage_url(:competition => @competition), {:class => 'admin'}) %></li><% end %>
 	</ul>
+	<% if @season.competitions_other_than(@competition).size > 0 %>
 	<h2>Other competitions</h2>
 	<ul><% for competition in @season.competitions_other_than(@competition) %>
 		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
 		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li><% end %>
-	</ul>
+	</ul><% end %>

@@ -1,8 +1,8 @@
-thefa:
+test:
   id: 1
   sport_id: 1
-  title: The Football Association
-  nickname: thefa
+  title: The Test Association
+  nickname: test
   summary: Blah blah blah
   seasons_count: 2
 

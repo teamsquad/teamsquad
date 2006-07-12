@@ -1,5 +1,5 @@
 <% cache do %><div id="primary">
-  <% if @competition.has_fixtures? -%>
+  <% unless @days.empty? -%>
   <% @days.each do |day, matches| -%>
   <div class="day">
     <h2><%= matches.first.pretty_date %></h2>

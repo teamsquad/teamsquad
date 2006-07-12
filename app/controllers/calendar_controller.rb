@@ -6,8 +6,8 @@ class CalendarController < AbstractAccountController
     @titles << "Calendar"
     date = @params['date'] || Date.new
     @dates = Array.new
-		@competition.match_days.each { |d| @dates << Date.new( d.date.year, d.date.month, d.date.day ) }
-		@months = @competition.match_months
+    @competition.match_days.each { |d| @dates << Date.new( d.date.year, d.date.month, d.date.day ) }
+    @months = @competition.match_months
   end
   
   def year
