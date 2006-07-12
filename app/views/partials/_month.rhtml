@@ -13,20 +13,19 @@
 	</thead>
 	<tbody>
 		<tr><%
-			cells = 0;
    		date = Date.new(month.year, month.month)
    		date = date - date.cwday + 1 # start of week
-   		until (cells == 42)
+   		42.times do
 			%><td class="<% if date.month != month.month %>outmonth<% else %>inmonth<% end %>"><%=
 			if dates.include? date and (date.month == month.month)
 				link_to sprintf("%02d",date.mday), calendar_day_url(:competition => @competition, :year => date.year, :month => date.month, :day => date.day )
 			else
 				sprintf("%02d",date.mday)
 			end
-			%><%= "<!-- #{date.to_s} -->" %></td><% if date.cwday == 7 %>
+			%></td><% if date.cwday == 7 %>
 		</tr>
 		<tr><% end %>
-		<% date = date.succ; cells = cells.succ %>
+		<% date = date.succ; %>
 		<% end %></tr>
 	</tbody>
 </table>

@@ -28,12 +28,18 @@ class CompetitionController < AbstractAccountController
   
   def fixtures
     get_competition
+    unless read_fragment(:action => :fixtures)
+      @days = @competition.fixtures.group_by(&:yyyymmdd).sort
+    end
     @stages = @competition.stages
     @titles << "Fixtures"
   end
 
   def results
     get_competition
+    unless read_fragment(:action => :results)
+      @days = @competition.results.group_by(&:yyyymmdd).sort
+    end
     @stages = @competition.stages
     @titles << "Results"
   end

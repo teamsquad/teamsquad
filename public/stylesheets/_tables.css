@@ -114,11 +114,15 @@ td.versus {
 }
 
 .hierarchy {
-	text-align: left;
+	text-align: right;
 	font-size: smaller;
 	white-space: nowrap;
 	width: 12%;
 	padding-right: 2px;
+}
+
+.time {
+	text-align: right;
 }
 
 td.hierarchy {

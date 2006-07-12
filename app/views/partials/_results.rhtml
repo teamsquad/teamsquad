@@ -4,7 +4,7 @@
 		<th class="home team">Home Team</th>
 		<th class="versus" colspan="3">v</th>
 		<th class="away team">Away Team</th>
-		<th class="heirarchy">Type</th>
+		<th class="hierarchy">Type</th>
 	</thead>
 	<tbody><% reset_cycle; for game in results %>
 	<tr class="<%= odd_or_even = cycle('odd', 'even') %> <%= game.state %>">
