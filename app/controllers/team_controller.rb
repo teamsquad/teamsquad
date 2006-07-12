@@ -1,5 +1,7 @@
 class TeamController < AbstractAccountController
   
+  before_filter :check_logged_in, :only => [:new, :edit]
+  
   def index
     @titles << 'Teams'
     @teams = @organisation.teams

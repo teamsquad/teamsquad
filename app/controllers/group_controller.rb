@@ -1,5 +1,6 @@
 class GroupController < AbstractAccountController
-  
+
+  before_filter :check_logged_in, :only => [:new, :edit, :new_fixtures, :enter_results]
   before_filter :get_stage
   
   def new

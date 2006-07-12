@@ -1,5 +1,7 @@
 class NoticeController < AbstractAccountController
 
+  before_filter :check_logged_in, :only => [:new, :edit]
+  
   def index
     @titles << 'Notices'
   end
@@ -36,5 +38,4 @@ class NoticeController < AbstractAccountController
     @titles << 'Comment taken'
   end
   
-
 end

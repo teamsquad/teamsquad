@@ -74,6 +74,7 @@ protected
   
   def check_logged_in
     return current_user if current_user
+    session[:login_to] = request.request_uri
     redirect_to login_url and return false 
   end
   

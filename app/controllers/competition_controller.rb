@@ -1,5 +1,7 @@
 class CompetitionController < AbstractAccountController
 
+  before_filter :check_logged_in, :only => [:new, :edit]
+
   def index
   end
   
