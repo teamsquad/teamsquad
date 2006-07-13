@@ -84,7 +84,8 @@ div#foot {
 	padding: 15px 15px 1000px 15px;
 }
 
-	body.register #blurb {
+	body.register #blurb,
+	body.contact #blurb {
 		background: #FFF;
 	}
 
@@ -98,7 +99,6 @@ div#foot {
 }
 
 	#focus strong {
-		font-weight: normal;
 		background: #FFC;
 		color: #000;
 	}
@@ -358,6 +358,12 @@ form.standard fieldset select,
 form.standard fieldset textarea {
 	width: 100%;
 	margin-bottom: 1em;
+}
+
+form.standard input#organisation_nickname {
+	width: 140px;
+	text-align: right;
+	margin-right: none;
 }
 
 form.standard fieldset.finish {

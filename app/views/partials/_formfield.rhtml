@@ -1,4 +1,4 @@
-<label for="in-<%= name %>"><%= label %></label>
+<label for="<%= "#{formfield.class.name.downcase}_#{name}" %>"><%= label %></label>
 <p class="hint"><%= formfield.hint(name) %></p>
 <% if formfield.errors[name]; for error in formfield.errors[name]; -%>
 <p class="warning"><%= error %></p><% end; end; -%>

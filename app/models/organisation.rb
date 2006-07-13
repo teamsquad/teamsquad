@@ -19,9 +19,9 @@ class Organisation < ActiveRecord::Base
 
   validates_presence_of   :summary, :message => 'You must enter something.'
   validates_uniqueness_of :title, :nickname, :message => 'Sorry, already taken. Enter something else.'
-  validates_format_of     :nickname, :with => /^[a-zA-Z0-9]{4,32}$/, :message => "Only use alpha numeric characters and ensure the nickname is betwen 4 and 32 characaters long."
-  validates_format_of     :title, :with => /^[\s[:alpha:]]{4,128}$/, :message => "Only use alpha numeric characters and spaces and make sure the title is betwen 4 and 128 characters long."
-  validates_exclusion_of  :nickname, :in => %w(w ww www wwww wwwwww admin register join blog support test help), :message => "That's a reserved word, please try again."
+  validates_format_of     :nickname, :with => /^[a-zA-Z0-9]{3,32}$/, :message => "Only use alpha numeric characters and ensure the nickname is betwen 3 and 32 characaters long."
+  validates_format_of     :title, :with => /^[\s[:alpha:]]{3,128}$/, :message => "Only use alpha numeric characters and spaces and make sure the title is betwen 3 and 128 characters long."
+  validates_exclusion_of  :nickname, :in => %w(w ww www wwww wwwwww admin register join blog support test help mail), :message => "That's a reserved word, please try again."
   validates_length_of     :summary, :maximum => 512
   validates_presence_of   :sport_id
 
@@ -87,7 +87,7 @@ private
   
   @@hints = {
 		'title' => "Your organisation's name (e.g. The Football Association). You can't change this later so make sure you get it right. This must be unique so if someone else has already registered the name you want then you will have to think of something else.",
-		'nickname' => "A shorter version of your organisation name that will be used to form the address of your website (e.g. 'thefa' would mean your site would be at thefa.teamsquad.com). This must be short, unique, and can't contain any funny characters or spaces.",
+		'nickname' => "A shorter version of your organisation name that will be used to form the address of your website. This must be short, unique, and can't contain any funny characters or spaces.",
 		'summary' => "Enter a short description of your organisation. Nothing too wordy.",
 		'sport_id' => "Select the sport this organisation is for."
 	}
