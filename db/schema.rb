@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 5) do
 
   create_table "comments", :force => true do |t|
     t.column "notice_id", :integer
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 4) do
 
   add_index "competitions", ["season_id"], :name => "competitions_season_id"
   add_index "competitions", ["season_id", "title"], :name => "competitions_season_id_key", :unique => true
-  add_index "competitions", ["slug", "season_id"], :name => "competitions_season_id_key1", :unique => true
-  add_index "competitions", ["position", "season_id"], :name => "competitions_season_id_key2", :unique => true
+  add_index "competitions", ["season_id", "slug"], :name => "competitions_season_id_key1", :unique => true
+  add_index "competitions", ["season_id", "position"], :name => "competitions_season_id_key2", :unique => true
 
   create_table "contact_responses", :force => true do |t|
     t.column "name", :string
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 4) do
   end
 
   add_index "games", ["awayteam_id"], :name => "games_awayteam_id"
+  add_index "games", ["group_id"], :name => "games_group_id"
   add_index "games", ["hometeam_id"], :name => "games_hometeam_id"
 
   create_table "groups", :force => true do |t|
@@ -79,6 +80,9 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "group_id", :integer, :null => false
     t.column "team_id", :integer, :null => false
   end
+
+  add_index "groups_teams", ["group_id"], :name => "groups_teams_group_id"
+  add_index "groups_teams", ["team_id"], :name => "groups_teams_team_id"
 
   create_table "modifications", :force => true do |t|
     t.column "group_id", :integer
@@ -192,8 +196,8 @@ ActiveRecord::Schema.define(:version => 4) do
 
   add_index "stages", ["competition_id"], :name => "stages_competition_id"
   add_index "stages", ["competition_id", "title"], :name => "stages_competition_id_key", :unique => true
-  add_index "stages", ["slug", "competition_id"], :name => "stages_competition_id_key1", :unique => true
-  add_index "stages", ["position", "competition_id"], :name => "stages_competition_id_key2", :unique => true
+  add_index "stages", ["competition_id", "slug"], :name => "stages_competition_id_key1", :unique => true
+  add_index "stages", ["competition_id", "position"], :name => "stages_competition_id_key2", :unique => true
 
   create_table "teams", :force => true do |t|
     t.column "organisation_id", :integer

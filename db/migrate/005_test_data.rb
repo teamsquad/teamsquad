@@ -22,6 +22,6 @@ class TestData < ActiveRecord::Migration
   def self.down
     User.delete_all
     Season.delete_all
-		Organisation.delete_all
+    Organisation.delete_all
   end
 end
