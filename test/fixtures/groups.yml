@@ -9,3 +9,21 @@ testgroup2:
  stage_id: 1
  title: Test Group Two
  slug: test-group-two
+ 
+testgroupa:
+ id: 3
+ stage_id: 2
+ title: Test Group A
+ slug: test-group-a
+ 
+testgroupb:
+ id: 4
+ stage_id: 2
+ title: Test Group B
+ slug: test-group-b
+ 
+finalgroup:
+ id: 5
+ stage_id: 3
+ title: Final Match
+ slug: final-match

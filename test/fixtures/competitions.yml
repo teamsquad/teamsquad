@@ -6,3 +6,21 @@ single_stage_competition:
  summary: This is a single stage competition.
  position: 1
  stages_count: 1
+ 
+empty_competition:
+ id: 2
+ season_id: 1
+ title: Empty Competition
+ slug: empty-competition
+ summary: This is an empty competition.
+ position: 2
+ stages_count: 0
+ 
+multiple_stage_competition:
+ id: 3
+ season_id: 1
+ title: Multiple Stage Competition
+ slug: multiple-stage-competition
+ summary: This is a multiple stage competition.
+ position: 3
+ stages_count: 2

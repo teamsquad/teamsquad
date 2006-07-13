@@ -1,7 +1,7 @@
 <% unless @form.errors.empty? -%>
 <p class="warning">Sorry, but that's just not good enough.</p>
 <% end -%>
-<form action="" method="post" class="standard">
+<form action="<%= request.request_uri %>" method="post" class="standard">
 	<fieldset>
 		<legend>Details...</legend>
 		<label for="in-title">Group name</label>

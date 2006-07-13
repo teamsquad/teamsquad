@@ -5,7 +5,7 @@
 		<em><%= @group.title %></em><% end %><% unless @stage.lonely? %>
 		for the <em><%= @stage.title %></em><% end %>.</p><% end %>
 	
-	<form action="" method="post" class="fixtures">
+	<form action="<%= request.request_uri %>" method="post" class="fixtures">
 		<fieldset>
 			<legend>When...</legend>
 			<p>
@@ -19,7 +19,7 @@
 		<fieldset>
 			<legend>Matches...</legend>
 	
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="0" cellspacing="0" summary="Table where fixtures can be entered">
 				<thead>
 				<tr>
 					<th class="when">Time</th>
@@ -30,7 +30,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr id="_1">
+				<tr id="row_1">
 					<td class="time"><select name="game[1][hour]" id="hour_1">
 							<option selected="selected">00</option><% 1.upto(23) do |hour| %><option><%= leading_zero_on_single_digits hour %></option><% end %>
 						</select>:<select name="game[1][minute]" id="minute_1">

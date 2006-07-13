@@ -23,13 +23,13 @@ class Match < ActiveRecord::Base
     else
       case state
         when 'homewin'
-          "#{pretty_time} #{pretty_date_with_year} - #{home_team.title} win this #{group.title} clash."
+          "#{pretty_time} #{pretty_date} - #{home_team.title} win this #{group.title} clash."
         when 'awaywin'
-          "#{pretty_time} #{pretty_date_with_year} - #{home_team.title} lose out to #{away_team.title} in this #{group.title} clash."
+          "#{pretty_time} #{pretty_date} - #{home_team.title} lose out to #{away_team.title} in this #{group.title} clash."
         when 'draw'
-          "#{pretty_time} #{pretty_date_with_year} - This #{group.title} clash ended in a draw."
+          "#{pretty_time} #{pretty_date} - This #{group.title} clash ended in a draw."
         else
-          "The match is set for #{pretty_date_with_year}."
+          "The match is set for #{pretty_date}."
       end
     end
   end

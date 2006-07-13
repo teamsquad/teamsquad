@@ -22,13 +22,14 @@ function startUp()
 
 function addRow(obj)
 {
-	dadhour   = 'hour'+obj.parentNode.parentNode.id
-	dadminute = 'minute'+obj.parentNode.parentNode.id
+	the_id = obj.parentNode.parentNode.id.substring(3);
+	dadhour   = 'hour' + the_id
+	dadminute = 'minute' + the_id
 
 	match++;
 	games++;
 	tr    = document.createElement('TR');
-	tr.id = ('_' + match);
+	tr.id = ('row_' + match);
 	cell1 = document.createElement('TD');
 	cell1.className = 'when';
 	cell2 = document.createElement('TD');

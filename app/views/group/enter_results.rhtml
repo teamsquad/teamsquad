@@ -1,15 +1,15 @@
-<% if @competition.stages_count != 1 || @stage.groups_count != 1 %><h2>
-  <%= @stage.title unless @competition.stages_count = 1 %>
-  <%= '-' unless  @competition.stages_count == 1 || @stage.groups_count = 0 %>
-  <%= @group.title unless @stage.groups_count = 1 %>
+<% if @competition.stages_count > 1 || @stage.groups_count > 1 %><h2>
+  <%= @stage.title if @competition.stages_count > 1 %>
+  <%= '-' if  @competition.stages_count > 1 && @stage.groups_count > 1 %>
+  <%= @group.title if @stage.groups_count > 1 %>
 </h2><% end %>
 
 <div id="primary">
-<form action="" method="post"><% for game in @games %>
+<form action="<%= request.request_uri %>" method="post"><% for game in @games %>
   <fieldset>
 		<legend><%= game.pretty_date %></legend>
 		
-		<table cellpadding="0" cellspacing="0" class="results"><% if @organisation.sport.uses_scores %>
+		<table cellpadding="0" cellspacing="0" class="results" summary="Table where you can enter results"><% if @organisation.sport.uses_scores %>
 		  <tr>
 		    <td class="home team"><%= game.home_team.title %></td>
 		    <td class="home"><%= text_field "game", "home_score", "index" => game.id, "class" => 'score'	%></td>

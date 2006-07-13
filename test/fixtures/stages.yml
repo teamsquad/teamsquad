@@ -5,7 +5,22 @@ teststage1:
  slug: test-stage-one
  position: 1
  groups_count: 2
- conditional_promotion_places: 0
- automatic_relegation_places: 1
- conditional_relegation_places: 0
  is_knockout: 'f'
+ 
+group_stage:
+ id: 2
+ competition_id: 3
+ title: Group Stage
+ slug: group-stage
+ position: 1
+ groups_count: 2
+ is_knockout: 'f'
+ 
+finals:
+ id: 3
+ competition_id: 3
+ title: Final
+ slug: final
+ position: 2
+ groups_count: 1
+ is_knockout: 't'
