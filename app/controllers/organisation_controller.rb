@@ -9,6 +9,7 @@ class OrganisationController < AbstractAccountController
   end
   
   def login
+    @titles << "Please login"
     if request.post? and attempt_login
       redirect_to(session[:login_to] || home_url) and return
     end
