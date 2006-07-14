@@ -1,7 +1,9 @@
-<div id="admin"><% if authorised? %>
-  <p>
+<div id="admin">
+  <p><% if authorised? %>
 		<%= link_to_unless_current 'Control panel', control_panel_url %> |
+		<%= link_to_unless_current 'Help', help_url %> |
 	 	<%= link_to_unless_current 'Logout', logout_url %>
-	</p><% else %>
-  <p><%= link_to_unless_current 'Login', login_url %></p><% end %>
+	<% else %>
+  	<%= link_to_unless_current 'Login', login_url %>
+	<% end %></p>
 </div>
