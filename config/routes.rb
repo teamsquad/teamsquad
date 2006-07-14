@@ -28,6 +28,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'organisation',
     :action => 'login'
     
+  map.control_panel 'control_panel',
+    :controller => 'organisation',
+    :action => 'control_panel'
+    
   map.logout 'logout',
     :controller => 'organisation',
     :action => 'logout'
@@ -97,7 +101,13 @@ ActionController::Routing::Routes.draw do |map|
   map.information_page 'information/:page',
     :controller => 'information',
     :action => 'view'
-    
+  
+  # SEASON
+  
+  map.edit_season 'edit_season',
+    :controller => 'season',
+    :action => 'edit'
+   
   # COMPETITIONS
 
   map.competitions 'competitions',

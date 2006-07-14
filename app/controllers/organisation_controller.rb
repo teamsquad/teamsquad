@@ -1,6 +1,6 @@
 class OrganisationController < AbstractAccountController
 
-  before_filter :check_logged_in, :only => [:edit]
+  before_filter :check_logged_in, :only => [:edit, :control_panel]
 
   def home
     @new_notices  = @organisation.recent_notices
@@ -12,6 +12,10 @@ class OrganisationController < AbstractAccountController
     if request.post? and attempt_login
       redirect_to(session[:login_to] || home_url) and return
     end
+  end
+  
+  def control_panel
+  
   end
   
   def logout

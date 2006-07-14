@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
   before_create :crypt_password, :cleanse_email
   before_update :crypt_unless_empty_or_unchanged
   
+  belongs_to :organisation
+  
   validates_uniqueness_of   :email
   validates_length_of       :password, :within => 5..40, :on => :create
   validates_presence_of     :email, :name
-  validates_confirmation_of :password, :if => Proc.new { |u| u.password.size > 0 }
+  validates_confirmation_of :password, :if => Proc.new { |u| u.password && u.password.size > 0 }
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
   # echo "fivearsedmonkey" | openssl dgst -sha1

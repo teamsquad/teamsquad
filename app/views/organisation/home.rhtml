@@ -28,11 +28,13 @@
 		<li class="admin"><%= link_to "New notice...", new_notice_url %></li>
 	</ul><% end %>
 	
-	<h2><%= @organisation.current_season.title %> season</h2>
+	<% unless @organisation.current_season.nil? %><h2><%= @organisation.current_season.title %> season</h2>
 	<ul class="current"><% for competition in @organisation.current_season.competitions %>
-		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end unless @organisation.current_season.nil? %>
-		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} if authorised? %></li>
-	</ul>
+		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
+		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li>
+		<li><%= link_to 'Edit this season...', edit_season_url, {:class=>'admin'} %></li>
+		<% end %>
+	</ul><% end %>
 	
 	<h2>Other stuff</h2>
 	<ul>

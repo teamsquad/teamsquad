@@ -18,8 +18,26 @@ class Season < ActiveRecord::Base
 
   validates_presence_of   :organisation_id
   
+  #
+  # CLASS METHODS
+  #
+  
+  def self.build_empty_season
+    Season.new(
+      :title => 'Empty'
+    )
+  end
+  
+  #
+  # INSTANCE METHODS
+  #
+  
   def to_param
     self.title
+  end
+  
+  def probably_not_yet_set_up
+    self.title == 'Empty'
   end
   
   # Return relevant competition for a given url slug

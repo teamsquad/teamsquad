@@ -7,6 +7,7 @@ class Organisation < ActiveRecord::Base
     :magick => { :geometry => "48x48>" }
 
   belongs_to :sport
+  has_many   :users, :dependent => true, :order => 'name asc'
   has_many   :seasons, :dependent => true, :order => "id ASC"
   has_one    :current_season, :class_name => "Season", :order => "id asc"
   has_many   :teams, :dependent => true, :order => "title ASC"
@@ -28,6 +29,25 @@ class Organisation < ActiveRecord::Base
   #
   # CLASS
   #
+
+  def self.register(organisation, user)
+    begin
+      Organisation.transaction do
+        season = Season.build_empty_season
+        organisation_saved = organisation.save
+        if organisation_saved
+          user.organisation_id   = organisation.id
+          season.organisation_id = organisation.id
+        end
+        user_saved   = user.save
+        season_saved = season.save
+        raise 'Argh' unless user_saved && organisation_saved && season_saved
+      end
+      true
+    rescue
+      false
+    end
+  end
 
   # Return relevant organisation for a given url slug
   def self.find_by_nickname(nickname)

@@ -1,6 +1,6 @@
 <div id="blurb">
 <h1>Register</h1>
-<% unless @user.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
+<% unless @user.errors.empty? && @organisation.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
 <p>So you've decided to join our little party then. Great - fill out the form and
 you're in. We recommend you read our <a href="/privacy">privacy policy</a>
 and <a href="/disclaimer">disclaimer</a> before signing up.</p>
@@ -8,6 +8,10 @@ and <a href="/disclaimer">disclaimer</a> before signing up.</p>
 
 <div id="focus">
 <form action="register" method="post" class="standard">
+	
+	<% unless @organisation.errors.empty? %>
+	<%= error_messages_for "organisation" %>
+	<% end%>
 	
 	<fieldset>
 		<legend>Organisation details...</legend>
