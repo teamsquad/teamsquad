@@ -8,7 +8,7 @@
 		<p class="hint">This is the heading or title of the notice and should sum up
 		what the notice is all about in a few words. Short and sweet.</p>
 		<%= error_message_on "form", "heading" %>
-		<%= text_field "form", "heading", :class => 'textfield', :id => 'in-heading' %>
+		<p><%= text_field "form", "heading", :class => 'textfield', :id => 'in-heading' %></p>
 		
 		<label for="in-content">Content</label>
 		<p class="hint">This is the full text content for the notice. Want to
@@ -17,7 +17,7 @@
 			<a href="/help/formatting_text">formatting text</a> help page.</p>
 		<%= error_message_on "form", "content" %>
 		<%= render :partial => 'partials/content_tabs' %>
-		<%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%>
+		<p><%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%></p>
 		
 		<label for="in-picture">Picture</label>
 		<p class="hint">If you want to add a picture to display with this post use the 
@@ -26,7 +26,7 @@
 		image you upload is in a suitable format for displaying on the web
 		(i.e. GIF, JPEG, or PNG).</p>
 		<%= error_message_on "form", "picture" %>
-		<%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%>
+		<p><%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%></p>
 		
 		<% if @form.has_picture? %>
 		

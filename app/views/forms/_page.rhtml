@@ -8,7 +8,7 @@
 		<p class="hint">This is the heading or title of the page and should sum up
 		what the page is all about in a few words. Short and sweet.</p>
 		<%= error_message_on "form", "title" %>
-		<%= text_field "form", "title", :class => 'textfield', :id => 'in-title' %>
+		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title' %></p>
 
 		<label for="in-label">Short label</label>
 		<p class="hint">If this page has a vary long title then you can also
@@ -24,7 +24,7 @@
 			<a href="/help/formatting_text">formatting text</a> help page.</p>
 		<%= error_message_on "form", "content" %>
 		<%= render :partial => 'partials/content_tabs' %>
-		<%= text_area "form", "content", :rows => 20, :class => 'content textarea', :id => 'in-content'%>
+		<p><%= text_area "form", "content", :rows => 20, :class => 'content textarea', :id => 'in-content'%></p>
 		
 		<label for="in-picture">Picture</label>
 		<p class="hint">If you want to add a picture to display with this page use the 
@@ -33,7 +33,7 @@
 		image you upload is in a suitable format for displaying on the web
 		(i.e. GIF, JPEG, or PNG).</p>
 		<%= error_message_on "form", "picture" %>
-		<%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%>
+		<p><%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture' %></p>
 		
 		<% if @form.has_picture? %>
 		

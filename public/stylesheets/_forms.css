@@ -75,6 +75,10 @@ form fieldset p.checkbox {
 	}
 
 
+form p {
+	margin: 0;
+}
+
 form p.hint {
 	color: #666;
 	line-height: 1.2em !important;
@@ -144,7 +148,7 @@ form.fixtures select {
 }
 
 form fieldset input.fileupload {
-	margin: 0.25em 0 1em 0;
+	margin: 0.33em 0 1em 0;
 }
 
 form.fixtures p {

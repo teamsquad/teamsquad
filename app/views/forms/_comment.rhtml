@@ -9,13 +9,13 @@
 		<p class="hint">Just your name, nothing else. Will be shown along with your
 		comment.</p>
 		<%= error_message_on "comment", "name" %>
-		<%= text_field "comment", "name", :class => 'textfield', :id => 'in-name' %>
+		<p><%= text_field "comment", "name", :class => 'textfield', :id => 'in-name' %></p>
 		
 		<label for="in-content">Your comment</label>
 		<p class="hint">Be nice, stay on topic, and don't ramble. HTML tags are
 		not allowed. Linebreaks will be kept - use two to add a paragraph.</p>
 		<%= error_message_on "comment", "content" %>
-		<%= text_area "comment", "content", :rows => 8, :class => 'textarea', :id => 'in-content'%>
+		<p><%= text_area "comment", "content", :rows => 8, :class => 'textarea', :id => 'in-content'%></p>
 		
 	</fieldset>
 
