@@ -28,10 +28,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'organisation',
     :action => 'login'
     
-  map.control_panel 'control_panel',
-    :controller => 'organisation',
-    :action => 'control_panel'
-    
   map.logout 'logout',
     :controller => 'organisation',
     :action => 'logout'
@@ -52,6 +48,11 @@ ActionController::Routing::Routes.draw do |map|
   
   map.help 'ajax/:action',
     :controller => 'ajax'
+    
+  # CONTROL PANEL
+  
+  map.control_panel 'control_panel/:action/:id',
+    :controller => 'control_panel'
 
   # HELP
   

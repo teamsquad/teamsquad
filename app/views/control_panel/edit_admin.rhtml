@@ -1,0 +1,12 @@
+<div id="primary">
+	<%= render_partial 'forms/admin' %>
+</div>
+
+<div id="secondary">
+	<h2>Cancel?</h2>
+	<ul>
+		<li><%= link_to 'Administrator list', control_panel_url(:action => 'admins') %></li>
+		<li><%= link_to 'Control panel', control_panel_url() %></li>
+		<li><%= link_to 'Home', home_url() %></li>
+	</ul>
+</div>

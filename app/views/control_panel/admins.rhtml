@@ -1,0 +1,20 @@
+<div id="primary">
+	<p>The following people can administer this organisation.</p>
+	
+	<ul class="things"><% for user in @admins %>
+		<li class="user"><%= link_to user.name, control_panel_url(:action => 'edit_admin', :id => user) %></li><% end %>
+		<li class="add_user"><%= link_to 'Add another administrator', control_panel_url(:action => 'new_admin'), :class => 'admin' %></li>
+	</ul>
+</div>
+
+<div id="secondary">
+  <h2>What can administrators do?</h2>
+	<p>These are the people that can add fixtures, enter results, create
+		competitions and all that stuff.</p>
+		
+	<h2>All done?</h2>
+	<ul>
+		<li><%= link_to 'Back to control panel', control_panel_url() %></li>
+		<li><%= link_to 'Back to home page', home_url() %></li>
+	</ul>
+</div>

@@ -15,10 +15,6 @@ class OrganisationController < AbstractAccountController
     end
   end
   
-  def control_panel
-  
-  end
-  
   def logout
     reset_session
     redirect_to login_url and return

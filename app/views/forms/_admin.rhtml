@@ -1,0 +1,40 @@
+<% unless @form.errors.empty? -%>
+<p class="warning">Sorry, but that's just not good enough.</p>
+<% end -%>
+<form action="<%= request.request_uri %>" method="post" class="standard">
+	<fieldset>
+		<legend>Details...</legend>
+		
+		<label for="in-title">Name</label>
+		<p class="hint">This is simply the name of the person. It must be unique
+			within your organisation.</p>
+		<%= error_message_on "form", "name", "Name " %>
+		<p class="input"><%= text_field "form", "name", :class => 'important textfield', :id => 'in-name'%></p>
+	
+		<label for="in-email">Email address</label>
+		<p class="hint">The administrator will use this to log in.</p>
+		<%= error_message_on "form", "email", "Address " %>
+		<p class="input"><%= text_field "form", "email", :class => 'textfield', :id => 'in-email'%></p>
+
+	</fieldset>
+	
+	<% if @form.new_record? %><fieldset>
+		<legend>Password...</legend>
+		
+		<label for="in-password">Password</label>
+		<p class="hint">The administrator will use this to log in.</p>
+		<%= error_message_on "form", "password", "Password " %>
+		<p class="input"><%= password_field "form", "password", :class => 'textfield', :id => 'in-password'%></p>
+
+		<label for="in-password_confirmation">Confirm password</label>
+		<p class="hint">Repeat as above just to make sure you haven't got it wrong.</p>
+		<%= error_message_on "form", "password_confirmation", "Password " %>
+		<p class="input"><%= password_field "form", "password_confirmation", :class => 'textfield', :id => 'in-password_confirmation' %></p>
+		
+	</fieldset><% end %>	
+
+	<fieldset class="finish">
+		<legend>Finish up</legend>
+		<input type="submit" value="Save">
+	</fieldset>
+</form>
