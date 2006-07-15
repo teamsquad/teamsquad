@@ -7,14 +7,14 @@
 		<label for="in-title">Group name</label>
 		<p class="hint">This is simply the name of the group. Only use
 		alphanumerics and spaces.</p>
-		<%= error_message_on "form", "title" %>
-		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
+		<%= error_message_on "form", "title", "Name " %>
+		<p class="input"><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
 	</fieldset>
 	
 	<fieldset>
 		<legend>Teams...</legend>
 		<p class="hint">Select which teams are in this group.</p>
-		<%= error_message_on "form", "team_ids" %><% for team in @teams %>		
+		<%= error_message_on "form", "team_ids", "Teams " %><% for team in @teams %>		
 		<p class="checkbox">
 			<%= check_box_tag 'form[team_ids][]', team.id,	@form.teams.include?(team), :id => "in-group_team_#{team.id}" %>
 			<label for="in-group_team_<%= team.id %>" class="inline"><%= team.title %></label>

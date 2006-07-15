@@ -7,8 +7,8 @@
   
     <label for="in-title">Season title</label>
     <p class="hint">Something like '2006-7' or 'Winter 2006'.</p>
-    <%= error_message_on "form", "title" %>
-    <p><%= text_field "form", "title", :class => 'important textfield', :id => 'in-title' %></p>
+    <%= error_message_on "form", "title", "Title " %>
+    <p class="input"><%= text_field "form", "title", :class => 'important textfield', :id => 'in-title' %></p>
   </fieldset>
 
   <fieldset class="finish">

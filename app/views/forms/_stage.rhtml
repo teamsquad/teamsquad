@@ -9,14 +9,14 @@
 		<p class="hint">This is simply the name of the stage. Only use
 		alphanumerics, spaces, and hyphens in the title. If this is a 
 		simple one stage league then name it something like 'league'.</p>
-		<%= error_message_on "form", "title" %>
-		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title' %></p>
+		<%= error_message_on "form", "title", "Title " %>
+		<p class="input"><%= text_field "form", "title", :class => 'textfield', :id => 'in-title' %></p>
 		
 		<label for="in-is_knockout">Cup competition?</label>
 		<p class="hint">If this stage is in a knockout format then tick the box.
 		If the stage is a league then leave the box unticked.</p>
-		<%= error_message_on "form", "is_knockout" %>
-		<p><%= check_box "form", "is_knockout", :class => 'checkbox', :id => 'in-is_knockout' %></p>
+		<%= error_message_on "form", "is_knockout", "Cup competition " %>
+		<p class="input"><%= check_box "form", "is_knockout", :class => 'checkbox', :id => 'in-is_knockout' %></p>
 		
 	</fieldset>
 	
@@ -25,18 +25,18 @@
 		
 		<label for="in-points_for_win">Win points</label>
 		<p class="hint">How many points does a team get if they win?</p>
-		<%= error_message_on "form", "points_for_win" %>
-		<p><%= text_field "form", "points_for_win", :class => 'textfield', :id => 'in-points_for_win' %></p>
+		<%= error_message_on "form", "points_for_win", "Points " %>
+		<p class="input"><%= text_field "form", "points_for_win", :class => 'textfield', :id => 'in-points_for_win' %></p>
 
 		<label for="in-points_for_draw">Draw points</label>
 		<p class="hint">How many points does a team get if they draw?</p>
-		<%= error_message_on "form", "points_for_draw" %>
-		<p><%= text_field "form", "points_for_draw", :class => 'textfield', :id => 'in-points_for_draw' %></p>
+		<%= error_message_on "form", "points_for_draw", "Points " %>
+		<p class="input"><%= text_field "form", "points_for_draw", :class => 'textfield', :id => 'in-points_for_draw' %></p>
 		
 		<label for="in-points_for_loss">Loss points</label>
 		<p class="hint">How many points does a team get if they lose?</p>
-		<%= error_message_on "form", "points_for_loss" %>
-		<p><%= text_field "form", "points_for_loss", :class => 'textfield', :id => 'in-points_for_loss' %></p>
+		<%= error_message_on "form", "points_for_loss", "Points " %>
+		<p class="input"><%= text_field "form", "points_for_loss", :class => 'textfield', :id => 'in-points_for_loss' %></p>
 	</fieldset>
 	
 	<fieldset id="set-promotion_and_relegation">
@@ -45,26 +45,26 @@
 		<label for="in-automatic_promotion_places">Auto promotion</label>
 		<p class="hint">How many teams are automatically promoted? Enter in a
 		numerical value.</p>
-		<%= error_message_on "form", "automatic_promotion_places" %>
-		<p><%= text_field "form", "automatic_promotion_places", :class => 'textfield', :id => 'in-automatic_promotion_places' %></p>
+		<%= error_message_on "form", "automatic_promotion_places", "Places " %>
+		<p class="input"><%= text_field "form", "automatic_promotion_places", :class => 'textfield', :id => 'in-automatic_promotion_places' %></p>
 		
 		<label for="in-conditional_promotion_places">Other promotion</label>
 		<p class="hint">How many teams are conditionally promoted (e.g. after play-offs)?
 		Enter in a numerical value.</p>
-		<%= error_message_on "form", "conditional_promotion_places" %>
-		<p><%= text_field "form", "conditional_promotion_places", :class => 'textfield', :id => 'in-conditional_promotion_places' %></p>
+		<%= error_message_on "form", "conditional_promotion_places", "Places " %>
+		<p class="input"><%= text_field "form", "conditional_promotion_places", :class => 'textfield', :id => 'in-conditional_promotion_places' %></p>
 
 		<label for="in-automatic_relegation_places">Auto relegation</label>
 		<p class="hint">How many teams are automatically relegated? Enter in a
 		numerical value.</p>
-		<%= error_message_on "form", "automatic_relegation_places" %>
-		<p><%= text_field "form", "automatic_relegation_places", :class => 'textfield', :id => 'in-automatic_relegation_places' %></p>
+		<%= error_message_on "form", "automatic_relegation_places", "Places " %>
+		<p class="input"><%= text_field "form", "automatic_relegation_places", :class => 'textfield', :id => 'in-automatic_relegation_places' %></p>
 
 		<label for="in-conditional_relegation_places">Other relegation</label>
 		<p class="hint">How many teams are conditionally relegated (e.g. after play-offs)?
 		Enter in a numerical value.</p>
-		<%= error_message_on "form", "conditional_relegation_places" %>
-		<p><%= text_field "form", "conditional_relegation_places", :class => 'textfield', :id => 'in-conditional_relegation_places' %></p>
+		<%= error_message_on "form", "conditional_relegation_places", "Places " %>
+		<p class="input"><%= text_field "form", "conditional_relegation_places", :class => 'textfield', :id => 'in-conditional_relegation_places' %></p>
 	</fieldset>
 
 	<fieldset class="finish">

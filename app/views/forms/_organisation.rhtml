@@ -8,8 +8,8 @@
 		<label for="in-content">Summary</label>
 		<p class="hint">Describe your organisaiton briefly. Don't use HTML tags,
 		web addresses will automatically be linked and linebreaks will be respected.</p>
-		<%= error_message_on "form", "summary" %>
-		<p><%= text_area "form", "summary", :rows => 12, :class => 'textarea', :id => 'in-summary'%></p>
+		<%= error_message_on "form", "summary", "Summary " %>
+		<p class="input"><%= text_area "form", "summary", :rows => 12, :class => 'textarea', :id => 'in-summary'%></p>
 		
 		<label for="in-picture">Logo</label>
 		<p class="hint">If you want to add a logo to display on the site use the 
@@ -17,15 +17,15 @@
 		you upload will be automatically scaled to reasonable size. Make sure the
 		image you upload is in a suitable format for displaying on the web
 		(i.e. GIF, JPEG, or PNG).</p>
-		<%= error_message_on "form", "logo" %>
-		<p><%= file_field "form", "logo", :class => 'fileupload', :id => 'in-logo'%></p>
+		<%= error_message_on "form", "logo", "Logo " %>
+		<p class="input"><%= file_field "form", "logo", :class => 'fileupload', :id => 'in-logo'%></p>
 		
 		<% if @form.has_logo? %>
 		
 		<p class="hint">If you don't want to upload a new logo to replace the
 			existing one and just want to remove what's already there then tick the
 			box below.</p>
-		<p><%= check_box "form", "remove_logo", {:id => 'in-remove-logo'}, 'true', 'false' %>
+		<p class="input"><%= check_box "form", "remove_logo", {:id => 'in-remove-logo'}, 'true', 'false' %>
 		<label for="in-remove-logo" class="inline">Remove existing logo</label></p>
 		<% end %>
 			

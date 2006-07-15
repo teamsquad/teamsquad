@@ -7,8 +7,8 @@
 		<label for="in-title">Team name</label>
 		<p class="hint">This is simply the name of the team. Only use
 		alphanumerics and spaces.</p>
-		<%= error_message_on "form", "title" %>
-		<p><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
+		<%= error_message_on "form", "title", "Title " %>
+		<p class="input"><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
 	</fieldset>
 
 	<fieldset class="finish">

@@ -215,8 +215,8 @@ private
   def self.formats
     [
       ["Empty - will need to be manually set up after creation", "0"],
-      ["League - no stages, one group", "1"],
-      ["League - one play-off stage", "2"],
+      ["League", "1"],
+      ["League with one play-off stage", "2"],
       ["Cup - 8 teams, 4 stages", "3"],
       ["Cup - 16 teams, 5 stages", "4"],
       ["Cup - 32 teams, 6 stages", '5'],

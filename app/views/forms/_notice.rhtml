@@ -7,17 +7,17 @@
 		<label for="in-title">Heading</label>
 		<p class="hint">This is the heading or title of the notice and should sum up
 		what the notice is all about in a few words. Short and sweet.</p>
-		<%= error_message_on "form", "heading" %>
-		<p><%= text_field "form", "heading", :class => 'textfield', :id => 'in-heading' %></p>
+		<%= error_message_on "form", "heading", "Heading " %>
+		<p class="input"><%= text_field "form", "heading", :class => 'textfield', :id => 'in-heading' %></p>
 		
 		<label for="in-content">Content</label>
 		<p class="hint">This is the full text content for the notice. Want to
 			add subheadings and lists and stuff to your text? Then use the quick
 			guide over on the right or for a full explanation read the
 			<a href="/help/formatting_text">formatting text</a> help page.</p>
-		<%= error_message_on "form", "content" %>
+		<%= error_message_on "form", "content", "Content " %>
 		<%= render :partial => 'partials/content_tabs' %>
-		<p><%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%></p>
+		<p class="input"><%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%></p>
 		
 		<label for="in-picture">Picture</label>
 		<p class="hint">If you want to add a picture to display with this post use the 
@@ -25,15 +25,15 @@
 		you upload will be automatically scaled to reasonable size. Make sure the
 		image you upload is in a suitable format for displaying on the web
 		(i.e. GIF, JPEG, or PNG).</p>
-		<%= error_message_on "form", "picture" %>
-		<p><%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%></p>
+		<%= error_message_on "form", "picture", "Picture " %>
+		<p class="input"><%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%></p>
 		
 		<% if @form.has_picture? %>
 		
 		<p class="hint">If you don't want to upload a new image to replace the
 			existing one and just want to remove what's already there then tick the
 			box below.</p>
-		<p><%= check_box "form", "remove_picture", {:id => 'in-remove-picture'}, 'true', 'false' %>
+		<p class="input"><%= check_box "form", "remove_picture", {:id => 'in-remove-picture'}, 'true', 'false' %>
 		<label for="in-remove-picture" class="inline">Remove existing picture</label></p>
 		<% end %>
 			
