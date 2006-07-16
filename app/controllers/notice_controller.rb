@@ -1,6 +1,6 @@
 class NoticeController < AbstractAccountController
 
-  before_filter :check_logged_in, :only => [:new, :edit]
+  before_filter :check_logged_in, :only => [:new, :edit, :moderate]
   
   def index
     @titles << 'Notices'
@@ -36,6 +36,16 @@ class NoticeController < AbstractAccountController
   def commented
     get_notice or return
     @titles << 'Comment taken'
+  end
+  
+  def moderate
+    get_notice or return
+    @titles << @notice.heading
+    @titles << "Comment moderation"
+    @comments = @notice.comments
+    if @request.post? and @notice.moderate_comments(params)
+      redirect_to notice_url(:notice => @notice) and return
+    end
   end
   
 end

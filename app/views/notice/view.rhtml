@@ -18,7 +18,7 @@
 	<% if authorised? %><h2>Edit Notice</h2>
 	<ul class="current">
 		<li class="admin"><%= link_to "Edit this notice...", edit_notice_url(:notice => @notice) %></li><% if @notice.has_comments? %>
-		<li class="admin"><%= link_to "Edit its comments...", edit_comments_url(:notice => @notice) %></li><% end %>
+		<li class="admin"><%= link_to "Moderate its comments...", moderate_notice_url(:notice => @notice) %></li><% end %>
 	</ul><% end %>
 	
   <h2>Recent notices</h2>

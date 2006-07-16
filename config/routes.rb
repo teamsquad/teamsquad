@@ -77,9 +77,9 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'notice',
     :action => 'commented'
     
-  map.edit_comments 'notices/:notice/edit-comments',
+  map.moderate_notice 'notices/:notice/moderate',
     :controller => 'notice',
-    :action => 'edit_comments' 
+    :action => 'moderate' 
   
   map.notice 'notices/:notice',
     :controller => 'notice',
