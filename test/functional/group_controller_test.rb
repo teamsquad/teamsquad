@@ -110,7 +110,7 @@ class GroupControllerTest < Test::Unit::TestCase
   # SIMPLE VIEW TESTS
   #
   
-  def test_can_view_new_group_page
+  def test_view_new_group_page
     get :new, { :competition => 'single-stage-competition',
                 :stage => 'test-stage-one' }, fake_authorised_user_session
     assert_response :success
@@ -118,21 +118,21 @@ class GroupControllerTest < Test::Unit::TestCase
     assert_tidy
   end
   
-  def test_can_view_edit_group_page
+  def test_view_edit_group_page
     get :edit, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/edit"
     assert_tidy
   end
   
-  def test_can_view_new_fixtures_page
+  def test_view_new_fixtures_page
     get :new_fixtures, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/new_fixtures"
     assert_tidy
   end
   
-  def test_can_view_enter_results_page
+  def test_view_enter_results_page
     get :enter_results, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/enter_results"

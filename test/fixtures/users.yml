@@ -4,3 +4,10 @@ user1:
  email: dummy@example.com
  password: goobledegook
  name: Arthur Average
+ 
+user_from_organisation_2:
+ id: 2
+ organisation_id: 2
+ email: another_one@example.com
+ password: goobledegook
+ name: Charlie Chancer

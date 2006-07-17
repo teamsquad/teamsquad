@@ -69,14 +69,14 @@ class CalendarControllerTest < Test::Unit::TestCase
   # SIMPLE VIEW TESTS
   #
   
-  def test_can_view_competition_calendar
+  def test_view_competition_calendar
     get :index, :competition => single_stage_competition.slug
     assert_response :success
     assert_template "calendar/index"
     assert_tidy
   end
   
-  def test_can_view_competition_calendar_year
+  def test_view_competition_calendar_year
     get :year,
         :competition => single_stage_competition.slug,
         :year => '2006'
@@ -85,7 +85,7 @@ class CalendarControllerTest < Test::Unit::TestCase
     assert_tidy
   end
   
-  def test_can_view_competition_calendar_month
+  def test_view_competition_calendar_month
     get :month,
         :competition => single_stage_competition.slug,
         :year => '2006',
@@ -95,7 +95,7 @@ class CalendarControllerTest < Test::Unit::TestCase
     assert_tidy
   end
   
-  def test_can_view_competition_calendar_day
+  def test_view_competition_calendar_day
     get :day,
         :competition => single_stage_competition.slug,
         :year => '2006',
@@ -105,6 +105,12 @@ class CalendarControllerTest < Test::Unit::TestCase
     assert_template "calendar/day"
     assert_tidy
   end
+  
+  #
+  # INTERACTIVE TESTS (POST FORMS)
+  #
+  
+  # TODO (include cache sweeping tests)
 
 private
   

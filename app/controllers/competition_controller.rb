@@ -9,7 +9,7 @@ class CompetitionController < AbstractAccountController
     @titles << 'New competition'
     @form  = Competition.new(params[:form])
     @form.season_id = @organisation.current_season.id
-    if @request.post? and @form.save
+    if request.post? and @form.save
       redirect_to competition_url(:competition => @form) and return
     end
   end
@@ -23,7 +23,7 @@ class CompetitionController < AbstractAccountController
     get_competition
     @titles << 'Edit competition'
     @form = @competition
-    if @request.post? && @form.update_attributes(params["form"])
+    if request.post? && @form.update_attributes(params["form"])
       redirect_to competition_url(:competition => @form) and return
     end
   end

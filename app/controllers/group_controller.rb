@@ -8,7 +8,7 @@ class GroupController < AbstractAccountController
     @form = Group.new(params["form"])
     @form.stage_id = @stage.id
     @teams = @organisation.teams
-    if @request.post? and @form.save
+    if request.post? and @form.save
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end
   end
@@ -24,7 +24,7 @@ class GroupController < AbstractAccountController
     # is missing from request. This mean unselecting each team checkbox
     # will remove all teams (just like it should!).
     params[:form] && params[:form][:team_ids] ||= []
-    if @request.post? && @form.update_attributes(params["form"])
+    if request.post? && @form.update_attributes(params["form"])
       clear_caches
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end
@@ -33,7 +33,7 @@ class GroupController < AbstractAccountController
   def new_fixtures
     get_group
     @titles << "New fixtures"
-    if @request.post? and @group.process_fixtures(@params)
+    if request.post? and @group.process_fixtures(@params)
       clear_caches(params[:when])
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end

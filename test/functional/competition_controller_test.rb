@@ -73,7 +73,7 @@ class CompetitionControllerTest < Test::Unit::TestCase
   # SIMPLE VIEW TESTS
   #
   
-  def test_can_view_competition
+  def test_view_competition
     get :view, single_stage_competition_param
     assert_response :success
     assert_template "competition/view"
@@ -81,19 +81,25 @@ class CompetitionControllerTest < Test::Unit::TestCase
     assert_tidy
   end
   
-  def test_can_view_competition_fixtures
+  def test_view_competition_fixtures
     get :fixtures, single_stage_competition_param
     assert_response :success
     assert_template "competition/fixtures"
     assert_tidy
   end
   
-  def test_can_view_competition_results
+  def test_view_competition_results
     get :results, single_stage_competition_param
     assert_response :success
     assert_template "competition/results"
     assert_tidy
   end
+  
+  #
+  # INTERACTIVE TESTS (POST FORMS)
+  #
+  
+  # TODO (include cache sweeping tests)
   
 private
 

@@ -43,7 +43,7 @@ class NoticeController < AbstractAccountController
     @titles << @notice.heading
     @titles << "Comment moderation"
     @comments = @notice.comments
-    if @request.post? and @notice.moderate_comments(params)
+    if request.post? and @notice.moderate_comments(params)
       redirect_to notice_url(:notice => @notice) and return
     end
   end

@@ -4,8 +4,34 @@ class ApplicationController < ActionController::Base
 
   include BrowserFilters
 
+protected
+
   def throw404
-    redirect_to('/404.html')
+    render_404 # simple wrapper round plugin to insulate it
+  end
+
+  def throw500
+    render_500 # simple wrapper round plugin to insulate it
+  end
+
+  def rescue_action_in_public(exception) 
+    case exception 
+      when ActiveRecord::RecordNotFound, ActionController::UnknownController, ActionController::UnknownAction 
+        throw404
+      when ActiveRecord::StatementInvalid
+        throw404 # Hmmm!
+      else 
+        throw500
+        deliverer = self.class.exception_data
+        data = case deliverer
+          when nil then {}
+          when Symbol then send(deliverer)
+          when Proc then deliverer.call(self)
+        end
+
+        ExceptionNotifier.deliver_exception_notification(exception, self,
+          request, data)
+    end 
   end
 
 end

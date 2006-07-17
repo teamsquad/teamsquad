@@ -17,7 +17,7 @@ class InformationController < AbstractAccountController
     @titles << 'New page'
     @form = Page.new(params[:form])
     @form.organisation_id = @organisation.id
-    if @request.post? and @form.save
+    if request.post? and @form.save
       redirect_to information_page_url(:page => @form) and return
     end
   end
@@ -25,7 +25,7 @@ class InformationController < AbstractAccountController
   def edit
     @titles << 'Edit page'
     @form = @organisation.find_page(params[:page])
-    if @request.post? and @form.update_attributes(params[:form])
+    if request.post? and @form.update_attributes(params[:form])
       redirect_to information_page_url(:page => @form) and return
     end
   end
