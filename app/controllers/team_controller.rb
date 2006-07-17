@@ -9,7 +9,7 @@ class TeamController < AbstractAccountController
   
   def new
     @titles << 'New team'
-    @form  = Team.new(@params[:form])
+    @form  = Team.new(params[:form])
     @form.organisation_id = @organisation.id
     if @request.post? and @form.save
       redirect_to teams_url and return
@@ -24,7 +24,7 @@ class TeamController < AbstractAccountController
     get_team
     @titles << 'Edit Team'
     @form = @team
-    if @request.post? && @form.update_attributes(@params["form"])
+    if @request.post? && @form.update_attributes(params["form"])
       redirect_to team_url(:team => @team) and return
     end
   end

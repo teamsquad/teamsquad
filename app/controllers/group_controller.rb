@@ -23,8 +23,8 @@ class GroupController < AbstractAccountController
     # round this we manually set team_ids to an empty array if it
     # is missing from request. This mean unselecting each team checkbox
     # will remove all teams (just like it should!).
-    @params[:form] && @params[:form][:team_ids] ||= []
-    if @request.post? && @form.update_attributes(@params["form"])
+    params[:form] && params[:form][:team_ids] ||= []
+    if @request.post? && @form.update_attributes(params["form"])
       clear_caches
       redirect_to stage_url(:competition => @competition, :stage => @stage) and return
     end

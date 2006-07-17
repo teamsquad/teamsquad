@@ -21,7 +21,7 @@ class StageController < AbstractAccountController
     get_stage
     @titles << "Edit"
     @form = @stage
-    if @request.post? && @form.update_attributes(@params["form"])
+    if @request.post? && @form.update_attributes(params["form"])
       redirect_to stage_url(:competition => @competition, :stage => @form) and return
     end
   end

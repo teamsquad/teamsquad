@@ -8,7 +8,7 @@ class NoticeController < AbstractAccountController
   
   def view
     get_notice or return
-    @comment = Comment.new @params["comment"]
+    @comment = Comment.new params["comment"]
     @comment.notice = @notice
     if request.post? && @comment.save
       redirect_to commented_url(:notice => @notice) and return

@@ -9,13 +9,13 @@ class InformationController < AbstractAccountController
   
   def view
     @pages   = @organisation.pages
-    @page    = @organisation.find_page(@params[:page])
+    @page    = @organisation.find_page(params[:page])
     @titles << @page.title
   end
   
   def new
     @titles << 'New page'
-    @form = Page.new(@params[:form])
+    @form = Page.new(params[:form])
     @form.organisation_id = @organisation.id
     if @request.post? and @form.save
       redirect_to information_page_url(:page => @form) and return
@@ -24,8 +24,8 @@ class InformationController < AbstractAccountController
   
   def edit
     @titles << 'Edit page'
-    @form = @organisation.find_page(@params[:page])
-    if @request.post? and @form.update_attributes(@params[:form])
+    @form = @organisation.find_page(params[:page])
+    if @request.post? and @form.update_attributes(params[:form])
       redirect_to information_page_url(:page => @form) and return
     end
   end

@@ -24,7 +24,7 @@ protected
 
   def get_team
     (throw404 and return false) unless @organisation
-    @team = @organisation.find_team(@params["team"])
+    @team = @organisation.find_team(params["team"])
     @titles <<  @team.title if @team
     @team or (throw404 and return false)
   end
@@ -37,27 +37,27 @@ protected
   
   def get_competition
     (throw404 and return false) unless get_season
-    @competition = @season.find_competition(@params["competition"])
+    @competition = @season.find_competition(params["competition"])
     @titles << @competition.title if @competition
     @competition or (throw404 and return false)
   end
   
   def get_stage
     (throw404 and return false) unless get_competition
-    @stage = @competition.find_stage(@params["stage"])
+    @stage = @competition.find_stage(params["stage"])
     @titles << @stage.title unless @stage.nil? or @competition.stages.count == 1
     @stage or (throw404 and return false)
   end
   
   def get_group
     (throw404 and return false) unless get_stage
-    @group = @stage.find_group(@params["group"])
+    @group = @stage.find_group(params["group"])
     @group or (throw404 and return false)
   end
   
   def get_notice
     (throw404 and return false) unless @organisation
-    @notice = @organisation.find_notice(@params["notice"]) unless @organisation.nil?
+    @notice = @organisation.find_notice(params["notice"]) unless @organisation.nil?
     @titles << @notice.heading if @notice
     @notice or (throw404 and return false)
   end
