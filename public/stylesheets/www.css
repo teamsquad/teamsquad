@@ -99,7 +99,6 @@ div#foot {
 }
 
 	#focus strong {
-		background: #FFC;
 		color: #000;
 	}
 
@@ -173,7 +172,7 @@ span.logotype-squad {
 	letter-spacing: 0;
 }
 
-span.beta {
+span.tagline {
 	display: block;
 	font-size: 11px;
 	color: #CCC;
