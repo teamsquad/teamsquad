@@ -1,17 +1,25 @@
 <div id="blurb">
 <h1>Register</h1>
-<% unless @user.errors.empty? && @organisation.errors.empty? %><p class="warning">Sorry, that's just not good enough</p><% end %>
-<p>So you've decided to join our little party then. Great - fill out the form and
-you're in. We recommend you read our <a href="/privacy">privacy policy</a>
-and <a href="/disclaimer">disclaimer</a> before signing up.</p>
+<% unless @user.errors.empty? && @organisation.errors.empty? -%>
+<p class="warning">Sorry, that's just not good enough</p>
+<% end -%>
+
+<p>Registration is <strong>invite only</strong> for the moment. Fill out the
+  form including your invite code and you're in. If you haven't got an invite
+  and don't know how to get one then just sit pretty. Registration will be
+  open to all eventually.</p>
+  
+<p>We recommend you read our <a href="/privacy">privacy policy</a> and
+  <a href="/disclaimer">disclaimer</a> before signing up.</p>
 </div>
 
 <div id="focus">
 <form action="register" method="post" class="standard">
 	
-	<% unless @organisation.errors.empty? %>
-	<%= error_messages_for "organisation" %>
-	<% end%>
+	<fieldset>
+		<legend>Invitation details</legend>
+		<%= form_field @invite, "text", "code", "Invite code" %>
+	</fieldset>
 	
 	<fieldset>
 		<legend>Organisation details...</legend>

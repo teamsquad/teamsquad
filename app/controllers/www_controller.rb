@@ -16,7 +16,7 @@ class WwwController < ApplicationController
     
   end
   
-  def alpha
+  def version
   
   end
   
@@ -42,8 +42,9 @@ class WwwController < ApplicationController
   
   def register
     @organisation = Organisation.new(params["organisation"])
-    @user = User.new(params["user"])
-    if request.post? && Organisation.register(@organisation, @user)
+    @user         = User.new(params["user"])
+    @invite       = Invite.new(params["invite"])
+    if request.post? && Organisation.register(@organisation, @user, @invite)
       redirect_to(:action => "registered", :id => @organisation.id) and return
     end
     @page_title = "Register"

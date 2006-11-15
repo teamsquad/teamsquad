@@ -30,7 +30,7 @@ class Organisation < ActiveRecord::Base
   # CLASS
   #
 
-  def self.register(organisation, user)
+  def self.register(organisation, user, invite)
     begin
       Organisation.transaction do
         season = Season.build_empty_season
@@ -41,7 +41,8 @@ class Organisation < ActiveRecord::Base
         end
         user_saved   = user.save
         season_saved = season.save
-        raise 'Argh' unless user_saved && organisation_saved && season_saved
+        invite_ok    = Invite.use(invite)
+        raise 'Rollback' unless organisation_saved && season_saved && user_saved && invite_ok
       end
       true
     rescue
