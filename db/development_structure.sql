@@ -188,6 +188,20 @@ CREATE VIEW home_teams AS
 
 
 --
+-- Name: invites; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+--
+
+CREATE TABLE invites (
+    id serial NOT NULL,
+    code character varying(255) NOT NULL,
+    recipient character varying(255),
+    used boolean DEFAULT false,
+    created_on timestamp without time zone,
+    updated_on timestamp without time zone
+);
+
+
+--
 -- Name: matches; Type: VIEW; Schema: public; Owner: slatter
 --
 
@@ -391,6 +405,14 @@ ALTER TABLE ONLY games
 
 ALTER TABLE ONLY groups
     ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+--
+
+ALTER TABLE ONLY invites
+    ADD CONSTRAINT invites_pkey PRIMARY KEY (id);
 
 
 --
@@ -739,4 +761,4 @@ CREATE UNIQUE INDEX users_email_key ON users USING btree (email);
 CREATE INDEX users_organisation_id ON users USING btree (organisation_id);
 
 
-INSERT INTO schema_info (version) VALUES (5)
+INSERT INTO schema_info (version) VALUES (6)
