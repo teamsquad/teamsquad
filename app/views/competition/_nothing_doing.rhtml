@@ -1,6 +1,9 @@
 <h2>Yawn, nothing doing!</h2>
-<p>There's not much going on with this competition at the moment so
-	there's not much to show here!</p>
-	
-<p>When there are some fixtures and results on the go this page will
-	show the most recent or relevant ones for easy access.</p>
+<p>There's not much going on with this competition at the moment so there's
+  not much to show here! When there are some fixtures and results on the go
+  this page will show the most recent or relevant ones for easy access.</p>
+
+<% if @competition.current_stage.groups_count == 1 && @competition.current_stage.groups.first.teams.count == 0 -%>
+<p>There are no teams in this competition yet. Why not
+  <%= link_to 'add some teams now', edit_group_url(:competition => @competition, :stage =>@competition.current_stage, :group => @competition.current_stage.groups.first) %>?</p>
+<% end -%>
