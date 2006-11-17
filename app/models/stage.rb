@@ -35,7 +35,7 @@ class Stage < ActiveRecord::Base
   before_validation :strip_title!, :create_slug!
   after_validation  :move_slug_errors_to_title
   
-  validates_presence_of   :title, :competition_id
+  validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "competition_id", :message => "You already have a stage with that name in this competition."
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_length_of     :title, :within => 4..64, :too_long => "Please use a shorter title.", :too_short => "Please use a longer title."
@@ -73,7 +73,7 @@ private
   # As the slug field is auto generated we can't display its errors.
   # So, move them into the field the generation is based on instead.
   def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) )
+    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
   end
  
   def strip_title!

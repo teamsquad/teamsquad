@@ -88,6 +88,31 @@ class CompetitionTest < Test::Unit::TestCase
     assert_no_error_on :label, Competition.create(:label => '12345678123456781234567812345678')
   end
   
+  def test_should_allow_an_empty_league_structure_to_be_created_with_it
+    comp = Competition.new(
+      :title     => 'Testy',
+      :summary   => 'Testing creation of an empty league.',
+      :format    => '0'
+    )
+    comp.season_id = seasons(:empty_season).id
+    assert comp.save, comp.errors.inspect.to_s
+    comp.reload
+    assert_equal 0, comp.stages.count
+  end
+  
+  def test_should_allow_a_simple_league_structure_to_be_created_with_it
+    comp = Competition.new(
+      :title     => 'Testy',
+      :summary   => 'Testing creation of a simple league.',
+      :format    => '1'
+    )
+    comp.season_id = seasons(:empty_season).id
+    assert comp.save, comp.errors.inspect.to_s
+    comp.reload
+    assert_equal 1, comp.stages.count
+    assert_equal 1, comp.stages.first.groups.count
+  end
+  
   def test_should_know_how_many_stages_it_has
     assert_equal 0, competitions(:empty_competition).stages_count
     assert_equal 1, competitions(:single_stage_competition).stages_count

@@ -14,10 +14,6 @@ class StageTest < Test::Unit::TestCase
            :groups,
            :games
   
-  def test_should_belong_to_a_competition
-    assert_error_on :competition_id, Stage.create()
-  end
-  
   def test_should_have_a_title
     assert_error_on :title, Stage.create()
     assert_error_on :title, Stage.create(:title => '')

@@ -21,3 +21,9 @@ season4:
   organisation_id: 2
   title: RepeatedTitle
   slug: repeatedtitle
+  
+empty_season:
+  id: 5
+  organisation_id: 5
+  title: Empty season
+  slug: empty-season

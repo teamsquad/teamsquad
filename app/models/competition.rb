@@ -6,7 +6,7 @@ class Competition < ActiveRecord::Base
   
   before_validation :strip_title!, :create_slug!
   after_validation  :move_slug_errors_to_title
-  after_create      :create_format
+  before_create     :create_format
   
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_presence_of   :title, :summary, :message => 'You must enter something'
@@ -181,14 +181,8 @@ protected
       :position => 1,
       :is_knockout => false
     )
-    
-    group = Group.new(
-      :title => 'untitled'
-    )
-    
-    self.stages << stage or raise "Can't add stage"
-    stage.reload
-    stage.groups << group or raise "Can't add group"
+    stage.groups << Group.new( :title => 'untitled' )
+    self.stages << stage
   end
 
   def create_playoff_league
@@ -220,7 +214,7 @@ private
   # As the slug field is auto generated we can't display its errors.
   # So, move them into the field the generation is based on instead.
   def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) )
+    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
   end
  
   def strip_title!

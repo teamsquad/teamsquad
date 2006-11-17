@@ -29,3 +29,11 @@ organisastion_y:
   nickname: orgy
   summary: Blah blah blah
   seasons_count: 0
+  
+organisation_with_an_empty_season:
+  id: 5
+  sport_id: 1
+  title: Organisation with empty season
+  nickname: owes
+  summary: Can be used to build stuff from a standing start.
+  seasons_count: 1

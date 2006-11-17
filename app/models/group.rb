@@ -36,7 +36,7 @@ class Group < ActiveRecord::Base
   before_validation :strip_title!, :create_slug!
   after_validation  :move_slug_errors_to_title
   
-  validates_presence_of   :title, :stage_id
+  validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "stage_id"
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_length_of     :title, :within => 4..64
@@ -76,7 +76,7 @@ private
   # As the slug field is auto generated we can't display its errors.
   # So, move them into the field the generation is based on instead.
   def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) )
+    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
   end
  
   def strip_title!

@@ -13,10 +13,6 @@ class GroupTest < Test::Unit::TestCase
            :stages,
            :groups,
            :games
-           
-  def test_should_belong_to_a_stage
-    assert_error_on    :stage_id, Group.create()
-  end
   
   def test_should_have_a_title
     assert_error_on    :title, Group.create()
