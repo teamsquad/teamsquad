@@ -11,9 +11,9 @@ end
 module ActionView
   module Helpers
     module ActiveRecordHelper
-      def error_message_on(object, method, prepend_text = "", append_text = "", css_class = "formError")
+      def error_message_on(object, method, prepend_text = "", append_text = "", css_class = "problem")
         if errors = instance_variable_get("@#{object}").errors.on(method)
-          content_tag("span", "#{prepend_text}#{errors.is_a?(Array) ? errors.first : errors}#{append_text}", :class => css_class)
+          content_tag("p", "#{prepend_text}#{errors.is_a?(Array) ? errors.first : errors}#{append_text}", :class => css_class)
         end
       end
     end

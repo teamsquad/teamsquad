@@ -1,15 +1,16 @@
 <div id="primary">
-	<%= render_partial 'forms/competition' %>
+  <%= render_partial 'forms/competition' %>
 </div>
 
 <div id="secondary">
-	<h2>Tips</h2>
-	<p>Bear in mind that the competition title is used to make
-	page addresses. If you change it then the address of all
-	the competition's pages will change accordingly.</p>
-
-	<h2>Cancel?</h2>
-	<ul>
-		<li><%= link_to 'Return to competition', competition_url(:competition => @competition) %></li>
-	</ul>
+  <h2>About competitions</h2>
+  <p>Bear in mind that the competition title is used to make
+  page addresses. If you change it then the address of all
+  the competition's pages will change accordingly.</p>
+  
+  <%= render :partial => 'partials/structure_tips' %>
+  <h2>Cancel?</h2>
+  <ul>
+    <li><%= link_to 'Return to competition', competition_url(:competition => @competition) %></li>
+  </ul>
 </div>

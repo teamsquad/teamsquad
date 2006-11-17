@@ -91,6 +91,7 @@ div#secondary {
 div#secondary h2 {
   margin: 0 0 0.2em 0;
   font-size: 1.2em;
+  color: #333;
 }
 
 div#secondary ul {
@@ -124,9 +125,14 @@ div#secondary li a {
 }
 
 #secondary p {
-  margin: 0 0 2em 0;
+  margin: 0 0 1em 0;
   color: #999;
 }
+
+  #secondary p em {
+    color: #666;
+    font-style: normal;
+  }
 
 p.notify {
   padding: 3em;

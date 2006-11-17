@@ -85,18 +85,19 @@ form p.hint {
   text-align: left !important;
   font-size: 0.85em;
   float: none;
-  margin: 0em;
+  margin: 0 0 0.2em 0;
 }
 
-form div.formError {
+form p.problem {
   font-size: small;
   background: #FF6 url(/images/alert_small.gif) no-repeat 2px center;
   padding: 4px 4px 4px 20px;
   margin: 0;
 }
 
-div.fieldWithErrors * {
-  border:2px solid #900;
+span.problem {
+  display: block;
+  border: 2px solid #FF6;
 }
 
 form fieldset.finish {
@@ -112,7 +113,7 @@ form .textfield,
 form .textarea {
   width: 100%;
   color: #333;
-  margin-bottom: 0.25em;
+  margin: 0;
   font-size: small;
 }
 

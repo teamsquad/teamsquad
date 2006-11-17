@@ -7,7 +7,9 @@
       <%= link_to('Edit this stage...',
             edit_stage_url(:competition => @competition, :stage => @stage),
             {:class => 'admin'}) if authorised? %></p>
-  </div><% if @stage.groups_count > 0 %>
+  </div>
+  
+  <% if @stage.groups_count > 0 -%>
   <div class="<%= @stage.is_knockout? ? 'knockout' : 'league' %>_stage_with_group<%= 's' unless @stage.groups_count == 1 %>">
   <% for group in @stage.groups %>
   <div class="group <%= cycle("odd", "even") %>"><% if @stage.groups_count > 1 %>

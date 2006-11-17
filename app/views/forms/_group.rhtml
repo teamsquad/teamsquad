@@ -2,29 +2,37 @@
 <p class="warning">Sorry, but that's just not good enough.</p>
 <% end -%>
 <form action="<%= request.request_uri %>" method="post" class="standard">
-	<fieldset>
-		<legend>Details...</legend>
-		<label for="in-title">Group name</label>
-		<p class="hint">This is simply the name of the group. Only use
-		alphanumerics and spaces.</p>
-		<%= error_message_on "form", "title", "Name " %>
-		<p class="input"><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
-	</fieldset>
-	
-	<fieldset>
-		<legend>Teams...</legend>
-		<p class="hint">Select which teams are in this group.</p>
-		<%= error_message_on "form", "team_ids", "Teams " %><% for team in @teams %>		
-		<p class="checkbox">
-			<%= check_box_tag 'form[team_ids][]', team.id,	@form.teams.include?(team), :id => "in-group_team_#{team.id}" %>
-			<label for="in-group_team_<%= team.id %>" class="inline"><%= team.title %></label>
-		</p>
-		<% end %>
-		<div class="clear"></div>
-	</fieldset>
-
-	<fieldset class="finish">
-		<legend>Finish up</legend>
-		<input type="submit" value="Save group">
-	</fieldset>
+  <fieldset>
+    <legend>Details...</legend>
+    <label for="in-title">Group name</label>
+    <p class="hint">This is simply the name of the group. Only use
+    alphanumeric characters and spaces.</p>
+    <%= error_message_on "form", "title", "Name " %>
+    <p class="input"><%= text_field "form", "title", :class => 'textfield', :id => 'in-title'%></p>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Teams...</legend>
+    <% if @teams.empty? -%>
+    <p>Your organisation doesn't have any in teams in it! In order to properly
+      set this group up you need to 
+      <%= link_to 'add some teams to your organisation', new_team_url %>
+      first. When you've done that you can come back and they will appear here
+      so you can select which ones should be in this group.</p>
+    <% else -%>
+    <p class="hint">Select which teams are in this group.</p>
+    <%= error_message_on "form", "team_ids", "Teams " %><% for team in @teams %>    
+    <p class="checkbox">
+      <%= check_box_tag 'form[team_ids][]', team.id,  @form.teams.include?(team), :id => "in-group_team_#{team.id}" %>
+      <label for="in-group_team_<%= team.id %>" class="inline"><%= team.title %></label>
+    </p>
+    <% end %>
+    <div class="clear"></div>
+    <% end %>
+  </fieldset>
+  
+  <fieldset class="finish">
+    <legend>Finish up</legend>
+    <input type="submit" value="Save group">
+  </fieldset>
 </form>
