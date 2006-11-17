@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class RegistrationTest < ActionController::IntegrationTest
 
-  fixtures :sports
+  fixtures :sports, :invites
 
   def test_register_new_organisation
     new_session do |eric|
@@ -38,6 +38,7 @@ private
 
   def half_arsed_registration_params
     {
+      :invite       => { :code => '121212121212' },
       :organisation => { :title => "Eric's cool organisation" },
       :user         => { :name => "Eric Entwhistle" }
     }
@@ -45,16 +46,21 @@ private
   
   def good_registration_params
     {
+      :invite => {
+        :code => invites(:unused_invite).code
+      },
       :organisation => {
         :title    => "Eric and his cool organisation",
         :sport_id => "1",
         :nickname => "eric",
-        :summary  => "This is Eric's cool little organisation." },
+        :summary  => "This is Eric's cool little organisation."
+      },
       :user => {
         :name     => "Eric Entwhistle",
         :email    => "eric@example.com",
         :password => "supersecret",
-        :password_confirmation => "supersecret" }
+        :password_confirmation => "supersecret"
+      }
     }
   end
   
@@ -72,11 +78,8 @@ private
     
     def stupidly_attempts_to_register_with(options)
       post '/register', options
-      assert_response :success, "#{response.body}"
+      assert_response :success
       assert_template 'www/register'
-      organisation = assigns["organisation"]
-      assert_not_nil organisation
-      assert_not_nil organisation.errors
     end
     
     def cleverly_attempts_to_register_with(options)
