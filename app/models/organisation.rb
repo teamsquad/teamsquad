@@ -22,7 +22,7 @@ class Organisation < ActiveRecord::Base
   validates_uniqueness_of :title, :nickname, :message => 'Sorry, already taken. Enter something else.'
   validates_format_of     :nickname, :with => /^[a-zA-Z0-9]{3,32}$/, :message => "Only use alpha numeric characters and ensure the nickname is betwen 3 and 32 characaters long."
   validates_format_of     :title, :with => /^[\s[:alpha:]]{3,128}$/, :message => "Only use alpha numeric characters and spaces and make sure the title is betwen 3 and 128 characters long."
-  validates_exclusion_of  :nickname, :in => %w(w ww www wwww wwwwww admin register join blog support test help mail), :message => "That's a reserved word, please try again."
+  validates_exclusion_of  :nickname, :in => %w(w ww www wwww wwwwww admin register join blog support test help mail official my our teams fixtures results news), :message => "That's a reserved word, please try again."
   validates_length_of     :summary, :maximum => 512
   validates_presence_of   :sport_id
 
@@ -61,6 +61,14 @@ class Organisation < ActiveRecord::Base
 
   def find_team(slug)
     self.teams.find(:first, :conditions => ["lower(slug) = ?", slug.downcase])
+  end
+  
+  def has_team_with_id?(team_id)
+    begin
+      self.teams.find(team_id) ? true : false
+    rescue
+      false
+    end
   end
   
   def find_notice(slug)

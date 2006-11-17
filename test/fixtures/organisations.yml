@@ -13,3 +13,19 @@ fifa:
   nickname: fifa
   summary: Blah blah blah
   seasons_count: 2
+  
+organisastion_x:
+  id: 3
+  sport_id: 1
+  title: Organisation_x
+  nickname: orgx
+  summary: Blah blah blah
+  seasons_count: 0
+  
+organisastion_y:
+  id: 4
+  sport_id: 1
+  title: Organisation_Y
+  nickname: orgy
+  summary: Blah blah blah
+  seasons_count: 0

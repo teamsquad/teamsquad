@@ -16,11 +16,11 @@ empty_competition:
  position: 2
  stages_count: 0
  
-multiple_stage_competition:
+two_stage_competition:
  id: 3
  season_id: 1
- title: Multiple Stage Competition
- slug: multiple-stage-competition
- summary: This is a multiple stage competition.
+ title: Two Stage Competition
+ slug: two-stage-competition
+ summary: This is a two stage competition.
  position: 3
  stages_count: 2

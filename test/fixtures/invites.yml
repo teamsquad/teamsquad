@@ -1,2 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+unused_invite:
+  id: 1
+  code: 0000000000001
+  used: false
 
+used_invite:
+  id: 2
+  code: 0000000000002
+  used: true

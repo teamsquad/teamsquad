@@ -1,10 +1,13 @@
 class Team < ActiveRecord::Base
 
-  before_validation :tidy_user_supplied_data!
+  before_validation :strip_title!, :create_slug!
+  after_validation  :move_slug_errors_to_title
   
-  validates_presence_of   :title
-	validates_uniqueness_of :title, :scope => "organisation_id"
-	validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_presence_of   :title, :organisation_id
+  validates_uniqueness_of :title, :scope => "organisation_id"
+  validates_uniqueness_of :slug,  :scope => "organisation_id", :message => "Title is too similar to an existing one. Please change it."
+  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_length_of     :title, :within => 4..64, :too_long => "Please use a shorter title.", :too_short => "Please use a longer title."
 
   has_many :fixture_days, 
     :class_name => 'TeamGameDay',
@@ -39,8 +42,18 @@ class Team < ActiveRecord::Base
   
 private
 
-  def tidy_user_supplied_data!
-    self.slug = self.title.to_url
+  def create_slug!
+    self.slug = self.title.to_url unless self.title.nil?
+  end
+  
+  # As the slug field is auto generated we can't display its errors.
+  # So, move them into the field the generation is based on instead.
+  def move_slug_errors_to_title
+    self.errors.add( :title, errors.on(:slug) )
+  end
+ 
+  def strip_title!
+    self.title.strip! unless self.title.nil?
   end
 
 end

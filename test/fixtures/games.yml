@@ -3,4 +3,31 @@ game1:
   group_id: 1
   kickoff: 2005-01-01
   hometeam_id: 1
-  awayteam_id: 2 
+  awayteam_id: 2
+  
+unplayed_game:
+  id: 2
+  group_id: 1
+  kickoff: 2005-01-01
+  hometeam_id: 1
+  awayteam_id: 2
+  played: false
+  
+played_game:
+  id: 3
+  group_id: 1
+  kickoff: 2005-01-01
+  hometeam_id: 1
+  home_score: 1
+  home_points: 3
+  awayteam_id: 2
+  away_score: 0
+  away_points: 0
+  played: true
+  
+game_with_no_away_team:
+  id: 4
+  group_id: 1
+  kickoff: 2005-01-01
+  hometeam_id: 1
+  played: false

@@ -33,12 +33,16 @@ class Group < ActiveRecord::Base
     :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
     :order => "kickoff asc"
   
-  before_validation :tidy_user_supplied_data!
+  before_validation :strip_title!, :create_slug!
+  after_validation  :move_slug_errors_to_title
   
-  validates_presence_of   :title
+  validates_presence_of   :title, :stage_id
   validates_uniqueness_of :title, :scope => "stage_id"
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
-  
+  validates_length_of     :title, :within => 4..64
+  validates_uniqueness_of :slug, :scope => "stage_id"
+  validates_exclusion_of  :slug, :in => %w(new_group edit information notices help teams results fixtures calendar test), :message => "That's a reserved word, please try again."
+
   def to_param
     self.slug
   end
@@ -65,8 +69,18 @@ class Group < ActiveRecord::Base
 
 private
 
-  def tidy_user_supplied_data!
-    self.slug = self.title.to_url
+  def create_slug!
+    self.slug = self.title.to_url unless self.title.nil?
+  end
+  
+  # As the slug field is auto generated we can't display its errors.
+  # So, move them into the field the generation is based on instead.
+  def move_slug_errors_to_title
+    self.errors.add( :title, errors.on(:slug) )
+  end
+ 
+  def strip_title!
+    self.title.strip! unless self.title.nil?
   end
  
 end

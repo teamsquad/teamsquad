@@ -1,2 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
+five_minute_old_comment:
+  id: 1
+  notice_id: 1
+  name: A.B. Nobody
+  content: This is my comment
+  ip_address: 127.0.0.1
+  user_agent: CoolBrowser v1.2 (Mozilla alike)
+  created_on: <%= 5.minutes.ago %>
+  
+four_minute_old_comment:
+  id: 2
+  notice_id: 1
+  name: A.B. Somebody
+  content: This is another comment
+  ip_address: 127.0.0.1
+  user_agent: CoolBrowser v1.2 (Mozilla alike)
+  created_on: <%= 4.minutes.ago %>
+  

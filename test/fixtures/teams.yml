@@ -9,3 +9,27 @@ team2:
  organisation_id: 1
  title: Team Two
  slug: team-two
+ 
+team_a_from_organisation_x:
+  id: 3
+  organisation_id: 3
+  title: Team A
+  slug: team-a
+  
+team_b_from_organisation_x:
+  id: 4
+  organisation_id: 3
+  title: Team B
+  slug: team-b
+  
+team_a_from_organisation_y:
+  id: 5
+  organisation_id: 4
+  title: Team A
+  slug: team-a
+  
+team_b_from_organisation_y:
+  id: 6
+  organisation_id: 4
+  title: Team B
+  slug: team-b
