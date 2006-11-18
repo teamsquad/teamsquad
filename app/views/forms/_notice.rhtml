@@ -7,7 +7,7 @@
     <label for="in-title">Heading</label>
     <p class="hint">This is the heading or title of the notice and should sum up
     what the notice is all about in a few words. Short and sweet.</p>
-    <%= error_message_on "form", "heading", "Heading " %>
+    <%= error_message_on "form", "heading" %>
     <p class="input"><%= text_field "form", "heading", :class => 'textfield', :id => 'in-heading' %></p>
     
     <label for="in-content">Content</label>
@@ -15,7 +15,7 @@
       add subheadings and lists and stuff to your text? Then use the quick
       guide over on the right or for a full explanation read the
       <a href="/help/formatting_text">formatting text</a> help page.</p>
-    <%= error_message_on "form", "content", "Content " %>
+    <%= error_message_on "form", "content" %>
     <%= render :partial => 'partials/content_tabs' %>
     <p class="input"><%= text_area "form", "content", :rows => 20, :class => 'textarea', :onpaste => "clean('in-content')", :id => 'in-content'%></p>
     
@@ -27,7 +27,7 @@
     you upload will be automatically scaled to reasonable size. Make sure the
     image you upload is in a suitable format for displaying on the web
     (i.e. GIF, JPEG, or PNG).</p>
-    <%= error_message_on "form", "picture", "Picture " %>
+    <%= error_message_on "form", "picture" %>
     <p class="input"><%= file_field "form", "picture", :class => 'fileupload', :id => 'in-picture'%></p>
     
     <% if @form.has_picture? %>
