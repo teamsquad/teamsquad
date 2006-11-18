@@ -212,6 +212,10 @@ div.post {
   margin-bottom: 1em;
 }
 
+div.post p {
+  text-align: justify;
+}
+
 h2.post {
 	margin-left: -24px;
   padding-left: 24px;
@@ -242,7 +246,7 @@ ul.things {
 
 div.image {
   float: right;
-  margin: 1em 0 0.5em 0.5em;
+  margin: 1em 0 0.5em 1em;
   border: 1px solid #CCC;
   padding: 3px;
   text-align: center;
