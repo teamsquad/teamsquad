@@ -1,7 +1,8 @@
 class Stage < ActiveRecord::Base
 
   attr_protected :competition_id
-
+  
+  acts_as_sluggable :title
   acts_as_list :scope => :competition
 
   belongs_to :competition, :counter_cache => 'stages_count'
@@ -32,8 +33,7 @@ class Stage < ActiveRecord::Base
     :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
     :order => "kickoff asc"
 
-  before_validation :strip_title!, :create_slug!
-  after_validation  :move_slug_errors_to_title
+  before_validation :strip_title!
   
   validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "competition_id", :message => "You already have a stage with that name in this competition."
@@ -42,9 +42,6 @@ class Stage < ActiveRecord::Base
   validates_exclusion_of  :slug,  :in => %w(edit_stage calendar fixtures results new_stage teams calendar information about), :message => "That's a reserved word, please try again."
   validates_uniqueness_of :slug,  :scope => "competition_id", :message => "Title is too similar to an existing one. Please change it."
 
-  def to_param
-    self.slug
-  end
   
   def has_no_groups?
     !self.has_groups?
@@ -65,19 +62,9 @@ class Stage < ActiveRecord::Base
   end
   
 private
-
-  def create_slug!
-    self.slug = self.title.to_url unless self.title.nil?
-  end
   
-  # As the slug field is auto generated we can't display its errors.
-  # So, move them into the field the generation is based on instead.
-  def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
-  end
- 
   def strip_title!
     self.title.strip! unless self.title.nil?
   end
- 
+  
 end

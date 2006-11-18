@@ -1,11 +1,11 @@
 class Competition < ActiveRecord::Base
   
   attr_protected :id, :season_id
-  
   attr_accessor :format
   
-  before_validation :strip_title!, :create_slug!
-  after_validation  :move_slug_errors_to_title
+  acts_as_sluggable :title
+  
+  before_validation :strip_title!
   before_create     :create_format
   
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
@@ -89,15 +89,11 @@ class Competition < ActiveRecord::Base
     :conditions => "(kickoff BETWEEN (CURRENT_DATE - 28) and (CURRENT_DATE + 4) AND hometeam_id != 0 AND awayteam_id != 0)",
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc"
-
-  def to_param
-    self.slug
-  end
   
   def label_or_title
     (self.label && !self.label.empty?) ? self.label : self.title
   end
-
+  
   def current_stage
     self.stages.find(
       :first,
@@ -148,9 +144,9 @@ class Competition < ActiveRecord::Base
       end
     end
   end
-
+  
 protected
- 
+  
   # Saves the competition and creates appropriate
   # underlying stages and groups as determined
   # by self.format. Formats are currently hardcoded
@@ -206,21 +202,11 @@ protected
   end
 
 private
-
-  def create_slug!
-    self.slug = self.title.to_url unless self.title.nil?
-  end
   
-  # As the slug field is auto generated we can't display its errors.
-  # So, move them into the field the generation is based on instead.
-  def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
-  end
- 
   def strip_title!
     self.title.strip! unless self.title.nil?
   end
- 
+  
   def self.formats
     [
       ["Empty - will need to be manually set up after creation", "0"],
@@ -263,5 +249,5 @@ private
     end
     attrs
   end
-
+  
 end

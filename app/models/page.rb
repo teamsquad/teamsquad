@@ -1,19 +1,19 @@
 class Page < ActiveRecord::Base
   
   attr_protected :organisation_id
-  
-  attr_accessor :remove_picture
+  attr_accessor  :remove_picture
 
   file_column :picture,
     :root_path => File.join(RAILS_ROOT, "public", "uploads"),
     :magick => { :geometry => "200x200>" }
   
-  acts_as_list :scope => :organisation_id
+  acts_as_sluggable :title
+  acts_as_list      :scope => :organisation_id
   
   belongs_to :organisation
   
-  before_validation :strip_title!, :create_slug!
-  after_validation  :move_slug_errors_to_title, :remove_picture_if_required
+  before_validation :strip_title!
+  after_validation  :remove_picture_if_required
   
   validates_presence_of   :organisation_id
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
@@ -23,38 +23,24 @@ class Page < ActiveRecord::Base
   validates_length_of     :title, :within => 4..128
   validates_length_of     :label, :maximum => 32, :if => Proc.new { |p| !p.label.nil? }
   
-  def to_param
-    self.slug
-  end
-  
   def label_or_title
     (self.label && !self.label.empty?) ? self.label : self.title
   end
-
+  
   def has_picture?
     (self.picture && self.picture.size > 0) || false
   end
-
-private
-
-  def create_slug!
-    self.slug = self.title.to_url unless self.title.nil?
-  end
   
-  # As the slug field is auto generated we can't display its errors.
-  # So, move them into the field the generation is based on instead.
-  def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) )
-  end
- 
+private
+  
   def strip_title!
     self.title.strip! unless self.title.nil?
   end
- 
+  
   def remove_picture_if_required
     if self.errors.empty? && !picture_just_uploaded? && remove_picture == 'true'
       self.picture = nil
     end
   end
-
+  
 end

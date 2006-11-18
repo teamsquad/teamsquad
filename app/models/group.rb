@@ -1,7 +1,9 @@
 class Group < ActiveRecord::Base
-
+  
   attr_protected :stage_id
-
+  
+  acts_as_sluggable :title
+  
   belongs_to :stage, :counter_cache => 'groups_count'
   has_many   :games, :dependent => true, :include => [:home_team, :away_team]
   has_many   :matches, :include => [:home_team, :away_team]
@@ -12,12 +14,12 @@ class Group < ActiveRecord::Base
     :class_name => 'Match',
     :conditions => ["played = ?", true],
     :order => "kickoff desc" 
-
+  
   has_many :fixtures,
     :class_name => 'Match',
     :conditions => ["played = ?", false],
     :order => "kickoff asc"
-
+  
   has_many :overdue_fixtures,
     :class_name => 'Match',
     :conditions => ["kickoff < CURRENT_DATE AND hometeam_id != 0 AND awayteam_id != 0 AND played = ?", false],
@@ -33,8 +35,7 @@ class Group < ActiveRecord::Base
     :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
     :order => "kickoff asc"
   
-  before_validation :strip_title!, :create_slug!
-  after_validation  :move_slug_errors_to_title
+  before_validation :strip_title!
   
   validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "stage_id"
@@ -42,10 +43,6 @@ class Group < ActiveRecord::Base
   validates_length_of     :title, :within => 4..64
   validates_uniqueness_of :slug, :scope => "stage_id"
   validates_exclusion_of  :slug, :in => %w(new_group edit information notices help teams results fixtures calendar test), :message => "That's a reserved word, please try again."
-
-  def to_param
-    self.slug
-  end
   
   # A group is lonely if it is the only one within its parent stage
   def lonely?
@@ -66,21 +63,11 @@ class Group < ActiveRecord::Base
       end
     end
   end
-
-private
-
-  def create_slug!
-    self.slug = self.title.to_url unless self.title.nil?
-  end
   
-  # As the slug field is auto generated we can't display its errors.
-  # So, move them into the field the generation is based on instead.
-  def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) ) unless errors.on(:slug).nil?
-  end
- 
+private
+  
   def strip_title!
     self.title.strip! unless self.title.nil?
   end
- 
+  
 end

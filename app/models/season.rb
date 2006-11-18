@@ -7,11 +7,12 @@ class Season < ActiveRecord::Base
   
   attr_protected :organisation_id, :stages_count
   
+  acts_as_sluggable :title
+  
   belongs_to :organisation, :counter_cache => 'seasons_count'
   has_many   :competitions, :dependent => true, :order => "position ASC"
   
-  before_validation :strip_title!, :create_slug!
-  after_validation  :move_slug_errors_to_title
+  before_validation :strip_title!
   
   validates_presence_of   :title, :organisation_id
   validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
@@ -34,10 +35,6 @@ class Season < ActiveRecord::Base
   # INSTANCE METHODS
   #
   
-  def to_param
-    self.slug
-  end
-  
   def probably_not_yet_set_up
     self.title == 'Empty'
   end
@@ -52,19 +49,9 @@ class Season < ActiveRecord::Base
   end
   
 private
-
-  def create_slug!
-    self.slug = self.title.to_url unless self.title.nil?
-  end
-  
-  # As the slug field is auto generated we can't display its errors.
-  # So, move them into the field the generation is based on instead.
-  def move_slug_errors_to_title
-    self.errors.add( :title, errors.on(:slug) )
-  end
  
   def strip_title!
     self.title.strip! unless self.title.nil?
   end
-
+  
 end
