@@ -65,6 +65,18 @@ class NoticeTest < Test::Unit::TestCase
     notice.heading = 'Hyphen-in it'
     notice.save
     assert_equal 'hyphen-in-it', notice.slug
+    
+    notice.heading = 'Registration is now £50!'
+    notice.save
+    assert_equal 'registration-is-now-50', notice.slug
+    
+    notice.heading = "It's all, good"
+    notice.save
+    assert_equal 'its-all-good', notice.slug
+    
+    notice.heading = "This & that"
+    notice.save
+    assert_equal 'this-that', notice.slug
   end
   
   def test_should_have_a_url_slug_that_is_unique_within_its_organisation
