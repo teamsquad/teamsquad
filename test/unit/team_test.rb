@@ -38,9 +38,9 @@ class TeamTest < Test::Unit::TestCase
     assert_error_on    :title, Team.create(:title => '12345678901234567890123456789012345678901234567890123456789012345')
   end
   
-  def test_should_only_allow_alphanumerics_spaces_and_hyphens_in_its_title
+  def test_should_only_allow_alphanumerics_spaces_periods_and_hyphens_in_its_title
     assert_error_on    :title, Team.create(:title => '$%^&*')
-    assert_error_on    :title, Team.create(:title => 'Some title.')
+    assert_error_on    :title, Team.create(:title => 'Some title!')
     assert_error_on    :title, Team.create(:title => 'This & that')
     assert_error_on    :title, Team.create(:title => 'Foo/Bar')
     assert_error_on    :title, Team.create(:title => '../../something-secret')
