@@ -19,15 +19,15 @@ class Match < ActiveRecord::Base
   
   def summary_for_news
     if has_summary?
-      summary
+      "#{pretty_date} - #{summary}"
     else
       case state
         when 'homewin'
-          "#{pretty_time} #{pretty_date} - #{home_team.title} win this #{group.title} clash."
+          "#{pretty_date} - #{home_team.title} win this #{group.title} clash."
         when 'awaywin'
-          "#{pretty_time} #{pretty_date} - #{home_team.title} lose out to #{away_team.title} in this #{group.title} clash."
+          "#{pretty_date} - #{home_team.title} lose out to #{away_team.title} in this #{group.title} clash."
         when 'draw'
-          "#{pretty_time} #{pretty_date} - This #{group.title} clash ended in a draw."
+          "#{pretty_date} - This #{group.title} clash ended in a draw."
         else
           "The match is set for #{pretty_date}."
       end
@@ -62,14 +62,14 @@ class Match < ActiveRecord::Base
   def headline
     if self.played?
       if self.home_points > self.away_points
-        "#{home_team.title} beat #{away_team.title}"
+        "<strong>#{home_team.title}</strong> beat <strong>#{away_team.title}</strong>"
       elsif self.home_points < self.away_points
-        "#{home_team.title} lose to #{away_team.title}"
+        "<strong>#{home_team.title}</strong> lose to <strong>#{away_team.title}</strong>"
       else
-        "#{home_team.title} draw with #{away_team.title}"
+        "<strong>#{home_team.title}</strong> draw with <strong>#{away_team.title}</strong>"
       end
     else
-      "#{home_team.title} to play #{away_team.title}"
+      "<strong>#{home_team.title}</strong> to play <strong>#{away_team.title}</strong>"
     end
   end
 
