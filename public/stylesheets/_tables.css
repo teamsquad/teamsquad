@@ -53,10 +53,10 @@ table.games tr.awaywin td.away {
 table tr.even td,
 table tr.even th {
 	border-top: 1px solid #EEE;
-	background: url(/images/dither.gif);
+	background:#F8F8F8;
 }
 
-table tr.odd td
+table tr.odd td,
 table tr.odd th {
 	border-top: 1px solid #EEE;
 }

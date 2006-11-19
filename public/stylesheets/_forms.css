@@ -45,7 +45,7 @@ form fieldset {
   margin: 0 0 1em 0;
   padding: 0.5em 1em 1em 1em;
   border: 4px solid #EEE;
-  background: url(/images/dither.gif);
+  background: #F8F8F8;
 }
 
 form legend {
