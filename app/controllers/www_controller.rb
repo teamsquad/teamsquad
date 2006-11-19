@@ -20,7 +20,7 @@ class WwwController < ApplicationController
   
   end
   
-  def screenshots
+  def features
     
   end
   
