@@ -1,9 +1,9 @@
 class GroupController < AbstractAccountController
 
   before_filter :check_logged_in
-  before_filter :get_stage
   
   def new
+    get_stage
     @titles << "New group"
     @form = Group.new(params["form"])
     @form.stage_id = @stage.id
@@ -57,8 +57,12 @@ private
   def clear_caches(date = nil)
     expire_fragment(:controller => 'competition', :action => "fixtures")
     expire_fragment(:controller => 'competition', :action => "results")
-    expire_fragment(:controller => 'team', :action => "fixtures")
-    expire_fragment(:controller => 'team', :action => "results")
+    expire_fragment(:controller => 'competition', :action => "view")
+    for team in @organisation.teams
+      expire_fragment(:controller => 'team', :team => team, :action => "fixtures")
+      expire_fragment(:controller => 'team', :team => team, :action => "fixtures")
+      expire_fragment(:controller => 'team', :team => team, :action => "results")
+    end
     expire_fragment(:controller => 'competition', :action => "view")
     expire_fragment(:controller => 'calendar', :action => "index")
     if date
