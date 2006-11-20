@@ -29,8 +29,11 @@ class Game < ActiveRecord::Base
   end
   
   validates_each :hometeam_id, :awayteam_id do |game, attr, team_id|
-    if !team_id.nil? && !game.organisation.has_team_with_id?(team_id)
-      game.errors.add attr, "Invalid team specified."
+    unless team_id.nil?   ||
+           team_id == ''  ||
+           team_id == 0 ||
+           game.organisation.has_team_with_id?(team_id)
+      game.errors.add attr, "Invalid team => '#{team_id}' (#{team_id == 0})."
     end
   end
   

@@ -26,14 +26,40 @@ class GameTest < Test::Unit::TestCase
     assert_error_on    :away_notes, Game.create(:away_notes => '12345678901234567890123456789012345678901234567890123456789012345')
   end
   
-  def test_should_ensure_home_team_is_in_its_organisation
+  def test_should_allow_home_team_to_be_left_unassigned
+    game = games(:game1)
+    game.hometeam_id = nil
+    assert_true game.save
+    assert_no_error_on :hometeam_id, game
+    game.hometeam_id = ''
+    assert_true game.save
+    assert_no_error_on :hometeam_id, game
+    game.hometeam_id = '0'
+    assert_true game.save
+    assert_no_error_on :hometeam_id, game
+  end
+  
+  def test_should_allow_away_team_to_be_left_unassigned
+    game = games(:game1)
+    game.awayteam_id = nil
+    assert_true game.save
+    assert_no_error_on :awayteam_id, game
+    game.awayteam_id = ''
+    assert_true game.save
+    assert_no_error_on :awayteam_id, game
+    game.awayteam_id = '0'
+    assert_true game.save
+    assert_no_error_on :awayteam_id, game
+  end
+  
+  def test_should_ensure_home_team_is_in_its_organisation_if_assigned
     game = games(:game1)
     game.hometeam_id = 10000
     assert_false game.save
     assert_error_on    :hometeam_id, game
   end
   
-  def test_should_ensure_away_team_is_in_its_organisation
+  def test_should_ensure_away_team_is_in_its_organisation_if_assigned
     game = games(:game1)
     game.awayteam_id = 10000
     assert_false game.save

@@ -35,7 +35,7 @@ class GroupController < AbstractAccountController
     @titles << "New fixtures"
     if request.post? and @group.process_fixtures(@params)
       clear_caches(params[:when])
-      redirect_to stage_url(:competition => @competition, :stage => @stage) and return
+      redirect_to competition_fixtures_url(:competition => @competition) and return
     end
     @scripts << 'fixtures'
     @teams_in_group = @group.teams

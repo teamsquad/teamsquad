@@ -53,13 +53,11 @@ class Group < ActiveRecord::Base
     self.transaction do
       matchday = "#{params['when']['year']}-#{params['when']['month']}-#{params['when']['day']}"
       params['game'].each do |gameparams|
-        if gameparams[1]['hometeam']!="" && gameparams[1]['awayteam']!=""
-          game = Game.new
-          game.kickoff     = "#{matchday} #{gameparams[1]['hour']}:#{gameparams[1]['minute']}:00"
-          game.hometeam_id = gameparams[1]['hometeam']
-          game.awayteam_id = gameparams[1]['awayteam']
-          self.games << game
-        end
+        game = self.games.build
+        game.kickoff     = "#{matchday} #{gameparams[1]['hour']}:#{gameparams[1]['minute']}:00"
+        game.hometeam_id = gameparams[1]['hometeam']
+        game.awayteam_id = gameparams[1]['awayteam']
+        game.save or raise "Rollback!"
       end
     end
   end
