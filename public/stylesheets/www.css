@@ -84,7 +84,7 @@ div#foot {
 }
 
   #blurb p {
-    color: #666;
+    color: #999;
   }
 
 #focus {
@@ -93,8 +93,7 @@ div#foot {
 }
 
   #focus strong {
-    color: #900;
-    font-weight: normal;
+    font-weight: bold;
   }
 
   #focus a {
@@ -126,7 +125,7 @@ h2 {
 }
 
 h3 {
-  color: #000;
+  color: #900;
   margin-bottom: 0.2em;
   font-size: 1.4em;
 }
@@ -146,6 +145,7 @@ p {
   #blurb p,
   #focus p {
     line-height: 1.4;
+    text-align: justify;
   }
 
 p.screenshot {
@@ -201,9 +201,23 @@ a:hover {
   text-decoration: underline;
 }
 
+ul {
+  margin: 0 0 2em 0;
+  padding: 0;
+}
+
+ul li {
+  display: block;
+  margin: 0.3em 0;
+  padding: 0 0 0 15px;
+  background: url(/images/bullet.gif) no-repeat center left;
+  line-height: 1.8em;
+}
+
 dl {
   margin: 1em 0;
-  padding: 0;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #EEE;
 }
 
   dl dt {
@@ -213,8 +227,10 @@ dl {
   }
   
   dl dd {
-    padding: 0;
+    padding: 0 0 10px 0;
     margin: 0 0 1em 0;
+    text-align: justify;
+    border-bottom: 1px solid #EEE;
   }
 
 dl.features {
