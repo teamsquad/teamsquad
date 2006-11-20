@@ -135,6 +135,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'competition',
     :action => 'fixtures'
     
+  map.competition_add_fixtures 'competitions/:competition/add_fixtures',
+    :controller => 'competition',
+    :action => 'add_fixtures'
+    
   # CALENDAR
   
   map.calendar 'competitions/:competition/calendar',

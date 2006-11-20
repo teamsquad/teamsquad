@@ -8,11 +8,16 @@
   <% else -%>
   <h2>Nothing to display!</h2>
   <p>There are no fixtures available for this competition. Either this
-  competition is yet to start or the lazy person organising it needs to
+  competition is yet to start or the person organising it needs to
   get their finger out and enter some fixtures in.</p>
   <% end -%>
 </div><% end %>
 
 <div id="secondary">
+  <% if authorised? %><h2>Fixtures</h2>
+  <ul class="current">
+    <li class="admin"><%= link_to 'Add fixtures', competition_add_fixtures_url(:competition => @competition) %></li>
+  </ul><% end %>
+  
   <%= render :partial => 'partials/competition_menu' %>
 </div>

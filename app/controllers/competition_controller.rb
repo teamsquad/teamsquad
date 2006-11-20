@@ -36,6 +36,13 @@ class CompetitionController < AbstractAccountController
     @stages = @competition.stages
     @titles << "Fixtures"
   end
+  
+  def add_fixtures
+    get_competition
+    stage = @competition.current_stage
+    group = stage.groups.first
+    redirect_to new_fixtures_url(:competition => @competition, :stage => stage, :group => group)
+  end
 
   def results
     get_competition
