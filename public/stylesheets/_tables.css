@@ -16,6 +16,7 @@ table thead th {
 	background: #999;
 	color: #FFF;
 	background: url(/images/header.gif) center;
+
 }
 
 table.games tfoot td,
@@ -28,21 +29,15 @@ table.standings tfoot td {
 
 table.standings th,
 table.games th {
-	line-height: 1.4em;
-	padding-left: 2px;
-	padding-right: 2px;
+	line-height: 1em;
+	padding: 2px;
 }
 
 table.standings td.stat,
 table.standings th.stat {
 	width: 6%;
 	text-align: right;
-	padding: 3px 5px 3px 1px;
-}
-
-table.standings th.stat,
-table.standings th.team {
-	padding: 0;
+	padding: 4px 5px 4px 1px;
 }
 
 table.games tr.homewin td.home,
@@ -85,18 +80,27 @@ table tr.notes td {
 	padding: 0 0 3px 0;
 }
 
-table tr.auto-promote td {
+table tr.auto-promote td.pos {
 	background-image: url(/images/autopromote_bg.png);
 }
 
-table tr.auto-relegate td {
+table tr.auto-relegate td.pos {
 	background-image: url(/images/autorelegate_bg.png);
+}
+
+table tr.conditional-promote td.pos {
+	background-image: url(/images/conditionalpromote_bg.png);
+}
+
+table tr.conditional-relegate td.pos {
+	background-image: url(/images/conditionalrelegate_bg.png);
 }
 
 .pos {
 	width: 2%;
 	text-align: right;
-	padding-right: 2px;
+	padding-right: 5px !important;
+	padding-left: 3px !important;
 }
 
 .versus {
@@ -162,6 +166,7 @@ tr.notes .away{
 	overflow: hidden;
 	white-space: nowrap;
 	width: 36%;
+	padding-left: 3px;
 }
 
 td.team {

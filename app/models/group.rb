@@ -64,6 +64,20 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def class_for_position(position)
+    if position <= (stage.automatic_promotion_places || 0)
+      'auto-promote'
+    elsif position <= (stage.automatic_promotion_places || 0) + (stage.conditional_promotion_places || 0)
+      'conditional-promote'
+    elsif position > (self.teams.size - (stage.automatic_relegation_places || 0))
+      'auto-relegate'
+    elsif position > (self.teams.size - ((stage.automatic_relegation_places || 0) + (stage.conditional_relegation_places || 0)))
+      'conditional-relegate'
+    else
+      'safe'
+    end
+  end
+  
 private
   
   def strip_title!
