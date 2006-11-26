@@ -1,6 +1,6 @@
 class OrganisationController < AbstractAccountController
 
-  before_filter :check_logged_in, :only => [:edit, :control_panel]
+  before_filter :check_logged_in, :only => :edit
 
   def home
     @new_notices  = @organisation.recent_notices

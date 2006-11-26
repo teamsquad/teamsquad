@@ -5,3 +5,4 @@ notice1:
  heading: Notice One
  slug: notice-one
  content: This is some content.
+ created_on: <%= 1.week.ago %>

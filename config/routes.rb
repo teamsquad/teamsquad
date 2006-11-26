@@ -95,7 +95,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'information',
     :action => 'new'
     
-  map.edit_information_page 'information/edit/:page',
+  map.edit_information_page 'information/:page/edit',
     :controller => 'information',
     :action => 'edit'
     

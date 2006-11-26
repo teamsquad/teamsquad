@@ -9,10 +9,39 @@ class HelpControllerTest < Test::Unit::TestCase
     @controller = HelpController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    
+    @request.host = 'test.teamsquad.com'
   end
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  #
+  # ROUTING TESTS
+  #
+  
+  def test_index_routing
+    assert_routing 'help',
+      {:controller => 'help', :action => 'index'}
+  end
+  
+  def test_formatting_text_routing
+    assert_routing 'help/formatting_text',
+      {:controller => 'help', :action => 'formatting_text'}
+  end
+  
+  #
+  # SIMPLE VIEW TESTS
+  #
+  
+  def test_view_index
+    get :index
+    assert_response :success
+    assert_template "help/index"
+    assert_tidy
+  end
+  
+  def test_view_formatting_text
+    get :formatting_text
+    assert_response :success
+    assert_template "help/formatting_text"
+    assert_tidy
   end
 end

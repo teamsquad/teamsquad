@@ -1,7 +1,7 @@
 <% unless @form.errors.empty? -%>
 <p class="warning">Sorry, but that's just not good enough.</p>
 <% end %>
-<form action="" method="post" class="standard" enctype="multipart/form-data">
+<form action="<%= request.request_uri %>" method="post" class="standard" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Details...</legend>
 	

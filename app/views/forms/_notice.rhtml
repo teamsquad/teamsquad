@@ -17,9 +17,7 @@
       <a href="/help/formatting_text">formatting text</a> help page.</p>
     <%= error_message_on "form", "content" %>
     <%= render :partial => 'partials/content_tabs' %>
-    <p class="input"><%= text_area "form", "content", :rows => 20, :class => 'textarea', :onpaste => "clean('in-content')", :id => 'in-content'%></p>
-    
-    <p><a href="#" onclick="clean('in-content'); return false;">clean HTML</a></p>
+    <p class="input"><%= text_area "form", "content", :rows => 20, :class => 'textarea', :id => 'in-content'%></p>
     
     <label for="in-picture">Picture</label>
     <p class="hint">If you want to add a picture to display with this post use the 

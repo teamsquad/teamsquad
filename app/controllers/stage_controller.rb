@@ -1,5 +1,7 @@
 class StageController < AbstractAccountController
   
+  before_filter :check_logged_in, :only => [:new, :edit]
+  
   def new
     get_competition
     @titles << "New stage"
