@@ -3,6 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class RegistrationTest < ActionController::IntegrationTest
 
   fixtures :sports, :invites
+  
+  def teardown
+    ActionController::Base.clear_last_instantiation!
+  end
 
   def test_register_new_organisation
     new_session do |eric|

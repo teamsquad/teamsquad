@@ -44,7 +44,7 @@ class SeasonControllerTest < Test::Unit::TestCase
   def test_view_edit_page
     get :edit, {}, fake_authorised_user_session
     assert_response :success
-    assert_template "season/edit", @controller.class.to_s
+    assert_template "season/edit"
     assert_tidy
   end
   
