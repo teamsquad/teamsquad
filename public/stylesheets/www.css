@@ -8,8 +8,12 @@ body {
   background: #FFF;
 }
 
+  body.index {
+    background: #FFF url(/images/www_body.gif) repeat-x;
+  }
+
 #container {
-  
+
 }
 
 div#mast {
@@ -52,7 +56,6 @@ div#menu {
 
 #content {
   padding: 0 15px 15px 15px;
-  background: #FFF;
   z-index: 2;
   margin: 15px auto 0 auto;
   text-align: left;
@@ -269,7 +272,7 @@ ul.organisations {
   }
 
 div#splash {
-  margin: 0 0 0 0;
+  margin: 0 0 20px 0;
   background: #1B1813 url(/images/splash.jpg) no-repeat left center;
   color: #FFF;
   padding: 18px 0;
@@ -298,7 +301,6 @@ div#splash p {
 div.box {
   margin: 16px 0 0 0;
   position: relative;
-  border-bottom: 1px dotted #CCC;
 }
 
   div#why-players {
