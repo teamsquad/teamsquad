@@ -60,10 +60,8 @@ class StageControllerTest < Test::Unit::TestCase
   
   def test_that_edit_action_is_protected_from_the_public
     get :edit,
-      { :controller  => 'stage',
-        :competition => 'single-stage-competition',
-        :stage       => 'test-stage-one',
-        :action      => 'edit' }
+      { :competition => 'single-stage-competition',
+        :stage       => 'test-stage-one' }
     assert_redirected_to login_url
   end
 end
