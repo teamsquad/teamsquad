@@ -9,14 +9,13 @@ A web site for organising local and amateur sports leagues and competitions.
 
 == Deployment on TextDrive
 
-Deployment is handled by capistrano. There are several useful rake tasks to
-make it simple to deploy to the servers at TextDrive.
+Deployment is handled by capistrano.
 
-$ rake deploy
+$ cap deploy
 
 ...or...
 
-$ rake remote:deploy_with_migrations
+$ cap remote:deploy_with_migrations
 
 ...if database needs updating too.
 
@@ -25,11 +24,11 @@ $ rake remote:deploy_with_migrations
 A temporary page can be stuck up if the site needs to be taken down for a 
 short period for some reason.
 
-$ rake remote:disable_web
+$ cap remote:disable_web
 
 ...takes the site down, and...
 
-$ rake remote:enable_web
+$ cap remote:enable_web
 
 ...sticks it back up again.
 
