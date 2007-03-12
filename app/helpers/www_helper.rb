@@ -1,13 +1,14 @@
 module WwwHelper
   
 	# Called by rhtml pagelet to render a complete form field
-  def form_field(model, fieldtype, fieldname, label)
+  def form_field(model, fieldtype, fieldname, label, postfix = nil)
     render_partial(
       "/partials/formfield",
       model,
       "fieldtype" => fieldtype,
       "name" => fieldname,
-      "label" => label
+      "label" => label,
+      "postfix" => postfix
     )
   end
   

@@ -13,16 +13,17 @@ body {
   }
 
 #container {
-
+  padding: 15px 0;
 }
 
 div#mast {
-  padding: 15px 0 0 0;
+  padding: 0;
   margin: 0 auto;
   text-align: left;
   overflow: hidden;
-  width: 750px;
   position: relative;
+  width: 750px;
+  height: 49px;
 }
 
 div#logo {
@@ -37,7 +38,7 @@ div#menu {
   text-align: left;
   overflow: hidden;
   margin: 20px 0 0 0;
-  border-left: 1px dotted #CCC;
+  border-left: 1px solid #EEE;
 }
   
   div#menu a {
@@ -46,7 +47,7 @@ div#menu {
     text-align: left;
     padding: 0 8px 0;
     font-weight: bold;
-    border-right: 1px dotted #CCC;
+    border-right: 1px solid #EEE;
   }
   
   div#menu a:hover {
@@ -55,9 +56,9 @@ div#menu {
   }
 
 #content {
-  padding: 0 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
   z-index: 2;
-  margin: 15px auto 0 auto;
+  margin: 0 auto;
   text-align: left;
   overflow: hidden;
   width: 750px;
@@ -116,14 +117,14 @@ h1, h2, h3, h4 {
 h1 {
   font-size: x-large;
   padding-bottom: 2px;
-  border-bottom: 1px dotted #CCC;
+  border-bottom: 4px solid #EEE;
   color: #999;
 }
 
 h2 {
   font-size: x-large;
   padding-bottom: 2px;
-  border-bottom: 1px dotted #CCC;
+  border-bottom: 4px solid #EEE;
   color: #900;
 }
 
@@ -148,7 +149,6 @@ p {
   #blurb p,
   #focus p {
     line-height: 1.4;
-    text-align: justify;
   }
 
 p.screenshot {
@@ -232,7 +232,6 @@ dl {
   dl dd {
     padding: 0 0 10px 0;
     margin: 0 0 1em 0;
-    text-align: justify;
     border-bottom: 1px solid #EEE;
   }
 
@@ -256,8 +255,9 @@ dl.features {
   }
   
   dl.features dt img {
-    float: left;
-    margin-right: 8px;
+    float: right;
+    margin-left: 1em;
+    
   }
 
 ul.organisations {
@@ -272,23 +272,28 @@ ul.organisations {
   }
 
 div#splash {
-  margin: 0 0 20px 0;
+  margin: 0;
+  padding: 0;
   background: #1B1813 url(/images/splash.jpg) no-repeat left center;
   color: #FFF;
-  padding: 18px 0;
+  height: 193px;
 }
 
 div#splash h1,
 div#splash h2 {
   line-height: 120%;
-  margin: 20px 50px 0 260px;
-  padding: 0;
+  margin: 0 50px 0 260px;
+  padding: 38px 0 0 0;
   color: #FFF;
   background: none;
   border: none;
   font-size: 24px;
   display: block;
   letter-spacing: 2px;
+}
+
+div#splash h2 {
+  padding-top: 10px;
 }
 
 div#splash p {
@@ -299,7 +304,7 @@ div#splash p {
 }
 
 div.box {
-  margin: 16px 0 0 0;
+  margin: 40px 0 0 0;
   position: relative;
 }
 
@@ -316,7 +321,7 @@ div.box {
   div.box h2 {
     margin: 0;
     padding-bottom: 2px;
-    border-bottom: 1px dotted #CCC;
+    border-bottom: 2px solid #EEE;
   }
 
   div#why-players img,
@@ -343,12 +348,12 @@ div.box {
     padding-left: 6px;
   }
 
+/* ******** NORMAL FORMS ******** */
+
 form {
   margin: 0;
   padding: 0;
 }
-
-/* ******** NORMAL FORMS ******** */
 
 p.warning {
   color: #900;
@@ -375,23 +380,26 @@ form.standard legend {
   display: none;
 }
 
+form.standard p {
+  margin: 0;
+  padding: 0;
+  clear: both;
+  color: #666;
+  position: relative;
+}
+
+form.standard p.hint {
+  margin: 0.5em 0 1em 0;
+  font-size: 0.8em;
+}
+
 form.standard label {
   display: block;
   font-weight: bold;
   color: #333;
   padding: 1px 5px 0 0;
-  font-size: larger;
-}
-
-form.standard  p {
-  margin: 0;
-  clear: both;
-}
-
-form.standard  p.hint {
-  color: #666;
-  font-size: x-small;
-  padding: 0 0 0.25em 0em;
+  font-size: 1.1em;
+  line-height: 1.2;
 }
 
 form.standard fieldset p.warning {
@@ -408,17 +416,22 @@ form.standard fieldset input,
 form.standard fieldset select,
 form.standard fieldset textarea {
   width: 100%;
-  margin-bottom: 1em;
+  border: 1px solid #CCC;
+  display: block;
 }
 
-form.standard input#organisation_nickname {
+form.standard fieldset input#organisation_nickname {
   width: 140px;
+  margin-right: 5px;
+  float: left;
   text-align: right;
-  margin-right: none;
 }
 
 form.standard fieldset.finish {
   padding: 1em;
+}
+
+form.standard fieldset.finish p {
   text-align: right;
 }
 
@@ -432,4 +445,5 @@ form.standard fieldset.finish input {
   cursor: pointer;
   width: auto;
   margin: 0;
+  display: inline;
 }
