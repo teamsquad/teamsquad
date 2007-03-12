@@ -1,13 +1,6 @@
 <div id="primary">
-	<div class="posts"><% for notice in @organisation.notices %>
-	<div class="post">
-	<h2 class="post"><%= link_to notice.heading, notice_url(:notice => notice) %></h2>
-	<p class="credit">By <%= notice.author.name %> <%= time_ago_in_words notice.created_on %> ago. 
-	<% if notice.comments_count > 0 %>
-	<%= link_to pluralize(notice.comments_count, 'comment'), notice_url(:notice => 'notice', :anchor => 'comments') %>
-	<% end %></p>
-	<%= safely_display(truncate(notice.content, 72)) %>
-	</div><% end %>
+	<div class="posts">
+	<%= render :partial => "partials/notice", :collection => @organisation.notices %>
 	</div>
 </div>
 
