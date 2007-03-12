@@ -3,9 +3,9 @@
 #
 # Or rollback with...
 #   cap rollback
-role :app, 'teamsquad.com'
-role :web, 'teamsquad.com'
-role :db, 'teamsquad.com'
+role :app, 'teamsquad.com', :primary => true
+role :web, 'teamsquad.com', :primary => true
+role :db, 'teamsquad.com', :primary => true
 
 set :application, 'teamsquad'
 set :repository,"http://teamsquad.com/svn/projects/#{application}/trunk"
