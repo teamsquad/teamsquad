@@ -13,6 +13,14 @@ ActionController::Routing::Routes.draw do |map|
   map.www_generic ':action/:id',
     :controller => 'www',
     :conditions => { :subdomain => 'www' }
+    
+  map.alternative_www_home '',
+    :controller => 'www',
+    :conditions => { :subdomain => nil }
+  
+  map.alternative_www_generic ':action/:id',
+    :controller => 'www',
+    :conditions => { :subdomain => nil }
   
   # ORGANISATION
   
