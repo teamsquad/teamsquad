@@ -86,7 +86,7 @@ class Competition < ActiveRecord::Base
     
   has_many :news_worthy_matches,
     :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
+    :conditions => ["kickoff > (CURRENT_DATE - 48) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc"
   
@@ -123,26 +123,6 @@ class Competition < ActiveRecord::Base
   
   def has_news_worthy_matches?
     self.news_worthy_matches.count > 0
-  end
-  
-  # Attempts to save result data for this competitions fixtures
-  # params argument is a set of well formed request parameters
-  def process_results(params)
-    self.transaction do
-      params['game'].each do |key, attrs|
-        game = Game.find(key)
-        if attrs['home_points'] && attrs['away_points'] && attrs['home_points'] != "" && attrs['away_points'] != ""
-          attrs = create_attributes_for_result_by_points(attrs)
-        elsif attrs['home_score'] && attrs['away_score'] && attrs['home_score'] != "" && attrs['away_score'] != ""
-          attrs = create_attributes_for_result_by_score(attrs)
-        end
-        if attrs['home_points'] && attrs['away_points'] && attrs['home_score'] && attrs['away_score'] 
-          game.attributes = attrs
-          game.played = true
-          game.save or raise "Can't save game: #{game.errors.inspect}"
-        end
-      end
-    end
   end
   
 protected
@@ -217,37 +197,6 @@ private
       ["Cup - 32 teams, 6 stages", '5'],
       ["Tournament - 32 teams, 1 group stage, 5 knockout stages", "6"],
     ]
-  end
-  
-  def create_attributes_for_result_by_points(attrs)
-    if attrs['result'] == '0'
-      attrs['home_score'] = 1
-      attrs['away_score'] = 0
-    elsif attrs['result'] == '1'
-      attrs['home_score'] = 0
-      attrs['away_score'] = 1
-    elsif attrs['result'] == '2'
-      attrs['home_score'] = 0
-      attrs['away_score'] = 0
-    end
-    attrs.delete 'result'
-    attrs
-  end
-  
-  # TODO: needs to look points up from stage
-  # In fact this should probably all be in stage model!
-  def create_attributes_for_result_by_score(attrs)
-     if attrs['home_score'] > attrs['away_score']
-      attrs['home_points'] = 3
-      attrs['away_points'] = 0
-    elsif attrs['home_score'] < attrs['away_score']
-      attrs['home_points'] = 0
-      attrs['away_points'] = 3
-    else
-      attrs['home_points'] = 1
-      attrs['away_points'] = 1
-    end
-    attrs
   end
   
 end

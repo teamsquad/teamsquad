@@ -46,7 +46,7 @@ class GroupController < AbstractAccountController
     @titles << "Enter results"
     @games = @group.overdue_fixtures
     @stages = @competition.stages
-    if request.post? and @competition.process_results(@params)
+    if request.post? and @group.process_results(@params)
       clear_caches
       redirect_to competition_url(:competition => @competition) and return
     end

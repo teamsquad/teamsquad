@@ -62,6 +62,26 @@ class Group < ActiveRecord::Base
     end
   end
   
+  # Attempts to save result data for this competitions fixtures
+  # params argument is a set of well formed request parameters
+  def process_results(params)
+    self.transaction do
+      params['game'].each do |key, attrs|
+        game = Game.find(key)
+        if attrs['home_points'] && attrs['away_points'] && attrs['home_points'] != "" && attrs['away_points'] != ""
+          attrs = create_attributes_for_result_by_points(attrs)
+        elsif attrs['home_score'] && attrs['away_score'] && attrs['home_score'] != "" && attrs['away_score'] != ""
+          attrs = create_attributes_for_result_by_score(attrs)
+        end
+        if attrs['home_points'] && attrs['away_points'] && attrs['home_score'] && attrs['away_score'] 
+          game.attributes = attrs
+          game.played = true
+          game.save or raise "Can't save game: #{game.errors.inspect}"
+        end
+      end
+    end
+  end
+  
   def class_for_position(position)
     if position <= (stage.automatic_promotion_places || 0)
       'auto-promote'
@@ -80,6 +100,37 @@ private
   
   def strip_title!
     self.title.strip! unless self.title.nil?
+  end
+  
+  def create_attributes_for_result_by_points(attrs)
+    if attrs['result'] == '0'
+      attrs['home_score'] = 1
+      attrs['away_score'] = 0
+    elsif attrs['result'] == '1'
+      attrs['home_score'] = 0
+      attrs['away_score'] = 1
+    elsif attrs['result'] == '2'
+      attrs['home_score'] = 0
+      attrs['away_score'] = 0
+    end
+    attrs.delete 'result'
+    attrs
+  end
+  
+  # TODO: needs to look points up from stage
+  # In fact this should probably all be in stage model!
+  def create_attributes_for_result_by_score(attrs)
+     if attrs['home_score'] > attrs['away_score']
+      attrs['home_points'] = self.stage.points_for_win
+      attrs['away_points'] = self.stage.points_for_loss
+    elsif attrs['home_score'] < attrs['away_score']
+      attrs['home_points'] = self.stage.points_for_loss
+      attrs['away_points'] = self.stage.points_for_win
+    else
+      attrs['home_points'] = self.stage.points_for_draw
+      attrs['away_points'] = self.stage.points_for_draw
+    end
+    attrs
   end
   
 end
