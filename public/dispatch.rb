@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/Users/sid/.rvm/rubies/ruby-1.8.7-p302/bin/ruby
 
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 
