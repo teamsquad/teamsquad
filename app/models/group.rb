@@ -44,6 +44,14 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :slug, :scope => "stage_id"
   validates_exclusion_of  :slug, :in => %w(new_group edit information notices help teams results fixtures calendar test), :message => "That's a reserved word, please try again."
   
+  def has_teams?
+    !self.teams.empty?
+  end
+  
+  def has_overdue_fixtures?
+    !self.overdue_fixtures.empty?
+  end
+  
   # A group is lonely if it is the only one within its parent stage
   def lonely?
     self.stage.groups_count == 1
