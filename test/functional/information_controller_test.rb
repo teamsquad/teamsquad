@@ -4,7 +4,7 @@ require 'information_controller'
 # Re-raise errors caught by the controller.
 class InformationController; def rescue_action(e) raise e end; end
 
-class InformationControllerTest < Test::Unit::TestCase
+class InformationControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

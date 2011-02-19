@@ -4,7 +4,7 @@ require 'notice_controller'
 # Re-raise errors caught by the controller.
 class NoticeController; def rescue_action(e) raise e end; end
 
-class NoticeControllerTest < Test::Unit::TestCase
+class NoticeControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

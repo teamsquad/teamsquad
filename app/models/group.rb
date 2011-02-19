@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   acts_as_sluggable :title
   
   belongs_to :stage, :counter_cache => 'groups_count'
-  has_many   :games, :dependent => true, :include => [:home_team, :away_team]
+  has_many   :games, :dependent => :destroy, :include => [:home_team, :away_team]
   has_many   :matches, :include => [:home_team, :away_team]
   has_many   :standings, :include => :team, :order => 'totalpoints desc'
   has_and_belongs_to_many :teams, :order => 'title asc'

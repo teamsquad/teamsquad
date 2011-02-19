@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class InviteTest < Test::Unit::TestCase
+class InviteTest < ActiveSupport::TestCase
   
   fixtures :invites
 

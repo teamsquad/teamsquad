@@ -4,7 +4,7 @@ require 'organisation_controller'
 # Re-raise errors caught by the controller.
 class OrganisationController; def rescue_action(e) raise e end; end
 
-class OrganisationControllerTest < Test::Unit::TestCase
+class OrganisationControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

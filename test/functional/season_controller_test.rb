@@ -4,7 +4,7 @@ require 'season_controller'
 # Re-raise errors caught by the controller.
 class SeasonController; def rescue_action(e) raise e end; end
 
-class SeasonControllerTest < Test::Unit::TestCase
+class SeasonControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

@@ -20,7 +20,7 @@ class Competition < ActiveRecord::Base
   acts_as_list :scope => :season
 
   belongs_to :season, :counter_cache => 'competitions_count'
-  has_many   :stages, :dependent => true, :order => "position ASC"
+  has_many   :stages, :dependent => :destroy, :order => "position ASC"
   
   has_many :match_months,
     :class_name => 'GameMonth',
@@ -88,7 +88,8 @@ class Competition < ActiveRecord::Base
     :class_name => 'Match',
     :conditions => ["kickoff > (CURRENT_DATE - 48) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
     :include => [:home_team, :away_team, :group],
-    :order => "kickoff desc"
+    :order => "kickoff desc",
+    :limit => 20
   
   def label_or_title
     (self.label && !self.label.empty?) ? self.label : self.title

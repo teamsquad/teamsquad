@@ -10,7 +10,7 @@ class Notice < ActiveRecord::Base
     :magick => { :geometry => "200x200>" }
   
   belongs_to :organisation
-  has_many   :comments, :dependent => true, :order => 'comments.created_on ASC'
+  has_many   :comments, :dependent => :destroy, :order => 'comments.created_on ASC'
   belongs_to :author, :class_name => "User", :foreign_key => "user_id"
   
   before_validation :strip_heading!

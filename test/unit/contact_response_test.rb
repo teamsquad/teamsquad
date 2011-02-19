@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ContactResponseTest < Test::Unit::TestCase
+class ContactResponseTest < ActiveSupport::TestCase
   
   fixtures :contact_responses
   

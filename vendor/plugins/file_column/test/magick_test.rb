@@ -4,7 +4,7 @@ require_gem 'rmagick'
 class Entry < ActiveRecord::Base
 end
 
-class AbstractRMagickTest < Test::Unit::TestCase
+class AbstractRMagickTest < ActiveSupport::TestCase
   def teardown
     FileUtils.rm_rf File.dirname(__FILE__)+"/public/entry/"
   end

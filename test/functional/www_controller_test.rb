@@ -4,7 +4,7 @@ require 'www_controller'
 # Re-raise errors caught by the controller.
 class WwwController; def rescue_action(e) raise e end; end
 
-class WwwControllerTest < Test::Unit::TestCase
+class WwwControllerTest < ActionController::TestCase
   def setup
     @controller = WwwController.new
     @request    = ActionController::TestRequest.new

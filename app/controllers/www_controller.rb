@@ -48,7 +48,7 @@ class WwwController < ApplicationController
       redirect_to(:action => "registered", :id => @organisation.id) and return
     end
     @page_title = "Register"
-    @sports = Sport.find_all
+    @sports = Sport.find(:all)
   end
   
   def registered

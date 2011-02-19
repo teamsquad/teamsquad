@@ -1,6 +1,6 @@
 <% cache do %><div id="primary">
 	<% unless @months.empty? %><% for month in @months	%>
-	<%= render_partial 'partials/month', month.date, 'dates' => @dates.select { |d| d.month == month.date.month } %><% end %>
+	<%= render(:partial => 'partials/month', :object => month.date, :locals => {:dates => @dates.select { |d| d.month == month.date.month }}) %><% end %>
 	<% else -%>
 	<h2>Nothing to display!</h2>
 	<p>There are no matches scheduled for this competition. Either this

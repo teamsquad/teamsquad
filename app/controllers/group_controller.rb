@@ -33,7 +33,7 @@ class GroupController < AbstractAccountController
   def new_fixtures
     get_group
     @titles << "New fixtures"
-    if request.post? and @group.process_fixtures(@params)
+    if request.post? and @group.process_fixtures(params)
       clear_caches(params[:when])
       redirect_to competition_fixtures_url(:competition => @competition) and return
     end
@@ -46,7 +46,7 @@ class GroupController < AbstractAccountController
     @titles << "Enter results"
     @games = @group.overdue_fixtures
     @stages = @competition.stages
-    if request.post? and @group.process_results(@params)
+    if request.post? and @group.process_results(params)
       clear_caches
       redirect_to competition_url(:competition => @competition) and return
     end

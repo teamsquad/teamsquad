@@ -4,7 +4,7 @@ require 'control_panel_controller'
 # Re-raise errors caught by the controller.
 class ControlPanelController; def rescue_action(e) raise e end; end
 
-class ControlPanelControllerTest < Test::Unit::TestCase
+class ControlPanelControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,
@@ -112,7 +112,7 @@ class ControlPanelControllerTest < Test::Unit::TestCase
   end
   
   def test_view_edit_admin_form_with_really_dodgy_id
-    assert_raise(ActiveRecord::StatementInvalid) do
+    assert_raise(ActiveRecord::RecordNotFound) do
       get :edit_admin, { :id => '£$%^&*(' } , fake_authorised_user_session
       assert_response :missing
       assert_tidy

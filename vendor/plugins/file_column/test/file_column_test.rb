@@ -20,7 +20,7 @@ class Movie < ActiveRecord::Base
 end
 
 
-class FileColumnTest < Test::Unit::TestCase
+class FileColumnTest < ActiveSupport::TestCase
   
   def setup
     # we define the file_columns here so that we can change

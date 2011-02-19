@@ -21,7 +21,7 @@ class ActiveRecord::Base
 end
 
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
   private
   
   def uploaded_file(path, content_type, filename, type=:tempfile)

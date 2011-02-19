@@ -6,7 +6,7 @@
 	<% if controller.action_name == 'view' %>
 	<%= textilize(notice.content) %>
 	<% else %>
-	<%= textilize( truncate(notice.content, 512)) %>
+	<%= textilize( truncate(notice.content, :length => 512)) %>
 	<p><%= link_to "Read on...", notice_url(:notice => notice)	%></p>
 	<% end %>
 	<div class="clear"></div>

@@ -19,5 +19,9 @@ module ApplicationHelper
     tag = %r{<[!/?\[]?(?:#{tag_key}|--)(?:\s+#{attributes})?\s*(?:[!/?\]]+|--)?>}
     text.gsub(tag, '').gsub(/\s+/, ' ').strip
   end
+  
+  def leading_zero_on_single_digits(number)
+    number > 9 ? number : "0#{number}"
+  end
 
 end

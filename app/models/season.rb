@@ -10,7 +10,7 @@ class Season < ActiveRecord::Base
   acts_as_sluggable :title
   
   belongs_to :organisation, :counter_cache => 'seasons_count'
-  has_many   :competitions, :dependent => true, :order => "position ASC"
+  has_many   :competitions, :dependent => :destroy, :order => "position ASC"
   
   before_validation :strip_title!
   

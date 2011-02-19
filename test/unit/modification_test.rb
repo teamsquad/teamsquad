@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ModificationTest < Test::Unit::TestCase
+class ModificationTest < ActiveSupport::TestCase
   
   fixtures :sports,
            :organisations,

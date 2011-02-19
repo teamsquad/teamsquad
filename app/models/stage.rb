@@ -6,7 +6,7 @@ class Stage < ActiveRecord::Base
   acts_as_list :scope => :competition
 
   belongs_to :competition, :counter_cache => 'stages_count'
-  has_many   :groups, :dependent => true, :order => "title ASC"
+  has_many   :groups, :dependent => :destroy, :order => "title ASC"
 
   has_many :results,
     :class_name => 'Match',
@@ -44,11 +44,11 @@ class Stage < ActiveRecord::Base
 
   
   def has_no_groups?
-    !self.has_groups?
+    self.groups.empty?
   end
   
   def has_games?
-    has_fixtures? or has_results?
+    !self.fixtures.empty? or !self.results.empty?
   end
   
   # A stage is lonely if it is the only one within its parent competition

@@ -1,17 +1,17 @@
-<%= render_partial "layouts/doctype" %>
+<%= render :partial => "layouts/doctype" %>
 <html lang="en">
 <head>
-<%= render_partial "layouts/head" %>
+<%= render :partial => "layouts/head" %>
 </head>
 <body><div id="container">
-<%= render_partial "layouts/org_title" %>
+<%= render :partial => "layouts/org_title" %>
 <h1>
 	<%= h @titles[-2] unless (@titles.size < 3) %>
 	<%= "<strong>#{h @titles[-1]}</strong>" unless @titles[-1].nil? %>
 </h1>
 <%= @content_for_layout %>
-<%= render_partial "layouts/admin" %>
-<%= render_partial "layouts/search" %>
-<%= render_partial "layouts/foot" %>
+<%= render :partial => "layouts/admin" %>
+<%= render :partial => "layouts/search" %>
+<%= render :partial => "layouts/foot" %>
 </div></body>
 </html>

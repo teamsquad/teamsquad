@@ -4,7 +4,7 @@ require 'stage_controller'
 # Re-raise errors caught by the controller.
 class StageController; def rescue_action(e) raise e end; end
 
-class StageControllerTest < Test::Unit::TestCase
+class StageControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

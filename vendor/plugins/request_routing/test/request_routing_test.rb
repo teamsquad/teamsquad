@@ -17,7 +17,7 @@ end
 class MockRequest < Struct.new(:path, :subdomains, :method, :remote_ip, :protocol, :path_parameters, :domain, :port, :content_type, :accepts, :request_uri)
 end
 
-class RequestRoutingTest < Test::Unit::TestCase
+class RequestRoutingTest < ActiveSupport::TestCase
   attr_reader :rs
   def setup
     @rs = ::ActionController::Routing::RouteSet.new

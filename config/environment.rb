@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.6' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.6' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
-  # config.active_record.schema_format = :sql
+  config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
@@ -49,8 +49,11 @@ Rails::Initializer.run do |config|
   #   inflect.irregular 'person', 'people'
   #   inflect.uncountable %w( fish sheep )
   # end
+  
+  config.gem("RedCloth")
 
   # See Rails::Configuration for more options
+  config.action_controller.session = { :key => "teamsquadify", :secret => "98hdyedks9su3h3irfjfbdbvshsydgdvds6st63frfrw8wejhsgftyfy6dd" }
 end
 
 # Add new mime types for use in respond_to blocks:
@@ -58,4 +61,15 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
-require 'custom_environment.rb'
+# UTF-8 suppport...
+$KCODE = 'u'
+require_dependency 'jcode'
+ExceptionNotifier.exception_recipients = %w(stephen@latterfamily.com)
+
+# Fix for Ruby 1.8.7
+class String
+  def chars
+    ActiveSupport::Multibyte::Chars.new(self)
+  end
+  alias_method :mb_chars, :chars
+end

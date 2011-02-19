@@ -2,29 +2,25 @@
 -- PostgreSQL database dump
 --
 
-SET client_encoding = 'UNICODE';
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: sid
---
-
-COMMENT ON SCHEMA public IS 'Standard public schema';
-
+SET escape_string_warning = off;
 
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
 
-SET default_with_oids = true;
+SET default_with_oids = false;
 
 --
--- Name: teams; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE teams (
-    id serial NOT NULL,
+    id integer NOT NULL,
     organisation_id integer,
     title character varying(64) NOT NULL,
     slug character varying(128) NOT NULL,
@@ -34,7 +30,7 @@ CREATE TABLE teams (
 
 
 --
--- Name: away_teams; Type: VIEW; Schema: public; Owner: slatter
+-- Name: away_teams; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW away_teams AS
@@ -42,27 +38,46 @@ CREATE VIEW away_teams AS
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE comments (
-    id serial NOT NULL,
+    id integer NOT NULL,
     notice_id integer,
-    name character varying(128),
+    name character varying(128) DEFAULT NULL::character varying,
     content text NOT NULL,
-    ip_address character varying(16),
-    user_agent character varying(128),
+    ip_address character varying(16) DEFAULT NULL::character varying,
+    user_agent character varying(128) DEFAULT NULL::character varying,
     created_on timestamp without time zone,
     updated_on timestamp without time zone
 );
 
 
 --
--- Name: competitions; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- Name: competitions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE competitions (
-    id serial NOT NULL,
+    id integer NOT NULL,
     season_id integer,
     title character varying(64) NOT NULL,
     slug character varying(128) NOT NULL,
@@ -71,18 +86,37 @@ CREATE TABLE competitions (
     stages_count integer DEFAULT 0,
     created_on timestamp without time zone,
     updated_on timestamp without time zone,
-    label character varying(32)
+    label character varying(32) DEFAULT NULL::character varying
 );
 
 
 --
--- Name: contact_responses; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE competitions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: competitions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE competitions_id_seq OWNED BY competitions.id;
+
+
+--
+-- Name: contact_responses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE contact_responses (
-    id serial NOT NULL,
-    name character varying(255),
-    email character varying(255),
+    id integer NOT NULL,
+    name character varying(255) DEFAULT NULL::character varying,
+    email character varying(255) DEFAULT NULL::character varying,
     message text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -91,20 +125,39 @@ CREATE TABLE contact_responses (
 
 
 --
--- Name: games; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: contact_responses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE contact_responses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: contact_responses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE contact_responses_id_seq OWNED BY contact_responses.id;
+
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE games (
-    id serial NOT NULL,
+    id integer NOT NULL,
     group_id integer,
     kickoff timestamp without time zone,
     hometeam_id integer,
     home_score integer,
-    home_notes character varying(64),
+    home_notes character varying(64) DEFAULT NULL::character varying,
     home_points integer,
     awayteam_id integer,
     away_score integer,
-    away_notes character varying(64),
+    away_notes character varying(64) DEFAULT NULL::character varying,
     away_points integer,
     summary text,
     played boolean DEFAULT false NOT NULL,
@@ -114,11 +167,11 @@ CREATE TABLE games (
 
 
 --
--- Name: groups; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE groups (
-    id serial NOT NULL,
+    id integer NOT NULL,
     stage_id integer,
     title character varying(64) NOT NULL,
     slug character varying(128) NOT NULL,
@@ -129,11 +182,11 @@ CREATE TABLE groups (
 
 
 --
--- Name: stages; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE stages (
-    id serial NOT NULL,
+    id integer NOT NULL,
     competition_id integer,
     title character varying(64) NOT NULL,
     slug character varying(128) NOT NULL,
@@ -154,7 +207,7 @@ CREATE TABLE stages (
 
 
 --
--- Name: game_days; Type: VIEW; Schema: public; Owner: slatter
+-- Name: game_days; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW game_days AS
@@ -162,7 +215,7 @@ CREATE VIEW game_days AS
 
 
 --
--- Name: game_months; Type: VIEW; Schema: public; Owner: slatter
+-- Name: game_months; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW game_months AS
@@ -170,7 +223,45 @@ CREATE VIEW game_months AS
 
 
 --
--- Name: groups_teams; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE games_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE games_id_seq OWNED BY games.id;
+
+
+--
+-- Name: groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
+
+
+--
+-- Name: groups_teams; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE groups_teams (
@@ -180,7 +271,7 @@ CREATE TABLE groups_teams (
 
 
 --
--- Name: home_teams; Type: VIEW; Schema: public; Owner: slatter
+-- Name: home_teams; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW home_teams AS
@@ -188,13 +279,13 @@ CREATE VIEW home_teams AS
 
 
 --
--- Name: invites; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: invites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE invites (
-    id serial NOT NULL,
+    id integer NOT NULL,
     code character varying(255) NOT NULL,
-    recipient character varying(255),
+    recipient character varying(255) DEFAULT NULL::character varying,
     used boolean DEFAULT false,
     created_on timestamp without time zone,
     updated_on timestamp without time zone
@@ -202,7 +293,26 @@ CREATE TABLE invites (
 
 
 --
--- Name: matches; Type: VIEW; Schema: public; Owner: slatter
+-- Name: invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE invites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE invites_id_seq OWNED BY invites.id;
+
+
+--
+-- Name: matches; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW matches AS
@@ -210,11 +320,11 @@ CREATE VIEW matches AS
 
 
 --
--- Name: modifications; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: modifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE modifications (
-    id serial NOT NULL,
+    id integer NOT NULL,
     group_id integer,
     team_id integer,
     value integer NOT NULL,
@@ -225,17 +335,36 @@ CREATE TABLE modifications (
 
 
 --
--- Name: notices; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: modifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE modifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: modifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE modifications_id_seq OWNED BY modifications.id;
+
+
+--
+-- Name: notices; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE notices (
-    id serial NOT NULL,
+    id integer NOT NULL,
     organisation_id integer,
     user_id integer,
     heading character varying(128) NOT NULL,
     slug character varying(128) NOT NULL,
     content text NOT NULL,
-    picture character varying(256),
+    picture character varying(256) DEFAULT NULL::character varying,
     comments_count integer DEFAULT 0,
     created_on timestamp without time zone,
     updated_on timestamp without time zone
@@ -243,11 +372,30 @@ CREATE TABLE notices (
 
 
 --
--- Name: organisations; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: notices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE notices_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: notices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE notices_id_seq OWNED BY notices.id;
+
+
+--
+-- Name: organisations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE organisations (
-    id serial NOT NULL,
+    id integer NOT NULL,
     sport_id integer,
     title character varying(128) NOT NULL,
     nickname character varying(32) NOT NULL,
@@ -255,43 +403,81 @@ CREATE TABLE organisations (
     seasons_count integer DEFAULT 0,
     created_on timestamp without time zone,
     updated_on timestamp without time zone,
-    logo character varying(200)
+    logo character varying(200) DEFAULT NULL::character varying
 );
 
 
 --
--- Name: pages; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: organisations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organisations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: organisations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organisations_id_seq OWNED BY organisations.id;
+
+
+--
+-- Name: pages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE pages (
-    id serial NOT NULL,
+    id integer NOT NULL,
     organisation_id integer,
     title character varying(128) NOT NULL,
     slug character varying(128) NOT NULL,
     content text NOT NULL,
-    picture character varying(256),
+    picture character varying(256) DEFAULT NULL::character varying,
     "position" integer NOT NULL,
     created_on timestamp without time zone,
     updated_on timestamp without time zone,
-    label character varying(32)
+    label character varying(32) DEFAULT NULL::character varying
 );
 
 
 --
--- Name: schema_info; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE TABLE schema_info (
-    version integer
+CREATE SEQUENCE pages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
 );
 
 
 --
--- Name: seasons; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE seasons (
-    id serial NOT NULL,
+    id integer NOT NULL,
     organisation_id integer,
     title character varying(64) NOT NULL,
     slug character varying(128) NOT NULL,
@@ -303,23 +489,61 @@ CREATE TABLE seasons (
 
 
 --
--- Name: sessions; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE seasons_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: seasons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE seasons_id_seq OWNED BY seasons.id;
+
+
+--
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sessions (
-    id serial NOT NULL,
-    session_id character varying(255),
+    id integer NOT NULL,
+    session_id character varying(255) DEFAULT NULL::character varying,
     data text,
     updated_at timestamp without time zone
 );
 
 
 --
--- Name: sports; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
+
+
+--
+-- Name: sports; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sports (
-    id serial NOT NULL,
+    id integer NOT NULL,
     title character varying(64) NOT NULL,
     uses_scores boolean DEFAULT true,
     uses_manual_points boolean DEFAULT false,
@@ -329,7 +553,45 @@ CREATE TABLE sports (
 
 
 --
--- Name: standings; Type: VIEW; Schema: public; Owner: slatter
+-- Name: sports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: sports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sports_id_seq OWNED BY sports.id;
+
+
+--
+-- Name: stages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE stages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: stages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE stages_id_seq OWNED BY stages.id;
+
+
+--
+-- Name: standings; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW standings AS
@@ -337,7 +599,7 @@ CREATE VIEW standings AS
 
 
 --
--- Name: team_game_days; Type: VIEW; Schema: public; Owner: slatter
+-- Name: team_game_days; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW team_game_days AS
@@ -345,7 +607,7 @@ CREATE VIEW team_game_days AS
 
 
 --
--- Name: team_matches; Type: VIEW; Schema: public; Owner: slatter
+-- Name: team_matches; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW team_matches AS
@@ -353,14 +615,33 @@ CREATE VIEW team_matches AS
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE teams_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE teams_id_seq OWNED BY teams.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
-    id serial NOT NULL,
+    id integer NOT NULL,
     organisation_id integer,
     email character varying(256) NOT NULL,
-    "password" character varying(256) NOT NULL,
+    password character varying(256) NOT NULL,
     name character varying(128) NOT NULL,
     created_on timestamp without time zone,
     updated_on timestamp without time zone
@@ -368,7 +649,138 @@ CREATE TABLE users (
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE competitions ALTER COLUMN id SET DEFAULT nextval('competitions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE contact_responses ALTER COLUMN id SET DEFAULT nextval('contact_responses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE invites ALTER COLUMN id SET DEFAULT nextval('invites_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE modifications ALTER COLUMN id SET DEFAULT nextval('modifications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE notices ALTER COLUMN id SET DEFAULT nextval('notices_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE organisations ALTER COLUMN id SET DEFAULT nextval('organisations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE seasons ALTER COLUMN id SET DEFAULT nextval('seasons_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE sports ALTER COLUMN id SET DEFAULT nextval('sports_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE stages ALTER COLUMN id SET DEFAULT nextval('stages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY comments
@@ -376,7 +788,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: competitions_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY competitions
@@ -384,7 +796,7 @@ ALTER TABLE ONLY competitions
 
 
 --
--- Name: contact_responses_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: contact_responses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY contact_responses
@@ -392,7 +804,7 @@ ALTER TABLE ONLY contact_responses
 
 
 --
--- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY games
@@ -400,7 +812,7 @@ ALTER TABLE ONLY games
 
 
 --
--- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY groups
@@ -408,7 +820,7 @@ ALTER TABLE ONLY groups
 
 
 --
--- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY invites
@@ -416,7 +828,7 @@ ALTER TABLE ONLY invites
 
 
 --
--- Name: modifications_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: modifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY modifications
@@ -424,7 +836,7 @@ ALTER TABLE ONLY modifications
 
 
 --
--- Name: notices_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: notices_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY notices
@@ -432,7 +844,7 @@ ALTER TABLE ONLY notices
 
 
 --
--- Name: organisations_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: organisations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY organisations
@@ -440,7 +852,7 @@ ALTER TABLE ONLY organisations
 
 
 --
--- Name: pages_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY pages
@@ -448,7 +860,7 @@ ALTER TABLE ONLY pages
 
 
 --
--- Name: seasons_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY seasons
@@ -456,7 +868,7 @@ ALTER TABLE ONLY seasons
 
 
 --
--- Name: sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sessions
@@ -464,7 +876,7 @@ ALTER TABLE ONLY sessions
 
 
 --
--- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sports
@@ -472,7 +884,7 @@ ALTER TABLE ONLY sports
 
 
 --
--- Name: stages_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY stages
@@ -480,7 +892,7 @@ ALTER TABLE ONLY stages
 
 
 --
--- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY teams
@@ -488,7 +900,7 @@ ALTER TABLE ONLY teams
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: slatter; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -496,269 +908,290 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: comments_notice_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: comments_notice_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX comments_notice_id ON comments USING btree (notice_id);
 
 
 --
--- Name: competitions_season_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_season_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX competitions_season_id ON competitions USING btree (season_id);
 
 
 --
--- Name: competitions_season_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_season_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX competitions_season_id_key ON competitions USING btree (season_id, title);
 
 
 --
--- Name: competitions_season_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_season_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX competitions_season_id_key1 ON competitions USING btree (slug, season_id);
 
 
 --
--- Name: competitions_season_id_key2; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: competitions_season_id_key2; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX competitions_season_id_key2 ON competitions USING btree ("position", season_id);
 
 
 --
--- Name: games_awayteam_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: games_awayteam_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX games_awayteam_id ON games USING btree (awayteam_id);
 
 
 --
--- Name: games_group_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: games_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX games_group_id ON games USING btree (group_id);
 
 
 --
--- Name: games_hometeam_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: games_hometeam_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX games_hometeam_id ON games USING btree (hometeam_id);
 
 
 --
--- Name: groups_stage_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_stage_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX groups_stage_id ON groups USING btree (stage_id);
 
 
 --
--- Name: groups_stage_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_stage_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX groups_stage_id_key ON groups USING btree (stage_id, title);
 
 
 --
--- Name: groups_stage_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_stage_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX groups_stage_id_key1 ON groups USING btree (stage_id, slug);
 
 
 --
--- Name: groups_teams_group_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_teams_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX groups_teams_group_id ON groups_teams USING btree (group_id);
 
 
 --
--- Name: groups_teams_team_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: groups_teams_team_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX groups_teams_team_id ON groups_teams USING btree (team_id);
 
 
 --
--- Name: modifications_group_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
+
+
+--
+-- Name: modifications_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX modifications_group_id ON modifications USING btree (group_id);
 
 
 --
--- Name: modifications_team_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: modifications_team_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX modifications_team_id ON modifications USING btree (team_id);
 
 
 --
--- Name: notices_organisation_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: notices_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX notices_organisation_id ON notices USING btree (organisation_id);
 
 
 --
--- Name: notices_organisation_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: notices_organisation_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX notices_organisation_id_key ON notices USING btree (organisation_id, heading);
 
 
 --
--- Name: notices_organisation_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: notices_organisation_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX notices_organisation_id_key1 ON notices USING btree (organisation_id, slug);
 
 
 --
--- Name: organisations_nickname_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: organisations_nickname_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX organisations_nickname_key ON organisations USING btree (nickname);
 
 
 --
--- Name: organisations_sport_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: organisations_sport_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX organisations_sport_id ON organisations USING btree (sport_id);
 
 
 --
--- Name: organisations_title_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: organisations_title_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX organisations_title_key ON organisations USING btree (title);
 
 
 --
--- Name: pages_organisation_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: pages_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX pages_organisation_id ON pages USING btree (organisation_id);
 
 
 --
--- Name: pages_organisation_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: pages_organisation_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX pages_organisation_id_key ON pages USING btree (organisation_id, title);
 
 
 --
--- Name: pages_organisation_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: pages_organisation_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX pages_organisation_id_key1 ON pages USING btree (organisation_id, slug);
 
 
 --
--- Name: seasons_organisation_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX seasons_organisation_id ON seasons USING btree (organisation_id);
 
 
 --
--- Name: seasons_organisation_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons_organisation_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX seasons_organisation_id_key ON seasons USING btree (organisation_id, title);
 
 
 --
--- Name: seasons_organisation_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: seasons_organisation_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX seasons_organisation_id_key1 ON seasons USING btree (organisation_id, slug);
 
 
 --
--- Name: sessions_session_id_index; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
---
-
-CREATE INDEX sessions_session_id_index ON sessions USING btree (session_id);
-
-
---
--- Name: sports_title_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: sports_title_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX sports_title_key ON sports USING btree (title);
 
 
 --
--- Name: stages_competition_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages_competition_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX stages_competition_id ON stages USING btree (competition_id);
 
 
 --
--- Name: stages_competition_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages_competition_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX stages_competition_id_key ON stages USING btree (competition_id, title);
 
 
 --
--- Name: stages_competition_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages_competition_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX stages_competition_id_key1 ON stages USING btree (slug, competition_id);
 
 
 --
--- Name: stages_competition_id_key2; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: stages_competition_id_key2; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX stages_competition_id_key2 ON stages USING btree ("position", competition_id);
 
 
 --
--- Name: teams_organisation_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX teams_organisation_id ON teams USING btree (organisation_id);
 
 
 --
--- Name: teams_organisation_id_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams_organisation_id_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX teams_organisation_id_key ON teams USING btree (organisation_id, title);
 
 
 --
--- Name: teams_organisation_id_key1; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: teams_organisation_id_key1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX teams_organisation_id_key1 ON teams USING btree (organisation_id, slug);
 
 
 --
--- Name: users_email_key; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: users_email_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX users_email_key ON users USING btree (email);
 
 
 --
--- Name: users_organisation_id; Type: INDEX; Schema: public; Owner: slatter; Tablespace: 
+-- Name: users_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX users_organisation_id ON users USING btree (organisation_id);
 
 
-INSERT INTO schema_info (version) VALUES (6)
+--
+-- PostgreSQL database dump complete
+--
+
+INSERT INTO schema_migrations (version) VALUES ('6');
+
+INSERT INTO schema_migrations (version) VALUES ('1');
+
+INSERT INTO schema_migrations (version) VALUES ('2');
+
+INSERT INTO schema_migrations (version) VALUES ('3');
+
+INSERT INTO schema_migrations (version) VALUES ('4');
+
+INSERT INTO schema_migrations (version) VALUES ('5');

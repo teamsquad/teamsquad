@@ -1,6 +1,6 @@
 <div id="primary">
 	<div class="standout">
-	<p><%= truncate @organisation.summary, 200 %> <%= link_to 'More information...', information_url %></p>
+	<p><%= truncate @organisation.summary, :length => 200 %> <%= link_to 'More information...', information_url %></p>
 	</div>
 	
 	<div class="posts">	<% if @new_notices.size + @old_notices.size > 0 %>

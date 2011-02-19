@@ -4,7 +4,7 @@ require 'competition_controller'
 # Re-raise errors caught by the controller.
 class CompetitionController; def rescue_action(e) raise e end; end
 
-class CompetitionControllerTest < Test::Unit::TestCase
+class CompetitionControllerTest < ActionController::TestCase
   
   fixtures :sports,
            :organisations,

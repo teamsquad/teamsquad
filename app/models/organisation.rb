@@ -7,13 +7,13 @@ class Organisation < ActiveRecord::Base
     :magick => { :geometry => "48x48>" }
 
   belongs_to :sport
-  has_many   :users, :dependent => true, :order => 'name asc'
-  has_many   :seasons, :dependent => true, :order => "id ASC"
+  has_many   :users, :dependent => :destroy, :order => 'name asc'
+  has_many   :seasons, :dependent => :destroy, :order => "id ASC"
   has_one    :current_season, :class_name => "Season", :order => "id asc"
-  has_many   :teams, :dependent => true, :order => "title ASC"
-  has_many   :notices, :dependent => true, :include => :author, :order => 'notices.created_on DESC'
+  has_many   :teams, :dependent => :destroy, :order => "title ASC"
+  has_many   :notices, :dependent => :destroy, :include => :author, :order => 'notices.created_on DESC'
   has_many   :recent_notices, :include => :author, :order => 'notices.created_on DESC'
-  has_many   :pages, :dependent => true, :order => 'position asc'
+  has_many   :pages, :dependent => :destroy, :order => 'position asc'
   
   before_validation :tidy_user_supplied_data!
   after_validation :remove_logo_if_required
