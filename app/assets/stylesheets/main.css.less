@@ -1,0 +1,986 @@
+/*
+ *= require_self
+*/
+@import 'mixins.css.less';
+
+
+body.sport1 { background-image: url(/images/sport1.jpg); }
+body.sport2 { background-image: url(/images/sport2.jpg); }
+body.sport3 { background-image: url(/images/sport3.jpg); }
+body.sport4 { background-image: url(/images/sport4.jpg); }
+body.sport5 { background-image: url(/images/sport5.jpg); }
+body.sport6 { background-image: url(/images/sport6.jpg); }
+
+#container {
+	margin: 0 auto;
+	text-align: left;
+	overflow: visible;
+	position: relative;
+	max-width: 75em;
+	min-width: 50em;
+}
+
+#content {
+	padding: 0;
+}
+
+#org {
+  position: absolute;
+  top: 0.2em;
+  left: 50px;
+  margin: 0;
+}
+
+div#primary {
+	clear: both;
+	position: relative;
+	margin-bottom: 4em;
+  width: 62%;
+  float: left;
+  left: 50px;
+}
+
+div#primary.full {
+	float: none;
+	width: 100%;
+}
+
+div#secondary {
+  margin-top: 1em;
+	margin-bottom: 4em;
+  float: right;
+	width: 28%;
+}
+
+div#secondary h2,
+div#secondary h3,
+div#secondary ul,
+div#secondary p {
+	margin-left: 5px !important;
+	margin-right: 5px;
+}
+
+#search {
+	position: absolute;
+	top: 0px;
+	left: 72%;
+	width: 28%;
+	overflow: visible;
+}
+
+#search div {
+  background: #FFE;
+  z-index: 10;
+  border: 1px solid #EEE;
+  border-top: none;
+  margin-left: -3px;
+}
+
+#search div ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px dotted #EEE;
+}
+
+#search div li {
+  display: block;
+  margin: 0;
+  padding: 4px;
+  border-bottom: 1px dotted #EEE;
+}
+
+#term_auto_complete {
+	height: 15em;
+	overflow: auto;
+}
+
+#search div li.selected {
+  background: #FFC;
+}
+
+#search div li.selected a {
+  color: #900;
+}
+
+#search div li a {
+  text-decoration: none;
+}
+
+#search form {
+  position: relative;
+	padding: 5px;
+	margin: 0;
+	background: #EEE;
+	border: 2px solid #DDD;
+}
+
+#search label {
+	display: block;
+	padding: 0 0 4px 0;
+	margin: 0;
+	font-size: x-small;
+	color: #666;
+}
+
+#search #in_term {
+	width: 77%;
+}
+
+#search input {
+  width: 10%;
+  font-size: x-small;
+}
+
+#admin {
+	position: absolute;
+	width: 30%;
+	left: 70%;
+	top: -20px;
+	text-align: right;
+}
+
+#admin p {
+	margin: 0;
+}
+
+#admin a {
+	color: #999;
+}
+
+#foot {
+	border-top: 2px dotted #CCC;
+	margin: 0 32% 0 50px;
+	padding: 1em 5px;
+  clear: both;
+  font-size: x-small;
+	background: #EEE;
+}
+
+
+
+
+
+html {
+  border-top: 3px solid #900;
+}
+
+body {
+  color: #333;
+  padding: 40px 32px 20px 16px;
+  margin: 0;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: small;
+  background: #FFF url(/images/body.gif) no-repeat fixed bottom right;
+  border-top: 3px solid #FCC;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  color: #999;
+}
+
+h1 {
+  color: #900;
+  padding: 0.8em 0 0.2em 50px;
+  margin: 0 35% 10px 0;
+  font-size: 1.8em;
+  background: url(/images/logo.gif) no-repeat left;
+}
+
+h2 {
+  margin: 0;
+  line-height: 1.5em;
+}
+
+h2 a.admin {
+	font-size: small;
+}
+
+h3 {
+  clear: both;
+  margin: 0 0 0.2em 0;
+}
+
+p {
+	margin: 0.5em 0 1em 0;
+}
+
+a {
+  color: #090;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #900 !important;
+  text-decoration: underline;
+}
+
+hr {
+  height: 1px;
+  clear: both;
+	border: none;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+#primary p {
+  line-height: 1.4em;
+}
+
+blockquote {
+  clear: both;
+  font-size: 1.2em;
+  font-style: italic;
+  padding: 1em;
+  margin: 0 3em;
+  color: #900;
+  text-align: left;
+}
+
+div#secondary {
+  font-size: 0.9em;
+}
+
+div#secondary h2 {
+  margin: 0 0 0.2em 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+div#secondary ul {
+  margin: 0 0 2em 0;
+  padding: 0;
+}
+
+div#secondary li {
+  display: block;
+  margin: 0.3em 0;
+  padding: 0 0 0 15px;
+  background: url(/images/bullet_light.gif) no-repeat top left;
+  color: #900;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+div#secondary ul.current li {
+  margin: 0.6em 0;
+  font-size: 1.1em;
+  background: url(/images/bullet.gif) no-repeat top left;
+}
+
+div#secondary ul.current li a {
+  color: #090;
+}
+
+div#secondary li a {
+  font-weight: normal;
+  color: #696;
+}
+
+#secondary p {
+  margin: 0 0 1em 0;
+  color: #999;
+}
+
+  #secondary p em {
+    color: #666;
+    font-style: normal;
+  }
+
+p.notify {
+  padding: 3em;
+  border: 2px solid #EEC;
+  background: #FFE;
+  font-weight: bold;
+  font-size: medium;
+  text-align: center;
+}
+
+div.group {
+
+}
+
+  div.league_stage_with_groups div.group {
+    float: left;
+    width: 48%;
+  }
+  
+	div.league_stage_with_groups div.odd {
+    clear: both;
+  }
+
+  div.league_stage_with_groups div.even {
+    float: right;
+  }
+
+div.article {
+	padding-bottom: 0em;
+}
+
+	div.article h3 {
+		margin: 1em 0 0 0;
+		padding: 0;
+		color: #900;
+	}
+
+	div.article p {
+		margin: 0 0 0.5em 0;
+		padding: 0;
+	}
+
+p.admin {
+  margin-top: 0.5em;
+  text-align: right;
+}
+
+.admin a, a.admin {
+  background: #FFC;
+	text-decoration: none;
+	outline: 2px solid #FFC;
+	font-weight: normal;
+}
+
+div.standout {
+  padding: 10px;
+  background: #FFE;
+  border: 2px solid #EED;
+  margin-bottom: 2em;
+  font-weight: bold;
+}
+
+div.standout p {
+  margin: 0;
+  padding: 0;
+}
+
+div.posts {
+  border-top: 2px solid #EEE;
+  padding-top: 1em;
+}
+
+div.post {
+  clear: both;
+  border-bottom: 2px solid #EEE;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+div.post p {
+  text-align: justify;
+}
+
+h2.post {
+	margin-left: -24px;
+  padding-left: 24px;
+  background: url(/images/post.gif) no-repeat left 0.2em;
+	line-height: 1.2em;
+	margin-bottom: 0.4em;
+}
+
+ul.things {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+	
+	ul.things li {
+		margin: 0;
+		padding: 1em 0 1em 36px;
+	}
+	
+	ul.things li.user {
+		background: url(/images/user.gif) no-repeat left;
+	}
+	
+	ul.things li.add_user {
+		background: url(/images/user_fade.gif) no-repeat left;
+	}
+
+
+div.image {
+  float: right;
+  margin: 1em 0 0.5em 1em;
+  border: 1px solid #CCC;
+  padding: 3px;
+  text-align: center;
+  font-size: smaller;
+	background: #FFF;
+}
+
+div.post div.image img {
+  display: block;
+}
+
+div.comments h3 {
+  width: 24%;
+  float: left;
+  text-align: right;
+	margin: 0;
+}
+
+div.comments h3 span {
+  color: #999;
+  font-size: x-small;
+  display: block;
+  margin-bottom: 5px;
+}
+
+div.comments p {
+  float: right;
+  width: 74%;
+  margin: 0 0 1em 0;
+}
+
+div.comment {
+  clear: both;
+  border-top: 1px dotted #EEE;
+  padding-top: 1em;
+}
+
+p.credit {
+  margin: -0.5em 0 -0.5em 0;
+  color: #999;
+  text-align: left;
+}
+
+p.more {
+  margin-top: 0;
+  text-align: right;
+}
+
+.clickable {
+  cursor: pointer;
+  cursor: hand;
+}
+
+div.initially_hidden {
+	display: none;
+}
+
+div#foot p {
+  margin: 0;
+  line-height: 1.5em;
+}
+
+div.clear {
+  clear: both;
+}
+
+ul.teams {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+	line-height: 2em;
+}
+
+	ul.teams li {
+		margin: 0;
+		padding: 0;
+		background: url(/images/mini_shirt.gif) no-repeat left;
+		float: left;
+		width: 49%;
+		text-indent: 26px;
+	}
+
+
+
+
+
+
+
+table.calendar {
+	margin: 0 2px 2em 2px;
+	background: #EEE;
+	border: 2px solid #DDD;
+	float: left;
+	width: 32%;
+}
+
+table.calendar caption {
+	font-weight: bold;
+	padding-bottom: 4px;
+	font-size: 1em;
+}
+
+table.calendar th {
+	text-align: center;
+}
+
+table.calendar td {
+	line-height: 1.4em;
+	color: #999;
+	background: #FFF;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+table.calendar td.outmonth {
+	color: #EEE;
+	background: #F8F8F8;
+}
+
+div#secondary table.calendar td.active {
+	color: #900;
+}
+
+
+
+
+form {
+  margin: 1em 0 2em 0;
+  padding: 0;
+}
+
+form p.tabs {
+  margin: 0.25em 0 0 0;
+  position: relative;
+  z-index: 5;
+  top: 1px;
+}
+
+  form p.tabs a {
+    display: block;
+    float: left;
+    line-height: 1.8em;
+    padding: 0 1em;
+    margin-right: 0.1em;
+    border: 1px solid #999;
+    background: #EEE;
+    text-decoration: none;
+  }
+  
+  form p.tabs a.active {
+    background: #FFF;
+    border-bottom: 1px dotted #EEE;
+  }
+
+textarea {
+  clear: both;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+p.warning {
+  color: #333;
+  font-size: medium;
+  font-weight: bold;
+  background: #FFC url(/images/alert_big.gif) no-repeat 4px center;
+  padding: 10px 10px 10px 38px;
+  margin: 1em 0 0 0;
+}
+
+form fieldset {
+  clear: both;
+  margin: 0 0 1em 0;
+  padding: 0.5em 1em 1em 1em;
+  border: 4px solid #EEE;
+  background: #F8F8F8;
+}
+
+form legend {
+  display: none;
+}
+
+form label {
+  display: block;
+  color: #900;
+  font-size: medium;
+  margin: 0.5em 0 0 0;
+}
+
+form label.inline {
+  display: inline;
+  font-size: small;
+}
+
+form fieldset p.checkbox {
+  float: left;
+  width: 49%;
+  margin: 0.25em 0;
+}
+
+  form fieldset.checkboxes p.hint {
+    float: none;
+  }
+
+
+form p.input {
+  margin: 0;
+}
+
+form p.hint {
+  color: #666;
+  line-height: 1.2em !important;
+  text-align: left !important;
+  font-size: 0.85em;
+  float: none;
+  margin: 0 0 0.2em 0;
+}
+
+form p.problem {
+  font-size: small;
+  background: #FFC url(/images/alert_small.gif) no-repeat 2px center;
+  padding: 4px 4px 4px 20px;
+  margin: 0;
+}
+
+span.problem {
+
+}
+
+form fieldset.finish {
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  text-align: right;
+}
+
+form fieldset.finish legend {
+  display: none;
+}
+
+form .textfield,
+form .textarea {
+  width: 100%;
+  color: #333;
+  margin: 0;
+  font-size: small;
+}
+
+form textarea.summary {
+  height: 100px;
+}
+
+#in-content {
+  margin-top: 0px;
+}
+
+form textarea.content,
+div.textarea {
+  height: 360px;
+}
+
+div.textarea {
+  width: 95%;
+  background: #FFF;
+  padding: 8px;
+  overflow: auto;
+  clear: both;
+  border: 1px solid #999;
+}
+
+form fieldset select {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+form.fixtures select {
+  width: auto;
+  margin: 6px 2px;
+}
+
+form fieldset input.fileupload {
+  margin: 0.33em 0 1em 0;
+}
+
+form.fixtures p {
+  margin-bottom: 0.5em;
+}
+
+p.reminder {
+  margin: 0.3em 0 0em 0;
+  color: #999;
+  text-align: center;
+}
+
+form.fixtures td input {
+  font-size: small;
+  width: 30px;
+  margin: 6px 2px;
+}
+
+form.fixtures table {
+  margin: 0.25em 0 1em 0;
+}
+
+form.fixtures tbody tr td {
+  border-bottom: 1px solid #CCC;
+}
+
+form .important {
+  font-size: large;
+}
+
+form fieldset.finish input {
+  font-size: large;
+  cursor: hand;
+  cursor: pointer;
+  width: auto;
+}
+
+form td,
+form th {
+  white-space: nowrap;
+}
+
+
+table.results .team {
+  font-size: medium;
+}
+
+input.score {
+  width: 40px;
+  font-size: large;
+}
+
+input.notes {
+  width: 120px;
+}
+
+input.points {
+  width: 40px;
+}
+
+textarea.summary {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+table.standings,
+table.games {
+	margin: 0 0 1.5em 0;
+	width: 100%;
+	border-bottom: 1px solid #999;
+	clear: both;
+}
+
+table.nohead thead {
+	display: none;
+}
+
+table thead th {
+	text-align: left;
+	font-size: smaller !important;
+	background: #999;
+	color: #FFF;
+	background: url(/images/header.gif) center;
+
+}
+
+table.games tfoot td,
+table.standings tfoot td {
+	text-align: right;
+	border-top: 1px solid #EEE;
+	line-height: 1.5em;
+	padding-right: 2px;
+}
+
+table.standings th,
+table.games th {
+	line-height: 1em;
+	padding: 2px;
+}
+
+table.standings td.stat,
+table.standings th.stat {
+	width: 6%;
+	text-align: right;
+	padding: 4px 5px 4px 1px;
+}
+
+table.games tr.homewin td.home,
+table.games tr.awaywin td.away {
+	font-weight: bold;
+}
+
+table tr.even td,
+table tr.even th {
+	border-top: 1px solid #EEE;
+	background:#F8F8F8;
+}
+
+table tr.odd td,
+table tr.odd th {
+	border-top: 1px solid #EEE;
+}
+
+table tr.noedge td {
+	border-top: none;
+}
+
+table tr.summary td {
+	border-top: none;
+	text-align: left;
+	color: #666;
+	font-size: smaller;
+	padding: 2px 90px 8px 90px;
+}
+
+table tr.short td {
+  text-align: center;
+}
+
+table tr.notes td {
+	border-top: none;
+	text-align: center;
+	color: #666;
+	font-size: smaller;
+	padding: 0 0 3px 0;
+}
+
+table tr.auto-promote td.pos {
+	background-image: url(/images/autopromote_bg.png);
+}
+
+table tr.auto-relegate td.pos {
+	background-image: url(/images/autorelegate_bg.png);
+}
+
+table tr.conditional-promote td.pos {
+	background-image: url(/images/conditionalpromote_bg.png);
+}
+
+table tr.conditional-relegate td.pos {
+	background-image: url(/images/conditionalrelegate_bg.png);
+}
+
+.pos {
+	width: 2%;
+	text-align: right;
+	padding-right: 5px !important;
+	padding-left: 3px !important;
+}
+
+.versus {
+	text-align: center;
+	font-size: smaller;	
+	width: 4%;
+}
+
+.results th.versus {
+	width: 12%;
+}
+
+td.versus {
+	color: #999;
+}
+
+.hierarchy {
+	text-align: right;
+	font-size: smaller;
+	white-space: nowrap;
+	width: 12%;
+	padding-right: 2px;
+}
+
+.time {
+	text-align: right;
+}
+
+td.hierarchy {
+	color: #999;
+}
+
+.hierarchy a {
+	color: #696;
+}
+
+.when {
+	width: 12%;
+	padding-left: 2px;
+}
+
+td.when {
+	text-align: left;
+	color: #999;
+	font-size: smaller;
+	white-space: nowrap;
+}
+
+.home {
+	text-align: right !important;
+}
+
+.away {
+	text-align: left !important;
+}
+
+tr.notes .home,
+tr.notes .away{
+	width: 41%;
+}
+
+.team {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 36%;
+	padding-left: 3px;
+}
+
+td.team {
+	line-height: 1.5em;
+}
+
+td.team a {
+	font-size: small;
+}
+
+.results .team {
+	width: 31%;
+}
+
+.score {
+	width: 5%;
+	font-size: large;
+}
+
+th.score {
+	text-align: center;
+	color: #999;
+}
+
+table.textile-tips {
+	width: 100%;
+	border-bottom: 2px solid #EEE;
+	margin-bottom: 1em;
+}
+
+	table.textile-tips td,
+	table.textile-tips th {
+		padding: 4px;
+	}
+	
+	table.textile-tips tbody td,
+	table.textile-tips tbody th {
+		vertical-align: top;
+	}
+	
+	table.textile-tips tbody th {
+		font-family: Courier;
+		text-align: left;
+		font-weight: normal;
+	}
+	
+	
+	
+	
+	
+	
+
+
+
+
+
