@@ -22,14 +22,14 @@ class Competition < ActiveRecord::Base
   belongs_to :season, :counter_cache => 'competitions_count'
   has_many   :stages, :dependent => :destroy, :order => "position ASC"
   
-  has_many :match_months,
-    :class_name => 'GameMonth',
-    :finder_sql => 'SELECT pretty_date, min(yyyymm) as yyyymm, min(date) as date FROM game_months WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymm)'
+  def match_months
+    GameMonth.find_by_sql "SELECT pretty_date, min(yyyymm) as yyyymm, min(date) as date FROM game_months WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymm)"
+  end
   
-  has_many :match_days,
-    :class_name => 'GameDay',
-    :finder_sql => 'SELECT pretty_date, min(yyyymm) as yyyymm, min(yyyymmdd) as yyyymmdd, min(date) as date FROM game_days WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymmdd)'
-
+  def match_days
+    GameDay.find_by_sql "SELECT pretty_date, min(yyyymm) as yyyymm, min(yyyymmdd) as yyyymmdd, min(date) as date FROM game_days WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymmdd)"
+  end
+  
   has_many :fixture_months, 
     :class_name => 'GameMonth',
     :conditions => ["played = ?", false],
