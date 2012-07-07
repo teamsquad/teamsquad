@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'notice_controller'
-
-# Re-raise errors caught by the controller.
-class NoticeController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class NoticeControllerTest < ActionController::TestCase
   
@@ -18,12 +14,8 @@ class NoticeControllerTest < ActionController::TestCase
            :stages,
            :groups,
            :games
-  
+
   def setup
-    @controller = NoticeController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -32,22 +24,22 @@ class NoticeControllerTest < ActionController::TestCase
   #
   
   def test_index_routing
-    assert_routing 'notices',
+    assert_routing 'http://test.teamsquad.com/notices',
       { :controller => 'notice', :action => 'index' }
   end
   
   def test_view_notice_routing
-    assert_routing 'notices/notice-one',
+    assert_routing 'http://test.teamsquad.com/notices/notice-one',
       { :controller => 'notice', :action => 'view', :notice => 'notice-one' }
   end
   
   def test_new_notice_routing
-    assert_routing 'notices/new',
+    assert_routing 'http://test.teamsquad.com/notices/new',
       { :controller => 'notice', :action => 'new' }
   end
   
   def test_edit_notice_routing
-    assert_routing 'notices/notice-one/edit',
+    assert_routing 'http://test.teamsquad.com/notices/notice-one/edit',
       { :controller => 'notice', :action => 'edit', :notice => 'notice-one' }
   end
   

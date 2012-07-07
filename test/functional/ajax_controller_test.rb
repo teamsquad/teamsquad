@@ -1,15 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'ajax_controller'
-
-# Re-raise errors caught by the controller.
-class AjaxController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class AjaxControllerTest < ActionController::TestCase
-  def setup
-    @controller = AjaxController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
   
   def test_textile_preview
     assert_routing 'ajax/textile_preview', {:controller => 'ajax', :action => 'textile_preview'}

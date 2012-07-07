@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'organisation_controller'
-
-# Re-raise errors caught by the controller.
-class OrganisationController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class OrganisationControllerTest < ActionController::TestCase
   
@@ -18,12 +14,8 @@ class OrganisationControllerTest < ActionController::TestCase
            :stages,
            :groups,
            :games
-           
+
   def setup
-    @controller = OrganisationController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -32,27 +24,27 @@ class OrganisationControllerTest < ActionController::TestCase
   #
   
   def test_home_routing
-    assert_routing '',
+    assert_routing 'http://test.teamsquad.com/',
       { :controller => 'organisation', :action => 'home' }
   end
   
   def test_login_routing
-    assert_routing 'login',
+    assert_routing 'http://test.teamsquad.com/login',
       { :controller => 'organisation', :action => 'login' }
   end
   
   def test_logout_routing
-    assert_routing 'logout',
+    assert_routing 'http://test.teamsquad.com/logout',
       { :controller => 'organisation', :action => 'logout' }
   end
   
   def test_edit_routing
-    assert_routing 'edit',
+    assert_routing 'http://test.teamsquad.com/edit',
       { :controller => 'organisation', :action => 'edit' }
   end
   
   def test_live_search_routing
-    assert_routing 'live_search',
+    assert_routing 'http://test.teamsquad.com/live_search',
       { :controller => 'organisation', :action => 'live_search' }
   end
   

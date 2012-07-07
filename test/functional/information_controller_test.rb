@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'information_controller'
-
-# Re-raise errors caught by the controller.
-class InformationController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class InformationControllerTest < ActionController::TestCase
   
@@ -18,12 +14,8 @@ class InformationControllerTest < ActionController::TestCase
            :stages,
            :groups,
            :games
-  
+
   def setup
-    @controller = InformationController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -32,22 +24,22 @@ class InformationControllerTest < ActionController::TestCase
   #
   
   def test_index_routing
-    assert_routing 'information',
+    assert_routing 'http://test.teamsquad.com/information',
       { :controller => 'information', :action => 'index' }
   end
   
   def test_view_page_routing
-    assert_routing 'information/this-is-page-one',
+    assert_routing 'http://test.teamsquad.com/information/this-is-page-one',
       { :controller => 'information', :action => 'view', :page => 'this-is-page-one' }
   end
   
   def test_new_page_routing
-    assert_routing 'information/new',
+    assert_routing 'http://test.teamsquad.com/information/new',
       { :controller => 'information', :action => 'new' }
   end
   
   def test_edit_page_routing
-    assert_routing 'information/this-is-page-one/edit',
+    assert_routing 'http://test.teamsquad.com/information/this-is-page-one/edit',
       { :controller => 'information', :action => 'edit', :page => 'this-is-page-one' }
   end
   

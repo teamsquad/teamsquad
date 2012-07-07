@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'season_controller'
-
-# Re-raise errors caught by the controller.
-class SeasonController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class SeasonControllerTest < ActionController::TestCase
   
@@ -10,12 +6,8 @@ class SeasonControllerTest < ActionController::TestCase
            :organisations,
            :users,
            :seasons
-  
+
   def setup
-    @controller = SeasonController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -24,7 +16,7 @@ class SeasonControllerTest < ActionController::TestCase
   #
   
   def test_edit_routing
-    assert_routing 'edit_season',
+    assert_routing 'http://test.teamsquad.com/edit_season',
       { :controller => 'season', :action => 'edit' }
   end
   

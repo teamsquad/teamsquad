@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'competition_controller'
-
-# Re-raise errors caught by the controller.
-class CompetitionController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class CompetitionControllerTest < ActionController::TestCase
   
@@ -18,12 +14,8 @@ class CompetitionControllerTest < ActionController::TestCase
            :stages,
            :groups,
            :games
-  
+
   def setup
-    @controller = CompetitionController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -32,15 +24,15 @@ class CompetitionControllerTest < ActionController::TestCase
   #
   
   def test_new_competition_routing
-    assert_routing 'competitions/new', {:controller => 'competition', :action => 'new'}
+    assert_routing 'http://test.teamsquad.com/competitions/new', {:controller => 'competition', :action => 'new'}
   end
   
   def test_view_competition_routing  
-    assert_routing 'competitions/single_stage_competition', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'view'}
+    assert_routing 'http://test.teamsquad.com/competitions/single_stage_competition', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'view'}
   end
   
   def test_edit_competition_routing
-    assert_routing 'competitions/single_stage_competition/edit', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'edit'}
+    assert_routing 'http://test.teamsquad.com/competitions/single_stage_competition/edit', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'edit'}
   end
   
   #

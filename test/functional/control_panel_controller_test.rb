@@ -1,10 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper'
-require 'control_panel_controller'
-
-# Re-raise errors caught by the controller.
-class ControlPanelController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class ControlPanelControllerTest < ActionController::TestCase
   
@@ -20,12 +16,8 @@ class ControlPanelControllerTest < ActionController::TestCase
            :stages,
            :groups,
            :games
-  
+
   def setup
-    @controller = ControlPanelController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -34,19 +26,19 @@ class ControlPanelControllerTest < ActionController::TestCase
   #
   
   def test_default_page_route
-    assert_routing 'control_panel', {:controller => 'control_panel', :action => 'index'}
+    assert_routing 'http://test.teamsquad.com/control-panel', {:controller => 'control_panel', :action => 'index'}
   end
   
   def test_list_admins_route
-    assert_routing 'control_panel/admins', {:controller => 'control_panel', :action => 'admins'}
+    assert_routing 'http://test.teamsquad.com/control-panel/admins', {:controller => 'control_panel', :action => 'admins'}
   end
   
   def test_new_admin_route
-    assert_routing 'control_panel/new_admin', {:controller => 'control_panel', :action => 'new_admin'}
+    assert_routing 'http://test.teamsquad.com/control-panel/new_admin', {:controller => 'control_panel', :action => 'new_admin'}
   end
   
   def test_edit_admin_route
-    assert_routing 'control_panel/edit_admin', {:controller => 'control_panel', :action => 'edit_admin'}
+    assert_routing 'http://test.teamsquad.com/control-panel/edit_admin', {:controller => 'control_panel', :action => 'edit_admin'}
   end
   
   #

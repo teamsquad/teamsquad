@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'team_controller'
-
-# Re-raise errors caught by the controller.
-class TeamController; def rescue_action(e) raise e end; end
+require 'test_helper'
 
 class TeamControllerTest < ActionController::TestCase
   
@@ -25,10 +21,6 @@ class TeamControllerTest < ActionController::TestCase
       ActionController::Base.clear_last_instantiation!
     end
     
-    @controller = TeamController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    
     @request.host = 'test.teamsquad.com'
   end
 
@@ -37,32 +29,32 @@ class TeamControllerTest < ActionController::TestCase
   #
   
   def test_team_list_routing
-    assert_routing 'teams',
+    assert_routing 'http://test.teamsquad.com/teams',
       { :controller => 'team', :action => 'index' }
   end
   
   def test_new_team_routing
-    assert_routing 'teams/new',
+    assert_routing 'http://test.teamsquad.com/teams/new',
       { :controller => 'team', :action => 'new' }
   end
   
   def test_view_team_routing
-    assert_routing 'teams/team-one',
+    assert_routing 'http://test.teamsquad.com/teams/team-one',
       { :controller => 'team', :action => 'view', :team => 'team-one' }
   end
   
   def test_edit_team_routing
-    assert_routing 'teams/team-one/edit',
+    assert_routing 'http://test.teamsquad.com/teams/team-one/edit',
       { :controller => 'team', :action => 'edit', :team => 'team-one' }
   end
   
   def test_view_team__fixtures_routing
-    assert_routing 'teams/team-one/fixtures',
+    assert_routing 'http://test.teamsquad.com/teams/team-one/fixtures',
       { :controller => 'team', :action => 'fixtures', :team => 'team-one' }
   end
   
   def test_view_team_results_routing
-    assert_routing 'teams/team-one/results',
+    assert_routing 'http://test.teamsquad.com/teams/team-one/results',
       { :controller => 'team', :action => 'results', :team => 'team-one' }
   end
   
