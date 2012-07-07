@@ -24,5 +24,17 @@ module ApplicationHelper
   def leading_zero_on_single_digits(number)
     number > 9 ? number : "0#{number}"
   end
+  
+  def error_message_on(object, method, options = {})
+    object = convert_to_model(object)
+    obj = object.respond_to?(:errors) ? object : instance_variable_get("@#{object}")
+
+    if obj.errors[method].present?
+      errors = obj.errors[method].map{|err| h(err)}.join('<br/>').html_safe
+      content_tag(:p, errors, :class => 'problem')
+    else
+      ''
+    end
+  end
 
 end
