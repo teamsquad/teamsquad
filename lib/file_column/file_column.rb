@@ -1,6 +1,6 @@
 require 'fileutils'
 require 'tempfile'
-require 'magick_file_column'
+require 'file_column/magick_file_column'
 
 module FileColumn # :nodoc:
   def self.append_features(base)
