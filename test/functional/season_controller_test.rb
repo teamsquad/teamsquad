@@ -16,7 +16,7 @@ class SeasonControllerTest < ActionController::TestCase
   #
   
   def test_edit_routing
-    assert_routing 'http://test.teamsquad.com/edit_season',
+    assert_routing 'http://test.teamsquad.com/edit-season',
       { :controller => 'season', :action => 'edit' }
   end
   

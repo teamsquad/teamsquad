@@ -28,11 +28,11 @@ class CompetitionControllerTest < ActionController::TestCase
   end
   
   def test_view_competition_routing  
-    assert_routing 'http://test.teamsquad.com/competitions/single_stage_competition', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'view'}
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition', {:controller => 'competition', :competition => 'single-stage-competition', :action => 'view'}
   end
   
   def test_edit_competition_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single_stage_competition/edit', {:controller => 'competition', :competition => 'single_stage_competition', :action => 'edit'}
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/edit', {:controller => 'competition', :competition => 'single-stage-competition', :action => 'edit'}
   end
   
   #

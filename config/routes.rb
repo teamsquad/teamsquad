@@ -38,7 +38,7 @@ Teamsquad::Application.routes.draw do
     :action => 'search',
     :as => 'search'
     
-  match 'live_search',
+  match 'live-search',
     :controller => 'organisation',
     :action => 'live_search',
     :as => 'live_search'
@@ -55,7 +55,17 @@ Teamsquad::Application.routes.draw do
     :as => 'help'
 
   # CONTROL PANEL
-  
+
+  match 'control-panel/new-admin',
+    :controller => 'control_panel',
+    :action => 'new_admin',
+    :as => 'new_admin'
+    
+  match 'control-panel/edit-admin(/:id)',
+    :controller => 'control_panel',
+    :action => 'edit_admin',
+    :as => 'edit_admin'
+
   match 'control-panel(/:action)(/:id)',
     :controller => 'control_panel',
     :as => 'control_panel'
@@ -122,7 +132,7 @@ Teamsquad::Application.routes.draw do
   
   # SEASON
   
-  match 'edit_season',
+  match 'edit-season',
     :controller => 'season',
     :action => 'edit',
     :as => 'edit_season'
@@ -159,7 +169,7 @@ Teamsquad::Application.routes.draw do
     :action => 'fixtures',
     :as => 'competition_fixtures'
     
-  match 'competitions/:competition/add_fixtures',
+  match 'competitions/:competition/add-fixtures',
     :controller => 'competition',
     :action => 'add_fixtures',
     :as => 'competition_add_fixtures'
@@ -188,7 +198,7 @@ Teamsquad::Application.routes.draw do
   
   # STAGES
   
-  match 'competitions/:competition/new_stage',
+  match 'competitions/:competition/new-stage',
     :controller => 'stage',
     :action => 'new',
     :as => 'new_stage'
@@ -205,7 +215,7 @@ Teamsquad::Application.routes.draw do
   
   # GROUPS
   
-  match 'competitions/:competition/:stage/new_group',
+  match 'competitions/:competition/:stage/new-group',
     :controller => 'group',
     :action => 'new',
     :as => 'new_group'
@@ -215,22 +225,22 @@ Teamsquad::Application.routes.draw do
     :action => 'edit',
     :as => 'edit_group'
 
-  match 'competitions/:competition/:stage/:group/new_fixtures',
+  match 'competitions/:competition/:stage/:group/new-fixtures',
     :controller => 'group',
     :action => 'new_fixtures',
     :as => 'new_fixtures'
   
-  match 'competitions/:competition/:stage/:group/edit_fixtures',
+  match 'competitions/:competition/:stage/:group/edit-fixtures',
     :controller => 'group',
     :action => 'edit_fixtures',
     :as => 'edit_fixtures'
     
-  match 'competitions/:competition/:stage/:group/enter_results',
+  match 'competitions/:competition/:stage/:group/enter-results',
     :controller => 'group',
     :action => 'enter_results',
     :as => 'enter_results'
     
-  match 'competitions/:competition/:stage/:group/edit_results',
+  match 'competitions/:competition/:stage/:group/edit-results',
     :controller => 'group',
     :action => 'edit_results',
     :as => 'edit_results'

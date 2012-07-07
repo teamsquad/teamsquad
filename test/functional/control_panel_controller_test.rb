@@ -34,11 +34,11 @@ class ControlPanelControllerTest < ActionController::TestCase
   end
   
   def test_new_admin_route
-    assert_routing 'http://test.teamsquad.com/control-panel/new_admin', {:controller => 'control_panel', :action => 'new_admin'}
+    assert_routing 'http://test.teamsquad.com/control-panel/new-admin', {:controller => 'control_panel', :action => 'new_admin'}
   end
   
   def test_edit_admin_route
-    assert_routing 'http://test.teamsquad.com/control-panel/edit_admin', {:controller => 'control_panel', :action => 'edit_admin'}
+    assert_routing 'http://test.teamsquad.com/control-panel/edit-admin', {:controller => 'control_panel', :action => 'edit_admin'}
   end
   
   #

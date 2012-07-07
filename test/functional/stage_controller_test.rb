@@ -24,7 +24,7 @@ class StageControllerTest < ActionController::TestCase
   #
   
   def test_new_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/new_stage',
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/new-stage',
       { :controller  => 'stage',
         :competition => 'single-stage-competition',
         :action      => 'new' }

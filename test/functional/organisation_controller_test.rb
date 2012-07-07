@@ -44,7 +44,7 @@ class OrganisationControllerTest < ActionController::TestCase
   end
   
   def test_live_search_routing
-    assert_routing 'http://test.teamsquad.com/live_search',
+    assert_routing 'http://test.teamsquad.com/live-search',
       { :controller => 'organisation', :action => 'live_search' }
   end
   

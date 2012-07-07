@@ -16,8 +16,8 @@ class HelpControllerTest < ActionController::TestCase
   end
   
   def test_formatting_text_routing
-    assert_routing 'http://test.teamsquad.com/help/formatting_text',
-      {:controller => 'help', :action => 'formatting_text'}
+    assert_routing 'http://test.teamsquad.com/help/formatting',
+      {:controller => 'help', :action => 'formatting'}
   end
   
   #

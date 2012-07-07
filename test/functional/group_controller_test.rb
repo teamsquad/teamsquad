@@ -24,7 +24,7 @@ class GroupControllerTest < ActionController::TestCase
   #
   
   def test_new_group_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/new_group',
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/new-group',
       { :controller => 'group',
         :action => 'new',
         :competition => 'single-stage-competition',
@@ -41,7 +41,7 @@ class GroupControllerTest < ActionController::TestCase
   end
   
   def test_new_fixtures_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/new_fixtures',
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/new-fixtures',
       { :controller => 'group',
         :action => 'new_fixtures',
         :competition => 'single-stage-competition',
@@ -50,7 +50,7 @@ class GroupControllerTest < ActionController::TestCase
   end
   
   def test_enter_results_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/enter_results',
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/enter-results',
       { :controller => 'group',
         :action => 'enter_results',
         :competition => 'single-stage-competition',
@@ -59,7 +59,7 @@ class GroupControllerTest < ActionController::TestCase
   end
   
   def test_edit_results_routing
-    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/edit_results',
+    assert_routing 'http://test.teamsquad.com/competitions/single-stage-competition/test-stage-one/test-group-one/edit-results',
       { :controller => 'group',
         :action => 'edit_results',
         :competition => 'single-stage-competition',

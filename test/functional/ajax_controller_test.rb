@@ -3,7 +3,7 @@ require 'test_helper'
 class AjaxControllerTest < ActionController::TestCase
   
   def test_textile_preview
-    assert_routing 'ajax/textile_preview', {:controller => 'ajax', :action => 'textile_preview'}
+    assert_routing 'ajax/textile-preview', {:controller => 'ajax', :action => 'textile_preview'}
   end
 
   def test_textile_preview

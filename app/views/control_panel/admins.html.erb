@@ -2,8 +2,8 @@
 	<p>The following people can administer this organisation.</p>
 	
 	<ul class="things"><% for user in @admins %>
-		<li class="user"><%= link_to user.name, control_panel_url(:action => 'edit_admin', :id => user) %></li><% end %>
-		<li class="add_user"><%= link_to 'Add another administrator', control_panel_url(:action => 'new_admin'), :class => 'admin' %></li>
+		<li class="user"><%= link_to user.name, edit_admin_url(:id => user) %></li><% end %>
+		<li class="add_user"><%= link_to 'Add another administrator', new_admin_url, :class => 'admin' %></li>
 	</ul>
 </div>
 

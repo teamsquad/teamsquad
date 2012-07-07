@@ -5,7 +5,7 @@ class HelpController < AbstractAccountController
   def index
   end
   
-  def formatting_text
+  def formatting
     @titles << 'Formatting text'
   end
 
