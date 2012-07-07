@@ -5,6 +5,7 @@ gem 'rack-rewrite'
 gem 'jquery-rails'
 gem 'pg'
 gem "rmagick", "2.12.0", :require => 'RMagick'
+gem "RedCloth", ">= 4.0", :require => 'redcloth'
 
 # Gems used only for assets and not required
 # in production environments by default.
