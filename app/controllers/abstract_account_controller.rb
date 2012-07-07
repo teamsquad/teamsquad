@@ -11,7 +11,6 @@ protected
   def init
     expires_now # Set HTTP header to avoid caching of pages
     @titles  = []
-    @scripts = []
   end
   
   # Filters that can be called by the various controllers...

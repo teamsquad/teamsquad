@@ -37,7 +37,6 @@ class GroupController < AbstractAccountController
       clear_caches(params[:when])
       redirect_to competition_fixtures_url(:competition => @competition) and return
     end
-    @scripts << 'fixtures'
     @teams_in_group = @group.teams
   end
   

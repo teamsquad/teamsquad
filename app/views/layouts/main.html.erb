@@ -1,19 +1,16 @@
 <%= render :partial => "layouts/doctype" %>
 <html lang="en">
 <head>
-<%= render :partial => "layouts/head" %>
+  <%= render :partial => "layouts/head" %>
 </head>
-<body><div id="container">
-<%= render :partial => "layouts/org_title" %>
-<h1>
-	<%= @titles[-2] unless (@titles.size < 3) %>
-	<% unless @titles[-1].nil? -%>
-	<strong><%= @titles[-1] %></strong>
-	<% end -%>
-</h1>
-<%= yield %>
-<%= render :partial => "layouts/admin" %>
-<%= render :partial => "layouts/search" %>
-<%= render :partial => "layouts/foot" %>
-</div></body>
+<body class="sport<%= @organisation.sport_id%>">
+<div id="container">
+  <%= render :partial => "layouts/org_title" %>
+  <h1><%= @titles[-2] unless (@titles.size < 3) %><% unless @titles[-1].nil? %> <strong><%= @titles[-1] %></strong><% end %></h1>
+  <%= yield %>
+  <%= render :partial => "layouts/admin" %>
+  <%= render :partial => "layouts/search" %>
+  <%= render :partial => "layouts/foot" %>
+</div>
+</body>
 </html>
