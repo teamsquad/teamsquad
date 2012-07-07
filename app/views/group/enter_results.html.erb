@@ -5,7 +5,7 @@
 </h2><% end %>
 
 <div id="primary">
-<form action="<%= request.request_uri %>" method="post"><% for game in @games %>
+<form action="<%= request.fullpath %>" method="post"><% for game in @games %>
   <fieldset>
 		<legend><%= game.pretty_date %></legend>
 		

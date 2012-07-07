@@ -5,7 +5,7 @@
     <em><%= @group.title %></em><% end %><% unless @stage.lonely? %>
     for the <em><%= @stage.title %></em><% end %>.</p><% end %>
   
-  <form action="<%= request.request_uri %>" method="post" class="fixtures">
+  <form action="<%= request.fullpath %>" method="post" class="fixtures">
     <fieldset>
       <legend>When...</legend>
       <p>

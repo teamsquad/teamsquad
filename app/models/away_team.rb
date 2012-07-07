@@ -2,7 +2,7 @@
 
 class AwayTeam < Team
   
-  set_table_name :away_teams
+  self.table_name = :away_teams
 
   belongs_to :match, :foreign_key => 'awayteam_id'
   

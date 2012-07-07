@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   
@@ -8,7 +8,7 @@ class CommentTest < ActiveSupport::TestCase
            :notices,
            :comments
   
-  def test_should_have_a_name_for_its_author
+  test "should_have a name for its author" do
     assert_error_on :name, Comment.create()
     assert_error_on :name, Comment.create(:name => '')
     assert_error_on :name, Comment.create(:name => ' ')

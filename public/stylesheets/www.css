@@ -4,12 +4,13 @@ body {
   margin: 0;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: small;
-  background: #FFF;
+  font-size: 0.9em;
+  line-height: 1.4;
+  background: #DCDED4;
 }
 
   body.index {
-    background: #FFF url(/images/www_body.gif) repeat-x;
+    background: #FFF url(/images/www_body.gif) repeat-x 0 70px;
   }
 
 #container {
@@ -22,14 +23,15 @@ div#mast {
   text-align: left;
   overflow: hidden;
   position: relative;
-  width: 750px;
-  height: 49px;
+  width: 940px;
+  height: 59px;
 }
 
 div#logo {
   text-align: right;
   float: right;
   font-size: 26px;
+  line-height: 1;
 }
 
 div#menu {
@@ -56,12 +58,11 @@ div#menu {
   }
 
 #content {
-  padding: 15px 15px 15px 15px;
   z-index: 2;
   margin: 0 auto;
   text-align: left;
   overflow: hidden;
-  width: 750px;
+  width: 940px;
   position: relative;
 }
 
@@ -93,7 +94,12 @@ div#foot {
 
 #focus {
   float: right;
-  width: 70%;
+  width: 500px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #FFF
+  border: 2px solid #BEBFB5;
+  
 }
 
   #focus strong {
@@ -273,8 +279,8 @@ ul.organisations {
 
 div#splash {
   margin: 0;
-  padding: 0;
-  background: #1B1813 url(/images/splash.jpg) no-repeat left center;
+  padding: 0 100px;
+  background: #1B1813 url(/images/splash.jpg) no-repeat 50px center;
   color: #FFF;
   height: 193px;
 }

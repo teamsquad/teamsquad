@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Notice < ActiveRecord::Base
 
   attr_accessor :remove_picture
@@ -5,7 +7,7 @@ class Notice < ActiveRecord::Base
   acts_as_sluggable :heading
 
   file_column :picture,
-    :root_path => File.join(RAILS_ROOT, "public", "uploads"),
+    :root_path => File.join( Rails.root, "public", "uploads"),
     :max_file_size => 20.kilobytes,
     :magick => { :geometry => "200x200>" }
   

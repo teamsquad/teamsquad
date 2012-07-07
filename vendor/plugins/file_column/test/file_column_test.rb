@@ -182,7 +182,7 @@ class FileColumnTest < ActiveSupport::TestCase
     e.image = uploaded_file(file_path("kerb.jpg"), "image/jpeg", "kerb.jpg")
     e.save
     
-    assert_equal File.expand_path(File.join(RAILS_ROOT, "public", "entry", "image", e.id.to_s)),
+    assert_equal File.expand_path(File.join(Rails.root, "public", "entry", "image", e.id.to_s)),
     e.image_dir
     assert_equal File.join(e.id.to_s), 
     e.image_relative_dir
@@ -200,7 +200,7 @@ class FileColumnTest < ActiveSupport::TestCase
 
   def test_absolute_path_is_simple
     # we make :root_path more complicated to test that it is normalized in absolute paths
-    Entry.file_column :image, {:root_path => File.join(RAILS_ROOT, "public") + "/../public" }
+    Entry.file_column :image, {:root_path => File.join(Rails.root, "public") + "/../public" }
     
     e = Entry.new
     e.image = uploaded_file(file_path("kerb.jpg"), "image/jpeg", "kerb.jpg")

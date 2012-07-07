@@ -1,0 +1,85 @@
+.branded-font {
+  font-family: 'MidoMedium', Helvetica, Arial, sans-serif;
+}
+
+.primary-color {
+  color: #900;
+}
+
+.rounded-corners(@radius: 10px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.rounded-corners-top(@radius: 10px) {
+  -webkit-border-topleft-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+  -o-border-radius-topleft: @radius;
+  border-top-left-radius: @radius;
+  
+  -webkit-border-topright-radius: @radius;
+  -moz-border-radius-topright: @radius;
+  -o-border-radius-topright: @radius;
+  border-top-right-radius: @radius;
+}
+
+.rounded-corners-bottom(@radius: 10px) {
+  -webkit-border-bottomleft-radius: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -o-border-radius-bottomleft: @radius;
+  border-bottom-left-radius: @radius;
+  
+  -webkit-border-bottomright-radius: @radius;
+  -moz-border-radius-bottomright: @radius;
+  -o-border-radius-bottomright: @radius;
+  border-bottom-right-radius: @radius;
+}
+
+.rotate(@deg: 9deg){  
+  -webkit-transform: rotate(@deg);
+  -moz-transform: rotate(@deg);
+  -ms-transform: rotate(@deg);
+  -o-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+.bgsize(@size: 100% 100%){
+  -webkit-background-size: @size; 
+  -moz-background-size: @size;
+  -o-background-size: @size;
+  background-size: @size;
+}
+
+.clear-floats {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.gradient {
+    /* webkit example */
+  background-image: -webkit-gradient(
+    linear, left top, left bottom, from(rgba(255, 255, 255, 1.0)),
+    to(rgba(255, 255, 255, 0))
+  );
+
+  /* mozilla example - FF3.6+ */
+  background-image: -moz-linear-gradient(
+    top,
+    rgba(249, 254, 246, 1.0) 20%, rgba(249, 254, 246, 0) 95%
+  );
+
+  /* IE 5.5 - 7 */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    gradientType=0, startColor=0, endColorStr=#F9FEF6
+  );
+
+  /* IE8 uses -ms-filter for whatever reason... */
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(
+    gradientType=0, startColor=0, endColoStr=#F9FEF6
+  );
+}

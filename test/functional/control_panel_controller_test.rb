@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require File.dirname(__FILE__) + '/../test_helper'
 require 'control_panel_controller'
 
@@ -79,35 +81,30 @@ class ControlPanelControllerTest < ActionController::TestCase
     get :index, nil, fake_authorised_user_session
     assert_response :success
     assert_template "control_panel/index"
-    assert_tidy
   end
   
   def test_view_admin_list
     get :admins, nil, fake_authorised_user_session
     assert_response :success
     assert_template "control_panel/admins"
-    assert_tidy
   end
   
   def test_view_new_admin_form
     get :new_admin, { :id => 1 } , fake_authorised_user_session
     assert_response :success
     assert_template "control_panel/new_admin"
-    assert_tidy
   end
   
   def test_view_edit_admin_form
     get :edit_admin, { :id => 1 } , fake_authorised_user_session
     assert_response :success
     assert_template "control_panel/edit_admin"
-    assert_tidy
   end
   
   def test_view_edit_admin_form_with_id_from_another_organisation
     assert_raise(ActiveRecord::RecordNotFound) do
       get :edit_admin, { :id => 2 } , fake_authorised_user_session
       assert_response :missing
-      assert_tidy
     end
   end
   
@@ -115,7 +112,6 @@ class ControlPanelControllerTest < ActionController::TestCase
     assert_raise(ActiveRecord::RecordNotFound) do
       get :edit_admin, { :id => '£$%^&*(' } , fake_authorised_user_session
       assert_response :missing
-      assert_tidy
     end
   end
   

@@ -73,21 +73,18 @@ class OrganisationControllerTest < ActionController::TestCase
     get :home
     assert_response :success
     assert_template "organisation/home"
-    assert_tidy
   end
   
   def test_view_login_page
     get :login
     assert_response :success
     assert_template "organisation/login"
-    assert_tidy
   end
   
   def test_view_edit_page
     get :edit, {}, fake_authorised_user_session
     assert_response :success
     assert_template "organisation/edit"
-    assert_tidy
   end
   
   def test_view_live_search

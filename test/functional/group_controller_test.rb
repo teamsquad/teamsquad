@@ -115,28 +115,24 @@ class GroupControllerTest < ActionController::TestCase
                 :stage => 'test-stage-one' }, fake_authorised_user_session
     assert_response :success
     assert_template "group/new"
-    assert_tidy
   end
   
   def test_view_edit_group_page
     get :edit, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/edit"
-    assert_tidy
   end
   
   def test_view_new_fixtures_page
     get :new_fixtures, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/new_fixtures"
-    assert_tidy
   end
   
   def test_view_enter_results_page
     get :enter_results, group_params, fake_authorised_user_session
     assert_response :success
     assert_template "group/enter_results"
-    assert_tidy
   end
   
   #

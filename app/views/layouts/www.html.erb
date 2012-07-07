@@ -1,10 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="en-gb">
-<link href="/stylesheets/www.css"      rel="Stylesheet" type="text/css">
-<title>TeamSquad - <%= @page_title || 'organising local and amateur sport' %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en-gb">
+  <title>TeamSquad - <%= @page_title || 'organising local and amateur sport' %></title>
+  <%= stylesheet_link_tag "www", :media => "all" %>
+  <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.action_name %>">
 <div id="container">
@@ -14,19 +15,21 @@
 	  <span class="tagline">pre-release version <a href="/version">Huh?</a></span>
   </div>
   <div id="menu">
-  	<p>
-  	<a href="/" class="index">Home</a>
-  	<a href="/about" class="about">About</a>
-  	<a href="/features" class="features">Features</a>
-  	<a href="/register" class="register">Register</a>
-  	<a href="/search" class="search">Search</a>
-  	<a href="/contact" class="contact">Contact</a>
-  	</p>
+  	<ul>
+    	<li class="index"><a href="/">Home</a></li>
+    	<li class="about"><a href="/about">About</a></li>
+    	<li class="features"><a href="/features">Features</a></li>
+    	<li class="register"><a href="/register">Register</a></li>
+    	<li class="search"><a href="/search">Search</a></li>
+    	<li class="contact"><a href="/contact">Contact</a></li>
+  	</ul>
   </div>
 </div>
+<div id="topper"></div>
+<hr>
 <div id="content">
 <hr>
-<%= @content_for_layout %>
+<%= yield %>
 <hr>
 </div>
 <div id="foot">

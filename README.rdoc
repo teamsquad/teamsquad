@@ -1,0 +1,3 @@
+== Welcome to TeamSquad
+
+TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.

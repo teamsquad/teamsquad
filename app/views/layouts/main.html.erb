@@ -6,10 +6,12 @@
 <body><div id="container">
 <%= render :partial => "layouts/org_title" %>
 <h1>
-	<%= h @titles[-2] unless (@titles.size < 3) %>
-	<%= "<strong>#{h @titles[-1]}</strong>" unless @titles[-1].nil? %>
+	<%= @titles[-2] unless (@titles.size < 3) %>
+	<% unless @titles[-1].nil? -%>
+	<strong><%= @titles[-1] %></strong>
+	<% end -%>
 </h1>
-<%= @content_for_layout %>
+<%= yield %>
 <%= render :partial => "layouts/admin" %>
 <%= render :partial => "layouts/search" %>
 <%= render :partial => "layouts/foot" %>

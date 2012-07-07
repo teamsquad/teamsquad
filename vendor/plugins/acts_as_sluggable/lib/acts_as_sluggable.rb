@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TeamSquad
   module Acts #:nodoc:
     module Sluggable #:nodoc:
@@ -12,7 +14,7 @@ module TeamSquad
           cattr_accessor :sluggable_source_field, :sluggable_target_field 
           
           self.sluggable_source_field = source
-          self.sluggable_target_field = options[:target] || 'slug'
+          self.sluggable_target_field = options[:target] || :slug
           
           before_validation :create_slug
           after_validation  :move_slug_errors_to_sluggable_field
@@ -40,10 +42,12 @@ module TeamSquad
         end
         
         def move_slug_errors_to_sluggable_field
-          self.errors.add( 
-            self.class.sluggable_source_field,
-            errors.on(self.class.sluggable_target_field)
-          ) unless errors.on(self.class.sluggable_target_field).nil?
+          unless errors.get(self.class.sluggable_target_field).nil?
+            errors.add( 
+              self.class.sluggable_source_field,
+              errors.delete(self.class.sluggable_target_field)
+            )
+          end
         end
       end
       

@@ -14,7 +14,7 @@ class TestData < ActiveRecord::Migration
     season.organisation_id = 1
     season.save
 
-    user = User.new (:email => 'dummy@example.com',:password => 'password',:name => 'Dummy Admin')
+    user = User.new(:email => 'dummy@example.com',:password => 'password',:name => 'Dummy Admin')
     user.organisation_id = 1
     user.save
   end

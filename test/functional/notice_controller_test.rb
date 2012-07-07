@@ -73,28 +73,24 @@ class NoticeControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_template "notice/index"
-    assert_tidy
   end
   
   def test_view_notice_page
     get :view, {:notice => 'notice-one'}
     assert_response :success
     assert_template "notice/view"
-    assert_tidy
   end
   
   def test_new_notice_page
     get :new, {}, fake_authorised_user_session
     assert_response :success
     assert_template "notice/new"
-    assert_tidy
   end
   
   def test_edit_notice_page
     get :edit, {:notice => 'notice-one'}, fake_authorised_user_session
     assert_response :success
     assert_template "notice/edit"
-    assert_tidy
   end
   
 private

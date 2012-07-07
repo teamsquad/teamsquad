@@ -73,28 +73,24 @@ class InformationControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_template "information/index"
-    assert_tidy
   end
   
   def test_view_information_page
     get :view, {:page => 'this-is-page-one'}
     assert_response :success
     assert_template "information/view"
-    assert_tidy
   end
   
   def test_new_information_page
     get :new, {}, fake_authorised_user_session
     assert_response :success
     assert_template "information/new"
-    assert_tidy
   end
   
   def test_edit_information_page
     get :edit, {:page => 'this-is-page-one'}, fake_authorised_user_session
     assert_response :success
     assert_template "information/edit"
-    assert_tidy
   end
   
 private

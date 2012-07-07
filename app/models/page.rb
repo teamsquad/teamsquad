@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   attr_accessor  :remove_picture
 
   file_column :picture,
-    :root_path => File.join(RAILS_ROOT, "public", "uploads"),
+    :root_path => File.join(Rails.root, "public", "uploads"),
     :magick => { :geometry => "200x200>" }
   
   acts_as_sluggable :title

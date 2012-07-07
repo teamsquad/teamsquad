@@ -45,7 +45,6 @@ class SeasonControllerTest < ActionController::TestCase
     get :edit, {}, fake_authorised_user_session
     assert_response :success
     assert_template "season/edit"
-    assert_tidy
   end
   
 private

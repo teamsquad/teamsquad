@@ -2,7 +2,7 @@
 
 class HomeTeam < Team
   
-  set_table_name :home_teams
+  self.table_name = :home_teams
 
   belongs_to :match, :foreign_key => 'hometeam_id'
   

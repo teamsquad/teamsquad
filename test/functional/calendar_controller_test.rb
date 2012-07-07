@@ -73,7 +73,6 @@ class CalendarControllerTest < ActionController::TestCase
     get :index, :competition => single_stage_competition.slug
     assert_response :success
     assert_template "calendar/index"
-    assert_tidy
   end
   
   def test_view_competition_calendar_year
@@ -82,7 +81,6 @@ class CalendarControllerTest < ActionController::TestCase
         :year => '2006'
     assert_response :success
     assert_template "calendar/year"
-    assert_tidy
   end
   
   def test_view_competition_calendar_month
@@ -92,7 +90,6 @@ class CalendarControllerTest < ActionController::TestCase
         :month => '01'
     assert_response :success
     assert_template "calendar/month"
-    assert_tidy
   end
   
   def test_view_competition_calendar_day
@@ -103,7 +100,7 @@ class CalendarControllerTest < ActionController::TestCase
         :day => '01'
     assert_response :success
     assert_template "calendar/day"
-    assert_tidy
+
   end
   
   #

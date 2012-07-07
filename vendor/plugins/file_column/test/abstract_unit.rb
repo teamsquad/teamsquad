@@ -5,7 +5,7 @@ require_gem 'activerecord'
 require 'connection'
 require 'stringio'
 
-RAILS_ROOT = File.dirname(__FILE__)
+Rails.root = File.dirname(__FILE__)
 
 $: << "../lib"
 
