@@ -7,7 +7,7 @@
 <div id="focus">
 	<h2>Organisations</h2>
 	<dl><% for organisation in @organisations %>
-		<dt><%= "<a href=\"http://#{organisation.nickname}.teamsquad.com\">#{organisation.title}</a>" %></dt>
+		<dt><%= raw "<a href=\"http://#{organisation.nickname}.#{request.domain}\">#{h organisation.title}</a>" %></dt>
 		<dd><%= safely_display(organisation.summary) %></dd><% end %>
 	</dl>
 </div>
