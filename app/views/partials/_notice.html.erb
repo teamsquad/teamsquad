@@ -4,9 +4,9 @@
 	<%= link_to pluralize(notice.comments_count, 'comment'), notice_url(:notice => notice, :anchor => 'comments') unless notice.comments_count == 0 %></p>
 	<% if notice.has_picture? %><div class="image"><img src="/uploads/<%= "notice/picture/#{notice.id}/#{notice[:picture]}" %>"></div><% end %>
 	<% if controller.action_name == 'view' %>
-	<%= textilize(notice.content) %>
+	<%= raw textilize(h notice.content) %>
 	<% else %>
-	<%= textilize( truncate(notice.content, :length => 512)) %>
+	<%= raw textilize( h truncate(notice.content, :length => 512)) %>
 	<p><%= link_to "Read on...", notice_url(:notice => notice)	%></p>
 	<% end %>
 	<div class="clear"></div>
