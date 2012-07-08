@@ -3,6 +3,7 @@
 */
 @import 'mixins.css.less';
 
+div { .rounded-corners(); }
 
 body.sport1 { background-image: url(/images/sport1.jpg); }
 body.sport2 { background-image: url(/images/sport2.jpg); }
@@ -17,7 +18,7 @@ body.sport6 { background-image: url(/images/sport6.jpg); }
 	overflow: visible;
 	position: relative;
 	max-width: 75em;
-	min-width: 50em;
+	min-width: 40em;
 }
 
 #content {
@@ -172,7 +173,7 @@ body {
   margin: 0;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: small;
+  font-size: 0.9em;
   background: #FFF url(/images/body.gif) no-repeat fixed bottom right;
   border-top: 3px solid #FCC;
 }
@@ -206,13 +207,11 @@ h3 {
 
 p {
 	margin: 0.5em 0 1em 0;
+	line-height: 1.5
 }
 
 a {
   color: #090;
-}
-
-a:visited {
   text-decoration: none;
 }
 
@@ -265,7 +264,7 @@ div#secondary ul {
 
 div#secondary li {
   display: block;
-  margin: 0.3em 0;
+  margin: 0.5em 0;
   padding: 0 0 0 15px;
   background: url(/images/bullet_light.gif) no-repeat top left;
   color: #900;
@@ -500,39 +499,47 @@ ul.teams {
 
 
 table.calendar {
-	margin: 0 2px 2em 2px;
-	background: #EEE;
-	border: 2px solid #DDD;
+	margin: 0 2% 2em 2px;
+	background: #FFF;
 	float: left;
-	width: 32%;
+	width: 46%;
+	border: 2px solid #EEE
 }
 
 table.calendar caption {
 	font-weight: bold;
 	padding-bottom: 4px;
 	font-size: 1em;
+	text-align: left;
 }
 
 table.calendar th {
 	text-align: center;
+	padding: 4px;
 }
 
 table.calendar td {
 	line-height: 1.4em;
-	color: #999;
-	background: #FFF;
+	color: #CCC;
+	background: #F8F8F8;
+	padding: 4px;
 	text-align: center;
 	font-size: 1.1em;
 }
 
+table.calendar td a {
+  font-weight: bold;
+}
+
 table.calendar td.outmonth {
 	color: #EEE;
-	background: #F8F8F8;
+	background: #FFF;
 }
 
 div#secondary table.calendar td.active {
 	color: #900;
 }
+
 
 
 
@@ -585,6 +592,7 @@ form fieldset {
   padding: 0.5em 1em 1em 1em;
   border: 4px solid #EEE;
   background: #F8F8F8;
+  .rounded-corners();
 }
 
 form legend {
@@ -620,11 +628,10 @@ form p.input {
 
 form p.hint {
   color: #666;
-  line-height: 1.2em !important;
-  text-align: left !important;
+  text-align: left;
   font-size: 0.85em;
   float: none;
-  margin: 0 0 0.2em 0;
+  margin: 0.33em 0;
 }
 
 form p.problem {
@@ -649,7 +656,7 @@ form fieldset.finish legend {
 
 form .textfield,
 form .textarea {
-  width: 100%;
+  width: 98%;
   color: #333;
   margin: 0;
   font-size: small;
@@ -732,7 +739,7 @@ form th {
 }
 
 
-table.results .team {
+table.results td.team {
   font-size: medium;
 }
 
@@ -761,9 +768,9 @@ textarea.summary {
 
 table.standings,
 table.games {
-	margin: 0 0 1.5em 0;
+	margin: 0.5em 0 1.5em 0;
 	width: 100%;
-	border-bottom: 1px solid #999;
+	border-bottom: 1px solid #EEE;
 	clear: both;
 }
 
@@ -773,11 +780,8 @@ table.nohead thead {
 
 table thead th {
 	text-align: left;
-	font-size: smaller !important;
-	background: #999;
-	color: #FFF;
-	background: url(/images/header.gif) center;
-
+	font-size: 0.8em;
+	color: #666;
 }
 
 table.games tfoot td,
@@ -798,7 +802,6 @@ table.standings td.stat,
 table.standings th.stat {
 	width: 6%;
 	text-align: right;
-	padding: 4px 5px 4px 1px;
 }
 
 table.games tr.homewin td.home,
@@ -806,15 +809,19 @@ table.games tr.awaywin td.away {
 	font-weight: bold;
 }
 
+table.games td {
+  padding: 4px inherit;
+}
+
 table tr.even td,
 table tr.even th {
 	border-top: 1px solid #EEE;
-	background:#F8F8F8;
 }
 
 table tr.odd td,
 table tr.odd th {
 	border-top: 1px solid #EEE;
+	background: #F8F8F8;
 }
 
 table tr.noedge td {
