@@ -45,6 +45,7 @@
   
   <fieldset class="finish">
     <legend>Submit your registration</legend>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <p><input type="submit" value="Register"></p>
   </fieldset>
 </form>
