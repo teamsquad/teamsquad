@@ -197,9 +197,18 @@ class CreateCoreStructure < ActiveRecord::Migration
       t.column :updated_at, :timestamp
       t.column :resolved, :boolean, :default => false
     end
+    
+    create_table :invites do |t|
+      t.column :code, :string, :length => 16, :null => false, :unique => true
+      t.column :recipient, :string
+      t.column :used, :boolean, :default => false
+      t.column :created_on, :datetime
+      t.column :updated_on, :datetime
+    end
   end
 
   def self.down
+    drop_table :invites
     drop_table :contact_responses
     drop_table :games
     drop_table :modifications
