@@ -18,4 +18,5 @@ end
 
 group :production do
   gem 'thin'
+  gem 'newrelic_rpm'
 end
