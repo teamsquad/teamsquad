@@ -37,8 +37,9 @@ class Team < ActiveRecord::Base
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc"
     
-  has_many :competitions,
-    :finder_sql => 'SELECT c.* FROM competitions c JOIN stages s ON s.competition_id = c.id JOIN groups g ON g.stage_id = s.id JOIN groups_teams gt ON gt.group_id = g.id AND gt.team_id = #{id}'
+  def competitions
+    Competition.find_by_sql("SELECT c.* FROM competitions c JOIN stages s ON s.competition_id = c.id JOIN groups g ON g.stage_id = s.id JOIN groups_teams gt ON gt.group_id = g.id AND gt.team_id = #{id}")
+  end
   
   def has_fixtures?
     !self.fixtures.empty?
