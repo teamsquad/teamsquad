@@ -1,4 +1,4 @@
-<% cache do %><div id="primary">
+<% cache do %>
   <% if @team.has_fixtures? -%>
   <% for day in @team.fixture_days %>
   <div class="day">
@@ -10,8 +10,4 @@
   <h2>Nothing to display!</h2>
   <p>There are no fixtures available for this team.</p>
   <% end -%>
-</div><% end %>
-
-<div id="secondary">
-  <%= render :partial => 'partials/team_menu' %>
-</div>
+<% end %>

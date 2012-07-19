@@ -1,44 +1,21 @@
-<div id="primary">
-	<div class="standout">
-	<p><%= truncate @organisation.summary, :length => 200 %> <%= link_to 'More information...', information_url %></p>
-	</div>
-	
-	<div class="posts">	<% if @new_notices.size + @old_notices.size > 0 %>
-		<%= render :partial => "partials/notice", :collection => @new_notices %><% if @old_notices.size > 0 %>
-		
-		<h2>Older notices</h2>
-		<ul><% for notice in @old_notices %>
-			<li><%= link_to notice.heading, notice_url(:notice => notice) %></li><% end %>
-		</ul>
-		<p><%= link_to 'All notices...', notices_url %></p><% end %><% else %>
-		
-		<div class="post">
-			<h2>No notices</h2>
-			<p>If this organisation had some notices then they would be displayed here.</p>
-			<p>Notices are used to keep everyone up-to-date with the latest news. If you
-				are the organiser for this organisation then why not add a few and make this
-				page look nicer and serve a purpose?</p>
-		</div><% end %>
-	</div>
+<div class="information">
+  <p><%= truncate @organisation.summary, :length => 200 %> <%= link_to 'More information...', information_url %></p>
 </div>
 
-<div id="secondary">
-	<% if authorised? %><h2>Notices</h2>
-	<ul class="current">
-		<li class="admin"><%= link_to "New notice...", new_notice_url %></li>
-	</ul><% end %>
-	
-	<% unless @organisation.current_season.nil? %><h2><%= @organisation.current_season.title %> season</h2>
-	<ul class="current"><% for competition in @organisation.current_season.competitions %>
-		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
-		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li>
-		<li><%= link_to 'Edit this season...', edit_season_url, {:class=>'admin'} %></li>
-		<% end %>
-	</ul><% end %>
-	
-	<h2>Other stuff</h2>
-	<ul>
-		<li><%= link_to 'Information', information_url %></li>
-		<li><%= link_to 'Teams', teams_url %></li>
-	</ul>
+<div class="notices"> <% if @new_notices.size + @old_notices.size > 0 %>
+  <%= render :partial => "partials/notice", :collection => @new_notices %><% if @old_notices.size > 0 %>
+  
+  <h2>Older notices</h2>
+  <ul><% for notice in @old_notices %>
+    <li><%= link_to notice.heading, notice_url(:notice => notice) %></li><% end %>
+  </ul>
+  <p><%= link_to 'All notices...', notices_url %></p><% end %><% else %>
+  
+  <div class="notice">
+    <h2>No notices</h2>
+    <p>If this organisation had some notices then they would be displayed here.</p>
+    <p>Notices are used to keep everyone up-to-date with the latest news. If you
+      are the organiser for this organisation then why not add a few and make this
+      page look nicer and serve a purpose?</p>
+  </div><% end %>
 </div>

@@ -1,24 +1,7 @@
-<div id="primary">
-	<p>Hello there <%= h(current_user.name) %>. What do you want to do...?</p>
-	
-	<ul>
-		<li><%= link_to 'Alter the summary or logo for this organisation', edit_organisation_url %></li>
-		<li><%= link_to 'Manage the people that can administer this organisation', control_panel_url(:action => 'admins') %></li>
-		<li><%= link_to 'View some statistics about this site', control_panel_url(:action => 'statistics') %></li>
-	</ul>
-</div>
+<p>Hello there <%= h(current_user.name) %>. What do you want to do...?</p>
 
-<div id="secondary">
-  <h2>What's this then?</h2>
-	<p>Your control panel lets you quickly access various administration tasks
-		you can do for your organisation. Whilst you can do most things by following
-		links littered around your site (like add fixtures and so on) there are
-		some tasks that don't really fit anywhere else. You'll find those tasks
-		here. Stuff like managing who is allowed to log in and alter your
-		organisation's data.</p>
-
-	<h2>All done?</h2>
-	<ul>
-		<li><%= link_to 'Back to home page', home_url() %></li>
-	</ul>
-</div>
+<ul>
+	<li><%= link_to 'Alter the summary or logo for this organisation', edit_organisation_url %></li>
+	<li><%= link_to 'Manage the people that can administer this organisation', control_panel_url(:action => 'admins') %></li>
+	<li><%= link_to 'View some statistics about this site', control_panel_url(:action => 'statistics') %></li>
+</ul>

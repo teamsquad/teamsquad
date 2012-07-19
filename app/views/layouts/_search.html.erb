@@ -1,8 +1,8 @@
 <div id="search">
-	<% form_tag search_url, {:method => 'GET'} do %>
+	<%= form_tag search_url, {:method => 'GET'} do %>
 		<label for="in_term">Search this organisation</label>
 		<input type="text" name="term" id="in_term" value="Enter search term" onfocus="if (this.value == 'Enter search term') {this.value = ''}">
-		<input type="submit" value="Go" class="clickable" title="Click this button and we'll go look for your stuff">
+		<input type="submit" value="Go" class="button" title="Click this button and we'll go look for your stuff">
 	  <div id="term_auto_complete"></div>
     <script type="text/javascript">
 		function doPick(arg) {
@@ -21,7 +21,7 @@
 		  return true;
 		}
 
-		new Ajax.Autocompleter('in_term', 'term_auto_complete', '/live_search', {updateElement: doPick});
+		new Ajax.Autocompleter('in_term', 'term_auto_complete', '/live-search', {updateElement: doPick});
     </script>
 	<% end %>
 </div>

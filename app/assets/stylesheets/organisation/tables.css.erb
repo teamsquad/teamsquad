@@ -1,0 +1,142 @@
+table.standings,
+table.games {
+  margin: 0.5em 0 1.5em 0;
+  width: 100%;
+  clear: both;
+}
+
+  table.nohead thead {
+    display: none;
+  }
+
+  table thead th {
+    text-align: left;
+    font-size: 0.8em;
+    color: #666;
+    padding: 4px;
+  }
+
+  table.games tfoot td,
+  table.standings tfoot td {
+    text-align: right;
+  }
+
+  table.games td,
+  table.standings td {
+    padding: 4px;
+  }
+
+  table.standings td.stat,
+  table.standings th.stat {
+    width: 6%;
+    text-align: right;
+  }
+
+  table.games tr.homewin td.home,
+  table.games tr.awaywin td.away {
+    font-weight: bold;
+  }
+
+  table tr.odd td,
+  table tr.odd th {
+    background: #F8F8F8;
+  }
+
+  table tr.summary td {
+    text-align: left;
+    color: #666;
+    font-size: smaller;
+    padding: 2px 90px 8px 90px;
+  }
+
+  table tr.short td {
+    text-align: center;
+  }
+
+  table tr.notes td {
+    text-align: center;
+    color: #666;
+    font-size: smaller;
+    padding: 0 0 3px 0;
+  }
+
+  table tr.auto-promote td.pos {
+    background-image: url(/images/autopromote_bg.png);
+  }
+
+  table tr.auto-relegate td.pos {
+    background-image: url(/images/autorelegate_bg.png);
+  }
+
+  table tr.conditional-promote td.pos {
+    background-image: url(/images/conditionalpromote_bg.png);
+  }
+
+  table tr.conditional-relegate td.pos {
+    background-image: url(/images/conditionalrelegate_bg.png);
+  }
+
+  table .pos {
+    width: 2%;
+    text-align: right;
+  }
+
+  table .versus {
+    text-align: center;
+    font-size: smaller; 
+    width: 4%;
+  }
+
+  table.results th.versus {
+    width: 12%;
+  }
+
+  table .hierarchy {
+    text-align: right;
+    white-space: nowrap;
+    width: 12%;
+  }
+
+  .time {
+    text-align: right;
+  }
+
+  table .when {
+    width: 12%;
+    text-align: left;
+    white-space: nowrap;
+    color: #666;
+  }
+
+  table.games .home {
+    text-align: right;
+  }
+
+  table.games .away {
+    text-align: left;
+  }
+
+  tr.notes .home,
+  tr.notes .away {
+    width: 41%;
+  }
+
+  table .team {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 36%;
+  }
+
+
+  table .results .team {
+    width: 31%;
+  }
+
+  table th.score {
+    text-align: center;
+  }
+  
+  table td.score {
+    width: 5%;
+    font-size: large;
+  }

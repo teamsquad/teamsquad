@@ -1,4 +1,4 @@
-<% cache do %><div id="primary">
+<% cache do %>
 	<% unless @months.empty? %><% for month in @months	%>
 	<%= render(:partial => 'partials/month', :object => month.date, :locals => {:dates => @dates.select { |d| d.month == month.date.month }}) %><% end %>
 	<% else -%>
@@ -7,8 +7,4 @@
 	competition is yet to start or the lazy person organising it needs to
 	get their	finger out and enter some fixtures in.</p>
 	<% end -%>
-</div><% end %>
-
-<div id="secondary">
-	<%= render :partial => 'partials/competition_menu' %>
-</div>
+<% end %>

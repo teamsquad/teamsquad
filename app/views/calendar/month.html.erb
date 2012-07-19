@@ -1,11 +1,7 @@
-<% cache do %><div id="primary"><% for day in @competition.match_days_for_month(@date) %>
+<% cache do %><% for day in @competition.match_days_for_month(@date) %>
   <div class="day">
     <h2><%= day.pretty_date %></h2>
     <%= render :partial => 'partials/fixtures',
           :object => @competition.matches_for_day(day.date)%>
   </div><% end %>
-</div><% end %>
-
-<div id="secondary">
-  <%= render :partial => 'partials/competition_menu' %>
-</div>
+<% end %>

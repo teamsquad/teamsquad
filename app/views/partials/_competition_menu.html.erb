@@ -1,15 +1,22 @@
-	<h2>This competition</h2>
+  <h2>Organisation</h2>
+  <ul>
+    <li class="home"><%= link_to_unless_current 'Home', home_url %></li>
+    <li class="information"><%= link_to_unless_current 'Information', information_url %></li>
+    <li class="team"><%= link_to_unless_current 'Teams', teams_url %></li>
+  </ul>
+
+	<h2><%= @competition.title %></h2>
 	<ul class="current">
-	  <li><%= link_to_unless_current 'Overview', competition_url(:competition => @competition) %></li>
-	  <li><%= link_to_unless_current 'Calendar',	calendar_url(:competition => @competition) %></li>  
-	  <li><%= link_to_unless_current 'All results',	competition_results_url(:competition => @competition) %></li>
-		<li><%= link_to_unless_current 'All fixtures', competition_fixtures_url(:competition => @competition) %></li><% for stage in @competition.stages %>
-		<li><%= link_to_unless_current stage.title, stage_url(:competition => @competition, :stage => stage) %></li><% end %><% if authorised? %>
-		<li><%= link_to('New stage...', new_stage_url(:competition => @competition), {:class => 'admin'}) %></li><% end %>
+	  <li class="overview"><%= link_to_unless_current 'Overview', competition_url(:competition => @competition) %></li>
+	  <li class="calendar"><%= link_to_unless_current 'Calendar',	calendar_url(:competition => @competition) %></li>  
+	  <li class="results"><%= link_to_unless_current 'All results',	competition_results_url(:competition => @competition) %></li>
+		<li class="fixtures"><%= link_to_unless_current 'All fixtures', competition_fixtures_url(:competition => @competition) %></li><% for stage in @competition.stages %>
+		<li class="stage"><%= link_to_unless_current stage.title, stage_url(:competition => @competition, :stage => stage) %></li><% end %><% if authorised? %>
+		<li class="add-stage"><%= link_to('New stage...', new_stage_url(:competition => @competition), {:class => 'admin'}) %></li><% end %>
 	</ul>
 	<% if @season.competitions_other_than(@competition).size > 0 %>
 	<h2>Other competitions</h2>
 	<ul><% for competition in @season.competitions_other_than(@competition) %>
-		<li><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
-		<li><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li><% end %>
+		<li class="competition"><%= link_to competition.label_or_title, competition_url(:competition => competition) %></li><% end %><% if authorised? %>
+		<li class="add-competition"><%= link_to 'Add new competition...', new_competition_url, {:class=>'admin'} %></li><% end %>
 	</ul><% end %>

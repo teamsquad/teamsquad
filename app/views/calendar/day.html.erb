@@ -1,21 +1,10 @@
-<% cache do %>
-<div id="primary">
+<% cache do -%>
   <% unless @competition.matches_for_day(@date).empty? -%>
-	<div class="day">
-    <%= render :partial => 'partials/fixtures',
-          :object => @competition.matches_for_day(@date) %>
+  <div class="day">
+    <%= render :partial => 'partials/fixtures', :object => @competition.matches_for_day(@date) %>
   </div>
   <% else -%>
-	<h2>Nothing to display!</h2>
-	<p>There are no matches scheduled for this date.</p>
-	<% end -%>
-</div>
-<% end %>
-
-<div id="secondary">
-  <%= render :partial => 'partials/competition_menu' %>
-</div>
-
-
-
-	
+  <h2>Nothing to display!</h2>
+  <p>There are no matches scheduled for this date.</p>
+  <% end -%>
+<% end -%>

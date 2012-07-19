@@ -1,23 +1,17 @@
-<div id="primary">
-	<div class="standout">
-		<p><%= h @competition.summary %> 
-			<%= link_to 'Edit this competition...',
-	    	edit_competition_url(:competition => @competition),
-				{:class => 'admin'} if authorised? %></p>
-	</div>
-	<% cache do %>
-	<% if @stage.nil? -%>
-	<%= render :partial => 'not_set_up' %>
-	<% elsif @stage.has_no_groups? -%>
-	<%= render :partial => 'partially_set_up' %>
-	<% elsif @competition.has_news_worthy_matches? %>
-	<%= render :partial => 'auto_generated_news' %>
-	<% else %>
-	<%= render :partial => 'nothing_doing' %>
-	<% end %>
-	<% end %>
+<div class="standout">
+	<p><%= h @competition.summary %> 
+		<%= link_to 'Edit this competition...',
+    	edit_competition_url(:competition => @competition),
+			{:class => 'admin'} if authorised? %></p>
 </div>
-
-<div id="secondary">
-	<%= render :partial => 'partials/competition_menu' %>
-</div>
+<% cache do %>
+<% if @stage.nil? -%>
+<%= render :partial => 'not_set_up' %>
+<% elsif @stage.has_no_groups? -%>
+<%= render :partial => 'partially_set_up' %>
+<% elsif @competition.has_news_worthy_matches? %>
+<%= render :partial => 'auto_generated_news' %>
+<% else %>
+<%= render :partial => 'nothing_doing' %>
+<% end %>
+<% end %>

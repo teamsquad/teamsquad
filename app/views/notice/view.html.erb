@@ -1,39 +1,13 @@
-<div id="primary">
-  <%= render :partial => "partials/notice", :object => @notice %>
+<%= render :partial => "partials/notice", :object => @notice %>
 
-  <h2>Comments</h2><% if !@notice.comments.empty? %>
-  <div class="comments" id="comments"><% for comment in @notice.comments %>
-  <div class="comment">
-  <h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
-  <%= safely_display comment.content if comment.content %>
-  </div><% end %>
-  </div><% end %>
+<h2>Comments</h2><% if !@notice.comments.empty? %>
+<div class="comments" id="comments"><% for comment in @notice.comments %>
+<div class="comment">
+<h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
+<%= safely_display comment.content if comment.content %>
+</div><% end %>
+</div><% end %>
 
-  <div class="comment" id="comment">
-    <%= render :partial => 'forms/comment', :object => @comment %>
-  </div>
-</div>
-
-<div id="secondary">
-	<% if authorised? %><h2>Edit Notice</h2>
-	<ul class="current">
-		<li class="admin"><%= link_to "Edit this notice...", edit_notice_url(:notice => @notice) %></li><% if !@notice.comments.empty? %>
-		<li class="admin"><%= link_to "Moderate its comments...", moderate_notice_url(:notice => @notice) %></li><% end %>
-	</ul><% end %>
-	
-  <h2>Recent notices</h2>
-  <ul class="current"><% for notice in @organisation.recent_notices %>
-    <li><%= link_to_unless_current notice.heading, notice_url(:notice => notice) %></li><% end %>   
-  </ul>
-  
-  <h2>More</h2>
-  <ul>
-    <li><%= link_to 'All notices...', notices_url %></li><% if authorised? %>
-		<li class="admin"><%= link_to "New notice...", new_notice_url %></li><% end %>
-  </ul>
-  
-  <h2>All done?</h2>
-  <ul>
-    <li><%= link_to "Back home", home_url %></li>
-  </ul>
+<div class="comment" id="comment">
+  <%= render :partial => 'forms/comment', :object => @comment %>
 </div>

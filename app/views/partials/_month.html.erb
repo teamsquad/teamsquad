@@ -1,4 +1,4 @@
-<table class="calendar" cellpadding="0" cellspacing="1" summary="Match calendar for <%= month.strftime("%B %Y") %>">
+<table class="calendar <%= cycle('odd', 'even') %>" cellpadding="0" cellspacing="1" summary="Match calendar for <%= month.strftime("%B %Y") %>">
   <caption><%= link_to month.strftime("%B %Y"), calendar_month_url(:competition => @competition, :year => month.year, :month => month.month) %></caption>
   <thead>
     <tr>

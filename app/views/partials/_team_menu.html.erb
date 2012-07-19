@@ -1,24 +1,23 @@
-<% if authorised? %><h2>Edit team</h2>
-<ul class="current">
-  <li class="admin"><%= link_to "Edit this team...", edit_team_url(:team => @team) %></li>
-</ul><% end %>
+<h2>Organisation</h2>
+<ul>
+  <li class="home"><%= link_to_unless_current 'Home', home_url %></li>
+  <li class="information"><%= link_to_unless_current 'Information', information_url %></li>
+  <li class="team"><%= link_to_unless_current 'Teams', teams_url %></li>
+</ul>
 
 <h2>This team</h2>
 <ul class="current">
-  <li><%= link_to_unless_current 'Overview', team_url(:team => @team) %></li>
-  <li><%= link_to_unless_current 'Fixtures', team_fixtures_url(:team => @team) %></li>
-  <li><%= link_to_unless_current 'Results', team_results_url(:team => @team) %></li>
+  <li class="overview"><%= link_to_unless_current 'Overview', team_url(:team => @team) %></li>
+  <li class="fixtures"><%= link_to_unless_current 'Fixtures', team_fixtures_url(:team => @team) %></li>
+  <li class="results"><%= link_to_unless_current 'Results', team_results_url(:team => @team) %></li>
+  <% if authorised? -%>
+    <li class="team admin"><%= link_to "Edit this team...", edit_team_url(:team => @team) %></li>
+  <% end -%>
 </ul>
 
 <% unless @team.competitions.count.zero? -%>
 <h2>Competitions</h2>
 <ul class="current"><% for competition in @team.competitions %>
-  <li><%= link_to competition.title, competition_url(:competition => competition) %></li><% end %>
+  <li class="competition"><%= link_to competition.title, competition_url(:competition => competition) %></li><% end %>
 </ul>
 <% end -%>
-
-<h2>All done?</h2>
-<ul>
-  <li><%= link_to 'Full team list', teams_url %></li>
-  <li><%= link_to 'Return to home', home_url %></li>
-</ul>

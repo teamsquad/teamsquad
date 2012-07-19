@@ -1,4 +1,4 @@
-<% cache do %><div id="primary">
+<% cache do %>
   <% unless @days.empty? -%>
   <% @days.each do |day, matches| -%>
   <div class="day">
@@ -11,13 +11,4 @@
   competition is yet to start or the person organising it needs to
   get their finger out and enter some fixtures in.</p>
   <% end -%>
-</div><% end %>
-
-<div id="secondary">
-  <% if authorised? %><h2>Fixtures</h2>
-  <ul class="current">
-    <li class="admin"><%= link_to 'Add fixtures', competition_add_fixtures_url(:competition => @competition) %></li>
-  </ul><% end %>
-  
-  <%= render :partial => 'partials/competition_menu' %>
-</div>
+<% end %>

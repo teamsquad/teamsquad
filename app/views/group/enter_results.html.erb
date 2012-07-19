@@ -4,7 +4,6 @@
   <%= @group.title if @stage.groups_count > 1 %>
 </h2><% end %>
 
-<div id="primary">
 <form action="<%= request.fullpath %>" method="post"><% for game in @games %>
   <fieldset>
 		<legend><%= game.pretty_date %></legend>
@@ -52,17 +51,3 @@
 		<input type="submit" value="Save results">
 	</fieldset>
 </form>	
-</div>
-
-<div id="secondary">
-	<h2>Tips</h2>
-	<p>If you don't know the results for any given game then simply leave its
-	data fields blank and move on to the next one. When you save the results
-	empty ones will be ignored and you can come back another time to finish them
-	off.</p>
-
-	<h2>Cancel?</h2>
-	<ul>
-		<li><%= link_to "Return to #{@group.stage.title}", stage_url(:competition => @competition, :stage => @stage) %></li>
-	</ul>
-</div>

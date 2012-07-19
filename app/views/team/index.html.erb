@@ -1,22 +1,7 @@
-<div id="primary">
-  <% if @teams.empty? -%>
-  <p>There are no teams yet.</p>
-  <% else -%>
-  <p>The following teams are associated with this organisation.</p>
-  <ul class="teams"><% for team in @teams %>
-    <li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
-  </ul>
-  <% end -%>  
-</div>
-
-<div id="secondary"><% if authorised? %>
-  <h2>More</h2>
-  <ul class="current">
-    <li class="admin"><%= link_to 'New team...', new_team_url %></li>
-  </ul><% end %>
-  
-  <h2>All done?</h2>
-  <ul>
-    <li><%= link_to 'Return to home', home_url %></li>
-  </ul>
-</div>
+<% if @teams.empty? -%>
+<p>There are no teams yet.</p>
+<% else -%>
+<ul class="teams"><% for team in @teams %>
+  <li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
+</ul>
+<% end -%>  

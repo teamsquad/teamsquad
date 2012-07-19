@@ -1,3 +1,4 @@
+<% reset_cycle('row_class') %>
 <table class="standings" cellpadding="0" cellspacing="0" summary="Standings table">
 	<thead>
 		<th class="pos">#</th>
@@ -10,7 +11,7 @@
 		<th class="stat">Pts</th>
 	</thead>
 	<tbody><% group.standings.each_with_index do |standing, index| %>
-	<tr class="<%= cycle("odd", "even") %> <%= group.class_for_position(index + 1) %>">
+	<tr class="<%= cycle("odd", "even", :name => "row_class") %> <%= group.class_for_position(index + 1) %>">
 		<td class="pos"><%= index + 1 %></td>
 		<td class="team"><%= link_to standing.team.title.slice(0,32), team_url(:team => standing.team) %></td>
 		<td class="stat"><%= standing.totalplayed %></td>

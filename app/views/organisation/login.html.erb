@@ -1,28 +1,18 @@
-<div id="primary">
-  <form action="/login" method="post" class="standard">
-  <fieldset>
-    <legend>Your login details...</legend>
-    <label for="login-email">Email address</label>
-    <p class="hint">The email address you registered with.</p>
-    <input type="text" name="email" id="login-email" class="important textfield">
-    
-    <label for="login-password">Password</label>
-    <p class="hint">Your oh so secret password. This is case sensitive.</p>
-    <input type="password" name="password" id="login-password" class="important textfield">
-  </fieldset>
+<form action="/login" method="post" class="standard">
+<fieldset>
+  <legend>Your login details...</legend>
+  <label for="login-email">Email address</label>
+  <p class="hint">The email address you registered with.</p>
+  <input type="text" name="email" id="login-email" class="important textfield">
+  
+  <label for="login-password">Password</label>
+  <p class="hint">Your oh so secret password. This is case sensitive.</p>
+  <input type="password" name="password" id="login-password" class="important textfield">
+</fieldset>
 
-  <fieldset class="finish">
-    <legend>Go login</legend>
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="submit" value="Login">
-  </fieldset>
+<fieldset class="finish">
+  <legend>Go login</legend>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Login">
+</fieldset>
 </form>
-</div>
-
-<div id="secondary">
-  <h2>Why do I need to login?</h2>
-	<p>If you are not involved in running this organisation then you don't!</p>
-	<p>If you are one of the lovely people that does run this organisation then
-		you can login and add fixtures, enter results, and generally do all the
-		good stuff that keeps things running smoothly.</p>
-</div>

@@ -1,18 +1,1 @@
-<div id="primary">
-  <%= render :partial => 'forms/group' %>
-</div>
-
-<div id="secondary">
-  <h2>About groups</h2>
-  <p>If you only need one group then it's name is largely irrelevant and can
-    be left as something like 'untitled'. The name is only really useful when
-    there are many groups so as to distinguish between them. Is is still
-    required however.</p>
-    
-  <%= render :partial => 'partials/structure_tips' %>
-  
-  <h2>Cancel?</h2>
-  <ul>
-    <li><%= link_to 'Return to stage', stage_url(:competition => @competition, :stage => @stage) %></li>
-  </ul>
-</div>
+<%= render :partial => 'forms/group' %>
