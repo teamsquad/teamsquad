@@ -1,0 +1,15 @@
+<% if @team.has_results? -%>
+  <div class="day">
+    <h2>Last result - <%= @team.results.first.pretty_date %></h2>
+    <%= render :partial => 'partials/results', :object => [@team.results.first] %>
+  </div>
+  <p class="more"><%= link_to "All results", team_results_url(:team => @team) %></p>
+<% end %>
+
+<% if @team.has_fixtures? -%>
+  <div class="day">
+    <h2>Next fixture - <%= @team.fixtures.first.pretty_date %></h2>
+    <%= render :partial => 'partials/fixtures', :object => [@team.fixtures.first] %>
+  </div>
+  <p class="more"><%= link_to "All fixtures", team_fixtures_url(:team => @team) %></p>
+<% end %>
