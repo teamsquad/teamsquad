@@ -4,16 +4,19 @@
   <%= render :partial => "layouts/head" %>
 </head>
 <body class="sport<%= @organisation.sport_id%>">
+<h1><span><% @titles.each_with_index do |title, i| %>
+  <strong class="title<%= i %>"><%= title %></strong><% end %>
+</span></h1>
+
 <div id="content"><div class="inner">
     <div id="primary">
-      <h1><span><%= @titles[-2] unless (@titles.size < 3) %><% unless @titles[-1].nil? %> <strong><%= @titles[-1] %></strong><% end %></span></h1>
       <%= yield %>
     </div>
     <%= render :partial => "layouts/secondary" %>
-    <%= render :partial => "layouts/search" %>
-    <%= render :partial => "layouts/admin" %>
 </div></div>
 
+<%= render :partial => "layouts/search" %>
+<%= render :partial => "layouts/admin" %>
 <%= render :partial => "layouts/foot" %>
 </body>
 </html>

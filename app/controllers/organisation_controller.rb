@@ -5,7 +5,7 @@ class OrganisationController < AbstractAccountController
   def home
     @new_notices  = @organisation.recent_notices
     @old_notices  = @organisation.older_notices
-    @titles      << @organisation.title
+    @titles      << "Welcome"
   end
   
   def login
@@ -21,9 +21,9 @@ class OrganisationController < AbstractAccountController
   end
   
   def edit
-    @form = @organisation.dup
+    @form = @organisation
     if request.post? && @form.update_attributes(params[:form])
-      redirect_to information_url 
+      redirect_to home_url 
     end
   end
   

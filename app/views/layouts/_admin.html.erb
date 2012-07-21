@@ -1,9 +1,0 @@
-<div id="admin">
-  <p><% if authorised? %>
-		<%= link_to_unless_current 'Control panel', control_panel_url, :class => 'button' %>
-		<%= link_to_unless_current 'Help', help_url, :class => 'button' %>
-	 	<%= link_to_unless_current 'Logout', logout_url, :class => 'button' %>
-	<% else %>
-  	<%= link_to_unless_current 'Login', login_url, :class => 'button' %>
-	<% end %></p>
-</div>

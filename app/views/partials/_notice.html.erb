@@ -7,11 +7,15 @@
       <%= link_to pluralize(notice.comments_count, 'comment'), notice_url(:notice => notice, :anchor => 'comments') unless notice.comments_count == 0 %>
     </span>
   </p>
-  <% if notice.has_picture? %><div class="image"><img src="/uploads/<%= "notice/picture/#{notice.id}/#{notice[:picture]}" %>"></div><% end %>
   <% if controller.action_name == 'view' -%>
-  <%= raw textilize(h notice.content) %>
+    <% if notice.has_picture? -%>
+      <div class="image"><img src="/uploads/<%= "notice/picture/#{notice.id}/#{notice[:picture]}" %>"></div>
+    <% end -%>
+    <%= raw textilize(h notice.content) %>
   <% else -%>
-  <%= raw textilize( h truncate(notice.content, :length => 512)) -%>
-  <p class="more"><%= link_to "Read on...", notice_url(:notice => notice)  %></p>
+    <p>
+      <%= truncate(notice.content, :length => 256) %>
+      <%= link_to "Read on...", notice_url(:notice => notice)  %>
+    </p>
   <% end %>
 </div>

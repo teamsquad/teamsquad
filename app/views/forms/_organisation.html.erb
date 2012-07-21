@@ -1,15 +1,22 @@
 <% unless @form.errors.empty? -%>
 <p class="warning">Sorry, but that's just not good enough.</p>
+<%= @form.errors.each { |e| e.inspect } %>
 <% end %>
 <form action="<%= request.fullpath %>" method="post" class="standard" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Details...</legend>
 	
 		<label for="in-content">Summary</label>
-		<p class="hint">Describe your organisaiton briefly. Don't use HTML tags,
+		<p class="hint">Describe your organisation briefly. Don't use HTML tags,
 		web addresses will automatically be linked and linebreaks will be respected.</p>
 		<%= error_message_on "form", "summary", "Summary " %>
 		<p class="input"><%= text_area "form", "summary", :rows => 12, :class => 'textarea', :id => 'in-summary'%></p>
+
+    <label for="in-content">Design</label>
+		<p class="hint">Select the design you want to use for your organisation's
+		  website. This will affect how pages are laid out and styled.</p>
+		<%= error_message_on "form", "theme", "Theme " %>
+		<p class="input"><%= select "form", "theme", [["Classic", "classic"], ["Apptastic", "apptastic"]], :class => 'select', :id => 'in-theme' %></p>
 		
 		<label for="in-picture">Logo</label>
 		<p class="hint">If you want to add a logo to display on the site use the 
@@ -34,6 +41,6 @@
 	<fieldset class="finish">
 		<legend>Finish up</legend>
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-		<input type="submit" value="Save changes">
+		<input type="submit" value="Save changes" class="button">
 	</fieldset>
 </form>

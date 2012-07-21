@@ -15,6 +15,7 @@ class CreateCoreStructure < ActiveRecord::Migration
       t.column "title", :string, :limit => 128, :null => false
       t.column "nickname", :string, :limit => 32, :null => false
       t.column "summary", :string, :limit => 512, :null => false
+      t.column "theme", :string, :limit => 32, :default => 'classic'
       t.column "seasons_count", :integer, :default => 0
       t.column "created_on", :datetime
       t.column "updated_on", :datetime

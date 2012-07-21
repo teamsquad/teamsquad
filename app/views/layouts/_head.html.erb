@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-gb">
 <title><%= @titles.join(' - ') %></title>
-<%= stylesheet_link_tag "organisation", :media => "all" %>
+<%= stylesheet_link_tag @organisation.theme, :media => "all" %>
 <style type="text/css" media="screen">
 <% if @organisation.has_logo? %>h1 {
 	background: url(/uploads/<%= "organisation/logo/#{@organisation.id}/#{@organisation[:logo]}" %>) no-repeat top left;

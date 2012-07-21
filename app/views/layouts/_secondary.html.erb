@@ -1,22 +1,17 @@
 <div id="secondary">
+  <div id="menu">
   <ul>
     <li class="home">
       <%= link_to_unless_current raw("<span>#{@organisation.title}</span>"), home_url %>
       <% if controller_name == 'notice' || controller_name == 'organisation' -%>
         <ul>
           <li class="notice"><%= link_to_unless_current raw("<span>Notices</span>"), notices_url %></li>
+          <li class="teams"><%= link_to_unless controller_name == 'team', raw('<span>Teams</span>'), teams_url %></li>
           <% if authorised? -%>
           <li class="admin add-notice"><%= link_to_unless_current raw('<span>Add new notice...</span>'), new_notice_url %></li>
+          <li class="admin edit"><%= link_to_unless_current raw('<span>Edit organisation...</span>'), edit_organisation_url %></li>
           <% end -%>
         </ul>
-      <% end -%>
-    </li>
-    <li class="teams">
-      <%= link_to_unless controller_name == 'team', raw('<span>Teams</span>'), teams_url %>
-      <% if controller_name == 'team' -%>
-      <ul><% for team in @organisation.teams do %>
-        <li class="teams"><%= link_to_unless_current raw("<span>#{team.title}</span>"), team_url(:team => team)%></li><% end %>
-      </ul>
       <% end -%>
     </li>
     <li class="information">
@@ -49,4 +44,5 @@
     <li class="admin add-competition"><%= link_to_unless_current raw('<span>Add new competition...</span>'), new_competition_url %></li>
     <% end -%>
     </ul>
+    </div>
 </div>

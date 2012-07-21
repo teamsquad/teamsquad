@@ -1,0 +1,32 @@
+div.notices {
+  padding-top: 1em;
+}
+
+  div.notice {
+    clear: both;
+    padding: 0;
+    margin-bottom: 3em;
+  }
+
+    div.notice h2 {
+      margin-left: -32px;
+      padding-left: 32px;
+      background: url(<%= asset_data_uri 'large/notice.png' %>) no-repeat left;
+      line-height: 1.2em;
+      margin-bottom: 0.4em;
+    }
+  
+    div.notice p {
+      text-align: justify;
+    }
+  
+    div.notice div.image {
+      float: right;
+      margin: 0 0 0.5em 1em;
+      border: 1px solid #CCC;
+      padding: 3px;
+    }
+
+      div.notice div.image img {
+        display: block;
+      }

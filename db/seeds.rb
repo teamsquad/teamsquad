@@ -20,11 +20,21 @@ puts "Creating invites"
   Invite.create(:code => temp_code.to_s)
 end
 
-puts "Creating test organisation"
+puts "Creating organisations"
 test_organisation = Organisation.new(
   :title => "Test Organisation",
   :nickname => "test",
   :summary => "A simple little organisation for testing with.",
+  :theme => 'classic',
+  :sport_id => football.id
+)
+test_organisation.save
+
+Organisation.new(
+  :title => "Blank Organisation",
+  :nickname => "blank",
+  :summary => "A simple little organisation for testing with.",
+  :theme => 'apptastic',
   :sport_id => football.id
 )
 test_organisation.save
