@@ -30,20 +30,25 @@ test_organisation = Organisation.new(
 )
 test_organisation.save
 
-Organisation.new(
-  :title => "Blank Organisation",
-  :nickname => "blank",
-  :summary => "A simple little organisation for testing with.",
-  :theme => 'apptastic',
+olympics_organisation = Organisation.new(
+  :title => "Olympics",
+  :nickname => "olympics",
+  :summary => "Olympic football to use as a test.",
+  :theme => 'classic',
   :sport_id => football.id
 )
-test_organisation.save
+olympics_organisation.save
 
-puts "Creating season"
+puts "Creating seasons"
 season = test_organisation.seasons.build(
   :title => '2012'
 )
 season.save
+
+olympic_season = olympics_organisation.seasons.build(
+  :title => 'London 2012'
+)
+olympic_season.save
 
 puts "Creating user"
 user = test_organisation.users.build(
