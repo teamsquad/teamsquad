@@ -1,3 +1,10 @@
+<% if authorised? -%>
+  <div class="standout">
+    <p>Use notices to keep people up-to-date with what's happening.
+      <%= link_to 'Add notice...', new_notice_url, :class => 'admin button' %></p>
+  </div>
+<% end -%>
+
 <div class="notices">
 <%= render :partial => "partials/notice", :collection => @organisation.notices %>
 </div>

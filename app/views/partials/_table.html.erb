@@ -25,10 +25,9 @@
 	<tfoot>
 		<tr>
 			<td colspan="8">
-				<%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') %>
-				<%= link_to('New group...', new_group_url(:competition => @competition, :stage => @stage), :class => 'admin') %>
-      	<%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin')  if group.has_teams? %>
-				<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin') if group.has_overdue_fixtures? %>
+				<%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin button') %>
+      	<%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin button')  if group.has_teams? %>
+				<%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => group), :class => 'admin button') if group.has_overdue_fixtures? %>
 			</td>
 		</tr>
 	</tfoot><% end %>

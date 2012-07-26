@@ -1,7 +1,7 @@
 <% unless @group.lonely? && @stage.lonely? %>
 <p>Add some fixtures to<% unless @group.lonely? %>
   <em><%= @group.title %></em><% end %><% unless @stage.lonely? %>
-  for the <em><%= @stage.title %></em><% end %>.</p><% end %>
+  for <em><%= @stage.title %></em><% end %>.</p><% end %>
 
 <form action="<%= request.fullpath %>" method="post" class="fixtures">
   <fieldset>
@@ -37,8 +37,8 @@
         <td class="home team"><select name="game[1][hometeam]" id="hometeam_1"><option value="0">-to be announced-</option><%= options_from_collection_for_select(@teams_in_group, "id", "title") %></select></td>
         <td class="versus">v</td>
         <td class="away team"><select name="game[1][awayteam]" id="awayteam_1"><option value="0">-to be announced-</option><%= options_from_collection_for_select(@teams_in_group, "id", "title") %></select></td>
-        <td><input type="button" value="-" onclick="delRow(this)" id="del_1" disabled="true" title="Remove this row"></td>
-        <td><input type="button" value="+" onclick="addRow(this)" id="add_1" title="Add another row"></td>
+        <td><input type="button" value="-" onclick="delRow(this)" id="del_1" disabled="true" title="Remove this row" class="button"></td>
+        <td><input type="button" value="+" onclick="addRow(this)" id="add_1" title="Add another row" class="button"></td>
       </tr><tr><td colspan="6"><p class="reminder">Changes are not saved until you click the 'Create fixtures' button.</p></td></tr>
       </tbody>
     </table>
@@ -47,6 +47,6 @@
   <fieldset class="finish">
     <legend>Finish up</legend>
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="submit" value="Create fixtures">
+    <input type="submit" value="Create fixtures" class="button">
   </fieldset>
 </form>

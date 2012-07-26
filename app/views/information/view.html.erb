@@ -1,3 +1,12 @@
+<% if authorised? -%>
+  <div class="standout">
+    <p>Use pages to share information about your organisation.
+      <%= link_to 'Edit this page...', edit_information_page_url(:page => @page), :class => 'admin button' %>
+      <%= link_to 'Add new page...', new_information_page_url, :class => 'admin button'  %>
+    </p>
+  </div>
+<% end -%>
+
 <% if @page.has_picture? %><div class="image"><img src="/uploads/<%= "page/picture/#{@page.id}/#{@page[:picture]}" %>"></div><% end %>
 <%= raw(textilize h(@page.content)) %>
 <div class="clear"></div>

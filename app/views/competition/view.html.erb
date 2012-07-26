@@ -1,8 +1,12 @@
 <div class="standout">
-	<p><%= h @competition.summary %> 
-		<%= link_to 'Edit this competition...',
-    	edit_competition_url(:competition => @competition),
-			{:class => 'admin'} if authorised? %></p>
+  <p><%= h @competition.summary %> 
+    <%= link_to 'Edit this competition...',
+      edit_competition_url(:competition => @competition),
+      {:class => 'admin button'} if authorised? %>
+    <%= link_to 'Add stage...',
+      new_stage_url(:competition => @competition),
+      {:class => 'admin button'} if authorised? %>
+  </p>
 </div>
 <% cache do %>
 <% if @stage.nil? -%>
