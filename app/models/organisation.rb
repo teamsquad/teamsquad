@@ -98,6 +98,14 @@ class Organisation < ActiveRecord::Base
 	def has_logo?
     (self.logo && self.logo.size > 0) || false
   end
+  
+  def team_or_player
+    self.sport.uses_teams ? 'team' : 'player'
+  end
+  
+  def teams_or_players
+    self.team_or_player + 's'
+  end
 
 private
 

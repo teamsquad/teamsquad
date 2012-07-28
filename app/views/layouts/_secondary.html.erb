@@ -6,7 +6,7 @@
         <% if ['notice', 'organisation', 'team'].include? controller_name -%>
           <ul>
             <li class="notice"><%= link_to_unless_current raw("<span>Notices</span>"), notices_url %></li>
-            <li class="teams"><%= link_to_unless controller_name == 'team', raw('<span>Teams</span>'), teams_url %></li>
+            <li class="teams"><%= link_to_unless controller_name == 'team', raw("<span>#{@organisation.teams_or_players}</span>"), teams_url %></li>
           </ul>
         <% end -%>
       </li>

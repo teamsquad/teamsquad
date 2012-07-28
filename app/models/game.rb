@@ -24,7 +24,7 @@ class Game < ActiveRecord::Base
                         
   validates_each :played do |game, attr, value|
     if value && game.unplayable?
-      game.errors.add attr, "Game can't be played as doesn't have home and away teams set."
+      game.errors.add attr, "Game can't be played as it hasn't been completely set up yet."
     end
   end
   

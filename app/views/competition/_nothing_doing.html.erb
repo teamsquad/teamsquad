@@ -4,6 +4,6 @@
   this page will show the most recent or relevant ones for easy access.</p>
 
 <% if @competition.current_stage.groups_count == 1 && @competition.current_stage.groups.first.teams.count == 0 -%>
-<p>There are no teams in this competition yet. Why not
-  <%= link_to 'add some teams now', edit_group_url(:competition => @competition, :stage =>@competition.current_stage, :group => @competition.current_stage.groups.first) %>?</p>
+<p>There are no <%= @organisation.teams_or_players %> in this competition yet.
+  <%= link_to "Add some #{@organisation.teams_or_players} now", edit_group_url(:competition => @competition, :stage =>@competition.current_stage, :group => @competition.current_stage.groups.first), :class => 'admin button' %>?</p>
 <% end -%>
