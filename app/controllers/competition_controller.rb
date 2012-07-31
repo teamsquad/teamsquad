@@ -3,6 +3,8 @@ class CompetitionController < AbstractAccountController
   before_filter :check_logged_in, :only => [:new, :edit]
 
   def index
+    @titles << 'Competitions'
+    @competitions = @organisation.current_season.competitions
   end
   
   def new

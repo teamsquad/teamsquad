@@ -126,6 +126,16 @@ class Competition < ActiveRecord::Base
     self.news_worthy_matches.count > 0
   end
   
+  def number_of_teams
+    count = 0
+    self.stages.each do |stage|
+      stage.groups.each do |group|
+        count += group.teams.count
+      end
+    end
+    count
+  end
+  
 protected
   
   # Saves the competition and creates appropriate

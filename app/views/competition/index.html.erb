@@ -1,0 +1,11 @@
+<div class="competitions"><% for competition in @competitions %>
+  <div class="competition">
+    <h2><%= link_to competition.label_or_title, competition_url(:competition => competition) %></h2>
+    <p><%= competition.summary %></p>
+    <p>This competition comprises <%= pluralize(competition.stages.count, 'stage') %>
+      and contains <%= pluralize(competition.number_of_teams, 'team') %>.</p>
+    <ul><% for stage in competition.stages %>
+      <li class="stage"><%= link_to stage.title, stage_url(:competition => competition, :stage => stage) %></li><% end %>
+    </ul>
+  </div><% end %>
+</div>
