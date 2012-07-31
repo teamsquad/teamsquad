@@ -1,14 +1,17 @@
-<h2>News</h2>
-<div class="articles"><% for game in @competition.news_worthy_matches %>
-  <div class="article">
-  	<h3><%= raw game.headline %></h3>
+<div class="notices"><% for game in @competition.news_worthy_matches %>
+  <div class="notice">
+  	<h2><%= raw game.headline %></h2>
+  	<p class="meta">
+  	  <span class="author">System</span>
+  	  <span class="when"><%= game.pretty_date %></span>
+  	</p>
   	<%= safely_display game.summary_for_news %>
   </div><% end %>
 </div>
 
 <% unless @competition.upcoming_fixtures.empty? -%>
 <div class="day">
-  <h2><%= @competition.fixture_days.first.pretty_date %></h2>
+  <h2>Fixtures for <%= @competition.fixture_days.first.pretty_date %></h2>
   <%=  render :partial => 'partials/fixtures', :object => @competition.matches_for_day(@competition.fixture_days.first.date) %>
 </div>
 <p class="more"><%= link_to 'All fixtures', competition_fixtures_url(:competition => @competition), :class => 'button' %>
