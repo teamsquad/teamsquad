@@ -13,7 +13,7 @@
 </div>
 
 <% if @stage.groups_count > 0 -%>
-  <div class="<%= @stage.is_knockout? ? 'knockout' : 'league' %>_stage_with_group<%= 's' unless @stage.groups_count == 1 %> groups">
+  <div class="stage <%= @stage.is_knockout? ? 'knockout' : 'league' %>_stage_with_group<%= 's' unless @stage.groups_count == 1 %> groups">
     <% for group in @stage.groups -%>
     <div class="group <%= cycle("odd", "even") %>"><% if @stage.groups_count > 1 %>
       <h2 id="<%= group.slug %>"><%= group.title %></h2><% end %>
