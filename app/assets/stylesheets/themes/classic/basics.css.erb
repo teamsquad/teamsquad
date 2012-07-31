@@ -1,4 +1,5 @@
 body {
+  background: #FFF;
   color: #444;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.8em;
@@ -11,6 +12,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
+  background: #EEE;
   color: #900;
   padding: 1em 0 0.5em 0;
   margin: 0;
@@ -20,29 +22,24 @@ h1 {
   text-overflow: ellipsis;
   -webkit-text-overflow: ellipsis;
   position: fixed;
-  top: 0;
+  top: 1.66em;
   left: 0;
   right: 0;
-  background: #EEE;
   border-bottom: 2px solid #DDD;
   z-index: 15;
 }
-
-  h1 span {
-    background: url(/images/icons/large/target.png) no-repeat 32px 0.1em;
-  }
   
   h1 .title0 {
 
   }
   
   h1 .title1 {
-    color: #666;
+    color: #333;
   }
   
   h1 .title2 {
     font-weight: normal;
-    color: #999;
+    color: #666;
   }
 
 h2 {
@@ -132,11 +129,11 @@ ul.teams {
 
   ul.teams li {
     margin: 0;
-    padding: 0.2em 0;
+    padding: 0.33em 0;
     background: url(/images/icons/small/team.png) no-repeat left;
     float: left;
     width: 49%;
-    text-indent: 20px;
+    text-indent: 24px;
   }
 
 .button {
@@ -151,7 +148,9 @@ ul.teams {
   background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
   background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
-  padding: 5px 10px 6px;
+  padding: 3px 8px;
+  font-size: 13px;
+  line-height: 18px;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   color: #090;
   line-height: normal;
