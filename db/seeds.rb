@@ -5,14 +5,12 @@ puts "Creating sports"
 football = Sport.create :title => "Football"
 Sport.create :title => "Cricket", :uses_scores => false, :uses_manual_points => true
 Sport.create :title => "Tennis", :uses_scores => true
-Sport.create :title => "Table tennis", :uses_scores => true
-Sport.create :title => "Badminton", :uses_scores => true
+Sport.create :title => "Table tennis", :uses_scores => true, :uses_teams => false
+Sport.create :title => "Badminton", :uses_scores => true, :uses_teams => false
 Sport.create :title => "Hockey", :uses_scores => true
 Sport.create :title => "Rugby", :uses_scores => true, :uses_manual_points => true
-Sport.create :title => "Chess", :uses_scores => true
+Sport.create :title => "Chess", :uses_scores => true, :uses_teams => false
 Sport.create :title => "Bowls", :uses_scores => true
-Sport.create :title => "Generic score based sport", :uses_scores => true
-Sport.create :title => "Generic points based sport", :uses_scores => false, :uses_manual_points => true
 
 puts "Creating invites"
 20.times do 
@@ -477,19 +475,19 @@ league_cup_round_one_match16.save
 
 puts "Creating league cup games"
 league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_a.id, :awayteam_id => team_b.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_c.id, :awayteam_id => team_d.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_e.id, :awayteam_id => team_f.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_g.id, :awayteam_id => team_h.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_i.id, :awayteam_id => team_j.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_k.id, :awayteam_id => team_l.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_m.id, :awayteam_id => team_n.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_o.id, :awayteam_id => team_p.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_q.id, :awayteam_id => team_r.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_s.id, :awayteam_id => team_t.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_u.id, :awayteam_id => team_v.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_w.id, :awayteam_id => team_x.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_y.id, :awayteam_id => team_z.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_1.id, :awayteam_id => team_2.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_3.id, :awayteam_id => team_4.id).save
-league_cup_round_one_match01.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_5.id, :awayteam_id => team_6.id).save
+league_cup_round_one_match02.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_c.id, :awayteam_id => team_d.id).save
+league_cup_round_one_match03.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_e.id, :awayteam_id => team_f.id).save
+league_cup_round_one_match04.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_g.id, :awayteam_id => team_h.id).save
+league_cup_round_one_match05.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_i.id, :awayteam_id => team_j.id).save
+league_cup_round_one_match06.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_k.id, :awayteam_id => team_l.id).save
+league_cup_round_one_match07.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_m.id, :awayteam_id => team_n.id).save
+league_cup_round_one_match08.games.build( :kickoff => '2012-08-01 15:00:00', :hometeam_id => team_o.id, :awayteam_id => team_p.id).save
+league_cup_round_one_match09.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_q.id, :awayteam_id => team_r.id).save
+league_cup_round_one_match10.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_s.id, :awayteam_id => team_t.id).save
+league_cup_round_one_match11.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_u.id, :awayteam_id => team_v.id).save
+league_cup_round_one_match12.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_w.id, :awayteam_id => team_x.id).save
+league_cup_round_one_match13.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_y.id, :awayteam_id => team_z.id).save
+league_cup_round_one_match14.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_1.id, :awayteam_id => team_2.id).save
+league_cup_round_one_match15.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_3.id, :awayteam_id => team_4.id).save
+league_cup_round_one_match16.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_5.id, :awayteam_id => team_6.id).save
 
