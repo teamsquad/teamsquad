@@ -1,0 +1,30 @@
+<div id="menu"><div class="inner">
+  <ul>
+    <li class="home">
+      <%= link_to_unless_current raw("<span>Home</span>"), home_url %>
+    </li>
+    <li class="notice">
+      <%= link_to_unless controller_name == 'notice', raw('<span>Notices</span>'), notices_url %>
+    </li>
+    <li class="information">
+      <%= link_to_unless controller_name == 'information', raw('<span>Information</span>'), information_url %>
+    </li>
+    <li class="teams">
+      <%= link_to_unless((controller_name == 'team' && action_name == 'index'), raw("<span>#{@organisation.teams_or_players.capitalize}</span>"), teams_url) %>
+    </li>
+    <li class="competition">
+      <%= link_to_unless((controller_name == 'competition' && action_name == 'index'), raw('<span>Competitions</span>'), competitions_url) %>
+    </li>
+    <% if @competition -%>
+      <li class="current competition"><span><%= @competition.label_or_title %></span></li>
+    <% elsif @team -%>
+      <li class="current teams"><span><%= @team.title %></span></li>
+    <% end -%>
+    
+    <% if authorised? %>
+      <li class="logout"><%= link_to_unless_current raw('<span>Logout</span>'), logout_url %></li>
+    <% else -%>
+      <li class="login"><%= link_to_unless_current raw('<span>Login</span>'), login_url %></li>
+    <% end -%>
+  </ul>
+</div></div>
