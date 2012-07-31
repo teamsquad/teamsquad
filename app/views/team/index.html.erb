@@ -1,12 +1,12 @@
 <div class="standout">
   <p>
-    Teams can compete in any of the competitions your organisation contains.
-    <%= link_to('Add team', new_team_url, :class => 'admin button') if authorised? %>
+    <%= @organisation.teams_or_players.capitalize %> can compete in any of the competitions your organisation contains.
+    <%= link_to("Add #{@organisation.team_or_player}", new_team_url, :class => 'admin button') if authorised? %>
   </p>
 </div>
 
 <% if @teams.empty? -%>
-<p>There are no teams yet.</p>
+<p>There are no <%= @organisation.teams_or_players %> yet.</p>
 <% else -%>
 <ul class="teams"><% for team in @teams %>
   <li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
