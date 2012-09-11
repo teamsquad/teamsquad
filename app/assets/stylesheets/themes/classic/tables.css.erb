@@ -30,6 +30,7 @@ table.games {
   table.standings th.stat {
     width: 6%;
     text-align: right;
+    padding-right: 8px;
   }
 
   table.games tr.homewin td.home,
@@ -37,13 +38,13 @@ table.games {
     font-weight: bold;
   }
 
-  table tr.odd td,
-  table tr.odd th {
-    background: #F8F8F8;
+  table tr td,
+  table tr th {
+    border-bottom: 1px solid #EEE;
   }
 
-  table tr.noedge td {
-    border-top: none;
+  table tfoot td {
+    border: none;
   }
 
   table tr.summary td {
@@ -66,20 +67,20 @@ table.games {
     padding: 0 0 3px 0;
   }
 
-  table tr.auto-promote td.pos {
-    background-image: url(/images/autopromote_bg.png);
+  table tr.auto-promote td {
+    background: #EFE;
   }
 
-  table tr.auto-relegate td.pos {
-    background-image: url(/images/autorelegate_bg.png);
+  table tr.auto-relegate td {
+    background: #FEE;
   }
 
-  table tr.conditional-promote td.pos {
-    background-image: url(/images/conditionalpromote_bg.png);
+  table tr.conditional-promote td {
+    background: #DFD;
   }
 
-  table tr.conditional-relegate td.pos {
-    background-image: url(/images/conditionalrelegate_bg.png);
+  table tr.conditional-relegate td {
+    background: #FDD;
   }
 
   table .pos {
