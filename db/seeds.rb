@@ -699,7 +699,7 @@ super_cup_quarter_final_match_4 = super_cup_quarterfinals.groups.build( :title =
 super_cup_semi_final_match_1 = super_cup_semi_finals.groups.build( :title => 'Semi final 1', :slug => 'match-1' )
 super_cup_semi_final_match_2 = super_cup_semi_finals.groups.build( :title => 'Semi final 2', :slug => 'match-2' )
 
-super_cup_final_match = super_cup_quarterfinals.groups.build( :title => 'The final', :slug => 'the-final' )
+super_cup_final_match = super_cup_final.groups.build( :title => 'The final', :slug => 'the-final' )
 
 puts "Putting teams in to super cup groups"
 super_cup_group_a.teams << team_a
