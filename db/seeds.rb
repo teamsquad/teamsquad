@@ -28,25 +28,11 @@ test_organisation = Organisation.new(
 )
 test_organisation.save
 
-olympics_organisation = Organisation.new(
-  :title => "Olympics",
-  :nickname => "olympics",
-  :summary => "Olympic football to use as a test.",
-  :theme => 'classic',
-  :sport_id => football.id
-)
-olympics_organisation.save
-
 puts "Creating seasons"
 season = test_organisation.seasons.build(
   :title => '2012'
 )
 season.save
-
-olympic_season = olympics_organisation.seasons.build(
-  :title => 'London 2012'
-)
-olympic_season.save
 
 puts "Creating user"
 user = test_organisation.users.build(
@@ -55,6 +41,222 @@ user = test_organisation.users.build(
   :name => 'Terry Tester'
 )
 user.save
+
+content = "h3. Mea id tempor laoreet suscipit.
+
+Tale dicit iracundia eu vel. Congue percipit in vis. His impetus intellegebat at, ut pri sumo aliquid deserunt. An qui viris senserit partiendo, eu pro mollis viderer, veri maiestatis cotidieque pri ut. Velit euripidis no vel.
+
+h3. Timeam praesent consectetuer qui et.
+
+Nam omittam contentiones ut. Ius ad harum incorrupte, reque graece molestie no eos. Id semper aliquip facilisis mea, doming erroribus ei vel, iudico vocibus dissentiunt ne quo. Cu delenit expetenda qui. Sea an vero putant, aperiri sensibus antiopam ne vel, ad est delectus volutpat complectitur.
+
+Ad eos habemus delectus sensibus. Mel diam delenit et, eum ex iisque splendide. Has prima facilisis at. Nec ut omnis noster vituperatoribus, malorum forensibus contentiones ei est."
+
+puts "Creating pages"
+
+test_organisation.pages.build(
+  :title => "Rules and regulations",
+  :position => 1,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "Child safety policy",
+  :position => 2,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "Disciplinary procedures",
+  :position => 3,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "League committee",
+  :position => 4,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "Sports hall locations",
+  :position => 5,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "Press office",
+  :position => 6,
+  :content => content
+).save
+
+test_organisation.pages.build(
+  :title => "Records",
+  :position => 7,
+  :content => content
+).save
+
+puts "Creating notices"
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => 'Welcome to the test organisation!',
+  :created_on => 20.weeks.ago,
+  :updated_on => 20.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Don't forget to pay your league subs!",
+  :created_on => 19.weeks.ago,
+  :updated_on => 19.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Please leave all facilities clean after matches",
+  :created_on => 18.weeks.ago,
+  :updated_on => 18.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Get your tickets for the annual dinner and awards night",
+  :created_on => 17.weeks.ago,
+  :updated_on => 17.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Please give referees the respect they deserve",
+  :created_on => 16.weeks.ago,
+  :updated_on => 16.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Rules have been updated",
+  :created_on => 15.weeks.ago,
+  :updated_on => 15.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Don't forget to vote for player of the year",
+  :created_on => 14.weeks.ago,
+  :updated_on => 14.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Main sports hall closed for painting work",
+  :created_on => 13.weeks.ago,
+  :updated_on => 13.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Fines increased for abusive behaviour",
+  :created_on => 12.weeks.ago,
+  :updated_on => 12.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Charity matches a huge success",
+  :created_on => 11.weeks.ago,
+  :updated_on => 11.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Fixtures changes are now live",
+  :created_on => 10.weeks.ago,
+  :updated_on => 10.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Don't forget all players must wear shin pads",
+  :created_on => 9.weeks.ago,
+  :updated_on => 9.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Sports hall car park out of action for a week",
+  :created_on => 8.weeks.ago,
+  :updated_on => 8.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "New player registration forms ready to roll",
+  :created_on => 7.weeks.ago,
+  :updated_on => 7.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "New league treasurer needed",
+  :created_on => 6.weeks.ago,
+  :updated_on => 6.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "New teams wanted",
+  :created_on => 5.weeks.ago,
+  :updated_on => 5.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Team sheet format change coming - prepare now",
+  :created_on => 4.weeks.ago,
+  :updated_on => 4.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "New balls have been ordered",
+  :created_on => 3.weeks.ago,
+  :updated_on => 3.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "New league sponser signs up",
+  :created_on => 2.weeks.ago,
+  :updated_on => 2.weeks.ago,
+  :content => content
+).save
+
+test_organisation.notices.build(
+  :user_id => user.id,
+  :heading => "Anybody intereted in playing friendlies?",
+  :created_on => 1.week.ago,
+  :updated_on => 1.week.ago,
+  :content => content
+).save
 
 puts "Creating teams"
 team_a = test_organisation.teams.build( :title => 'Alpha Athletic', :slug => 'alpha-athletic' )
@@ -122,14 +324,6 @@ team_3.save
 team_4.save
 team_5.save
 team_6.save
-
-puts "Creating a notice"
-test_organisation.notices.build(
-  :user_id => user.id,
-  :heading => 'Welcome to the test organisation!',
-  :slug => 'welcome',
-  :content => 'Have a look around and check everything is tickety boo.'
-).save
 
 puts "Creating competitions"
 division_one = season.competitions.build(
