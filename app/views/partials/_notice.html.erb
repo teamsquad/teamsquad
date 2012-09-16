@@ -15,7 +15,7 @@
     <%= raw textilize(h notice.content) %>
   <% else -%>
     <p>
-      <%= truncate(notice.content, :length => 256) %>
+      <%= raw textilize(h notice.content) %>
       <%= link_to "Read on...", notice_url(:notice => notice)  %>
     </p>
   <% end %>

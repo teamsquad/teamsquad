@@ -4,7 +4,6 @@ class OrganisationController < AbstractAccountController
 
   def home
     @new_notices  = @organisation.recent_notices
-    @old_notices  = @organisation.older_notices
     @titles      << "Welcome"
   end
   

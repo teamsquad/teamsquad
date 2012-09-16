@@ -80,11 +80,7 @@ class Organisation < ActiveRecord::Base
   end
   
   def recent_notices
-    self.notices.find(:all, :limit => 5)
-  end
-  
-  def older_notices
-    self.notices.find(:all, :offset => 5, :limit => 5)
+    self.notices.find(:all, :limit => 4)
   end
   
   def to_param
