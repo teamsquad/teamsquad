@@ -685,3 +685,117 @@ league_cup_round_one_match14.games.build( :kickoff => '2012-08-02 15:00:00', :ho
 league_cup_round_one_match15.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_3.id, :awayteam_id => team_4.id).save
 league_cup_round_one_match16.games.build( :kickoff => '2012-08-02 15:00:00', :hometeam_id => team_5.id, :awayteam_id => team_6.id).save
 
+puts "Creating super cup groups"
+super_cup_group_a = super_cup_group_stage.groups.build( :title => 'Group A', :slug => 'group-a' )
+super_cup_group_b = super_cup_group_stage.groups.build( :title => 'Group B', :slug => 'group-b' )
+super_cup_group_c = super_cup_group_stage.groups.build( :title => 'Group C', :slug => 'group-c' )
+super_cup_group_d = super_cup_group_stage.groups.build( :title => 'Group D', :slug => 'group-d' )
+
+super_cup_quarter_final_match_1 = super_cup_quarterfinals.groups.build( :title => 'Match 1', :slug => 'match-1' )
+super_cup_quarter_final_match_2 = super_cup_quarterfinals.groups.build( :title => 'Match 2', :slug => 'match-2' )
+super_cup_quarter_final_match_3 = super_cup_quarterfinals.groups.build( :title => 'Match 3', :slug => 'match-3' )
+super_cup_quarter_final_match_4 = super_cup_quarterfinals.groups.build( :title => 'Match 4', :slug => 'match-4' )
+
+super_cup_semi_final_match_1 = super_cup_semi_finals.groups.build( :title => 'Semi final 1', :slug => 'match-1' )
+super_cup_semi_final_match_2 = super_cup_semi_finals.groups.build( :title => 'Semi final 2', :slug => 'match-2' )
+
+super_cup_final_match = super_cup_quarterfinals.groups.build( :title => 'The final', :slug => 'the-final' )
+
+puts "Putting teams in to super cup groups"
+super_cup_group_a.teams << team_a
+super_cup_group_a.teams << team_b
+super_cup_group_a.teams << team_c
+super_cup_group_a.teams << team_d
+
+super_cup_group_b.teams << team_e
+super_cup_group_b.teams << team_f
+super_cup_group_b.teams << team_g
+super_cup_group_b.teams << team_h
+
+super_cup_group_c.teams << team_i
+super_cup_group_c.teams << team_j
+super_cup_group_c.teams << team_k
+super_cup_group_c.teams << team_l
+
+super_cup_group_d.teams << team_m
+super_cup_group_d.teams << team_n
+super_cup_group_d.teams << team_o
+super_cup_group_d.teams << team_p
+
+super_cup_group_a.save
+super_cup_group_b.save
+super_cup_group_c.save
+super_cup_group_d.save
+
+super_cup_quarter_final_match_1.save
+super_cup_quarter_final_match_2.save
+super_cup_quarter_final_match_3.save
+super_cup_quarter_final_match_4.save
+
+super_cup_semi_final_match_1.save
+super_cup_semi_final_match_2.save
+
+super_cup_final_match.save
+
+puts "Creating super cup games"
+super_cup_group_a.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_a.id, :awayteam_id => team_b.id).save
+super_cup_group_a.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_c.id, :awayteam_id => team_d.id).save
+super_cup_group_a.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_b.id, :awayteam_id => team_c.id).save
+super_cup_group_a.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_d.id, :awayteam_id => team_a.id).save
+super_cup_group_a.games.build( :kickoff => '2013-01-24 15:00:00', :hometeam_id => team_a.id, :awayteam_id => team_c.id).save
+super_cup_group_a.games.build( :kickoff => '2013-01-24 15:30:00', :hometeam_id => team_b.id, :awayteam_id => team_d.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_b.id, :awayteam_id => team_a.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_d.id, :awayteam_id => team_c.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-17 15:30:00', :hometeam_id => team_c.id, :awayteam_id => team_b.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-17 15:00:00', :hometeam_id => team_a.id, :awayteam_id => team_d.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-24 15:00:00', :hometeam_id => team_c.id, :awayteam_id => team_a.id).save
+super_cup_group_a.games.build( :kickoff => '2013-02-24 15:30:00', :hometeam_id => team_d.id, :awayteam_id => team_b.id).save
+
+super_cup_group_b.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_e.id, :awayteam_id => team_f.id).save
+super_cup_group_b.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_g.id, :awayteam_id => team_h.id).save
+super_cup_group_b.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_f.id, :awayteam_id => team_g.id).save
+super_cup_group_b.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_h.id, :awayteam_id => team_e.id).save
+super_cup_group_b.games.build( :kickoff => '2013-01-24 15:00:00', :hometeam_id => team_e.id, :awayteam_id => team_g.id).save
+super_cup_group_b.games.build( :kickoff => '2013-01-24 15:30:00', :hometeam_id => team_f.id, :awayteam_id => team_h.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_f.id, :awayteam_id => team_e.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_h.id, :awayteam_id => team_g.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-17 15:30:00', :hometeam_id => team_g.id, :awayteam_id => team_f.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-17 15:00:00', :hometeam_id => team_e.id, :awayteam_id => team_h.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-24 15:00:00', :hometeam_id => team_g.id, :awayteam_id => team_e.id).save
+super_cup_group_b.games.build( :kickoff => '2013-02-24 15:30:00', :hometeam_id => team_h.id, :awayteam_id => team_f.id).save
+
+super_cup_group_c.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_i.id, :awayteam_id => team_j.id).save
+super_cup_group_c.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_k.id, :awayteam_id => team_l.id).save
+super_cup_group_c.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_j.id, :awayteam_id => team_k.id).save
+super_cup_group_c.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_l.id, :awayteam_id => team_i.id).save
+super_cup_group_c.games.build( :kickoff => '2013-01-24 15:00:00', :hometeam_id => team_i.id, :awayteam_id => team_k.id).save
+super_cup_group_c.games.build( :kickoff => '2013-01-24 15:30:00', :hometeam_id => team_j.id, :awayteam_id => team_l.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_j.id, :awayteam_id => team_i.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_l.id, :awayteam_id => team_k.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-17 15:30:00', :hometeam_id => team_k.id, :awayteam_id => team_j.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-17 15:00:00', :hometeam_id => team_i.id, :awayteam_id => team_l.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-24 15:00:00', :hometeam_id => team_k.id, :awayteam_id => team_i.id).save
+super_cup_group_c.games.build( :kickoff => '2013-02-24 15:30:00', :hometeam_id => team_l.id, :awayteam_id => team_j.id).save
+
+super_cup_group_d.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_m.id, :awayteam_id => team_n.id).save
+super_cup_group_d.games.build( :kickoff => '2013-01-10 15:00:00', :hometeam_id => team_o.id, :awayteam_id => team_p.id).save
+super_cup_group_d.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_n.id, :awayteam_id => team_o.id).save
+super_cup_group_d.games.build( :kickoff => '2013-01-17 15:00:00', :hometeam_id => team_p.id, :awayteam_id => team_m.id).save
+super_cup_group_d.games.build( :kickoff => '2013-01-24 15:00:00', :hometeam_id => team_m.id, :awayteam_id => team_o.id).save
+super_cup_group_d.games.build( :kickoff => '2013-01-24 15:30:00', :hometeam_id => team_n.id, :awayteam_id => team_p.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_n.id, :awayteam_id => team_m.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-10 15:00:00', :hometeam_id => team_p.id, :awayteam_id => team_o.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-17 15:30:00', :hometeam_id => team_o.id, :awayteam_id => team_n.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-17 15:00:00', :hometeam_id => team_m.id, :awayteam_id => team_p.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-24 15:00:00', :hometeam_id => team_o.id, :awayteam_id => team_m.id).save
+super_cup_group_d.games.build( :kickoff => '2013-02-24 15:30:00', :hometeam_id => team_p.id, :awayteam_id => team_n.id).save
+
+super_cup_quarter_final_match_1.games.build( :kickoff => '2013-03-02 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+super_cup_quarter_final_match_2.games.build( :kickoff => '2013-03-02 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+super_cup_quarter_final_match_3.games.build( :kickoff => '2013-03-02 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+super_cup_quarter_final_match_4.games.build( :kickoff => '2013-03-02 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+
+super_cup_semi_final_match_1.games.build( :kickoff => '2013-03-09 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+super_cup_semi_final_match_2.games.build( :kickoff => '2013-03-09 15:00:00', :hometeam_id => nil, :awayteam_id => nil).save
+
+super_cup_final_match.games.build( :kickoff => '2013-03-20 16:00:00', :hometeam_id => nil, :awayteam_id => nil).save
