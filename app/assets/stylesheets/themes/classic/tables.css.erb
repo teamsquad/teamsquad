@@ -38,9 +38,17 @@ table.games {
     font-weight: bold;
   }
 
-  table tr td,
-  table tr th {
-    border-bottom: 1px solid #EEE;
+  table tr.odd td,
+  table tr.odd th {
+    background: #F8F8F8;
+  }
+  
+  table tr.odd .first {
+    border-radius: 4px 0 0 4px;
+  }
+  
+  table tr.odd .last {
+    border-radius: 0 4px 4px 0;
   }
 
   table tfoot td {
@@ -67,20 +75,14 @@ table.games {
     padding: 0 0 3px 0;
   }
 
-  table tr.auto-promote td {
-    background: #EFE;
+  table tr.auto-promote td,
+  table tr.auto-relegate td  {
+    font-weight: bold;
   }
 
-  table tr.auto-relegate td {
-    background: #FEE;
-  }
-
-  table tr.conditional-promote td {
-    background: #DFD;
-  }
-
+  table tr.conditional-promote td,
   table tr.conditional-relegate td {
-    background: #FDD;
+    font-style: italic;
   }
 
   table .pos {

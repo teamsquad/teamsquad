@@ -3,9 +3,6 @@
     <li class="home">
       <%= link_to_unless_current raw("<span>Home</span>"), home_url %>
     </li>
-    <li class="notice">
-      <%= link_to_unless controller_name == 'notice', raw('<span>Notices</span>'), notices_url %>
-    </li>
     <li class="information">
       <%= link_to_unless controller_name == 'information', raw('<span>Information</span>'), information_url %>
     </li>
@@ -15,11 +12,6 @@
     <li class="competition">
       <%= link_to_unless((controller_name == 'competition' && action_name == 'index'), raw('<span>Competitions</span>'), competitions_url) %>
     </li>
-    <% if @competition -%>
-      <li class="current competition"><span><%= @competition.label_or_title %></span></li>
-    <% elsif @team -%>
-      <li class="current teams"><span><%= @team.title %></span></li>
-    <% end -%>
     
     <% if authorised? %>
       <li class="logout"><%= link_to_unless_current raw('<span>Logout</span>'), logout_url %></li>

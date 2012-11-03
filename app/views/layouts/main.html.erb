@@ -3,7 +3,7 @@
 <head>
   <%= render :partial => "layouts/head" %>
 </head>
-<body class="sport<%= @organisation.sport_id%>">
+<body class="<%= controller_name %> sport<%= @organisation.sport_id%>" id="<%= controller_name %>-<%= action_name %>">
 <h1><span><% @titles.each_with_index do |title, i| %>
   <strong class="title<%= i %>"><%= title %></strong><% end %>
 </span></h1>

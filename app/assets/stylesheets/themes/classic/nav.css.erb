@@ -4,7 +4,7 @@ div#menu {
   margin: 0;
   background: #333;
   height: 3.2em;
-  border-bottom: 2px solid #FFF;
+  border-bottom: 3px solid #DDD;
   z-index: 20;
 }
 
@@ -20,14 +20,33 @@ div#menu {
     div#menu li {
       display: block;
       margin: 0 1px 0 0;
-      padding: 0;
+      padding: 0 0 0.75em 0;
       float: left;
     }
-    
+
     div#menu li.login,
     div#menu li.logout {
       float: right;
     }
+    
+      body.organisation li.home,
+      body.information li.information,
+      body.team li.teams,
+      body.competition li.competition,
+      body.stage li.competition,
+      body.group li.competition {
+        background: url(/images/selected-nav-2.png) no-repeat bottom center;
+      }
+      
+      body.organisation div#menu li.home a span,
+      body.information div#menu li.information a span,
+      body.team div#menu li.teams a span,
+      body.competition div#menu li.competition a span,
+      body.stage div#menu li.competition a span,
+      body.group div#menu li.competition a span{
+        color: #FFF;
+        opacity: 1;
+      }
 
     div#menu span {
       display: block;
@@ -35,7 +54,6 @@ div#menu {
       color: #FFF;
       padding: 0.4em 16px 0.4em 26px;
       margin: 0.5em 2px 0 2px;
-      background-color: #000;
       background-repeat: no-repeat;
       background-position: 4px 0.5em;
       border-radius: 4px;
@@ -46,7 +64,6 @@ div#menu {
     }
     
     div#menu a span {
-      background-color: #333;
       color: #EEE;
       opacity: 0.5;
     }
@@ -70,6 +87,7 @@ div#secondary {
     padding: 0;
     width: 30%;
     float: right;
+    font-size: 1.1em;
   }
   
   div#secondary li {
@@ -84,6 +102,7 @@ div#secondary {
     display: block;
     font-weight: normal;
     background-color: #FFF;
+    opacity: 0.5;
   }
   
   div#secondary li span,
@@ -91,7 +110,6 @@ div#secondary {
     display: block;
     margin: 1px 0 1px -6px;
     padding: 0.5em 0 0.5em 28px;
-    background-color: #DDD;
     color: #333;
     background-repeat: no-repeat;
     background-position: 6px 0.5em;
@@ -99,12 +117,12 @@ div#secondary {
   }
   
   div#secondary li a span {
-    background-color: #FFF;
     color: #090;
   }
   
   div#secondary li a:hover {
     text-decoration: none;
+    opacity: 1;
   }
 
   li.home            span { background-image: url(/images/icons/small/home.png); }
