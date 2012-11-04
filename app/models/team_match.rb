@@ -37,10 +37,10 @@ class TeamMatch < ActiveRecord::Base
   end
   
   def hierarchy
-    stage_group = []
-    stage_group << stage.title
-    stage_group << group.title unless group.lonely?
-    stage_group.join(", ")
+    what = []
+    what << competition.title
+    what << stage.title unless stage.lonely?
+    what.join(", ")
   end
 
 end

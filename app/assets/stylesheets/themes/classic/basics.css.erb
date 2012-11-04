@@ -1,5 +1,5 @@
 body {
-  background: #FFF;
+  background: #EEE url(/images/cream_dust.png);
   color: #444;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.8em;
@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, legend, caption {
 }
 
 h1 {
-  background: #FFF;
+  background: inherit;
   color: #900;
   padding: 1.5em 0 0.2em 0;
   margin: 0;
@@ -27,7 +27,6 @@ h1 {
   left: 0;
   right: 0;
   z-index: 15;
-  box-shadow: 24px 0 24px #FFF;
 }
   
   h1 .title0 {
@@ -44,23 +43,22 @@ h1 {
   }
 
 h2 {
-  font-size: 1.75em;
-  margin: 0;
+  font-size: 1.5em;
+  margin: 0.5em 0 0 0;
 }
 
   div.day h2 {
-    margin-left: -32px;
-    padding-left: 32px;
+    margin-left: -44px;
+    padding-left: 48px;
     background: url(/images/icons/large/calendar.png) no-repeat left;
   }
 
 h3 {
-  font-size: 1.5em;
-  clear: both;
+  font-size: 1.4em;
 }
 
 h4 {
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 
 p {
@@ -119,11 +117,11 @@ div.initially_hidden {
 
 div.standout {
   font-weight: bold;
-  background: #FFE;
-  border: 2px solid #FFC;
+  background: rgba(255, 255, 255, 0.75);
   padding: 1em;
-  margin:  0 -1em 1em -1em;
-  border-radius: 4px;
+  margin:  0 0 1em 0;
+  border-radius: 5px;
+  border: 2px solid rgba(200, 200, 200, 0.1);
 }
 
   div.standout p {
@@ -151,10 +149,18 @@ div.competition {
   overflow: hidden;
 }
 
+  div.competition h2 {
+    margin: 0 0 0 12px;
+  }
+
 div.competition .blurb {
   float: left;
   width: 33%;
   text-align: justify;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.33em 1em 0.15em 1em;
+  border: 2px solid rgba(200, 200, 200, 0.1);
 }
 
 div.competition ul.stages {
@@ -180,7 +186,7 @@ div.competition ul.stages {
   
   div.competition li.stage a {
     display: block;
-    background: #090;
+    background: rgba(0, 128, 0, 0.95);
     color: #FFF;
     padding: 1.7em 8px;
     border-radius: 5px;

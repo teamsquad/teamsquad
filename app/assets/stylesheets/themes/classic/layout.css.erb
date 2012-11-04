@@ -10,7 +10,7 @@ body {
 
   #search {
     position: fixed;
-    top: 5.75em;
+    top: 5.8em;
     left: 0;
     right: 0;
     z-index: 16;
@@ -19,14 +19,13 @@ body {
 #content {
   padding: 9.5em 0 5em 0;
   overflow: hidden;
-  background: #FFF;
   min-height: 400px;
 }
 
   div#primary {
     clear: both;
     position: relative;
-    width: 65%;
+    width: 67%;
     float: left;
     z-index: 12;
   }
@@ -41,6 +40,7 @@ body {
     position: fixed;
     top: 11em;
     right: 0;
+    bottom: 0;
     left: 0;
     z-index: 11;
   }
@@ -71,10 +71,32 @@ h1 span,
   padding-bottom: 24px;
 }
 
+div.page {
+  padding: 0 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.66);
+  margin: 0 0 1em 0;
+  border: 2px solid rgba(200, 200, 200, 0.1);
+}
 
 div.groups {
   overflow: hidden;
 }
+
+  div.group,
+  div.day {
+    padding: 0 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 0 1em 0;
+    border: 2px solid rgba(200, 200, 200, 0.1);
+    box-sizing: border-box;
+  }
+  
+  div.group h2 {
+    margin-top: 0;
+    padding: 5px 5px 0 8px;
+  }
 
   div.league_stage_with_groups div.group {
     float: left;

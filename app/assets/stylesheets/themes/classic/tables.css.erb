@@ -1,8 +1,9 @@
 table.standings,
 table.games {
-  margin: 0 0 1.5em 0;
-  width: 100%;
+  margin: 0;
   clear: both;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
   table.nohead thead {
@@ -38,17 +39,9 @@ table.games {
     font-weight: bold;
   }
 
-  table tr.odd td,
-  table tr.odd th {
-    background: #F8F8F8;
-  }
-  
-  table tr.odd .first {
-    border-radius: 4px 0 0 4px;
-  }
-  
-  table tr.odd .last {
-    border-radius: 0 4px 4px 0;
+  table.standings td,
+  table.games td {
+    border-top: 1px solid #EEE;
   }
 
   table tfoot td {

@@ -2,10 +2,10 @@
 
 <h2>Comments</h2><% if !@notice.comments.empty? %>
 <div class="comments" id="comments"><% for comment in @notice.comments %>
-<div class="comment">
-<h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
-<%= safely_display comment.content if comment.content %>
-</div><% end %>
+  <div class="comment">
+    <h3><%= comment.name %> <span><%= time_ago_in_words comment.created_on %> ago</span></h3>
+    <div class="message"<%= safely_display comment.content if comment.content %></div>
+  </div><% end %>
 </div><% end %>
 
 <div class="comment" id="comment">

@@ -6,7 +6,7 @@
     </p>
   </div>
 <% end -%>
-
+<div class="page">
 <% if @page.has_picture? %><div class="image"><img src="/uploads/<%= "page/picture/#{@page.id}/#{@page[:picture]}" %>"></div><% end %>
 <%= raw(textilize h(@page.content)) %>
-<div class="clear"></div>
+</div>

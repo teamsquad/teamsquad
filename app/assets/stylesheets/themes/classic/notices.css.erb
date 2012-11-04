@@ -4,13 +4,16 @@ div.notices {
 
   div.notice {
     clear: both;
-    padding: 0;
+    padding: 1em;
     margin-bottom: 3em;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid rgba(200, 200, 200, 0.1);
   }
 
     div.notice h2 {
-      margin-left: -32px;
-      padding-left: 32px;
+      margin-left: -44px;
+      padding-left: 44px;
       background: url(<%= asset_data_uri 'large/notice.png' %>) no-repeat left;
       line-height: 1.2em;
       margin-bottom: 0.4em;
@@ -30,3 +33,39 @@ div.notices {
       div.notice div.image img {
         display: block;
       }
+      
+div.comments {
+  
+}
+
+  div.comment {
+    clear: both;
+  }
+  
+  div.comment h3 {
+    width: 24%;
+    float: left;
+    text-align: right;
+    margin: 0.4em 0 0 0;
+  }
+  
+  div.comment h3 span {
+    font-size: 0.75em;
+    color: #999;
+    display: block;
+  }
+
+  div.comment .message {
+    width: 74%;
+    float: right;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid rgba(200, 200, 200, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 0 1em 0;
+  }
+  
+  div.comment .message p {
+    margin: 0;
+  }
