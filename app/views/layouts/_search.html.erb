@@ -1,29 +1,29 @@
 <div id="search">
-	<%= form_tag search_url, {:method => 'GET'} do %>
-	<fieldset>
-		<label for="in_term">Search this organisation</label>
-		<input type="text" name="term" id="in_term" placeholder="Enter search term...">
-		<input type="submit" value="search" class="button" title="Click this button and we'll go look for your stuff">
-	  <div id="term_auto_complete"></div>
-    <script type="text/javascript">
-		function doPick(arg) {
-			document.location = arg.firstChild.href;
-			return false;
-		}
+  <%= form_tag search_url, {:method => 'GET'} do %>
+    <fieldset>
+      <label for="in_term">Search this organisation</label>
+      <input type="text" name="term" id="in_term" placeholder="Enter search term...">
+      <input type="submit" value="search" class="button" title="Click this button and we'll go look for your stuff">
+      <div id="term_auto_complete"></div>
+      <script type="text/javascript">
+      function doPick(arg) {
+        document.location = arg.firstChild.href;
+        return false;
+      }
     
-		// Safari fixes...
+      // Safari fixes...
 
-		$('in_term').onkeypress = killIt;
+      $('in_term').onkeypress = killIt;
 
-		function killIt (e) {
-		  if (e.keyCode == 13) {
-		    return false;
-		  }
-		  return true;
-		}
+      function killIt (e) {
+        if (e.keyCode == 13) {
+          return false;
+        }
+        return true;
+      }
 
-		new Ajax.Autocompleter('in_term', 'term_auto_complete', '/live-search', {updateElement: doPick});
-    </script>
-	<% end %>
-  </fieldset>
+      new Ajax.Autocompleter('in_term', 'term_auto_complete', '/live-search', {updateElement: doPick});
+      </script>
+    </fieldset>
+  <% end %>
 </div>
