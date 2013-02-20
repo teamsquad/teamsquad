@@ -5,10 +5,12 @@
   </p>
 </div>
 
-<% if @teams.empty? -%>
-<p>There are no <%= @organisation.teams_or_players %> yet.</p>
-<% else -%>
-<ul class="teams"><% for team in @teams %>
-  <li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
-</ul>
-<% end -%>  
+<div class="page">
+  <% if @teams.empty? -%>
+  <p>There are no <%= @organisation.teams_or_players %> yet.</p>
+  <% else -%>
+  <ul class="teams"><% for team in @teams %>
+    <li><%= link_to team.title,  team_url(:team => team) %></li><% end %>
+  </ul>
+  <% end -%>  
+</div>

@@ -1,18 +1,18 @@
 div#menu {
   position: fixed;
-  width: 100%;
+  left: 0;
+  right: 0;
   margin: 0;
-  background: #333 url(/images/wild_oliva.png);
+  background: rgba(0, 0, 0, 0.66);
   height: 3.2em;
   border-bottom: 3px solid #DDD;
   z-index: 20;
 }
 
-
   div#menu ul {
     display: block;
     list-style: none;
-    margin: 0 0 0 -4px;
+    margin: 0;
     padding: 0;
     overflow: hidden;
   }
@@ -35,9 +35,9 @@ div#menu {
       body.competition li.competition,
       body.stage li.competition,
       body.group li.competition {
-        background: url(/images/selected-nav-2.png) no-repeat bottom center;
+        background: url(/images/selected-nav-2.png) no-repeat;
       }
-      
+
       body.organisation div#menu li.home a span,
       body.information div#menu li.information a span,
       body.team div#menu li.teams a span,
@@ -52,11 +52,10 @@ div#menu {
       display: block;
       font-weight: bold;
       color: #FFF;
-      padding: 0.4em 16px 0.4em 26px;
+      padding: 0.4em 16px 0.4em 22px;
       margin: 0.5em 2px 0 2px;
       background-repeat: no-repeat;
-      background-position: 4px 0.5em;
-      border-radius: 4px;
+      background-position: 0 0.5em;
     }
     
     div#menu a:hover {
@@ -66,6 +65,7 @@ div#menu {
     div#menu a span {
       color: #EEE;
       opacity: 0.5;
+      -webkit-transition: opacity 0.2s linear;
     }
     
     div#menu a:hover span {
@@ -85,8 +85,6 @@ div#secondary {
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 30%;
-    float: right;
     font-size: 1.1em;
   }
   
@@ -102,6 +100,7 @@ div#secondary {
     display: block;
     font-weight: normal;
     opacity: 0.5;
+    -webkit-transition: opacity 0.2s linear;
   }
   
   div#secondary li span,

@@ -1,5 +1,4 @@
 body {
-  background: #EEE url(/images/bg.png);
   color: #444;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.8em;
@@ -7,23 +6,22 @@ body {
 }
 
 h1, h2, h3, h4, h5, legend, caption {
-  font-family: 'Arial Rounded MT Bold', Helvetica, Arial, sans-serif;
+  font-family: 'Capriola', sans-serif;
   font-weight: normal;
-  color: #999;
 }
 
 h1 {
-  background: inherit;
+  background: url(/images/bg.png);
   color: #900;
-  padding: 1.5em 0 0.2em 0;
+  padding-top: 3em;
+  padding-bottom: 0.2em;
   margin: 0;
   font-size: 2em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-overflow: ellipsis;
   position: fixed;
-  top: 1.25em;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 15;
@@ -31,7 +29,7 @@ h1 {
 
   h1.depth2,
   h1.depth3 {
-    top: 0.75em;
+    padding-top: 2.25em;
   }
 
   h1.depth2 .title0,
@@ -55,18 +53,25 @@ h1 {
   }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.75em;
   margin: 0.5em 0 0 0;
+  color: #900;
 }
 
   div.day h2 {
-    margin-left: -44px;
-    padding-left: 48px;
+    margin-left: -50px;
+    padding-left: 50px;
     background: url(/images/icons/large/calendar.png) no-repeat left;
+  }
+  
+  h2 + p,
+  h3 + p {
+    margin-top: 0;
   }
 
 h3 {
   font-size: 1.4em;
+  margin: 0 0 0.5em 0;
 }
 
 h4 {
@@ -74,12 +79,12 @@ h4 {
 }
 
 p {
-  margin: 0.5em 0 1em 0;
+  margin: 1em 0;
   color: #666;
 }
 
   p.meta {
-    margin: 0 0 1em 0;
+    margin: 1em 0;
     color: #999;
     text-align: left;
   }
@@ -103,10 +108,11 @@ p {
 a {
   color: #090;
   text-decoration: none;
+  -webkit-transition: color 0.2s linear;
 }
 
 a:hover {
-  color: #900 !important;
+  color: #900;
   text-decoration: underline;
 }
 
@@ -133,7 +139,7 @@ div.standout {
   padding: 1em;
   margin:  0 0 1em 0;
   border-radius: 5px;
-  border: 2px solid #F4F4F4;
+  border: 2px solid #EEE;
 }
 
   div.standout p {
@@ -142,8 +148,9 @@ div.standout {
 
 ul.teams {
   list-style: none;
-  margin: 0 0 1em 0;
+  margin: 1em 0;
   padding: 0;
+  overflow: hidden;
 }
 
   ul.teams li {
@@ -176,7 +183,7 @@ div.competition ul.stages {
     float: left;
     width: 8em;
     text-align: center;
-    margin: 0 5px 0 0;
+    margin: 0 5px 1em 0;
     padding: 0 0 0 20px;
     background: url(/images/selected-nav-1.png) no-repeat left;
   }
@@ -198,7 +205,6 @@ div.competition ul.stages {
       color: #FFF !important;
       background: #900;
     }
-  
 
 .button {
   cursor: pointer;

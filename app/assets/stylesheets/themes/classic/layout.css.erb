@@ -1,33 +1,37 @@
+html {
+  margin: 0;
+  padding: 0;
+  background: #EEE url(/images/bg.png);
+  background-attachment: fixed;
+  height: 100%;
+}
+
 body {
+  background: none;
   padding: 0;
   margin: 0;
-  text-align: center;
+  text-align: left;
+  min-width: 320px;
+  min-height: 100%;
 }
 
-#mast {
-
+#search {
+  display: none;
 }
-
-  #search {
-    position: fixed;
-    top: 5.8em;
-    left: 0;
-    right: 0;
-    z-index: 16;
-  }
 
 #content {
-  padding: 9.5em 0 5em 0;
-  overflow: hidden;
+  padding: 9.5em 0 0 0;
   min-height: 400px;
+  text-align: left;
 }
 
   div#primary {
     clear: both;
-    position: relative;
-    width: 67%;
-    float: left;
     z-index: 12;
+  }
+  
+  div#secondary {
+    z-index: 13;
   }
   
     body#competition-index #primary,
@@ -35,79 +39,141 @@ body {
       width: auto;
       float: none;
     }
+    
+    #menu span {
+      width: 2px;
+      overflow: hidden;
+      text-indent: 50px;
+    }
+    
+    div#menu li {
+      background-position: -1px 100%;
+    }
 
-  div#secondary {
-    position: fixed;
-    top: 11em;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 11;
-  }
-  
 #foot {
   clear: both;
+  padding-top: 2em;
+  padding-bottom: 1em;
 }
 
   #foot p {
     margin: 0;
   }
 
-div.inner,
-h1 span,
-#search form,
-#navigation {
-  display: block;
-  padding: 0 64px 0 64px;
-  margin: 0 auto;
-  text-align: left;
-  position: relative;
-  max-width: 1024px;
-  min-width: 320px;
-  overflow: visible;
-}
-
-#foot .inner {
-  padding-bottom: 24px;
-}
-
 div.page {
-  padding: 0 10px;
+  padding: 0 1em;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.66);
+  background: #FFF;
   margin: 0 0 1em 0;
-  border: 2px solid #F4F4F4;
+  border: 2px solid #EEE;
 }
 
 div.groups {
-  overflow: hidden;
+  overflow: visible;
 }
 
   div.group,
   div.day {
-    padding: 0 5px;
+    padding: 0 1em;
     border-radius: 5px;
     background: #FFF;
     margin: 0 0 1em 0;
-    border: 2px solid #F4F4F4;
+    border: 2px solid #EEE;
     box-sizing: border-box;
-    overflow: hidden;
   }
   
   div.group h2 {
-    margin-top: 0;
-    padding: 5px 5px 0 5px;
+    margin-top: 0.5em;
   }
 
-  div.league_stage_with_groups div.group {
-    float: left;
-    width: 48%;
+#menu,
+h1,
+#content,
+#foot {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+@media only screen and (min-width: 568px) {
+
+  #menu span {
+    width: auto;
+    text-indent: 0;
   }
   
-	div.league_stage_with_groups div.odd {
+  div#menu li {
+    background-position: bottom center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  
+  div#primary {
+    position: relative;
+    width: 68%;
+    float: left;
+  }
+  
+  div#secondary {
+    position: fixed;
+    top: 11em;
+    right: 2%;
+    bottom: 0;
+    left: 70%;
+    z-index: 13;
+  }
+  
+  body {
+    background: url(/images/football1.png) no-repeat 90% 90%;
+    background-attachment: fixed;
+    background-size: 20%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  
+  #menu,
+  h1,
+  #content,
+  #foot {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  
+  div#secondary {
+    left: 68%;
+    right: 5%;
+  }
+  
+  div.league_stage_with_groups div.group {
+    float: left;
+    width: 49%;
+  }
+  
+  div.league_stage_with_groups div.odd {
     clear: both;
   }
 
   div.league_stage_with_groups div.even {
     float: right;
   }
+  
+  table.calendar {
+    width: 49%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  
+  #menu,
+  h1,
+  #content,
+  #foot {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  
+  div#secondary {
+    right: 8%;
+  }
+}

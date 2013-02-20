@@ -84,8 +84,8 @@ form fieldset {
   clear: both;
   margin: 0 0 1em 0;
   padding: 0 2em 2em 2em;
-  border: 2px solid #F4F4F4;
-  background: #F8F8F8;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
@@ -257,14 +257,21 @@ textarea.summary {
   margin: 0;
   float: right;
   width: 30%;
-  background: 0;
+  background: none;
+  position: relative;
 }
   #search fieldset label {
     display: none;
   }
   
   #search #in_term {
-    width: 70%;
+    width: 99%;
+  }
+  
+  #search .button {
+    position: absolute;
+    right: 0px;
+    top: 2px;
   }
   
   #search div {

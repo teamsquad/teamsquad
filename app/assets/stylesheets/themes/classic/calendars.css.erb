@@ -1,8 +1,9 @@
 table.calendar {
   margin: 0 0 2em 0;
-  background: #F8F8F8;
-  width: 48%;
-  border: 2px solid #F4F4F4;
+  background: rgba(0, 0, 0, 0.1);
+  border: 8px solid rgba(0, 0, 0, 0);
+  line-height: 1;
+  border-radius: 5px;
 }
 
   table.odd {
@@ -15,7 +16,7 @@ table.calendar {
 
   table.calendar caption {
     font-weight: bold;
-    padding-bottom: 4px;
+    padding-bottom: 8px;
     font-size: 1.5em;
     text-align: left;
   }
@@ -26,20 +27,31 @@ table.calendar {
   }
 
   table.calendar td {
-    color: #CCC;
+    color: #999;
     background: #FFF;
-    padding: 4px;
+    padding: 8px 4px;
     text-align: center;
     font-size: 1.1em;
+    border-radius: 2px;
   }
 
   table.calendar td a {
-    font-weight: bold;
+    background: #090;
+    color: #FFF;
+    display: block;
+    padding: 8px 4px;
+    margin: -8px -4px;
+    border-radius: 2px;
+  }
+  
+  table.calendar td a:hover {
+    background: #900;
+    color: #FFF;
   }
 
   table.calendar td.outmonth {
-    color: #EEE;
-    background: #F8F8F8;
+    color: #CCC;
+    background: inherit;
   }
 
   table.calendar td.active {

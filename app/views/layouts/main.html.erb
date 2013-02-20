@@ -4,19 +4,12 @@
   <%= render :partial => "layouts/head" %>
 </head>
 <body class="<%= controller_name %> sport<%= @organisation.sport_id%>" id="<%= controller_name %>-<%= action_name %>">
-<h1 class="depth<%= @titles.size %>"><span><% @titles.each_with_index do |title, i| %>
-  <strong class="title<%= i %>"><%= title %></strong><% end %>
-</span></h1>
-
+<%= render :partial => 'layouts/h1' %>
 <%= render :partial => 'layouts/menu' %>
-
-<div id="content"><div class="inner">
-    <div id="primary">
-      <%= yield %>
-    </div>
-    <%= render :partial => "layouts/secondary" %>
-</div></div>
-
+<div id="content">
+  <%= render :partial => "layouts/primary" %>
+  <%= render :partial => "layouts/secondary" %>
+</div>
 <%= render :partial => "layouts/search" %>
 <%= render :partial => "layouts/foot" %>
 </body>
