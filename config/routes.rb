@@ -15,7 +15,7 @@ Teamsquad::Application.routes.draw do
   
   match '',
     :controller => 'organisation',
-    :action => 'home',
+    :action => 'index',
     :as => 'home'
     
   match 'edit',
