@@ -4,9 +4,9 @@
   <%= render :partial => "layouts/head" %>
 </head>
 <body class="<%= controller_name %> sport<%= @organisation.sport_id%>" id="<%= controller_name %>-<%= action_name %>">
-<%= render :partial => 'layouts/h1' %>
-<%= render :partial => 'layouts/menu' %>
 <div id="content">
+  <%= render :partial => 'layouts/h1' %>
+  <%= render :partial => 'layouts/menu' %>
   <%= render :partial => "layouts/primary" %>
   <%= render :partial => "layouts/secondary" %>
 </div>

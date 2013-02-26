@@ -1,5 +1,50 @@
+.breadcrumb { 
+  list-style: none;
+  margin: 1em 0 0 0;
+  padding: 0;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.2s linear;
+  min-height: 3em;
+}
+
+.breadcrumb:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s linear;
+}
+
+.breadcrumb li { 
+  float: left;
+  margin: 0;
+  padding: 0;
+  line-height: 2em;
+}
+
+.breadcrumb li a:after {
+  content: "⇢";
+  float: right;
+  margin: 0 0.25em;
+  display: block;
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.breadcrumb li:first-child a { 
+  font-weight: bold;
+}
+
+.breadcrumb li:last-child a:after {
+  content: "";
+}
+
+.breadcrumb li a {
+  float: left;
+  padding: 0.5em 0;
+  display: block;
+}
+
 div#menu {
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   margin: 0;
@@ -131,6 +176,8 @@ div#secondary {
   li.page            span { background-image: url(/images/icons/small/page.png); }
   li.competition     span { background-image: url(/images/icons/small/competition.png); }
   li.overview        span { background-image: url(/images/icons/small/overview.png); }
+  
+  li.season          span { background-image: url(/images/icons/small/archive.png); }
   
   li.fixtures        span { background-image: url(/images/icons/small/fixtures.png); }
   li.results         span { background-image: url(/images/icons/small/results.png); }

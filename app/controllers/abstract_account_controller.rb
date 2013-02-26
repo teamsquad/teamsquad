@@ -36,6 +36,7 @@ protected
   
   def get_competition
     (throw404 and return false) unless get_season
+    @titles << 'Competitions'
     @competition = @season.find_competition(params["competition"])
     @titles << @competition.title if @competition
     @competition or (throw404 and return false)

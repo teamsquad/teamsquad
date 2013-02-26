@@ -1,10 +1,11 @@
 class InformationController < AbstractAccountController
   
   before_filter :check_logged_in, :only => [:new, :edit]
+  before_filter :set_title
+  
   
   def index
     @pages   = @organisation.pages
-    @titles  << 'Information'
   end
   
   def view
@@ -29,5 +30,10 @@ class InformationController < AbstractAccountController
       redirect_to information_page_url(:page => @form) and return
     end
   end
-
+  
+protected
+  
+  def set_title
+    @titles << 'Information'
+  end
 end

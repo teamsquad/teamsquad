@@ -10,16 +10,14 @@ h1, h2, h3, h4, h5, legend, caption {
   font-weight: normal;
 }
 
-h1 {
+header {
   background: url(/images/bg.png);
-  color: #900;
+  color: #333;
   padding-top: 3em;
-  padding-bottom: 0.2em;
+  padding-bottom: 0.5em;
   margin: 0;
-  font-size: 2em;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,33 +25,21 @@ h1 {
   z-index: 15;
 }
 
-  h1.depth2,
-  h1.depth3 {
-    padding-top: 2.25em;
-  }
+h1 {
+  margin: 0;
+  padding: 0;
+  clear: both;
+  font-size: 2.5em;
+  line-height: 1;
+}
 
-  h1.depth2 .title0,
-  h1.depth3 .title0,
-  h1.depth4 .title0 {
-    font-size: 0.5em;
-    display: block;
-  }
-  
-  h1 .title0 {
-
-  }
-  
-  h1 .title1 {
-    color: #333;
-  }
-  
-  h1 .title2 {
-    font-weight: normal;
-    color: #666;
-  }
+h1 strong {
+  color: #900;
+  font-weight: normal;
+}
 
 h2 {
-  font-size: 1.75em;
+  font-size: 1.5em;
   margin: 0.5em 0 0 0;
   color: #900;
 }
@@ -82,6 +68,10 @@ p {
   margin: 1em 0;
   color: #666;
 }
+
+  p.more {
+    text-align: right;
+  }
 
   p.meta {
     margin: 1em 0;

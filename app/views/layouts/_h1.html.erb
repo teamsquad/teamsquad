@@ -1,3 +1,7 @@
-<h1 class="depth<%= @titles.size %>"><% @titles.each_with_index do |title, i| %>
-  <strong class="title<%= i %>"><%= title %></strong><% end %>
-</h1>
+<header>
+  <ul class="breadcrumb"><% @titles[0...-1].each_with_index do |title, i| %>
+    <li><a href="<%= '../' * (@titles.size - 2 - i) %>"><%= title %></a></li><% end %>
+  </ul>
+
+  <h1><%= @titles[-2] %> <strong><%= @titles.last %></strong></h1>
+</header>

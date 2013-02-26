@@ -83,7 +83,7 @@ p.warning {
 form fieldset {
   clear: both;
   margin: 0 0 1em 0;
-  padding: 0 2em 2em 2em;
+  padding: 1em;
   border: 2px solid rgba(0, 0, 0, 0.1);
   background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -231,6 +231,7 @@ form fieldset.finish input {
 form td,
 form th {
   white-space: nowrap;
+  font-weight: bold;
 }
 
 input.score {
@@ -248,18 +249,17 @@ input.points {
 
 textarea.summary {
   width: 100%;
-  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 #search fieldset {
   border: none;
   padding: 0;
   margin: 0;
-  float: right;
-  width: 30%;
   background: none;
   position: relative;
 }
+
   #search fieldset label {
     display: none;
   }
