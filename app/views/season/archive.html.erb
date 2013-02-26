@@ -1,0 +1,11 @@
+<div class="standout">
+  <p>The archive contains all your matches, results, tables, standing, and statistics from previous seasons.</p>
+</div>
+
+<div class="page"><% if @organisation.seasons.empty? -%>
+  <p>There are no old seasons in the archive.</p>
+<% else -%>
+  <ul class="seasons"><% for season in @organisation.seasons %>
+    <li class="season"><%= link_to season.title,  season_url(:season => season) %></li><% end %>
+  </ul><% end %>
+</div>

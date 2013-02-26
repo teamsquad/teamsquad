@@ -136,6 +136,16 @@ Teamsquad::Application.routes.draw do
     :controller => 'season',
     :action => 'edit',
     :as => 'edit_season'
+    
+  match 'archive',
+    :controller => 'season',
+    :action => 'archive',
+    :as => 'archive'
+    
+  match 'archive/:season',
+    :controller => 'season',
+    :action => 'view',
+    :as => 'season'
    
   # COMPETITIONS
 
