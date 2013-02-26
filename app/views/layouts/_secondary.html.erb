@@ -1,11 +1,38 @@
 <div id="secondary">
   <div id="navigation">
-    <ul>
-      <% if controller_name == 'information' -%>
-        <% for page in @organisation.pages %>
-          <li class="page"><%= link_to_unless_current raw("<span>#{page.title}</span>"), information_page_url(:page => page) %></li>
-        <% end -%>
-      <% elsif @competition -%>
+    <% if controller_name == 'organisation'  %>
+      <h2><%= @season.title %></h2>
+      <ul><% for competition in @season.competitions %>
+        <li class="competition">
+          <%= link_to raw("<span>#{competition.title}</span>"), competition_url(:competition => competition) %>
+        </li><% end %>
+      </ul>
+      <% if authorised? -%>
+        <p><%= link_to ('Add competition...'), new_competition_url, :class => 'admin button' %></p>
+      <% end -%>
+    <% end -%>
+    
+    <% if @organisation.has_archive? && (controller_name == 'organisation' || controller_name == 'competition') && action_name == 'index' %>
+      <h2>Older</h2>
+      <ul><% for season in @organisation.seasons %>
+        <li class="season">
+          <%= link_to raw("<span>#{season.title}</span>"), season_url(:season => season) %>
+        </li><% end %>
+      </ul>
+    <% end -%>
+    
+    <% if controller_name == 'information' -%>
+      <h2>Information</h2>
+      <ul><% for page in @organisation.pages %>
+        <li class="page">
+          <%= link_to_unless_current raw("<span>#{page.title}</span>"), information_page_url(:page => page) %>
+        </li><% end %>
+      </ul>
+    <% end -%>
+    
+    <% if @competition -%>
+      <h2><%= @competition.title %></h2>
+      <ul>
         <li class="overview"><%= link_to_unless_current raw('<span>Overview</span>'), competition_url(:competition => @competition) %></li>
         <% for stage in @competition.stages -%>
         <li class="stage"><%= link_to_unless_current raw("<span>#{stage.title}</span>"), stage_url(:competition => @competition, :stage => stage) %></li>
@@ -13,16 +40,16 @@
         <li class="calendar"><%= link_to_unless_current raw('<span>Calendar</span>'), calendar_url(:competition => @competition) %></li>
         <li class="results"><%= link_to_unless_current raw('<span>All results</span>'), competition_results_url(:competition => @competition) %></li>
         <li class="fixtures"><%= link_to_unless_current raw('<span>All fixtures</span>'), competition_fixtures_url(:competition => @competition) %></li>
-      <% elsif @team -%>
+      </ul>
+    <% end -%>
+            
+    <% if @team -%>
+      <h2><%= @team.title %></h2>
+      <ul>
         <li class="overview"><%= link_to_unless_current raw('<span>Overview</span>'), team_url(:team => @team) %></li>
         <li class="results"><%= link_to_unless_current raw('<span>Results</span>'), team_results_url(:team => @team) %></li>
         <li class="fixtures"><%= link_to_unless_current raw('<span>Fixtures</span>'), team_fixtures_url(:team => @team) %></li>
-      <% end -%>
-<!--
-      <% if authorised? -%>
-        <li><%= link_to ('Add new competition...'), new_competition_url, :class => 'admin button' %></li>
-      <% end -%>
--->
-    </ul>
+      </ul>
+    <% end -%>
   </div>
 </div>
