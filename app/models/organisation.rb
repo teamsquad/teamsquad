@@ -102,6 +102,10 @@ class Organisation < ActiveRecord::Base
   def teams_or_players
     self.team_or_player + 's'
   end
+  
+  def has_archive?
+    self.seasons.count > 1
+  end
 
 private
 

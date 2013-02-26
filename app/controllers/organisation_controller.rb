@@ -2,8 +2,9 @@ class OrganisationController < AbstractAccountController
 
   before_filter :check_logged_in, :only => :edit
 
-  def home
+  def index
     @new_notices  = @organisation.recent_notices
+    get_season
   end
   
   def login
