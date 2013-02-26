@@ -1,4 +1,8 @@
-<div class="competitions"><% for competition in @competitions %>
+<div class="standout">
+  <p>The current season is <%= @organisation.current_season.title %>.</p>
+</div>
+
+<div class="competitions page"><% for competition in @competitions %>
   <div class="competition">
     <h2><%= link_to competition.label_or_title, competition_url(:competition => competition) %></h2>
     <ul class="stages"><% for stage in competition.stages %>
