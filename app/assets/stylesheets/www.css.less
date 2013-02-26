@@ -1,13 +1,13 @@
 /*
  *= require_self
 */
-@import 'type.css.less';
 @import 'mixins.css.less';
 
 html {
-  background: #F9FEF6;
+  background: #EEE url(/images/bg.png);
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 body {
@@ -17,7 +17,6 @@ body {
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.85em;
-  background: #F9FEF6;
 }
 
 /* LAYOUT */
@@ -30,99 +29,29 @@ body {
 }
 
   div#mast {
-    padding: 1em 0 2em 0;
+    padding: 1em 0;
     margin: 0 auto;
     text-align: left;
-    overflow: hidden;
-    position: fixed;
     width: 960px;
-    z-index: 2;
-    background: #F9FEF6;
+    overflow: hidden;
   }
 
     div#logo {
       text-align: right;
       float: right;
-      font-size: 2.5em;
-      margin: 0.2em 20px 0 0;
+      font-size: 2.2em;
+      margin: 0.2em 20px 0.5em 0;
+      line-height: 1;
     }
-
-    div#menu {
-      float: left;
-      color: #EEE;
-      .branded-font;
-      text-align: left;
-      overflow: hidden;
-      margin: 1em 0 0 12px;
-      font-size: 1.2em;
-    }
-  
-      div#menu ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-  
-      div#menu li {
-        display: block;
-        float: left;
-        text-align: left;
-        padding: 0 8px;
-        margin: 0;
-        border-right: 1px solid #FFF;
-        border-left: 1px solid #EEF2E9;
-        background: none;
-        line-height: 2em;
-      }
-      
-      div#menu li.index {
-        border-left: none;
-      }
-      
-      div#menu li.contact {
-        border-right: none;
-      }
-      
-      div#menu a {
-        opacity: 0.33;
-        text-decoration: none;
-      }
-      
-      body.index div#menu li.index a,
-      body.about div#menu li.about a,
-      body.features div#menu li.features a,
-      body.register div#menu li.register a,
-      body.search div#menu li.search a,
-      body.contact div#menu li.contact a {
-        color: #900;
-        opacity: 1.0;
-        cursor: default;
-      }
-      
-  #topper {
-    .gradient;
-    height: 3em;
-    z-index: 3;
-    position: fixed;
-    width: 956px;
-    top: 6.3em;
-    border-top: 2px solid #EEF2E9;
-    border-left: 2px solid #EEF2E9;
-    border-right: 2px solid #EEF2E9;
-    .rounded-corners-top;
-  }
-
+    
   #content {
-    margin: 7em 0 0 0;
-    padding: 1px 15px;
-    z-index: 2;
+    clear: both;
+    margin: 0;
+    padding: 10px 15px;
     position: relative;
     background: #FFF;
-    .rounded-corners-bottom;
-    border-left: 2px solid #EEF2E9;
-    border-right: 2px solid #EEF2E9;
-    border-bottom: 2px solid #EEF2E9;
-    z-index: 1;
+    .rounded-corners;
+    border: 2px solid #EEF2E9;
   }
   
     #content:after {
@@ -168,7 +97,7 @@ body {
 
 /* DEFAULT ELEMENTS */
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, legend {
   .branded-font;
   font-weight: normal;
   margin: 1em 0 1em 0;
@@ -260,7 +189,8 @@ span.logotype-squad {
 
 span.tagline {
   display: block;
-  font-size: 12px;
+  font-size: 0.5em;
+  letter-spacing: 0.1ex;
   color: #CCC;
 }
 
@@ -275,7 +205,7 @@ span.tagline {
 
 div#splash {
   margin: 5px 0 0 0;
-  padding: 60px 0;
+  padding: 65px 0;
   background: #1B1813 url(/images/splash.jpg) no-repeat 40px center;
   color: #FFF;
   .rounded-corners(10px);
@@ -314,36 +244,34 @@ div.box {
 
   div#why-players {
     float: left;
-    width: 44%;
-    margin: 30px 20px;
+    width: 45%;
+    margin: 30px 0 30px 20px;
     box-sizing: border-box;
   }
 
   div#why-organisers {
     float: right;
-    width: 44%;
-    margin: 30px 20px;
+    width: 45%;
+    margin: 30px 20px 30px 0;
     box-sizing: border-box;
   }
   
   div.box h2 {
     margin: 0;
-    padding-bottom: 2px;
-    border-bottom: 2px solid #EEE;
   }
 
   div#why-players img,
   div#why-organisers img {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    top: 0;
     z-index: 1;
   }
 
   div.box p {
     position: relative;
     z-index: 10;
-    padding-right: 100px;
+    padding-right: 150px;
     margin: 0.5em 0;
     line-height: 1.4em;
   }
@@ -382,59 +310,52 @@ select,
 textarea {
   margin: 0;
   vertical-align: baseline;
-  .rounded-corners(4px);
-  border: 1px solid #CCC;
+  border: 0.2em solid #EEE;
   -webkit-transition: border linear 0.2s,box-shadow linear 0.2s;
+  padding: 0.3em;
   font-size: 1.1em;
-  line-height: 1.25;
   color: #333;
   display: inline-block;
 }
 
 form fieldset {
   clear: both;
-  margin: 0 0 1em 0;
-  padding: 1em 1em 0 1em;
-  border: 1px solid #CCFFCC;
-  background: #F8FFF8;
+  margin: 0 0 2em 0;
+  padding: 0.5em 0 0 0;
+  border: none;
   .rounded-corners;
 }
 
 form legend {
-
-}
-
-form ol {
-  list-style: none;
-  margin: 0;
+  margin: 0 0 0 25%;
   padding: 0;
+  text-indent: 0;
+  font-size: 1.3em;
+  color: #900;
 }
 
-form li {
-  margin: 0 0 1em 0;
-  padding: 0;
-  clear: both;
-  color: #666;
-  position: relative;
-  overflow: hidden;
+form p {
+  margin: 1em 0;
 }
 
-form li.hint {
-  margin: 0.5em 0 1em 0;
+form p.hint {
+  margin: -0.75em 0 2em 25%;
   font-size: 0.8em;
+  color: #999;
+  clear: both;
 }
 
 form label {
   display: block;
   font-weight: bold;
   color: #333;
-  padding: 0;
-  font-size: 1.1em;
-  line-height: 1.25;
+  padding: 0.5em 1em 0.55em 0;
   float: left;
   width: 25%;
   text-align: right;
   vertical-align: baseline;
+  box-sizing: border-box;
+  background: #EEE;
 }
 
 form fieldset p.inline-errors {
@@ -451,7 +372,6 @@ form fieldset p.inline-errors {
 form fieldset input,
 form fieldset textarea {
   width: 70%;
-  border: 1px solid #CCC;
   display: block;
 }
 
@@ -463,9 +383,6 @@ form fieldset input#organisation_nickname {
 
 form fieldset.finish {
   padding: 1em;
-}
-
-form fieldset.finish li {
   text-align: right;
 }
 

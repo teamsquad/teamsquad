@@ -1,46 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Language" content="en-gb">
-  <title>TeamSquad - <%= @page_title || 'organising local and amateur sport' %></title>
-  <%= stylesheet_link_tag "www", :media => "all" %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= controller.action_name %>">
-<div id="container">
-<div id="mast">
-	<div id="logo">
-	  <span class="logotype-team">Team</span><span class="logotype-squad">Squad</span>
-	  <span class="tagline">pre-release version <a href="/version">Huh?</a></span>
-  </div>
-  <div id="menu">
-  	<ul>
-    	<li class="index"><a href="/">Home</a></li>
-    	<li class="about"><a href="/about">About</a></li>
-    	<li class="features"><a href="/features">Features</a></li>
-    	<li class="register"><a href="/register">Register</a></li>
-    	<li class="search"><a href="/search">Search</a></li>
-    	<li class="contact"><a href="/contact">Contact</a></li>
-  	</ul>
-  </div>
-</div>
-<div id="topper"></div>
-<hr>
-<div id="content">
-<hr>
-<%= yield %>
-<hr>
-</div>
-<div id="foot">
-<p id="smallprint">
-	<a href="/">Home</a> |
-	<a href="/about">About</a> |
-	<a href="/disclaimer">Disclaimer</a> |
-	<a href="/privacy">Privacy</a> |
-	<a href="/contact">Contact</a>
-</p>
-</div>
-</div>
-</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en-gb">
+    <title>
+      TeamSquad - <%= @page_title || 'organising local and amateur sport' %>
+    </title>
+    <link href="http://fonts.googleapis.com/css?family=Capriola" rel="stylesheet" type="text/css"><%= stylesheet_link_tag "www", :media => "all" %><%= csrf_meta_tags %>
+  </head>
+  <body class="<%= controller.action_name %>">
+    <div id="container">
+      <div id="mast">
+        <div id="logo">
+          <span class="logotype-team">Team</span><span class="logotype-squad">Squad</span>
+          <span class="tagline">where sport gets organised</span>
+        </div>
+       <div id="content">
+        <hr>
+        <%= yield %>
+        <hr>
+      </div>
+      <div id="foot">
+        <p id="smallprint">
+          <a href="/disclaimer">Disclaimer</a> | <a href="/privacy">Privacy</a>
+        </p>
+      </div>
+    </div>
+  </body>
 </html>

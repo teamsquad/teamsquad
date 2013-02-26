@@ -17,13 +17,13 @@
 <form action="register" method="post" class="standard">
   
   <fieldset>
-    <legend>Invitation details...</legend>
+    <legend>Invitation...</legend>
     <%= form_field @invite, "text", "code", "Invite code" %>
   </fieldset>
   
   <fieldset>
     <legend>Organisation details...</legend>
-    <%= form_field @organisation, "text", "title", "The full name of your organisation" %>
+    <%= form_field @organisation, "text", "title", "Organisation name" %>
 
     <%= form_field @organisation, "text", "nickname", "Short name", ".teamsquad.com" %>
 
@@ -36,7 +36,7 @@
   </fieldset>
   
   <fieldset>
-    <legend>Enter your details...</legend>
+    <legend>Your details...</legend>
     <%= form_field @user, "text", "name", "Your name" %>
     <%= form_field @user, "text", "email", "Your email address" %>
     <%= form_field @user, "password", "password", "Password" %>
