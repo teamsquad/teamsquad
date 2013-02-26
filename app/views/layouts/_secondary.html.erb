@@ -1,6 +1,6 @@
 <div id="secondary">
   <div id="navigation">
-    <% if controller_name == 'organisation'  %>
+    <% if controller_name == 'organisation' && @season  %>
       <h2><%= @season.title %></h2>
       <ul><% for competition in @season.competitions %>
         <li class="competition">

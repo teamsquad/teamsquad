@@ -25,7 +25,7 @@ class OrganisationControllerTest < ActionController::TestCase
   
   def test_home_routing
     assert_routing 'http://test.teamsquad.com/',
-      { :controller => 'organisation', :action => 'home' }
+      { :controller => 'organisation', :action => 'index' }
   end
   
   def test_login_routing
@@ -62,9 +62,9 @@ class OrganisationControllerTest < ActionController::TestCase
   #
   
   def test_view_home_page
-    get :home
+    get :index
     assert_response :success
-    assert_template "organisation/home"
+    assert_template "organisation/index"
   end
   
   def test_view_login_page
