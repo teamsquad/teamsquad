@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
 
   acts_as_sluggable :title
   
+  attr_protected :organisation_id
+  
   before_validation :strip_title!
   
   validates_presence_of   :title, :organisation_id

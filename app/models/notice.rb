@@ -3,6 +3,7 @@
 class Notice < ActiveRecord::Base
 
   attr_accessor :remove_picture
+  attr_protected :organisation_id, :user_id
 
   acts_as_sluggable :heading
 

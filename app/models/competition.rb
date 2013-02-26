@@ -1,6 +1,6 @@
 class Competition < ActiveRecord::Base
   
-  attr_protected :id, :season_id
+  attr_protected :id, :season_id, :stages_count
   attr_accessor :format
   
   acts_as_sluggable :title

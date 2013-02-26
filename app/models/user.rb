@@ -2,6 +2,8 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   
+  attr_protected :organisation_id
+  
   before_create :crypt_password, :cleanse_email
   before_update :crypt_unless_empty_or_unchanged
   

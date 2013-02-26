@@ -1,5 +1,7 @@
 class ContactResponse < ActiveRecord::Base
   
+  attr_protected :resolved
+  
   validates_presence_of :name, :message
   validates_length_of   :name, :maximum => 64, 
                                :on => :create,

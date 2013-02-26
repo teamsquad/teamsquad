@@ -1,6 +1,6 @@
 class Stage < ActiveRecord::Base
 
-  attr_protected :competition_id
+  attr_protected :competition_id, :groups_count
   
   acts_as_sluggable :title
   acts_as_list :scope => :competition
