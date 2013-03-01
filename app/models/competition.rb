@@ -86,7 +86,7 @@ class Competition < ActiveRecord::Base
     
   has_many :news_worthy_matches,
     :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 7) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
+    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
     :include => [:home_team, :away_team, :group],
     :order => "kickoff desc",
     :limit => 20
