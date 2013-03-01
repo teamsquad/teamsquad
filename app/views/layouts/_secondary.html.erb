@@ -1,7 +1,7 @@
 <div id="secondary">
   <div id="navigation">
     <% if controller_name == 'organisation' && @season  %>
-      <h2><%= @season.title %></h2>
+      <h2>This season</h2>
       <ul><% for competition in @season.competitions %>
         <li class="competition">
           <%= link_to raw("<span>#{competition.title}</span>"), competition_url(:competition => competition) %>
@@ -13,7 +13,7 @@
     <% end -%>
     
     <% if @organisation.has_archive? && (controller_name == 'organisation' || controller_name == 'competition') && action_name == 'index' %>
-      <h2>Older</h2>
+      <h2>Archived</h2>
       <ul><% for season in @organisation.seasons %>
         <li class="season">
           <%= link_to raw("<span>#{season.title}</span>"), season_url(:season => season) %>
@@ -22,7 +22,7 @@
     <% end -%>
     
     <% if controller_name == 'information' -%>
-      <h2>Information</h2>
+      <h2>Pages</h2>
       <ul><% for page in @organisation.pages %>
         <li class="page">
           <%= link_to_unless_current raw("<span>#{page.title}</span>"), information_page_url(:page => page) %>
@@ -31,7 +31,7 @@
     <% end -%>
     
     <% if @competition -%>
-      <h2><%= @competition.title %></h2>
+      <h2>This competition</h2>
       <ul>
         <li class="overview"><%= link_to_unless_current raw('<span>Overview</span>'), competition_url(:competition => @competition) %></li>
         <% for stage in @competition.stages -%>
@@ -44,7 +44,7 @@
     <% end -%>
             
     <% if @team -%>
-      <h2><%= @team.title %></h2>
+      <h2>This team</h2>
       <ul>
         <li class="overview"><%= link_to_unless_current raw('<span>Overview</span>'), team_url(:team => @team) %></li>
         <li class="results"><%= link_to_unless_current raw('<span>Results</span>'), team_results_url(:team => @team) %></li>

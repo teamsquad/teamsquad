@@ -7,6 +7,10 @@ table.games {
   max-width: 100%;
 }
 
+table.results {
+  margin: 0.5em 0;
+}
+
   table.nohead thead {
     display: none;
   }
@@ -26,6 +30,7 @@ table.games {
   table.games td,
   table.standings td {
     padding: 6px;
+    border-bottom: 1px solid #FFF;
   }
 
   table.standings td.stat,
@@ -40,17 +45,11 @@ table.games {
     font-weight: bold;
   }
 
-  table.standings td,
-  table.games td {
-    border-top: 1px solid #EEE;
-  }
-
   table tfoot td {
     border: none;
   }
 
   table tr.summary td {
-    border-top: none;
     text-align: left;
     color: #666;
     font-size: smaller;
@@ -62,7 +61,6 @@ table.games {
   }
 
   table tr.notes td {
-    border-top: none;
     text-align: center;
     color: #666;
     font-size: smaller;
@@ -107,6 +105,10 @@ table.games {
     white-space: nowrap;
     width: 12%;
   }
+  
+  table .hierarchy a {
+    color: #CCC;
+  }
 
   .time {
     text-align: right;
@@ -116,6 +118,7 @@ table.games {
     width: 12%;
     text-align: left;
     white-space: nowrap;
+    color: #CCC;
   }
 
   table.games .home {
@@ -146,7 +149,13 @@ table.games {
     text-align: center;
   }
   
-  table td.score {
+  table.results td.score {
     width: 5%;
-    font-size: larger;
+    font-size: 1.2em;
+    text-align: center;
+    background: #F4F4F4;
+    border: 2px solid #FFF;
+    border-radius: 3px;
+    font-family: 'Capriola', sans-serif;
+    line-height: 1;
   }
