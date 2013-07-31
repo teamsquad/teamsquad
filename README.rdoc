@@ -2,7 +2,6 @@
 
 TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.
 
+== Copyright
 
-== License
-
-TeamSquad is released under the GPL license and is copyright (c) 2005-2013 Stephen Latter. A copy of the GPL license can be found in the LICENSE file.
+TeamSquad is copyright (c) 2005-2013 Stephen Latter.
