@@ -4,7 +4,7 @@ gem 'rails', '3.2.12'
 gem 'rack-rewrite'
 gem 'jquery-rails'
 gem 'pg'
-gem "rmagick", "2.12.0", :require => 'RMagick'
+gem "rmagick", :require => 'RMagick'
 gem "RedCloth", ">= 4.0", :require => 'redcloth'
 
 # Gems used only for assets and not required
@@ -18,5 +18,4 @@ end
 
 group :production do
   gem 'thin'
-  gem 'newrelic_rpm'
 end

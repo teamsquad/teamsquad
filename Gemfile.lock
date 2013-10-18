@@ -63,7 +63,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.5.1)
-    newrelic_rpm (3.5.6.46)
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -93,7 +92,7 @@ GEM
     rdoc (3.12.1)
       json (~> 1.4)
     ref (1.0.2)
-    rmagick (2.12.0)
+    rmagick (2.13.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -124,11 +123,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   less-rails
-  newrelic_rpm
   pg
   rack-rewrite
   rails (= 3.2.12)
-  rmagick (= 2.12.0)
+  rmagick
   therubyracer
   thin
   uglifier (>= 1.0.3)
