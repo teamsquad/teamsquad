@@ -5,6 +5,4 @@
 TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.
 
 
-== License
-
-TeamSquad is Stephen Latter.
+Copyright 2006-2013 Stephen Latter.
