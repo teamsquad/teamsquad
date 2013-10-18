@@ -1,7 +1,7 @@
 == Welcome to TeamSquad
 
+{<img src="https://codeclimate.com/github/teamsquad/teamsquad.png" />}[https://codeclimate.com/github/teamsquad/teamsquad]
+
 TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.
 
-== Copyright
-
-TeamSquad is copyright (c) 2005-2013 Stephen Latter.
+TeamSquad is copyright 2005-2013 Stephen Latter.
