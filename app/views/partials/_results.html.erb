@@ -1,30 +1,26 @@
 <table class="games results" cellpadding="0" cellspacing="0" summary="List of results.">
-	<thead>
-		<tr>
-		<th class="when">Time</th>
-		<th class="home team">Home Team</th>
-		<th class="versus" colspan="3">v</th>
-		<th class="away team">Away Team</th>
-		<th class="hierarchy">Type</th>
-		</tr>
-	</thead>
-	<tbody><% reset_cycle; for game in results %>
-	<tr class="<%= odd_or_even = cycle('odd', 'even') %> <%= game.state %>">
-		<td class="when"><%= game.pretty_time %></td>
+	<tbody><% previous_hierarchy = ''; for game in results %>
+    <% if game.hierarchy != previous_hierarchy && !results.all? { |result| result.hierarchy == results.first.hierarchy } -%>
+    <% previous_hierarchy = game.hierarchy -%>
+    <tr>
+      <th colspan="6"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></th>
+    </tr>
+    <% end %>
+	<tr class="<%= game.state %>">
 		<td class="home team"><%= link_to game.home_team.title, team_url(:team=> game.home_team) %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
 		<td class="away team"><%= link_to game.away_team.title, team_url(:team => game.away_team)%></td>
-		<td class="hierarchy"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></td>
+    <td class="when"><%= game.pretty_time %></td>
 	</tr><% if game.has_notes? %>
-	<tr class="notes <%= odd_or_even %>">
+	<tr class="notes">
 		<td class="home" colspan="2"><%= game.home_notes %></td>
 		<td colspan="3">&nbsp;</td>
 		<td class="away" colspan="2"><%= game.away_notes %></td>
 	</tr><% end %><% if game.has_summary? %>
-	<tr class="<%= game.summary.length < 64 ? 'short ' : '' %>summary <%= odd_or_even %>">
-		<td colspan="7"><%= game.summary %></td>
+	<tr class="<%= game.summary.length < 64 ? 'short ' : '' %>summary">
+		<td colspan="6"><%= game.summary %></td>
 	</tr><% end %><% end %>
 	</tbody>
 </table>

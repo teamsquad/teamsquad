@@ -59,6 +59,7 @@ class CreateCoreViews < ActiveRecord::Migration
         
     execute "create view game_days as
       SELECT
+        s.id as stage_id,
         s.competition_id,
         f.played,
         min(kickoff) as date,
@@ -72,6 +73,7 @@ class CreateCoreViews < ActiveRecord::Migration
       LEFT JOIN
         stages s ON g.stage_id = s.id
       GROUP BY
+        s.id,
         s.competition_id,
         f.played,
         to_char(f.kickoff, 'Day FMDDth Month YYYY'),
@@ -109,7 +111,7 @@ class CreateCoreViews < ActiveRecord::Migration
         s.competition_id,
         c.season_id,
         to_char(f.kickoff, 'Day FMDDth Month YYYY') as pretty_date,
-        to_char(f.kickoff, 'Dy FMHH:MIam') as pretty_time,
+        to_char(f.kickoff, 'FMHH:MIam') as pretty_time,
         to_char(f.kickoff, 'YYYYMMDD') as yyyymmdd,
         to_char(f.kickoff, 'YYYYMM')as yyyymm,
         f.*
@@ -129,7 +131,7 @@ class CreateCoreViews < ActiveRecord::Migration
         s.competition_id,
         c.season_id,
         to_char(f.kickoff, 'Day FMDDth Month YYYY') as pretty_date,
-        to_char(f.kickoff, 'Dy FMHH:MIam') as pretty_time,
+        to_char(f.kickoff, 'FMHH:MIam') as pretty_time,
         to_char(f.kickoff, 'YYYYMMDD') as yyyymmdd,
         to_char(f.kickoff, 'YYYYMM')as yyyymm,
         f.*

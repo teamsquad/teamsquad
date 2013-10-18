@@ -13,17 +13,36 @@
 </div>
 
 <% if @stage.groups_count > 0 -%>
-  <div class="stage <%= @stage.is_knockout? ? 'knockout' : 'league' %>_stage_with_group<%= 's' unless @stage.groups_count == 1 %> groups">
-    <% for group in @stage.groups -%>
-    <div class="group <%= cycle("odd", "even") %>"><% if @stage.groups_count > 1 %>
-      <h2 id="<%= group.slug %>"><%= group.title %></h2><% end %>
-      <%= render :partial => @stage_partial, :locals => {:group => group} %>
-    </div><% end %>
-</div>
+  <% if @stage.is_knockout? -%>
+    <% @stage.fixtures.group_by(&:yyyymmdd).sort.each do |day, matches| -%>
+      <div class="day">
+        <h2><%= matches.first.pretty_date %></h2>
+        <% if day > Time.now.strftime("%Y%m%d") -%>
+          <%=  render :partial => 'partials/fixtures', :object => matches %>
+        <% else -%>
+           <%=  render :partial => 'partials/results', :object => matches %>
+         <% end -%>
+      </div>
+    <% end -%>
+    <p>
+      <%= link_to('Edit group...', edit_group_url(:competition => @competition, :stage => @stage, :group => @stage.groups.first), :class => 'admin button') %>
+      <%= link_to('Add fixtures...', new_fixtures_url(:competition => @competition, :stage => @stage, :group => @stage.groups.first), :class => 'admin button') %>
+      <%= link_to('Enter results...', enter_results_url(:competition => @competition, :stage => @stage, :group => @stage.groups.first), :class => 'admin button') if @stage.groups.first.has_overdue_fixtures? %>
+    </p>
+  <% else -%>
+    <div class="stage league_stage_with_group<%= 's' unless @stage.groups_count == 1 %> groups">
+      <% for group in @stage.groups -%>
+        <div class="group <%= cycle("odd", "even") %>"><% if @stage.groups_count > 1 %>
+          <h2 id="<%= group.slug %>"><%= group.title %></h2><% end %>
+          <%= render :partial => @stage_partial, :locals => {:group => group} %>
+        </div>
+      <% end -%>
+    </div>
+    <% end -%>
 <% else -%>
   <h2>Stage not set up!</h2>
   <p>This competition stage has no groups in it. Each stage of
     a competition must have at least one group in to be usable.
     <%= link_to('Create a group...', new_group_url(:competition => @competition, :stage => @stage), {:class => 'admin button'}) if authorised? %>
   </p>
-<% end %>
+<% end -%>
