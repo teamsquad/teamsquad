@@ -49,7 +49,7 @@ class CompetitionController < AbstractAccountController
   def results
     get_competition
     unless read_fragment(:action => :results)
-      @days = @competition.results.group_by(&:yyyymmdd).sort
+      @days = @competition.results.group_by(&:yyyymmdd).sort.reverse
     end
     @stages = @competition.stages
     @titles << "Results"
