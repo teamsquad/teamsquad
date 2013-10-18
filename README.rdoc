@@ -1,8 +1,10 @@
 == Welcome to TeamSquad
 
+{<img src="https://codeclimate.com/github/teamsquad/teamsquad.png" />}[https://codeclimate.com/github/teamsquad/teamsquad]
+
 TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.
 
 
 == License
 
-TeamSquad is released under the GPL license and is copyright (c) 2005-2013 Stephen Latter. A copy of the GPL license can be found in the LICENSE file.
+TeamSquad is Stephen Latter.
