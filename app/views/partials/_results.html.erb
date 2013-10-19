@@ -3,15 +3,16 @@
     <% if game.hierarchy != previous_hierarchy && !results.all? { |result| result.hierarchy == results.first.hierarchy } -%>
     <% previous_hierarchy = game.hierarchy -%>
     <tr>
-      <th colspan="6"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></th>
+      <th class="hierarchy" colspan="7"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></th>
     </tr>
     <% end %>
 	<tr class="<%= game.state %>">
-		<td class="home team"><%= link_to game.home_team.title, team_url(:team=> game.home_team) %></td>
+	  <td class="where">The REC</td>
+		<td class="home team"><%= game.home_team ? link_to(game.home_team.title, team_url(:team=> game.home_team)) : '-to be arranged-' %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>
 		<td class="away score"><%= game.away_score %></td>
-		<td class="away team"><%= link_to game.away_team.title, team_url(:team => game.away_team)%></td>
+		<td class="away team"><%= game.away_team ? link_to(game.away_team.title, team_url(:team => game.away_team)) : '-to be arranged-' %></td>
     <td class="when"><%= game.pretty_time %></td>
 	</tr><% if game.has_notes? %>
 	<tr class="notes">

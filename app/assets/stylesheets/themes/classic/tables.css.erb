@@ -4,7 +4,9 @@ table.games {
   clear: both;
   border-radius: 5px;
   box-sizing: border-box;
+  width: 100%;
   max-width: 100%;
+  border-bottom: 1px dotted #EEE;
 }
 
 table.results {
@@ -30,7 +32,7 @@ table.results {
   table.games td,
   table.standings td {
     padding: 6px;
-    border-bottom: 1px solid #FFF;
+    border-top: 1px dotted #EEE;
   }
 
   table.standings td.stat,
@@ -99,26 +101,29 @@ table.results {
   table.results .home {
     text-align: right;
   }
-
-  table .hierarchy {
-    text-align: right;
-    white-space: nowrap;
-    width: 12%;
-  }
   
-  table .hierarchy a {
-    color: #CCC;
-  }
-
   .time {
     text-align: right;
   }
 
-  table .when {
-    width: 12%;
+  table .hierarchy {
+    padding: 0.5em 0;
+  }
+
+  table .when,
+  table .where {
+    width: 7%;
     text-align: left;
     white-space: nowrap;
     color: #CCC;
+  }
+
+  table .when {
+    padding-right: 0 !important;
+  }
+
+  table .where {
+    padding-left: 0 !important;
   }
 
   table.games .home {

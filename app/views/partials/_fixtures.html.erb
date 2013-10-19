@@ -3,7 +3,7 @@
     <% if (!@stage && game.hierarchy != previous_hierarchy) || !fixtures.all? { |fixture| fixture.hierarchy == fixtures.first.hierarchy } -%>
     <% previous_hierarchy = game.hierarchy -%>
     <tr>
-      <th colspan="4"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></th>
+      <th class="hierarchy" colspan="5"><%= link_to game.hierarchy, stage_url(:competition => game.competition, :stage => game.stage, :anchor => game.group.slug) %></th>
     </tr>
     <% end %>
 	<tr>
