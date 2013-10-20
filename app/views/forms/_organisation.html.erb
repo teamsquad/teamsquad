@@ -12,12 +12,6 @@
 		<%= error_message_on "form", "summary", "Summary " %>
 		<p class="input"><%= text_area "form", "summary", :rows => 12, :class => 'textarea', :id => 'in-summary'%></p>
 
-    <label for="in-content">Design</label>
-		<p class="hint">Select the design you want to use for your organisation's
-		  website. This will affect how pages are laid out and styled.</p>
-		<%= error_message_on "form", "theme", "Theme " %>
-		<p class="input"><%= select "form", "theme", [["Classic", "classic"], ["Apptastic", "apptastic"]], :class => 'select', :id => 'in-theme' %></p>
-		
 		<label for="in-picture">Logo</label>
 		<p class="hint">If you want to add a logo to display on the site use the 
 		file field to locate a picture on your local system for uploading. The image
