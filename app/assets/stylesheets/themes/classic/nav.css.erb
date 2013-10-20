@@ -1,46 +1,81 @@
 .breadcrumb { 
-  list-style: none;
-  margin: 1em 0 0 0;
+  font-family: "Helvetica", Arial, sans-serif;
+  display: block;
   padding: 0;
-  opacity: 0.5;
-  -webkit-transition: opacity 0.2s linear;
-  min-height: 3em;
-}
-
-.breadcrumb:hover {
-  opacity: 1;
-  -webkit-transition: opacity 0.2s linear;
+  margin: 1em 0;
+  list-style: none; 
+  overflow: hidden;
+  font-size: 0.85em;
+  font-weight: 400;
+  border: 2px solid #EEE;
+  background: #EEE;
+  border-radius: 4px;
+  float: left;
 }
 
 .breadcrumb li { 
-  float: left;
-  margin: 0;
-  padding: 0;
-  line-height: 2em;
-}
-
-.breadcrumb li a:after {
-  content: "⇢";
-  float: right;
-  margin: 0 0.25em;
-  display: block;
-  font-size: 1.5em;
-  color: rgba(0, 0, 0, 0.25);
-}
-
-.breadcrumb li:first-child a { 
-  font-weight: bold;
-}
-
-.breadcrumb li:last-child a:after {
-  content: "";
+  float: left; 
 }
 
 .breadcrumb li a {
-  float: left;
-  padding: 0.5em 0;
+  color: #090;
+  text-decoration: none; 
+  padding: 0.5em 0 0.5em 25px;
+  background: #EFE; 
+  position: relative; 
   display: block;
+  float: left;
 }
+
+.breadcrumb li a:after { 
+  content: " "; 
+  display: block; 
+  width: 0; 
+  height: 0;
+  border-top: 25px solid transparent;           /* Go big on the size, and let overflow hide */
+  border-bottom: 25px solid transparent;
+  border-left: 15px solid #EFE;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px; 
+  left: 100%;
+  z-index: 2; 
+} 
+
+.breadcrumb li a:before { 
+  content: " "; 
+  display: block; 
+  width: 0; 
+  height: 0;
+  border-top: 25px solid transparent;           /* Go big on the size, and let overflow hide */
+  border-bottom: 25px solid transparent;
+  border-left: 15px solid #CFC;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px; 
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1; 
+} 
+
+.breadcrumb li:first-child a {
+  padding-left: 1em;
+  font-weight: 600;
+}
+
+
+.breadcrumb li:last-child a {
+  background: white !important;
+  color: #090;
+  pointer-events: none;
+  cursor: default;
+  border-left-color: #FFF;
+  padding-right: 1em;
+}
+
+.breadcrumb li:last-child a { color: #900; padding-right: 20px; }
+.breadcrumb li a:hover { color: #900; }
+
 
 div#menu {
   position: fixed;
@@ -52,6 +87,8 @@ div#menu {
   height: 3.2em;
   border-bottom: 3px solid #DDD;
   z-index: 20;
+  text-shadow: 1px 1px 1px #000;
+  display: none;
 }
 
   div#menu ul {
@@ -95,7 +132,6 @@ div#menu {
 
     div#menu span {
       display: block;
-      font-weight: bold;
       color: #FFF;
       padding: 0.4em 16px 0.4em 22px;
       margin: 0.5em 2px 0 2px;

@@ -24,6 +24,7 @@ protected
   def get_team
     (throw404 and return false) unless @organisation
     @team = @organisation.find_team(params["team"])
+    @titles << 'Teams'
     @titles <<  @team.title if @team
     @team or (throw404 and return false)
   end
