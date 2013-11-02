@@ -1,10 +1,10 @@
 <header>
   <ul class="breadcrumb"><% request.fullpath.split('/').each_with_index do |part, i| %>
-    <li><a href="<%= (i==0) ? '/' : request.fullpath.split('/')[0..i].join('/') %>"><%= @titles[i] %></a></li><% end %>
+    <li><a href="<%= (i==0) ? '/' : request.fullpath.split('/')[0..i].join('/') %>"><span><%= @titles[i] %></span></a></li><% end %>
   </ul>
   
   <% if @titles.size > 2 %>
-  <h1><%= @titles[-2] %> <strong><%= @titles.last %></strong></h1>
+  <h1><span><%= @titles[-2] %></span> <strong><%= @titles.last %></strong></h1>
   <% else %>
   <h1><%= @titles.last %>
   <% end %>
