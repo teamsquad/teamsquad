@@ -10,6 +10,11 @@ Teamsquad::Application.routes.draw do
       :controller => 'www',
       :constraints => {:id => /\w+(,\w+)*/}
   end
+  
+  match 'the-rec',
+    :controller => 'organisation',
+    :action => 'venue',
+    :as => 'venue'
 
   # ORGANISATION
   

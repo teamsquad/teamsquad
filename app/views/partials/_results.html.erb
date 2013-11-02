@@ -7,7 +7,7 @@
     </tr>
     <% end %>
 	<tr class="<%= game.state %>">
-	  <td class="where">The REC</td>
+	  <td class="where"><a href="/the-rec">The REC</a></td>
 		<td class="home team"><%= game.home_team ? link_to(game.home_team.title, team_url(:team=> game.home_team)) : '-to be arranged-' %></td>
 		<td class="home score"><%= game.home_score %></td>
 		<td class="versus">v</td>

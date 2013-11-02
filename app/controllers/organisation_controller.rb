@@ -34,5 +34,10 @@ class OrganisationController < AbstractAccountController
     @notices = @organisation.notices.find(:all, :conditions => ["heading ilike ?", "%#{params[:term]}%"])
     render :action => 'live_search', :layout => false 
   end
+  
+  def venue
+    @titles << "Venues"
+    @titles << "The REC"
+  end
 
 end
