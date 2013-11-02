@@ -2,7 +2,7 @@
 <div class="day">
   <h2>Fixtures for <%= @competition.fixture_days.first.pretty_date %></h2>
   <%=  render :partial => 'partials/fixtures', :object => @competition.matches_for_day(@competition.fixture_days.first.date) %>
-  <p class="more"><%= link_to 'All fixtures', competition_fixtures_url(:competition => @competition), :class => 'button' %>
+  <p class="more"><%= link_to 'All fixtures', competition_fixtures_url(:competition => @competition), :class => 'button' %></p>
 </div>
 <% end -%>
 
