@@ -16,7 +16,7 @@
 
 $(function() {
 	$('#secondary').on('click', function() {
-		$(this).toggleClass('open');
+		$('body').toggleClass('open');
 	});
 });
 
