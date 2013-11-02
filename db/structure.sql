@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -47,7 +48,13 @@ CREATE TABLE teams (
 --
 
 CREATE VIEW away_teams AS
-    SELECT teams.id, teams.organisation_id, teams.title, teams.slug, teams.created_on, teams.updated_on FROM teams;
+ SELECT teams.id, 
+    teams.organisation_id, 
+    teams.title, 
+    teams.slug, 
+    teams.created_on, 
+    teams.updated_on
+   FROM teams;
 
 
 --
@@ -224,7 +231,17 @@ CREATE TABLE stages (
 --
 
 CREATE VIEW game_days AS
-    SELECT s.id AS stage_id, s.competition_id, f.played, min(f.kickoff) AS date, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm FROM ((games f LEFT JOIN groups g ON ((f.group_id = g.id))) LEFT JOIN stages s ON ((g.stage_id = s.id))) GROUP BY s.id, s.competition_id, f.played, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text), to_char(f.kickoff, 'YYYYMMDD'::text), to_char(f.kickoff, 'YYYYMM'::text);
+ SELECT s.id AS stage_id, 
+    s.competition_id, 
+    f.played, 
+    min(f.kickoff) AS date, 
+    to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, 
+    to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, 
+    to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm
+   FROM ((games f
+   LEFT JOIN groups g ON ((f.group_id = g.id)))
+   LEFT JOIN stages s ON ((g.stage_id = s.id)))
+  GROUP BY s.id, s.competition_id, f.played, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text), to_char(f.kickoff, 'YYYYMMDD'::text), to_char(f.kickoff, 'YYYYMM'::text);
 
 
 --
@@ -232,7 +249,15 @@ CREATE VIEW game_days AS
 --
 
 CREATE VIEW game_months AS
-    SELECT s.competition_id, f.played, min(f.kickoff) AS date, to_char(f.kickoff, 'Month YYYY'::text) AS pretty_date, to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm FROM ((games f LEFT JOIN groups g ON ((f.group_id = g.id))) LEFT JOIN stages s ON ((g.stage_id = s.id))) GROUP BY s.competition_id, f.played, to_char(f.kickoff, 'Month YYYY'::text), to_char(f.kickoff, 'YYYYMM'::text);
+ SELECT s.competition_id, 
+    f.played, 
+    min(f.kickoff) AS date, 
+    to_char(f.kickoff, 'Month YYYY'::text) AS pretty_date, 
+    to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm
+   FROM ((games f
+   LEFT JOIN groups g ON ((f.group_id = g.id)))
+   LEFT JOIN stages s ON ((g.stage_id = s.id)))
+  GROUP BY s.competition_id, f.played, to_char(f.kickoff, 'Month YYYY'::text), to_char(f.kickoff, 'YYYYMM'::text);
 
 
 --
@@ -288,7 +313,13 @@ CREATE TABLE groups_teams (
 --
 
 CREATE VIEW home_teams AS
-    SELECT teams.id, teams.organisation_id, teams.title, teams.slug, teams.created_on, teams.updated_on FROM teams;
+ SELECT teams.id, 
+    teams.organisation_id, 
+    teams.title, 
+    teams.slug, 
+    teams.created_on, 
+    teams.updated_on
+   FROM teams;
 
 
 --
@@ -329,7 +360,32 @@ ALTER SEQUENCE invites_id_seq OWNED BY invites.id;
 --
 
 CREATE VIEW matches AS
-    SELECT g.stage_id, s.competition_id, c.season_id, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, to_char(f.kickoff, 'FMHH:MIam'::text) AS pretty_time, to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm, f.id, f.group_id, f.kickoff, f.hometeam_id, f.home_score, f.home_notes, f.home_points, f.awayteam_id, f.away_score, f.away_notes, f.away_points, f.summary, f.played, f.created_on, f.updated_on FROM (((games f LEFT JOIN groups g ON ((f.group_id = g.id))) LEFT JOIN stages s ON ((g.stage_id = s.id))) LEFT JOIN competitions c ON ((s.competition_id = c.id)));
+ SELECT g.stage_id, 
+    s.competition_id, 
+    c.season_id, 
+    to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, 
+    to_char(f.kickoff, 'FMHH:MIam'::text) AS pretty_time, 
+    to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, 
+    to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm, 
+    f.id, 
+    f.group_id, 
+    f.kickoff, 
+    f.hometeam_id, 
+    f.home_score, 
+    f.home_notes, 
+    f.home_points, 
+    f.awayteam_id, 
+    f.away_score, 
+    f.away_notes, 
+    f.away_points, 
+    f.summary, 
+    f.played, 
+    f.created_on, 
+    f.updated_on
+   FROM (((games f
+   LEFT JOIN groups g ON ((f.group_id = g.id)))
+   LEFT JOIN stages s ON ((g.stage_id = s.id)))
+   LEFT JOIN competitions c ON ((s.competition_id = c.id)));
 
 
 --
@@ -578,7 +634,77 @@ ALTER SEQUENCE stages_id_seq OWNED BY stages.id;
 --
 
 CREATE VIEW standings AS
-    SELECT gt.team_id AS id, gt.group_id, gt.team_id, sum(CASE WHEN (g.hometeam_id = gt.team_id) THEN 1 ELSE 0 END) AS homeplayed, COALESCE(sum(CASE WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score > g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS homewon, COALESCE(sum(CASE WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score = g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS homedrawn, COALESCE(sum(CASE WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score < g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS homelost, COALESCE(sum(CASE WHEN (g.hometeam_id = gt.team_id) THEN g.home_score ELSE 0 END), (0)::bigint) AS homefor, COALESCE(sum(CASE WHEN (g.hometeam_id = gt.team_id) THEN g.away_score ELSE 0 END), (0)::bigint) AS homeagainst, sum(CASE WHEN (g.awayteam_id = gt.team_id) THEN 1 ELSE 0 END) AS awayplayed, COALESCE(sum(CASE WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score > g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS awaylost, COALESCE(sum(CASE WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score = g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS awaydrawn, COALESCE(sum(CASE WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score < g.away_score)) THEN 1 ELSE NULL::integer END), (0)::bigint) AS awaywon, COALESCE(sum(CASE WHEN (g.awayteam_id = gt.team_id) THEN g.home_score ELSE 0 END), (0)::bigint) AS awayagainst, COALESCE(sum(CASE WHEN (g.awayteam_id = gt.team_id) THEN g.away_score ELSE 0 END), (0)::bigint) AS awayfor, COALESCE(sum(CASE WHEN (g.hometeam_id = gt.team_id) THEN g.home_points ELSE g.away_points END), (0)::bigint) AS totalpoints FROM (groups_teams gt LEFT JOIN games g ON ((((g.group_id = gt.group_id) AND ((gt.team_id = g.hometeam_id) OR (gt.team_id = g.awayteam_id))) AND (g.played = true)))) GROUP BY gt.group_id, gt.team_id;
+ SELECT gt.team_id AS id, 
+    gt.group_id, 
+    gt.team_id, 
+    sum(
+        CASE
+            WHEN (g.hometeam_id = gt.team_id) THEN 1
+            ELSE 0
+        END) AS homeplayed, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score > g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS homewon, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score = g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS homedrawn, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.hometeam_id = gt.team_id) AND (g.home_score < g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS homelost, 
+    COALESCE(sum(
+        CASE
+            WHEN (g.hometeam_id = gt.team_id) THEN g.home_score
+            ELSE 0
+        END), (0)::bigint) AS homefor, 
+    COALESCE(sum(
+        CASE
+            WHEN (g.hometeam_id = gt.team_id) THEN g.away_score
+            ELSE 0
+        END), (0)::bigint) AS homeagainst, 
+    sum(
+        CASE
+            WHEN (g.awayteam_id = gt.team_id) THEN 1
+            ELSE 0
+        END) AS awayplayed, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score > g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS awaylost, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score = g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS awaydrawn, 
+    COALESCE(sum(
+        CASE
+            WHEN ((g.awayteam_id = gt.team_id) AND (g.home_score < g.away_score)) THEN 1
+            ELSE NULL::integer
+        END), (0)::bigint) AS awaywon, 
+    COALESCE(sum(
+        CASE
+            WHEN (g.awayteam_id = gt.team_id) THEN g.home_score
+            ELSE 0
+        END), (0)::bigint) AS awayagainst, 
+    COALESCE(sum(
+        CASE
+            WHEN (g.awayteam_id = gt.team_id) THEN g.away_score
+            ELSE 0
+        END), (0)::bigint) AS awayfor, 
+    COALESCE(sum(
+        CASE
+            WHEN (g.hometeam_id = gt.team_id) THEN g.home_points
+            ELSE g.away_points
+        END), (0)::bigint) AS totalpoints
+   FROM (groups_teams gt
+   LEFT JOIN games g ON ((((g.group_id = gt.group_id) AND ((gt.team_id = g.hometeam_id) OR (gt.team_id = g.awayteam_id))) AND (g.played = true))))
+  GROUP BY gt.group_id, gt.team_id;
 
 
 --
@@ -586,7 +712,18 @@ CREATE VIEW standings AS
 --
 
 CREATE VIEW team_game_days AS
-    SELECT t.id AS team_id, s.competition_id, f.played, min(f.kickoff) AS date, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm FROM (((teams t JOIN games f ON (((f.hometeam_id = t.id) OR (f.awayteam_id = t.id)))) JOIN groups g ON ((f.group_id = g.id))) JOIN stages s ON ((g.stage_id = s.id))) GROUP BY t.id, s.competition_id, f.played, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text), to_char(f.kickoff, 'YYYYMMDD'::text), to_char(f.kickoff, 'YYYYMM'::text);
+ SELECT t.id AS team_id, 
+    s.competition_id, 
+    f.played, 
+    min(f.kickoff) AS date, 
+    to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, 
+    to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, 
+    to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm
+   FROM (((teams t
+   JOIN games f ON (((f.hometeam_id = t.id) OR (f.awayteam_id = t.id))))
+   JOIN groups g ON ((f.group_id = g.id)))
+   JOIN stages s ON ((g.stage_id = s.id)))
+  GROUP BY t.id, s.competition_id, f.played, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text), to_char(f.kickoff, 'YYYYMMDD'::text), to_char(f.kickoff, 'YYYYMM'::text);
 
 
 --
@@ -594,7 +731,34 @@ CREATE VIEW team_game_days AS
 --
 
 CREATE VIEW team_matches AS
-    SELECT t.id AS team_id, g.stage_id, s.competition_id, c.season_id, to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, to_char(f.kickoff, 'FMHH:MIam'::text) AS pretty_time, to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm, f.id, f.group_id, f.kickoff, f.hometeam_id, f.home_score, f.home_notes, f.home_points, f.awayteam_id, f.away_score, f.away_notes, f.away_points, f.summary, f.played, f.created_on, f.updated_on FROM ((((teams t JOIN games f ON (((f.hometeam_id = t.id) OR (f.awayteam_id = t.id)))) JOIN groups g ON ((f.group_id = g.id))) JOIN stages s ON ((g.stage_id = s.id))) JOIN competitions c ON ((s.competition_id = c.id)));
+ SELECT t.id AS team_id, 
+    g.stage_id, 
+    s.competition_id, 
+    c.season_id, 
+    to_char(f.kickoff, 'Day FMDDth Month YYYY'::text) AS pretty_date, 
+    to_char(f.kickoff, 'FMHH:MIam'::text) AS pretty_time, 
+    to_char(f.kickoff, 'YYYYMMDD'::text) AS yyyymmdd, 
+    to_char(f.kickoff, 'YYYYMM'::text) AS yyyymm, 
+    f.id, 
+    f.group_id, 
+    f.kickoff, 
+    f.hometeam_id, 
+    f.home_score, 
+    f.home_notes, 
+    f.home_points, 
+    f.awayteam_id, 
+    f.away_score, 
+    f.away_notes, 
+    f.away_points, 
+    f.summary, 
+    f.played, 
+    f.created_on, 
+    f.updated_on
+   FROM ((((teams t
+   JOIN games f ON (((f.hometeam_id = t.id) OR (f.awayteam_id = t.id))))
+   JOIN groups g ON ((f.group_id = g.id)))
+   JOIN stages s ON ((g.stage_id = s.id)))
+   JOIN competitions c ON ((s.competition_id = c.id)));
 
 
 --
@@ -1144,6 +1308,8 @@ CREATE INDEX users_organisation_id ON users USING btree (organisation_id);
 --
 -- PostgreSQL database dump complete
 --
+
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('1');
 
