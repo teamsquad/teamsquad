@@ -6,38 +6,33 @@ class Stage < ActiveRecord::Base
   acts_as_list :scope => :competition
 
   belongs_to :competition, :counter_cache => 'stages_count'
-  has_many   :groups, :dependent => :destroy, :order => "title ASC"
+  has_many   :groups, -> { order("title ASC") }, :dependent => :destroy
 
   has_many :results,
-    :class_name => 'Match',
-    :conditions => ["played = ?", true],
-    :order => "kickoff desc" 
+    -> { where(played: true).order("kickoff desc") },
+    :class_name => 'Match'
 
   has_many :fixtures,
-    :class_name => 'Match',
-    :conditions => ["played = ?", false],
-    :order => "kickoff asc"
+    -> { where(played: false).order("kickoff asc") },
+    :class_name => 'Match'
 
   has_many :overdue_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < CURRENT_DATE and played = ?", false],
-    :order => "kickoff asc"
+    -> { where("kickoff < CURRENT_DATE and played = false").order("kickoff asc") },
+    :class_name => 'Match'
   
   has_many :recent_results,
-    :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ?", true],
-    :order => "kickoff desc" 
+    -> { where("kickoff > (CURRENT_DATE - 14) and played = true").order("kickoff desc") },
+    :class_name => 'Match'
   
   has_many :upcoming_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
-    :order => "kickoff asc"
+    -> { where("kickoff < (CURRENT_DATE + 14) and played = false").order("kickoff asc") },
+    :class_name => 'Match'
 
   before_validation :strip_title!
   
   validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "competition_id", :message => "You already have a stage with that name in this competition."
-  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_format_of     :title, :with => /\A[\sa-zA-Z0-9\-]*\z/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_length_of     :title, :within => 4..64, :too_long => "Please use a shorter title.", :too_short => "Please use a longer title."
   validates_exclusion_of  :slug,  :in => %w(edit_stage calendar fixtures results new_stage teams calendar information about), :message => "That's a reserved word, please try again."
   validates_uniqueness_of :slug,  :scope => "competition_id", :message => "Title is too similar to an existing one. Please change it."
@@ -58,7 +53,7 @@ class Stage < ActiveRecord::Base
   
   # Return relevant group for a given url slug
   def find_group(slug)
-    self.groups.find :first, :conditions => ["slug = ?", slug.downcase]
+    self.groups.where(slug: slug.downcase).first
   end
   
 private

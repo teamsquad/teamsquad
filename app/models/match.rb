@@ -9,8 +9,7 @@ class Match < ActiveRecord::Base
   belongs_to :away_team, :foreign_key => 'awayteam_id'
 
   def has_notes?
-    (!self.home_notes.nil? && self.home_notes!='') or \
-    (!self.away_notes.nil? && self.away_notes!='')
+    (!self.home_notes.nil? && self.home_notes!='') or (!self.away_notes.nil? && self.away_notes!='')
   end
 
   def has_summary?

@@ -28,10 +28,10 @@ class OrganisationController < AbstractAccountController
   
   def live_search
     get_season
-    @teams = @organisation.teams.find(:all, :conditions => ["title ilike ?", "%#{params[:term]}%"])
-    @competitions = @season.competitions.find(:all, :conditions => ["title ilike ?", "%#{params[:term]}%"])
-    @pages = @organisation.pages.find(:all, :conditions => ["title ilike ?", "%#{params[:term]}%"])
-    @notices = @organisation.notices.find(:all, :conditions => ["heading ilike ?", "%#{params[:term]}%"])
+    @teams = @organisation.teams.where(["title ilike ?", "%#{params[:term]}%"])
+    @competitions = @season.competitions.where(["title ilike ?", "%#{params[:term]}%"])
+    @pages = @organisation.pages.where(["title ilike ?", "%#{params[:term]}%"])
+    @notices = @organisation.notices.where(["heading ilike ?", "%#{params[:term]}%"])
     render :action => 'live_search', :layout => false 
   end
   

@@ -5,41 +5,36 @@ class Group < ActiveRecord::Base
   acts_as_sluggable :title
   
   belongs_to :stage, :counter_cache => 'groups_count'
-  has_many   :games, :dependent => :destroy, :include => [:home_team, :away_team]
-  has_many   :matches, :include => [:home_team, :away_team]
-  has_many   :standings, :include => :team, :order => 'totalpoints desc'
-  has_and_belongs_to_many :teams, :order => 'title asc'
+  has_many   :games, -> { includes(:home_team, :away_team) }, :dependent => :destroy
+  has_many   :matches, -> { includes(:home_team, :away_team) }
+  has_many   :standings, -> { includes(:team).order('totalpoints desc') }
+  has_and_belongs_to_many :teams, -> { order('title asc') }
   
   has_many :results,
-    :class_name => 'Match',
-    :conditions => ["played = ?", true],
-    :order => "kickoff desc" 
+    -> { where(played: true).order("kickoff desc") },
+    :class_name => 'Match'
   
   has_many :fixtures,
-    :class_name => 'Match',
-    :conditions => ["played = ?", false],
-    :order => "kickoff asc"
+    -> { where(played: false).order("kickoff asc") },
+    :class_name => 'Match'
   
   has_many :overdue_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < CURRENT_DATE AND hometeam_id != 0 AND awayteam_id != 0 AND played = ?", false],
-    :order => "kickoff asc"
-  
+    -> { where("kickoff < CURRENT_DATE AND hometeam_id != 0 AND awayteam_id != 0 AND played = false").order("kickoff asc") },
+    :class_name => 'Match'
+    
   has_many :recent_results,
-    :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ?", true],
-    :order => "kickoff desc" 
+    -> { where("kickoff > (CURRENT_DATE - 14) and played = true").order("kickoff desc") },
+    :class_name => 'Match'
   
   has_many :upcoming_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
-    :order => "kickoff asc"
+    -> { where("kickoff < (CURRENT_DATE + 14) and played = false").order("kickoff asc") },
+    :class_name => 'Match'
   
   before_validation :strip_title!
   
   validates_presence_of   :title
   validates_uniqueness_of :title, :scope => "stage_id"
-  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_format_of     :title, :with => /\A[\sa-zA-Z0-9\-]*\z/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_length_of     :title, :within => 4..64
   validates_uniqueness_of :slug, :scope => "stage_id"
   validates_exclusion_of  :slug, :in => %w(new_group edit information notices help teams results fixtures calendar test), :message => "That's a reserved word, please try again."

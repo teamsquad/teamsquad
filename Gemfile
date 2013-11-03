@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem "rmagick", :require => 'RMagick'
 gem "RedCloth", ">= 4.0", :require => 'redcloth'
+gem 'protected_attributes'
 
 # Gems used only for assets and not required
 # in production environments by default.
