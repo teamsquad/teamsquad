@@ -13,10 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-$(function() {
-	$('#secondary').on('click', function() {
-		$('body').toggleClass('open');
-	});
-});
-
