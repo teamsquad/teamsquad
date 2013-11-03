@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates_length_of       :password, :within => 5..40, :on => :create
   validates_presence_of     :email, :name
   validates_confirmation_of :password, :if => Proc.new { |u| u.password && u.password.size > 0 }
-  validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+  validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   # echo "fivearsedmonkey" | openssl dgst -sha1
   @@salt = '9475f1fdc60cbb2493e1877563617ba3e62e643b'

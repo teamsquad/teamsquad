@@ -8,7 +8,7 @@ class Competition < ActiveRecord::Base
   before_validation :strip_title!
   before_create     :create_format
   
-  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_format_of     :title, :with => /\A[\sa-zA-Z0-9\-]*\z/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_presence_of   :title, :summary, :message => 'You must enter something'
   validates_uniqueness_of :title, :scope => [:season_id], :message => "Must be unique within a season."
   validates_length_of     :title, :within => 4..64
@@ -20,7 +20,7 @@ class Competition < ActiveRecord::Base
   acts_as_list :scope => :season
 
   belongs_to :season, :counter_cache => 'competitions_count'
-  has_many   :stages, :dependent => :destroy, :order => "position ASC"
+  has_many   :stages, -> { order("position ASC") }, :dependent => :destroy
   
   def match_months
     GameMonth.find_by_sql "SELECT pretty_date, min(yyyymm) as yyyymm, min(date) as date FROM game_months WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymm)"
@@ -30,84 +30,59 @@ class Competition < ActiveRecord::Base
     GameDay.find_by_sql "SELECT pretty_date, min(yyyymm) as yyyymm, min(yyyymmdd) as yyyymmdd, min(date) as date FROM game_days WHERE competition_id = #{id} GROUP BY pretty_date ORDER BY min(yyyymmdd)"
   end
   
-  has_many :fixture_months, 
-    :class_name => 'GameMonth',
-    :conditions => ["played = ?", false],
-    :order => "date asc"
+  has_many :fixture_months,
+    -> { where(played: false).order("date asc") },
+    :class_name => 'GameMonth'
     
   has_many :result_months,
-    :class_name => 'GameMonth',
-    :conditions => ["played = ?", true],
-    :order => "date desc"
+    -> { where(played: true).order("date desc") },
+    :class_name => 'GameMonth'
     
-  has_many :fixture_days, 
-    :class_name => 'GameDay',
-    :conditions => ["played = ?", false],
-    :order => "date asc"
+  has_many :fixture_days,
+    -> { where(played: false).order("date asc") },
+    :class_name => 'GameDay'
     
   has_many :result_days,
-    :class_name => 'GameDay',
-    :conditions => ["played = ?", true],
-    :order => "date desc"
-  
+    -> { where(played: true).order("date desc") },
+    :class_name => 'GameDay'
+    
   has_many :matches,
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff asc"
-  
+    -> { includes(:home_team, :away_team, :group).order("kickoff asc") }
+    
   has_many :fixtures,
-    :class_name => 'Match',
-    :conditions => ["played = ?", false],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff asc"
-  
+    -> { where(played: false).includes(:home_team, :away_team, :group).order("kickoff asc") },
+    :class_name => 'Match'
+    
   has_many :results,
-    :class_name => 'Match',
-    :conditions => ["played = ?", true],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff desc" 
-
+    -> { where(played: true).includes(:home_team, :away_team, :group).order("kickoff desc") },
+    :class_name => 'Match'
+    
   has_many :overdue_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < CURRENT_DATE and played = ?", false],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff asc"
-  
+    -> { where("kickoff < CURRENT_DATE and played = false").includes(:home_team, :away_team, :group).order("kickoff asc") },
+    :class_name => 'Match'
+    
   has_many :recent_results,
-    :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ?", true],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff desc" 
-  
+    -> { where("kickoff > (CURRENT_DATE - 14) and played = true").includes(:home_team, :away_team, :group).order("kickoff desc") },
+    :class_name => 'Match'
+    
   has_many :upcoming_fixtures,
-    :class_name => 'Match',
-    :conditions => ["kickoff < (CURRENT_DATE + 14) and played = ?", false],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff asc"
+    -> { where("kickoff < (CURRENT_DATE + 14) and played = false").includes(:home_team, :away_team, :group).order("kickoff asc") },
+    :class_name => 'Match'
     
   has_many :news_worthy_matches,
-    :class_name => 'Match',
-    :conditions => ["kickoff > (CURRENT_DATE - 14) and played = ? AND hometeam_id != 0 AND awayteam_id != 0", true],
-    :include => [:home_team, :away_team, :group],
-    :order => "kickoff desc",
-    :limit => 20
-  
+    -> { where("kickoff > (CURRENT_DATE - 14) and played = true AND hometeam_id != 0 AND awayteam_id != 0").includes(:home_team, :away_team, :group).order("kickoff desc").limit(20) },
+    :class_name => 'Match'
+    
   def label_or_title
     (self.label && !self.label.empty?) ? self.label : self.title
   end
   
   def current_stage
-    self.stages.find(
-      :first,
-      :include => :groups,
-      :conditions => ["is_complete = ?", false]
-    ) 
+    self.stages.where(is_complete: false).includes(:groups).first
   end
   
   def find_stage(slug)
-    self.stages.find(
-      :first,
-      :conditions => ["stages.slug = ?", slug.downcase]
-      )
+    self.stages.where(slug: slug.downcase).first
   end
   
   def match_days_for_month(date)
@@ -115,11 +90,11 @@ class Competition < ActiveRecord::Base
   end
   
   def matches_for_month(date)
-    self.matches.find :all, :conditions => ["yyyymm = ?", date.strftime("%Y%m")]
+    self.matches.where(yyyymm: date.strftime("%Y%m"))
   end
   
   def matches_for_day(date)
-    self.matches.find :all, :conditions => ["yyyymmdd = ?", date.strftime("%Y%m%d")]
+    self.matches.where(yyyymmdd: date.strftime("%Y%m%d"))
   end
   
   def has_news_worthy_matches?

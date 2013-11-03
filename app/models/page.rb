@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
   after_validation  :remove_picture_if_required
   
   validates_presence_of   :organisation_id
-  validates_format_of     :title, :with => /^[\sa-zA-Z0-9\-]*$/, :message => "Only use alpha numeric characters, spaces or hyphens."
+  validates_format_of     :title, :with => /\A[\sa-zA-Z0-9\-]*\z/, :message => "Only use alpha numeric characters, spaces or hyphens."
   validates_presence_of   :title, :content, :message => "You must enter something."
   validates_uniqueness_of :title, :scope => "organisation_id", :message => "You've already used that title, try something else."
   validates_uniqueness_of :slug,  :scope => "organisation_id", :message => "Title is too similar to an existing one. Please change it."

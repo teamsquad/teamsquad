@@ -6,19 +6,19 @@ Teamsquad::Application.routes.draw do
     root :to => 'www#index',
       :as => 'www_home'
 
-    match ':action/(:id)',
+    get ':action/(:id)',
       :controller => 'www',
       :constraints => {:id => /\w+(,\w+)*/}
   end
   
-  match 'the-rec',
+  get 'the-rec',
     :controller => 'organisation',
     :action => 'venue',
     :as => 'venue'
 
   # ORGANISATION
   
-  match '',
+  get '',
     :controller => 'organisation',
     :action => 'index',
     :as => 'home'
@@ -26,64 +26,64 @@ Teamsquad::Application.routes.draw do
   match 'edit',
     :controller => 'organisation',
     :action => 'edit',
-    :as => 'edit_organisation'
+    :as => 'edit_organisation',
+    :via => [:get, :post]
 
   match 'login',
     :controller => 'organisation',
     :action => 'login',
-    :as => 'login'
+    :as => 'login',
+    :via => [:get, :post]
     
   match 'logout',
     :controller => 'organisation',
     :action => 'logout',
-    :as => 'logout'
+    :as => 'logout',
+    :via => [:get, :post]
     
-  match 'search',
+  get 'search',
     :controller => 'organisation',
     :action => 'search',
     :as => 'search'
     
-  match 'live-search',
+  get 'live-search',
     :controller => 'organisation',
     :action => 'live_search',
     :as => 'live_search'
 
-  match 'edit',
-    :controller => 'organisation',
-    :action => 'edit',
-    :as => 'edit_organisation'
-
   # AJAX
   
-  match 'ajax/:action',
+  get 'ajax/:action',
     :controller => 'ajax',
-    :as => 'help'
+    :as => 'ajax'
 
   # CONTROL PANEL
 
   match 'control-panel/new-admin',
     :controller => 'control_panel',
     :action => 'new_admin',
-    :as => 'new_admin'
+    :as => 'new_admin',
+    :via => [:get, :post]
     
   match 'control-panel/edit-admin(/:id)',
     :controller => 'control_panel',
     :action => 'edit_admin',
-    :as => 'edit_admin'
+    :as => 'edit_admin',
+    :via => [:get, :post]
 
-  match 'control-panel(/:action)(/:id)',
+  get 'control-panel(/:action)(/:id)',
     :controller => 'control_panel',
     :as => 'control_panel'
 
   # HELP
   
-  match 'help/(:action)',
+  get 'help/(:action)',
     :controller => 'help',
     :as => 'help'
   
   # NOTICES
     
-  match 'notices',
+  get 'notices',
     :controller => 'notice',
     :action => 'index',
     :as => 'notices'
@@ -91,14 +91,16 @@ Teamsquad::Application.routes.draw do
   match 'notices/new',
     :controller => 'notice',
     :action => 'new',
-    :as => 'new_notice'
+    :as => 'new_notice',
+    :via => [:get, :post]
     
   match 'notices/:notice/edit',
     :controller => 'notice',
     :action => 'edit',
-    :as => 'edit_notice'
+    :as => 'edit_notice',
+    :via => [:get, :post]
   
-  match 'notices/:notice/commented',
+  get 'notices/:notice/commented',
     :controller => 'notice',
     :action => 'commented',
     :as => 'commented'
@@ -106,16 +108,17 @@ Teamsquad::Application.routes.draw do
   match 'notices/:notice/moderate',
     :controller => 'notice',
     :action => 'moderate',
-    :as => 'moderate_notice' 
+    :as => 'moderate_notice' ,
+    :via => [:get, :post]
   
-  match 'notices/:notice',
+  get 'notices/:notice',
     :controller => 'notice',
     :action => 'view',
     :as => 'notice'
     
   # INFORMATION
     
-  match 'information',
+  get 'information',
     :controller => 'information',
     :action => 'index',
     :as => 'information'
@@ -123,14 +126,16 @@ Teamsquad::Application.routes.draw do
   match 'information/new',
     :controller => 'information',
     :action => 'new',
-    :as => 'new_information_page'
+    :as => 'new_information_page',
+    :via => [:get, :post]
     
   match 'information/:page/edit',
     :controller => 'information',
     :action => 'edit',
-    :as => 'edit_information_page'
+    :as => 'edit_information_page',
+    :via => [:get, :post]
     
-  match 'information/:page',
+  get 'information/:page',
     :controller => 'information',
     :action => 'view',
     :as => 'information_page'
@@ -140,21 +145,22 @@ Teamsquad::Application.routes.draw do
   match 'edit-season',
     :controller => 'season',
     :action => 'edit',
-    :as => 'edit_season'
+    :as => 'edit_season',
+    :via => [:get, :post]
     
-  match 'archive',
+  get 'archive',
     :controller => 'season',
     :action => 'archive',
     :as => 'archive'
     
-  match 'archive/:season',
+  get 'archive/:season',
     :controller => 'season',
     :action => 'view',
     :as => 'season'
    
   # COMPETITIONS
 
-  match 'competitions',
+  get 'competitions',
     :controller => 'competition',
     :action => 'index',
     :as => 'competitions'
@@ -162,24 +168,26 @@ Teamsquad::Application.routes.draw do
   match 'competitions/new',
     :controller => 'competition',
     :action => 'new',
-    :as => 'new_competition'
+    :as => 'new_competition',
+    :via => [:get, :post]
   
   match 'competitions/:competition/edit',
     :controller => 'competition',
     :action => 'edit',
-    :as => 'edit_competition'
+    :as => 'edit_competition',
+    :via => [:get, :post]
     
-  match 'competitions/:competition',
+  get 'competitions/:competition',
     :controller => 'competition',
     :action => 'view',
     :as => 'competition'
     
-  match 'competitions/:competition/results',
+  get 'competitions/:competition/results',
     :controller => 'competition',
     :action => 'results',
     :as => 'competition_results'
     
-  match 'competitions/:competition/fixtures',
+  get 'competitions/:competition/fixtures',
     :controller => 'competition',
     :action => 'fixtures',
     :as => 'competition_fixtures'
@@ -187,26 +195,27 @@ Teamsquad::Application.routes.draw do
   match 'competitions/:competition/add-fixtures',
     :controller => 'competition',
     :action => 'add_fixtures',
-    :as => 'competition_add_fixtures'
+    :as => 'competition_add_fixtures',
+    :via => [:get, :post]
     
   # CALENDAR
   
-  match 'competitions/:competition/calendar',
+  get 'competitions/:competition/calendar',
     :controller => 'calendar',
     :action => 'index',
     :as => 'calendar'
     
-  match 'competitions/:competition/calendar/:year',
+  get 'competitions/:competition/calendar/:year',
     :controller => 'calendar',
     :action => 'year',
     :as => 'calendar_year'
     
-  match 'competitions/:competition/calendar/:year/:month',
+  get 'competitions/:competition/calendar/:year/:month',
     :controller => 'calendar',
     :action => 'month',
     :as => 'calendar_month'
     
-  match 'competitions/:competition/calendar/:year/:month/:day',
+  get 'competitions/:competition/calendar/:year/:month/:day',
     :controller => 'calendar',
     :action => 'day',
     :as => 'calendar_day'
@@ -216,14 +225,16 @@ Teamsquad::Application.routes.draw do
   match 'competitions/:competition/new-stage',
     :controller => 'stage',
     :action => 'new',
-    :as => 'new_stage'
+    :as => 'new_stage',
+    :via => [:get, :post]
     
   match 'competitions/:competition/:stage/edit',
     :controller => 'stage',
     :action => 'edit',
-    :as => 'edit_stage'
+    :as => 'edit_stage',
+    :via => [:get, :post]
     
-  match 'competitions/:competition/:stage',
+  get 'competitions/:competition/:stage',
     :controller => 'stage',
     :action => 'view',
     :as => 'stage'  
@@ -233,36 +244,42 @@ Teamsquad::Application.routes.draw do
   match 'competitions/:competition/:stage/new-group',
     :controller => 'group',
     :action => 'new',
-    :as => 'new_group'
+    :as => 'new_group',
+    :via => [:get, :post]
     
   match 'competitions/:competition/:stage/:group/edit',
     :controller => 'group',
     :action => 'edit',
-    :as => 'edit_group'
+    :as => 'edit_group',
+    :via => [:get, :post]
 
   match 'competitions/:competition/:stage/:group/new-fixtures',
     :controller => 'group',
     :action => 'new_fixtures',
-    :as => 'new_fixtures'
+    :as => 'new_fixtures',
+    :via => [:get, :post]
   
   match 'competitions/:competition/:stage/:group/edit-fixtures',
     :controller => 'group',
     :action => 'edit_fixtures',
-    :as => 'edit_fixtures'
+    :as => 'edit_fixtures',
+    :via => [:get, :post]
     
   match 'competitions/:competition/:stage/:group/enter-results',
     :controller => 'group',
     :action => 'enter_results',
-    :as => 'enter_results'
+    :as => 'enter_results',
+    :via => [:get, :post]
     
   match 'competitions/:competition/:stage/:group/edit-results',
     :controller => 'group',
     :action => 'edit_results',
-    :as => 'edit_results'
+    :as => 'edit_results',
+    :via => [:get, :post]
     
   # TEAMS
   
-  match 'teams',
+  get 'teams',
     :controller => 'team',
     :action => 'index',
     :as => 'teams'
@@ -270,27 +287,28 @@ Teamsquad::Application.routes.draw do
   match 'teams/new',
     :controller => 'team',
     :action => 'new',
-    :as => 'new_team'
+    :as => 'new_team',
+    :via => [:get, :post]
     
   match 'teams/:team/edit',
     :controller => 'team',
     :action => 'edit',
-    :as => 'edit_team'
+    :as => 'edit_team',
+    :via => [:get, :post]
     
-  match 'teams/:team',
+  get 'teams/:team',
     :controller => 'team',
     :action => 'view',
     :as => 'team'
 
-  match 'teams/:team/fixtures',
+  get 'teams/:team/fixtures',
     :controller => 'team',
     :action => 'fixtures',
     :as => 'team_fixtures'
   
-  match 'teams/:team/results',
+  get 'teams/:team/results',
     :controller => 'team',
     :action => 'results',
     :as => 'team_results' 
-
 
 end

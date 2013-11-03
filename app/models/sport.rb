@@ -1,5 +1,7 @@
 class Sport < ActiveRecord::Base
   
+  attr_accessible :title
+  
   has_many :organisations
 	
 	validates_presence_of   :title

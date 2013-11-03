@@ -92,7 +92,6 @@ class CalendarControllerTest < ActionController::TestCase
         :day => '01'
     assert_response :success
     assert_template "calendar/day"
-
   end
   
   #

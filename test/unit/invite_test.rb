@@ -4,12 +4,24 @@ class InviteTest < ActiveSupport::TestCase
   
   fixtures :invites
 
-  def test_should_have_a_unique_13_digit_code
-    assert_error_on    :code, Invite.create()
-    assert_error_on    :code, Invite.create(:code => '')
-    assert_error_on    :code, Invite.create(:code => ' ')
-    assert_error_on    :code, Invite.create(:code => invites(:unused_invite).code)
-    assert_no_error_on :code, Invite.create(:code => '6666666666666')
+  def test_should_prevent_empty_invites
+    assert_error_on :code, Invite.create()
+  end
+  
+  def test_should_disallow_empty_codes
+    assert_error_on :code, Invite.create(:code => '')
+  end
+  
+  def test_should_disallow_blank_codes
+    assert_error_on :code, Invite.create(:code => ' ')
+  end
+  
+  def test_should_disallow_reuse_of_codes
+    assert_error_on :code, Invite.create(:code => invites(:unused_invite).code)
+  end
+  
+  def test_should_allow_a_valid_13_digit_codes
+    assert_no_error_on :code, Invite.create(code: '6666666666666')
   end
   
   def test_should_be_usable
