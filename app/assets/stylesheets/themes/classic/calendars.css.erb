@@ -1,3 +1,7 @@
+div.calendars {
+  overflow: hidden;
+}
+
 table.calendar {
   margin: 0 0 2em 0;
   background: #EEE;
@@ -5,14 +9,21 @@ table.calendar {
   border: 8px solid rgba(0, 0, 0, 0);
   line-height: 1;
   border-radius: 5px;
+  width: 100%;
 }
 
-  table.odd {
-    float: left;
-  }
-  
-  table.even {
-    float: right;
+  @media only screen and (min-width: 600px) {
+    table.calendar {
+      width: 48%;
+    }
+    
+    table.odd {
+      float: left;
+    }
+
+    table.even {
+      float: right;
+    }
   }
 
   table.calendar caption {
@@ -20,6 +31,7 @@ table.calendar {
     padding: 0 0 8px 0.66em;
     font-size: 1.5em;
     text-align: left;
+    line-height: 2;
   }
 
   table.calendar th {
