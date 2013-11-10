@@ -52,7 +52,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
-    newrelic_rpm (3.6.8.168)
+    newrelic_rpm (3.6.9.171)
     pg (0.17.0)
     polyglot (0.3.3)
     protected_attributes (1.0.5)
@@ -106,7 +106,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.0)
+    uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
