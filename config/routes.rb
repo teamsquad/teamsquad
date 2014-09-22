@@ -41,12 +41,12 @@ Teamsquad::Application.routes.draw do
     :as => 'logout',
     :via => [:get, :post]
     
-  get 'search',
+  post 'search',
     :controller => 'organisation',
     :action => 'search',
     :as => 'search'
     
-  get 'live-search',
+  post 'live-search',
     :controller => 'organisation',
     :action => 'live_search',
     :as => 'live_search'
