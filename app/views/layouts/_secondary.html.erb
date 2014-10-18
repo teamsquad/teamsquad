@@ -41,6 +41,11 @@
         <li class="results"><%= link_to_unless_current raw('<span>All results</span>'), competition_results_url(:competition => @competition) %></li>
         <li class="fixtures"><%= link_to_unless_current raw('<span>All fixtures</span>'), competition_fixtures_url(:competition => @competition) %></li>
       </ul>
+      
+      <h2>Elsewhere</h2>
+      <ul>
+        <li class="competition"><%= link_to raw('<span>All competitions</span>'), competitions_url %></li>
+      </ul>
     <% end -%>
             
     <% if @team -%>

@@ -1,10 +1,13 @@
 <% cache do -%>
   <% unless @competition.matches_for_day(@date).empty? -%>
   <div class="day">
+    <h2><%= @date.strftime("%A #{params[:day].to_i.ordinalize} %B") %></h2>
     <%= render :partial => 'partials/fixtures', :object => @competition.matches_for_day(@date) %>
   </div>
   <% else -%>
-  <h2>Nothing to display!</h2>
-  <p>There are no matches scheduled for this date.</p>
+  <div class="empty">
+    <h2>Nothing to display!</h2>
+    <p>There are no matches scheduled for this date.</p>
+  </div>
   <% end -%>
 <% end -%>

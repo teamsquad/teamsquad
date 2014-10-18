@@ -7,7 +7,9 @@
           :object => @team.fixtures.select {|game| game.kickoff.day == day.date.day && game.kickoff.month == day.date.month && game.kickoff.year == day.date.year } %>
   </div><% end %>
   <% else -%>
-  <h2>Nothing to display!</h2>
-  <p>There are no fixtures available for this team.</p>
+  <div class="empty">
+    <h2>Nothing to display!</h2>
+    <p>There are no fixtures available for this team.</p>
+  </div>
   <% end -%>
 <% end %>
