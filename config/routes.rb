@@ -46,7 +46,7 @@ Teamsquad::Application.routes.draw do
     :action => 'search',
     :as => 'search'
     
-  post 'live-search',
+  get 'live-search',
     :controller => 'organisation',
     :action => 'live_search',
     :as => 'live_search'
