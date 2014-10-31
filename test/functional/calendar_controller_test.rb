@@ -72,7 +72,7 @@ class CalendarControllerTest < ActionController::TestCase
         :competition => single_stage_competition.slug,
         :year => '2006'
     assert_response :success
-    assert_template "calendar/year"
+    assert_template "calendar/index"
   end
   
   def test_view_competition_calendar_month
