@@ -1,6 +1,6 @@
 == Welcome to TeamSquad
 
-{<img src="https://codeclimate.com/github/teamsquad/teamsquad.png" />}[https://codeclimate.com/github/teamsquad/teamsquad]
+{<img src="https://codeclimate.com/github/teamsquad/teamsquad.png" />}[https://codeclimate.com/github/teamsquad/teamsquad] {<img src="https://travis-ci.org/teamsquad/teamsquad.svg?branch=master" />}[https://travis-ci.org/teamsquad/teamsquad]
 
 TeamSquad helps you organise your sports league with tools to manage leagues, cups, fixtures, results, and some other stuff besides.
 
