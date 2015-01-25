@@ -13,6 +13,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
 /public/uploads
 /public/assets/*
+
 config/database.yml
+
+.env
+.ruby-gemset
+.ruby-version
+

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.5'
+gem 'rails', '4.2.0'
 gem 'rack-rewrite'
 gem 'jquery-rails'
 gem 'pg'
@@ -18,6 +18,6 @@ group :assets do
 end
 
 group :production do
-  gem 'thin'
+  gem 'puma'
   gem 'rails_12factor'
 end

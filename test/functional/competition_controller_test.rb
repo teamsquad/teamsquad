@@ -69,7 +69,7 @@ class CompetitionControllerTest < ActionController::TestCase
     get :view, single_stage_competition_param
     assert_response :success
     assert_template "competition/view"
-    assert_tag :tag => 'h1', :content => single_stage_competition.title
+    assert_select 'h1 strong', single_stage_competition.title
   end
   
   def test_view_competition_fixtures
