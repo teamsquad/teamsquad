@@ -1,7 +1,7 @@
 html {
   margin: 0;
   padding: 0;
-  background: #F4F4F4 url(/images/bg.png) fixed;
+  background: #FFF;
   height: 100%;
 }
 
@@ -25,7 +25,11 @@ body {
 
   @media only screen and (min-height: 640px) {
     #content {
-      padding-top: 9em;
+      padding-top: 8.5em;
+    }
+    
+    #primary {
+      padding-bottom: 6em;
     }
   }
 
@@ -50,7 +54,7 @@ body {
 
 #foot {
   clear: both;
-  padding-top: 2em;
+  padding-top: 1em;
   padding-bottom: 1em;
 }
 
@@ -66,10 +70,8 @@ body {
 
 div.page {
   padding: 1em;
-  border-radius: 5px;
   background: #FFF;
   margin: 0 0 1em 0;
-  border: 2px solid #EEE;
 }
 
 div.groups {
@@ -80,15 +82,13 @@ div.groups {
   div.day,
   div.empty {
     padding: 0 1em;
-    border-radius: 5px;
     background: #FFF;
     margin: 0 0 1em 0;
-    border: 2px solid #EEE;
     box-sizing: border-box;
   }
   
   div.group h2 {
-    margin: 0.25em 0 -0.25em 0;
+    margin: 0.25em 0 0 0;
   }
 
 #menu,
@@ -126,7 +126,7 @@ header,
   
   div#secondary {
     position: fixed;
-    top: 11em;
+    top: 8em;
     right: 2%;
     bottom: 0;
     left: 70%;

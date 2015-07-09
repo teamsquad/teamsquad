@@ -1,5 +1,4 @@
 .breadcrumb { 
-  font-family: "Helvetica", Arial, sans-serif;
   display: block;
   padding: 0;
   margin: 1em 0;
@@ -7,9 +6,7 @@
   overflow: hidden;
   font-size: 0.85em;
   font-weight: 400;
-  border: 2px solid #EEE;
   background: #EEE;
-  border-radius: 4px;
   float: left;
   white-space: nowrap;
   max-width: 100%;
@@ -53,8 +50,6 @@
   float: left;
 }
 
-  
-
 .breadcrumb li a:after { 
   content: " "; 
   display: block; 
@@ -77,11 +72,11 @@
   height: 0;
   border-top: 25px solid transparent;           /* Go big on the size, and let overflow hide */
   border-bottom: 25px solid transparent;
-  border-left: 15px solid #CFC;
+  border-left: 15px solid #FFF;
   position: absolute;
   top: 50%;
   margin-top: -25px; 
-  margin-left: 1px;
+  margin-left: 3px;
   left: 100%;
   z-index: 1; 
 } 
@@ -153,10 +148,10 @@ div#secondary {
       width: 100%;
       transition: left 0.5s ease;
       z-index: 20;
-      background: #444 url(/images/bg2.png);
+      background: rgba(255,255,255, 0.95);
       padding: 10px 32px;
-      box-shadow: inset 2px 2px 2px #333;
       box-sizing: border-box;
+      font-size: 1.2em;
     }
     
     body {
@@ -178,17 +173,15 @@ div#secondary {
       div#secondary:before {
         content: "☰";
         position: absolute;
-        top: 12px;
-        left: -32px;
+        top: 16px;
+        left: -40px;
         width: 35px;
         display: block;
         font-size: 22px;
-        color: #EEE;
+        color: #333;
         text-align: center;
-        background: #444 url(/images/bg2.png);
+        background: rgba(255,255,255, 0.9);
         border-radius: 4px 0 0 4px;
-        text-shadow: 2px 2px 2px #333;
-        box-shadow: inset 2px 2px 2px #333;
         z-index: -1;
       }
       
@@ -196,22 +189,8 @@ div#secondary {
         margin: 0 0 2px 0;
         font-size: 1em;
       }
-
-      div#secondary li span {
-        color: #EEE;
-      }
-      
-      div#secondary li a span {
-        color: #FFF;
-      }
-      
-      div#secondary li a:hover span {
-        text-decoration: none;
-        color: #FFF;
-      }
       
       #secondary h2 {
-        color: #CCC;
         font-weight: 400;
         margin: 0 0 0.5em 0;
         font-size: 1.7em;

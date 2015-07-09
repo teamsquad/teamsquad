@@ -7,6 +7,7 @@ class NoticeController < AbstractAccountController
   end
   
   def view
+    @titles << 'Notices'
     get_notice or return
     @comment = Comment.new params["comment"]
     @comment.notice = @notice

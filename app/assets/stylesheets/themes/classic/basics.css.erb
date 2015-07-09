@@ -1,15 +1,15 @@
 body {
   color: #444;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 1.4;
-  font-family: "Trebuchet MS", Arial, sans-serif; 
+  font-family: "Cabin Sketch", Helvetica, Arial, sans-serif; 
   font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, legend, caption {
-  font-family: "Podkova", Arial, "Lucida Grande", sans-serif; 
+  font-family: "Cabin Sketch", "Helvetica neue", Helvetica, Arial, sans-serif; 
   font-weight: normal;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 header {
@@ -22,22 +22,30 @@ header {
   @media only screen and (min-height: 640px) {
     header {
       position: fixed;
-      background: #F4F4F4 url(/images/bg.png) fixed;
+      background: #FFF;
       top: 0;
       left: 0;
       right: 0;
       z-index: 15;
       margin: 0;
     }
+    
+    #foot {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 25%;
+      z-index: 15;
+      background: #FFF;
+    }
   }
 
 h1 {
   margin: 0;
-  padding: 0.2em 0 0.4em 0.33em;
+  padding: 0.2em 0 0.4em 0.3em;
   clear: both;
   font-size: 2.75em;
   line-height: 1;
-  text-shadow: 2px 2px 2px rgba(0,0,0, 0.1);
 }
 
 h1 strong {
@@ -62,8 +70,8 @@ h2 {
 }
 
   div.day h2 {
-    margin-left: -50px;
-    padding-left: 50px;
+    margin-left: -32px;
+    padding-left: 32px;
     background: url(/images/icons/large/calendar.png) no-repeat left;
   }
   
@@ -148,11 +156,9 @@ div.initially_hidden {
 
 div.standout {
   font-weight: bold;
-  background: #FFF;
+  background: #F8F8F8;
   padding: 1em;
   margin:  0 0 1em 0;
-  border-radius: 5px;
-  border: 2px solid #EEE;
 }
 
   div.standout p {
@@ -235,34 +241,14 @@ div.competition ul.stages {
 .button {
   cursor: pointer;
   display: inline-block;
-  background-color: #e6e6e6;
-  background-repeat: no-repeat;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #e6e6e6);
-  background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-  background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-  background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
-  padding: 3px 8px;
-  font-size: 13px;
-  line-height: 18px;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: #FFF;
+  padding: 3px 12px 5px 12px;
   color: #090;
   line-height: normal;
-  border: 1px solid #ccc;
-  border-bottom-color: #bbb;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -webkit-transition: 0.1s linear all;
-  -moz-transition: 0.1s linear all;
-  -ms-transition: 0.1s linear all;
-  -o-transition: 0.1s linear all;
-  transition: 0.1s linear all;
+  background: #EFE;
+  border: 2px solid #DED;
+  box-shadow: 0 2px 2px #EEE;
+  font-family: "Cabin Sketch", Helvetica, Arial, sans-serif; 
 }
 
 .button:hover {
