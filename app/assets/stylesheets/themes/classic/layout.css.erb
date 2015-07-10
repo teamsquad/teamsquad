@@ -81,14 +81,18 @@ div.groups {
   div.group,
   div.day,
   div.empty {
-    padding: 0 1em;
+    padding: 0;
     background: #FFF;
     margin: 0 0 1em 0;
     box-sizing: border-box;
   }
   
+  div.day {
+    padding: 0 1em;
+  }
+  
   div.group h2 {
-    margin: 0.25em 0 0 0;
+    margin: 0.25em 0 0 0.5em;
   }
 
 #menu,
@@ -116,11 +120,11 @@ header,
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 801px) {
   
   div#primary {
     position: relative;
-    width: 68%;
+    width: 67%;
     float: left;
   }
   
@@ -133,6 +137,11 @@ header,
     z-index: 13;
   }
   
+  div#secondary {
+    left: 70%;
+    right: 4%;
+  }
+  
   body {
     background-repeat: no-repeat;
     background-position: 95% 85%;
@@ -141,9 +150,11 @@ header,
   }
   
   body.sport1 { background-image: url(/images/football1.png); }
+  body.competition.sport1 { background-image: url(/images/football2.png); }
+  body.stage.sport1 { background-image: url(/images/football3.png); }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 768px) {
   
   #menu,
   header,
@@ -153,14 +164,9 @@ header,
     padding-right: 4%;
   }
   
-  div#secondary {
-    left: 70%;
-    right: 4%;
-  }
-  
   div.league_stage_with_groups div.group {
     float: left;
-    width: 49%;
+    width: 48%;
   }
   
   div.league_stage_with_groups div.odd {

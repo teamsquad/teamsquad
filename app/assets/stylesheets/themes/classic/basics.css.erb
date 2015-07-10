@@ -2,12 +2,10 @@ body {
   color: #444;
   font-size: 0.9em;
   line-height: 1.4;
-  font-family: "Cabin Sketch", Helvetica, Arial, sans-serif; 
-  font-weight: 400;
+  font-family: "Averia Sans Libre", "Helvetica neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, legend, caption {
-  font-family: "Cabin Sketch", "Helvetica neue", Helvetica, Arial, sans-serif; 
   font-weight: normal;
   font-weight: 400;
 }
@@ -69,10 +67,13 @@ h2 {
   color: #900;
 }
 
-  div.day h2 {
-    margin-left: -32px;
-    padding-left: 32px;
-    background: url(/images/icons/large/calendar.png) no-repeat left;
+
+  @media only screen and (min-width: 1000px) {
+    div.day h2 {
+      margin-left: -32px;
+      padding-left: 32px;
+      background: url(/images/icons/large/calendar.png) no-repeat left;
+    }
   }
   
   h2 + p,
@@ -248,7 +249,7 @@ div.competition ul.stages {
   background: #EFE;
   border: 2px solid #DED;
   box-shadow: 0 2px 2px #EEE;
-  font-family: "Cabin Sketch", Helvetica, Arial, sans-serif; 
+  font-family: Helvetica, Arial, sans-serif; 
 }
 
 .button:hover {
